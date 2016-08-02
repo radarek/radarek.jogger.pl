@@ -1,0 +1,1134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Projekt Eulera - wyzwanie dla programistów - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="../../../../files/favicon.png" type="image/png" />
+    <meta name="keywords" content="java, projekt eulera, ruby, Java, Programowanie, Ruby, Techblog, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="../../../../files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../../files/common.js"></script>
+    <script type="text/javascript" src="../../../../files/highlight.js"></script>
+    <script type="text/javascript" src="../../../../files/dynamic.js"></script>
+    <script type="text/javascript" src="../../../../files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="../../../../index.html" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="../../../../index.html"><span>Wpisy</span></a></li>
+          <li><a href="../../../../2007/04/29/o-blogu/index.html"><span>O blogu</span></a></li>
+          <li><a href="../../../../2007/05/01/kanaly-rss/index.html"><span>RSS</span></a></li>
+          <li><a href="../../../../2007/05/01/kontakt/index.html"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="http://radarek.jogger.pl/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="../../../01/01/gist-odpicowane-pastie/index.html">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="../../../../2008/10/12/mp3-przeboje/index.html">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="../../../../kategoria/blog/index.html">Blog (6)</a></li>
+          
+            <li id="c"><a href="../../../../kategoria/c/index.html">C (1)</a></li>
+          
+            <li id="gamedev"><a href="../../../../kategoria/gamedev/index.html">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="../../../../kategoria/git/index.html">Git (2)</a></li>
+          
+            <li id="humor"><a href="../../../../kategoria/humor/index.html">Humor (3)</a></li>
+          
+            <li id="java"><a href="../../../../kategoria/java/index.html">Java (1)</a></li>
+          
+            <li id="jruby"><a href="../../../../kategoria/jruby/index.html">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="../../../../kategoria/miniblog/index.html">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="../../../../kategoria/narzedzia/index.html">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="../../../../kategoria/programowanie/index.html">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="../../../../kategoria/python/index.html">Python (4)</a></li>
+          
+            <li id="ruby"><a href="../../../../kategoria/ruby/index.html">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="../../../../kategoria/ruby/merb/index.html">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="../../../../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="../../../../kategoria/techblog/index.html">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="../../../../kategoria/tips-tricks/index.html">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="../../../../kategoria/web/index.html">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="../../../../kategoria/blog/index.html">Blog</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/c/index.html">C</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/gamedev/index.html">Gamedev</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/git/index.html">Git</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/humor/index.html">Humor</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/java/index.html">Java</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/jruby/index.html">JRuby</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/miniblog/index.html">Miniblog</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/narzedzia/index.html">Narzędzia</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/programowanie/index.html">Programowanie</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/python/index.html">Python</a>
+          
+            <a class="catlvl3" href="../../../../kategoria/ruby/index.html">Ruby</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/ruby/merb/index.html">Merb</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="../../../../kategoria/techblog/index.html">Techblog</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/tips-tricks/index.html">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/web/index.html">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="../../../../startid/470765.html">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/433510.html">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/425293.html">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/423490.html">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/392066.html">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/383421.html">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/364188.html">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/337815.html">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/323920.html">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2009</small>
+              <span>06</span>
+              <small>Kwi</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="index.html">Projekt Eulera - wyzwanie dla programistów</a></h2>
+            
+            <a href="index.html#comments">29 komentarzy</a>
+            | Kategorie:
+            
+              <a class="strong" href="../../../../kategoria/java/index.html">Java,</a>
+            
+              <a class="strong" href="../../../../kategoria/programowanie/index.html">Programowanie,</a>
+            
+              <a class="strong" href="../../../../kategoria/ruby/index.html">Ruby,</a>
+            
+              <a class="strong" href="../../../../kategoria/techblog/index.html">Techblog</a>
+            
+            
+              | <a href="trackback/index.html">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/java" rel="tag">
+                  java</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/projekt eulera" rel="tag">
+                  projekt eulera</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <img src="http://triton.imageshack.us/Himg14/scaled.php?server=14&amp;filename=180pxleonhardeuler.jpg&amp;xsize=640&amp;ysize=480" style="float: left;" alt="Leonhard Euler" />
+
+<p>
+Muszę przyznać, że od zawsze uwielbiałem zadania, które wymagają myślenia, główkowania i kombinowania. W okresie mojej podstawówki dotyczyło to głównie rozwiązywania zadań z matematyki, potem (gdy tylko zetknąłem się z informatyką w LO) przeszło to na zadania algorytmiczne. To były zresztą moje początki z programowaniem i do dzisiaj mam ogromny sentyment do tej dziedziny informatyki.
+</p>
+
+<p>
+Ostatnio na <a href="http://forum.rubyonrails.pl/">forum rubyonrails.pl</a> zaproponowano, by rozwiązywać zadania ze <a href="http://projecteuler.net/">strony o nazwie "Project Euler"</a>. Jak się okazało zadania są na pograniczu matematyki, logiki, kombinatoryki, algorytmiki i większość ma tę własność, że bez pomocy komputera nie da się ich rozwiązać.
+</p>
+
+<p>
+To co mnie urzekło od samego początku to fakt, że nie zawsze chodzi o znalezienie najbardziej wydajnego rozwiązania. Nie ma bowiem narzuconego z góry żadnego limitu (na stronie musimy podać otrzymane rozwiązanie i sprawdzana jest jego poprawność). Często naiwne rozwiązanie wystarcza, co nie znaczy, że napisanie programu jest banalne! Barierą może być sam język, w którym piszemy. Sporo zadań wymaga obliczeń na dużych liczbach lub operowania danymi tekstowymi, co może okazać się bardzo niewygodne (nie mylić z "niemożliwe") w takich językach jak C/C++ czy Java. Z kolei te same zadania okazują się przysłowiową "bułką z masłem" jeśli użyjemy wysokopoziomowych języków, np. Ruby lub Python (jeśli oczywiści dana funkcjonalność występuje).
+</p>
+
+
+
+<p>
+Weźmy dla przykładu <a href="http://projecteuler.net/index.php?section=problems&amp;id=13">zadanie 13ste</a>, w którym chodzi o zsumowanie stu 50-cio cyfrowych liczb. Do reprezentacji takich liczb potrzeba około 167 bitów, a więc taki typ (znany np. z C, Javy) jak <code class="inline">long</code> po prostu odpada. Nawet jak przebrniemy przez ten problem (możemy napisać własną obsługę dużych liczb lub użyć gotowej biblioteki, np. <a href="http://gmplib.org/">gmp</a>) to musimy poradzić sobie z przetworzeniem tekstu zawierającego te liczby. I znowu okaże się, że w przypadku języka C (i nie tylko) takie operacje są dosyć uciążliwe.
+</p>
+
+<p>
+Spójrzmy na rozwiązania tego samego problemu w językach Java i Ruby:
+</p>
+
+~ <span class="filename">E013.java</span>
+<pre><code class="java">import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.File;
+import java.math.BigInteger;
+import java.util.ArrayList;
+
+public class E013 {
+  public static BigInteger sumOf(Iterable&lt;BigInteger&gt; numbers) {
+    BigInteger sum = new BigInteger(&quot;0&quot;);
+
+    for (BigInteger number: numbers) {
+      sum = sum.add(number);
+    }
+    return sum;
+  }
+
+  public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(new File(&quot;013.txt&quot;)));
+    String line;
+
+    ArrayList&lt;BigInteger&gt; numbers = new ArrayList&lt;BigInteger&gt;();
+    while ((line = reader.readLine()) != null) {
+      numbers.add(new BigInteger(line));
+    }
+    BigInteger sum = sumOf(numbers);
+    System.out.println(sum.toString().substring(0, 10));
+  }
+}
+</code></pre>
+~ <span class="filename">013.rb</span>
+<pre><code class="ruby">puts File.read(&quot;013.txt&quot;).split(&quot;\n&quot;).inject(0) {|sum, n| sum + n.to_i }.to_s[0, 10]
+</code></pre>
+
+<h3>Bo czasem jabłko jest lepsze od gruszki</h3>
+<p>
+Tak, to są równoważne programy! Oba robią to samo: wczytują kolejne linie z pliku <code class="inline">013.txt</code>, konwertują je na liczby i sumują. Być może dla programistów niezaznajomionych z Ruby, wersja w tym języku może wydawać się trudna w odczytaniu, ale zapewniam Was, że tak nie jest. Wystarczy szybkie przeskanowanie tej jednej linijki by przekonać się, że program składa się z pięciu kroków: wczytaj z pliku (<code class="inline">File.read("013.txt")</code>), skonwertuj do tablicy dzieląc wedle znaku nowej linii (<code class="inline">split("\n")</code>), zsumuj skonwertowane do liczby kolejne linie (<code class="inline">inject(0) {|sum, n| sum + n.to_i }</code>), skonwertuj do łańcucha (<code class="inline">to_s</code>) i pobierz pierwsze 10 znaków (<code class="inline">[0, 10]</code>).
+</p>
+
+<p>
+Wspomniany inject, który w tym wypadku sumuje liczby (<code class="inline">arr.inject(0){|sum, item| sum + item }</code>, jest już klasycznym <a href="../../../../2007/10/12/idiomatyczny-ruby/index.html">idiomem</a> tego języka.
+</p>
+
+<h3>A czasem i nawet gruszka lepsza od jabłka</h3>
+<p>
+Z kolei weźmy <a href="http://projecteuler.net/index.php?section=problems&amp;id=5">zadanie 5te</a>, w którym musimy znaleźć najmniejszą liczbę naturalną, która będzie podzielna bez reszty przez wszystkie liczby całkowite z zakresu 1..20. Pozostańmy przy naiwnym rozwiązaniu, które wynika wprost z zadania. Sprawdzając kolejne liczby 2, 3, 4, 5 będziemy testować czy dzieli się bez reszty przez liczby z zakresu 2..20 (1 omijamy bo wiemy, że każda liczba całkowita jest podzielna przez nią bez reszty). Zacznijmy tym razem od wersji w Rubym.
+</p>
+
+~ <span class="filename">005_1.rb</span>
+<pre><code class="ruby">puts 1.upto((2..20).inject(:*)).each {|n| break n if (2..20).all? {|e| n % e == 0} } 
+</code></pre>
+<p>
+Odpalając ten program na ruby1.9 dostaję odpowiedź po ponad 3 minutach. Na ruby1.8 nawet nie sprawdzam - będzie na pewno jeszcze dłużej. Spójrzmy zatem na rozwiązanie w javie.
+</p>
+
+~ <span class="filename">E005.java</span>
+<pre><code class="java">public class E005 {
+  public static long product(int from, int to) {
+    long result = 1;
+    for (int i = from; i &lt; to; i++) {
+      result *= i;
+    }
+    return result;
+  }
+
+  public static boolean isDivisibleBy(long number, int[] divisors) {
+    for (int divisor: divisors) {
+      if ((number % divisor) != 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public static void main(String[] args) {
+    long min = 1;
+    long max = product(2, 20);
+    int[] divisors = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+
+    for (long i = min; i &lt;= max; i++) {
+      if (isDivisibleBy(i, divisors)) {
+        System.out.println(i);
+        break;
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>
+Tym razem dostaję odpowiedź po około 10 sekundach. Oczywiście znowu wymagało to dłuższego kodu, ale zdecydowanie wolę czekać 10 sekund niż 3 minuty...
+</p>
+
+<p>
+Nie myślcie, że te dwa przykłady mają prowadzić do wielkiej konkluzji. Raczej chodzi o pokazanie, co tracimy/zyskujemy decydując się na dany język. Java i Ruby są tu tylko przykładem. Mógłbym równie dobrze pokazać rozwiązania w Pascalu, Php, Pythonie czy też Erlangu (myślę, że to mogłoby być bardzo ciekawe doświadczenie). Zachęcam Was spróbowania własnych sił. Spróbujcie rozwiązywać te same zadania w kilku językach i wyciągajcie własne wnioski.
+</p>
+
+<h3>Ucz się sztuki programowania od innych</h3>
+<p>
+Ktoś kiedyś powiedział, że najważniejszym źródłem wiedzy jesteśmy my. Możemy uczyć się na własną rękę, ale i tak najwięcej nauczymy się od innych. Ta prawda sprawdza się idealnie jeśli chodzi o programowanie (czy też wiedzę związaną z komputerami). Niezależnie od użytego języka, praktycznie każdy problem można rozwiązać na mnóstwo sposobów, które będą mniej lub bardziej dobre. Czasem to kwestia znajomości standardowej lub zewnętrznej biblioteki, dobrze wykorzystanego API czy też zastosowanego algorytmu.
+</p>
+
+<p>
+Dzięki tym zadaniom i rozwiązaniom innych mogłem przekonać się o potędze biblioteki <code class="inline">prime</code> dostępnej od wersji 1.9 Rubiego. Zadania, które wymagają operowania na liczbach pierwszych, czynnikach pierwszych lub podzielnikach liczb okazują się banalnie proste, jeśli mamy pod ręką taką bibliotekę (a z Ruby 1.9 mamy!).
+</p>
+
+<p>
+Przykładowe zadanie i wykorzystanie tej biblioteki:
+</p>
+
+<pre><code>http://projecteuler.net/index.php?section=problems&amp;id=3
+
+The prime factors of 13195 are 5, 7, 13 and 29.
+
+What is the largest prime factor of the number 600851475143 ?
+</code></pre>
+
+~ <span class="filename">003_2.rb</span>
+<pre><code class="ruby1.9">require &quot;prime&quot;
+
+puts 600851475143.prime_division.max.first
+</code></pre>
+
+<p>
+Nawet jeśli takie przykłady można skwitować stwierdzeniem "to tylko kwestia biblioteki" to dla mnie bardzo ważny jest fakt, że na poziomie języka i jego standardowej biblioteki mogę zrobić
+</p>
+
+<pre><code class="ruby">2**1000 + 15
+</code></pre>
+
+<p>aniżeli</p>
+<pre><code class="java">System.out.println(new BigInteger("2").pow(1000).add(new BigInteger("15")));
+</code></pre>
+
+<p>
+Zapraszam Was do wspólnego rozwiązywania zadań i umieszczania ich w <a href="http://rubyonrails.pl/forum/f14-Projekt-Euler-w-Ruby">przygotowanym dziale na forum.rubyonrails.pl</a>. Część moich rozwiązań znajdziecie w <a href="http://github.com/Radarek/project_euler/tree/master">repozytorium gita na githubie</a>.
+</p>
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-1368255" class="comment1 jogger">
+            
+            1.
+            
+            <img class="avatar-icon" src="http://blog.teamon.eu/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://blog.teamon.eu">teamon</a></strong> napisał(a) 06 Kwi 2009 o godz. 01:25:
+            <div class="top"></div>
+            <div class="content">
+              <p>Jak już tak porównujesz to może dorzucę jedno z zadań z matury z informatyki: http://gist.github.com/90276<br />
+Trzeba być masochistą żeby przetwarzać tekst w C(++) i mu podobnych&#8230; (Co do eulera, mam rozwiązane jakies 58 ;])</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1368260" class="comment2 guest">
+            
+            2.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>darkjames</strong> napisał(a) 06 Kwi 2009 o godz. 02:55:
+            <div class="top"></div>
+            <div class="content">
+              <p>teamon, &#8217;87? Kojarzę to zadanie&#8230;<br />
+(ztcp jeden wiersz miał małą literę ;D)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1368267" class="comment1 jogger">
+            
+            3.
+            
+            <img class="avatar-icon" src="http://jamlasica.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://jamlasica.jogger.pl">jam łasica</a></strong> napisał(a) 06 Kwi 2009 o godz. 05:34:
+            <div class="top"></div>
+            <div class="content">
+              <p>W E013 sumOf i ArrayList nie są chyba potrzebne :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1368279" class="comment2 jogger">
+            
+            4.
+            
+            <img class="avatar-icon" src="http://blog.teamon.eu/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://blog.teamon.eu">teamon</a></strong> napisał(a) 06 Kwi 2009 o godz. 07:36:
+            <div class="top"></div>
+            <div class="content">
+              <p>@darkjames: Chyba maj 2006. Taaa, byla mala literka ;]</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1368363" class="comment1 jogger">
+            
+            5.
+            
+            <img class="avatar-icon" src="http://gim.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://gim.jogger.pl">GiM</a></strong> napisał(a) 06 Kwi 2009 o godz. 12:11:
+            <div class="top"></div>
+            <div class="content">
+              <p>no pacz pan, też miałem napisać o projecteuler, bo w wolnych chwilach próbuję różne rozwiązywać, a tu ktoś mnie wyręczył :)</p>
+
+<p>ostatnio jeszcze bawię się w uzupełnianie rosetty, raczej mało kształcące, ale może przyczyni się do rozpowszechniania języków.<br />
+http://rosettacode.org/wiki/Tasks_not_implemented_in_Ruby</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1368433" class="comment2 jogger">
+            
+            6.
+            
+            <img class="avatar-icon" src="http://hoppke.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://hoppke.jogger.pl">Hoppke</a></strong> napisał(a) 06 Kwi 2009 o godz. 15:23:
+            <div class="top"></div>
+            <div class="content">
+              <p>Jako wieczny maruda zauważę tylko, że &#8222;projekt eulera&#8221; jest specyficzny i z produkowaniem kodu użytkowego ma niewiele wspólnego &#8212; np. oceniając języki pod kodem przydatności do &#8216;eulera&#8217; dużo punktów daję za obecność konsoli interaktywnej, a wydajność, wielowątkowość czy łatwość utrzymywania kodu są mało nieistotne.</p>
+
+<p>PS. Bardzo lubię takie zadania :) Chyba najfajniejsze jest właśnie rozwiązywanie tego samego problemu różnymi językami, albo jednym językiem lecz w różny sposób.</p>
+
+<p><span class="caps">PPS</span>. Faktycznie w E013 sumOf i lista tylko niepotrzebnie wydłużają kod. Aha, a jakby rozpisać 005 w jakiś inny sposób (może bez injecta? innymi konstrukcjami?), to czy wpłynęłoby to na wydajność?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1368589" class="comment1 jogger">
+            
+            7.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://dozzie.jogger.pl">Stanisław 'dozzie' Klekot</a></strong> napisał(a) 06 Kwi 2009 o godz. 20:11:
+            <div class="top"></div>
+            <div class="content">
+              <blockquote>
+<p>Nawet jak przebrniemy przez ten problem (możemy napisać własną obsługę dużych liczb lub użyć gotowej biblioteki, np. gmp) to musimy poradzić sobie z przetworzeniem tekstu zawierającego te liczby.</p>
+</blockquote>
+
+<p>Pfff. A <span class="caps">GMP</span> niby od czego ma funkcje przetwarzające tekst na liczby?</p>
+
+<p>Poza tym ja bym to zrobił po ludzku, w shellu.</p>
+
+<p>(printf %s+ `cat liczby.txt`; echo 0) | bc</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1368597" class="comment2 owner">
+            
+            8.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 06 Kwi 2009 o godz. 20:26:
+            <div class="top"></div>
+            <div class="content">
+              <p>Faktycznie w rozwiązaniu w javie zad. nr 13, metoda licząca sumę nie jest potrzebna.</p>
+
+<p>@Hopke, myślę, że nie miałoby to najmniejszego wpływu na wydajność.</p>
+
+<p>@Stanisław &#8216;dozzie&#8217; Klekot, moje przeoczenie. Chociaż mimo wszystko wydaje mi się, że fajnie jest jak mamy możliwość operowania na bardzo dużych liczbach bez sięgania do zewnętrznych bibliotek (niech będzie i choćby w stdlib tak jak w javie).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1368657" class="comment1 jogger">
+            
+            9.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://zar.jogger.pl">Chris Trynkiewicz</a></strong> napisał(a) 06 Kwi 2009 o godz. 21:47:
+            <div class="top"></div>
+            <div class="content">
+              <p>No tak, jak sie w jednym jezyku pisze celowo skrotowo, a w drugim sie robi tysiac zbednych brow, to faktycznie moze wyjsc stosunek 100:1.</p>
+
+<p>Dobrze zrozumialem, ze te zadania to proba zaprzegniecia tych jezykow do tego, do czego nie sa stworzone? Genialna idea, pogratulowac pomyslu.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1368658" class="comment2 jogger">
+            
+            10.
+            
+            <img class="avatar-icon" src="http://blog.teamon.eu/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://blog.teamon.eu">teamon</a></strong> napisał(a) 06 Kwi 2009 o godz. 21:48:
+            <div class="top"></div>
+            <div class="content">
+              <p>Co, jednak Java/C nie jest do wszystkiego?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1368663" class="comment1 guest">
+            
+            11.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Hoppke</strong> napisał(a) 06 Kwi 2009 o godz. 21:51:
+            <div class="top"></div>
+            <div class="content">
+              <p>A ktoś twierdzi, że w ogóle jakiś język jest &#8222;do wszystkiego&#8221;?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1368666" class="comment2 jogger">
+            
+            12.
+            
+            <img class="avatar-icon" src="http://blog.teamon.eu/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://blog.teamon.eu">teamon</a></strong> napisał(a) 06 Kwi 2009 o godz. 21:52:
+            <div class="top"></div>
+            <div class="content">
+              <p>no Javo/C-owcy przewaznie (przewaznie != zawsze, zeby sie nikt nie rzucal) tak mysla.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1368705" class="comment1 owner">
+            
+            13.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 06 Kwi 2009 o godz. 22:23:
+            <div class="top"></div>
+            <div class="content">
+              <p>@Chris Trynkiewicz, zdecydowanie źle odebrałeś wpis. Przede wszystkim nie było moim celem wykazanie, że &#8222;ruby jest super, a java/c złe&#8221;. Myślę, że najlepiej będzie, jak sam rozwiążesz kilka zadań w różnych językach (polecam podzielić języki na grupy java/c/c++, ruby/python i hybrydy np. scala), a sam wyciągniesz pewnie wnioski.</p>
+
+<blockquote>
+<p>Dobrze zrozumialem, ze te zadania to proba zaprzegniecia tych jezykow do tego, do czego nie sa stworzone? Genialna idea, pogratulowac pomyslu.</p>
+</blockquote>
+
+<p>Zatem jakie wg. Ciebie języki nadają się do tego typu zadań?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1368844" class="comment2 jogger">
+            
+            14.
+            
+            <img class="avatar-icon" src="http://zal.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://zal.jogger.pl">Zal</a></strong> napisał(a) 07 Kwi 2009 o godz. 10:41:
+            <div class="top"></div>
+            <div class="content">
+              <p>Interesująca sprawa &#8211; zadania przypominają mi nieco te ze spojowego <a href="https://www.spoj.pl/ZFUN06/problems/PCV1/" rel="nofollow" >Open Contestu</a> z 2006 roku ;] Chociaż tam zdecydowanie łatwiej można było załatwić <a href="ftp://ftp.4zal.net/Projekty/_Open%20Contest%202006/C%20PCV/PCV.tar" rel="nofollow" >czystym C/C++</a>.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1369066" class="comment1 jogger">
+            
+            15.
+            
+            <img class="avatar-icon" src="http://marines.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://marines.jogger.pl">marines</a></strong> napisał(a) 07 Kwi 2009 o godz. 19:32:
+            <div class="top"></div>
+            <div class="content">
+              <p>niezłe, nie słyszałem o tym wcześniej. wykorzystam to do nauki rubiego :]</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1369069" class="comment2 guest">
+            
+            16.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://ravsite.net/" rel="nofollow">Ravicious</a></strong> napisał(a) 07 Kwi 2009 o godz. 19:38:
+            <div class="top"></div>
+            <div class="content">
+              <p>Z ciekawości odpaliłem 005_1.rb na 1.8.6. Na mojej konfiguracji (Windows XP, Athlon 1,8GHz, 1 GB&#8230; <span class="caps">SDRAM</span>) trwało to trochę ponad&#8230; 70 minut.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1369192" class="comment1 jogger">
+            
+            17.
+            
+            <img class="avatar-icon" src="http://nerdblog.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://nerdblog.jogger.pl">D4rky</a></strong> napisał(a) 07 Kwi 2009 o godz. 22:35:
+            <div class="top"></div>
+            <div class="content">
+              <p>Bash ftw</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1369561" class="comment2 owner">
+            
+            18.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 08 Kwi 2009 o godz. 21:01:
+            <div class="top"></div>
+            <div class="content">
+              <p>@Ravicious, u mnie na ruby1.9 zajmuje to ~3min. Biorąc pod uwagę, że ruby pod windowsem jest jakieś 2x wolniejsze niż pod linuksem oraz to jak bardzo przyspieszono pewne konstrukcje (np. wywołanie bloku itp.) w ruby1.9 to nie dziwi mnie to.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1369795" class="comment1 guest">
+            
+            19.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>neq</strong> napisał(a) 09 Kwi 2009 o godz. 11:13:
+            <div class="top"></div>
+            <div class="content">
+              <p>Jeśli lubicie takie problemy to polecam http://codegolf.com &#8211; trzeba rozwiazac przedstawione problemy przy uzyciu jak najmniejsze ilosci znakow. Pisac mozna do wyboru w Ruby, Perl&#8217;u, Pythonie i <span class="caps">PHP</span>.  Przedstawiane problemy wydaja  sie proste, ale zakodowanie dwumianu Newtona w mniej niz 40 znakow to jest prawdziwe wyzwanie :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1372620" class="comment2 guest">
+            
+            20.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.blik.it" rel="nofollow">hosiawak</a></strong> napisał(a) 14 Kwi 2009 o godz. 15:54:
+            <div class="top"></div>
+            <div class="content">
+              <p>Dobry wpis, Radarek, chociaż ostatnio trochę przycichłeś z rozwiązywaniem tych zadań z forum (rozumiem, że chcesz dać szansę innym ? ;) </p>
+
+<p>Pozdrawiam</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1372624" class="comment1 jogger">
+            
+            21.
+            
+            <img class="avatar-icon" src="http://blog.teamon.eu/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://blog.teamon.eu">teamon</a></strong> napisał(a) 14 Kwi 2009 o godz. 16:09:
+            <div class="top"></div>
+            <div class="content">
+              <p>@hosiawak &#8211; nie, wszystkim sie juz znudzilo ;p</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1372636" class="comment2 guest">
+            
+            22.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.blik.it" rel="nofollow">hosiawak</a></strong> napisał(a) 14 Kwi 2009 o godz. 16:41:
+            <div class="top"></div>
+            <div class="content">
+              <p>@teamon &#8211; nie rozumiem dlaczego miałoby się już znudzić, problemy robią się coraz ciekawsze (przez ciekawsze rozumiem te, których nie rozwiążesz w 1 linijce pisząc na przemian map i inject &#8211; wiem, że te 2 metody masz już opanowane ;p)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1372637" class="comment1 jogger">
+            
+            23.
+            
+            <img class="avatar-icon" src="http://blog.teamon.eu/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://blog.teamon.eu">teamon</a></strong> napisał(a) 14 Kwi 2009 o godz. 16:42:
+            <div class="top"></div>
+            <div class="content">
+              <p>No może. Ale po zrobieniu prawie 50 pod rząd trochę się odechciewa :P</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1373291" class="comment2 guest">
+            
+            24.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.blik.it" rel="nofollow">hosiawak</a></strong> napisał(a) 15 Kwi 2009 o godz. 21:39:
+            <div class="top"></div>
+            <div class="content">
+              <p>Jeszcze wracając do tematu &#8211; przykład z Javą jest sugestywny ale chyba na siłę rozwlekły, rozwiązuję te problemy też w Javie i nie jest aż tak strasznie w sumie: </p>
+
+<pre>public class Problem5 {
+    public static void main(String[] args) {
+        long n = 2432902008176640000L; // == (2..20).inject(:*)
+        outer:
+        for (long i = 1; i &#60;= n; i++) {
+            for (int j = 2; j &#60;= 20; j++)
+                if (i % j != 0) continue outer;
+            System.out.println(i);
+            break outer;
+        }
+    }
+}
+</pre>
+
+<p>Poza tym czy nie fajnie byłoby gdyby istniał język który łączy prostotę i elegancję zapisu z szybkością Javy ?</p>
+
+<p>Okazuje się, że taki <a href="http://haskell.org" rel="nofollow" >język istnieje</a></p>
+
+<p>Problem 5 w Haskell&#8217;u:</p>
+
+<pre>foldr1 lcm [1..20]
+</pre>
+
+<p>Rozwiązanie zwracane jest od razu. Jasne, że funkcja lcm jest zaimplemetowana wewnętrznie i korzysta z &#8222;przyspieszającego&#8221; twierdzenia ale sam fakt że jest dostępna w bibliotece standardowej języka bardzo dobrze o nim świadczy. </p>
+
+<p>Zachęcam wszystkich do zapoznania się z Haskell&#8217;em :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1374047" class="comment1 guest">
+            
+            25.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.blik.it" rel="nofollow">hosiawak</a></strong> napisał(a) 17 Kwi 2009 o godz. 14:19:
+            <div class="top"></div>
+            <div class="content">
+              <p>No coż, okazuje się, że Ruby 1.9 też ma funkcję lcm :D</p>
+
+<pre>
+(1..20).inject(:lcm)
+</pre>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1469066" class="comment2 guest">
+            
+            26.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://diariusz.net/" rel="nofollow">aniou@smutek.pl</a></strong> napisał(a) 23 Lis 2009 o godz. 21:24:
+            <div class="top"></div>
+            <div class="content">
+              <p>Wiem, że komentuję odrobinę zleżały wpis, ale akurat nie mam siły na nic powazniejszego. Jeśli chodzi o wspomnianego Erlanga, to mam takie rozwiązanie (też z kwietnia 2009 ;) ):</p>
+
+<pre><code>% wywolanie  check_div(20, lists:seq(11,20), lists:seq(11,20)).
+%
+check_div(Value, _Table, []) -&gt;
+    Value;                  % wynik
+
+check_div(Value,  Table, [H|T]) -&gt;
+    if
+        Value rem H == 0  -&gt; check_div(Value, Table, T);
+        true              -&gt; check_div(Value + 20, Table, Table)
+    end.
+</code></pre>
+
+<p>W tej postaci program potrzebuje, na moim sprzęcie, od 2.5 do 3 sekund na znalezienie wyniku. Upiększenie kodu (wyrzucenie kopii tablicy co wymusza jej odtwarzanie przy każdej badanej liczbie) da kod, który potrzebuje od 12 do 14 sekund i wygląda tak:</p>
+
+<pre><code>% wywolanie check_div(20, lists:seq(11,20)).
+%
+check_div(Value, []) -&gt;
+    Value;                  % wynik
+
+check_div(Value, [H|T]) -&gt;
+    if
+        Value rem H == 0  -&gt; check_div(Value, T);
+        true              -&gt; check_div(Value + 20, lists:seq(11,20))
+    end.
+</code></pre>
+
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1469092" class="comment1 guest">
+            
+            27.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://diariusz.net/" rel="nofollow">aniou@smutek.pl</a></strong> napisał(a) 23 Lis 2009 o godz. 21:55:
+            <div class="top"></div>
+            <div class="content">
+              <p>Tak po namyśle. Można jeszcze krócej i równie szybko:</p>
+
+<pre><code>% wywołanie check_div().
+%
+check_div()             -&gt; check_div(20).
+check_div(Value)        -&gt; check_div(Value, Value rem 11,    11).
+%
+check_div(Value, _, 21) -&gt; Value;
+check_div(Value, 0, H)  -&gt; check_div(Value, Value rem (H+1), H+1);
+check_div(Value, _, _)  -&gt; check_div(Value+20).
+</code></pre>
+
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1469133" class="comment2 guest">
+            
+            28.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://diariusz.net/" rel="nofollow">aniou@smutek.pl</a></strong> napisał(a) 23 Lis 2009 o godz. 23:50:
+            <div class="top"></div>
+            <div class="content">
+              <p>Mycie naczyń jednak doskonale robi na pracę mózgu:  można jeszcze krócej i jeszcze wolniej (jakieś 15 sekund):</p>
+
+<pre><code>% wywolanie: check_div(20, [0])
+%
+check_div(Value, []) -&gt; Value-20;
+check_div(Value, _)  -&gt; check_div(Value+20, [ Y || Y &lt;- [11,12,13,14,15,16,17,18,19], Value rem Y &gt; 0 ]).
+</code></pre>
+
+<p>Przy okazji zastąpienie w drugim przykładzie dynamicznego tworzenia tablicy: </p>
+
+<pre><code>lists:seq(11,20)   % zwraca: [11,12,13,14,15,16,17,18,19,20]
+</code></pre>
+
+<p>statyczną tablicą, skróconą o liczbę 20:</p>
+
+<pre><code>[11,12,13,14,15,16,17,18,19]
+</code></pre>
+
+<p>zamienia go w najładniejszą i najszybszą (poniżej 3 sekund) z wersji.</p>
+
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1552666" class="comment1 guest">
+            
+            29.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://qertoip.typepad.com" rel="nofollow">qertoip</a></strong> napisał(a) 11 Wrz 2010 o godz. 12:38:
+            <div class="top"></div>
+            <div class="content">
+              <p>A tutaj rozwiązania Eulerów w Clojure: <a href="http://clojure-euler.wikispaces.com" rel="nofollow">http://clojure-euler.wikispaces.com</a></p>
+
+<p>; 013</p>
+
+<pre><code>(defn char-int [c]
+  (- (int c) 48))
+
+(defn digits [n]
+  (map char-int (str n)))
+
+(take 10 (digits (reduce + *test-numbers*)))
+</code></pre>
+
+<p>;005</p>
+
+<pre><code>(defn gcd
+  "greatest common divisor of two positive integers"
+  [a b]
+  (cond
+   (= a b) a
+   (&gt; a b) (recur (- a b) b)
+   :else   (recur (- b a) a)))
+
+(defn lcm
+  "least common multiple of two positive integers"
+  [a b]
+  (/ (* a b) (gcd a b)))
+
+(reduce lcm (range 2 21))
+</code></pre>
+
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="../../../../index.html">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="index.html#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

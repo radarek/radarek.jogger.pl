@@ -1,0 +1,626 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="/files/favicon.png" type="image/png" />
+    <meta name="keywords" content="ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="/files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/files/common.js"></script>
+    <script type="text/javascript" src="/files/highlight.js"></script>
+    <script type="text/javascript" src="/files/dynamic.js"></script>
+    <script type="text/javascript" src="/files/jruby.js"></script>
+
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+    
+    <div id="top">
+      <a href="/" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="/"><span>Wpisy</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/04/29/o-blogu/"><span>O blogu</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kanaly-rss/"><span>RSS</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kontakt/"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">
+        <div class="submenu">
+          <form action="/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <h3>O blogu</h3>
+          Cześć. Nazywam się Radosław Bułat. Dla przyjaciół i znajomych Radarek. <a href="http://radarek.jogger.pl/2007/04/29/o-blogu/">Czytaj dalej...</a>
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2009/01/01/gist-odpicowane-pastie/">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2008/10/12/mp3-przeboje/">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="http://radarek.jogger.pl/kategoria/blog/">Blog (6)</a></li>
+          
+            <li id="c"><a href="http://radarek.jogger.pl/kategoria/c/">C (1)</a></li>
+          
+            <li id="gamedev"><a href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="http://radarek.jogger.pl/kategoria/git/">Git (2)</a></li>
+          
+            <li id="humor"><a href="http://radarek.jogger.pl/kategoria/humor/">Humor (3)</a></li>
+          
+            <li id="java"><a href="http://radarek.jogger.pl/kategoria/java/">Java (1)</a></li>
+          
+            <li id="jruby"><a href="http://radarek.jogger.pl/kategoria/jruby/">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="http://radarek.jogger.pl/kategoria/python/">Python (4)</a></li>
+          
+            <li id="ruby"><a href="http://radarek.jogger.pl/kategoria/ruby/">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="http://radarek.jogger.pl/kategoria/techblog/">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="http://radarek.jogger.pl/kategoria/web/">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/blog/">Blog</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/c/">C</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/git/">Git</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/humor/">Humor</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/java/">Java</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/jruby/">JRuby</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/python/">Python</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/web/">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="/startid/470765">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="/startid/433510">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="/startid/425293">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="/startid/423490">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="/startid/392066">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="/startid/383421">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="/startid/364188">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="/startid/337815">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="/startid/323920">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2008</small>
+              <span>01</span>
+              <small>Mar</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2008/03/01/prezentacja-rubiego-i-dwie-inne-sprawy/">Prezentacja Rubiego i dwie inne sprawy</a></h2>
+            <a href="http://radarek.jogger.pl/2008/03/01/prezentacja-rubiego-i-dwie-inne-sprawy/#comments">12 komentarzy</a> |
+            Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/blog/">Blog</a>
+             |
+            
+              <a href="http://radarek.jogger.pl/2008/03/01/prezentacja-rubiego-i-dwie-inne-sprawy/trackback/">trackback</a>
+            <br />
+
+            
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/język" rel="tag">
+                  język</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/prezentacja" rel="tag">
+                  prezentacja</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/slajdy" rel="tag">
+                  slajdy</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/wstęp" rel="tag">
+                  wstęp</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <p>
+Ostatnio jakaś taka cisza na tym blogu :). Spróbuję niedługo coś więcej popisać dla Was. Tym razem zamieszczam tylko kilka informacji poniekąd dotyczących tematyki tego bloga lub mnie samego.
+</p>
+
+<h3>Wstęp do Rubiego - prezentacja</h3>
+<p>
+Dzisiaj wygłosiłem prezentację o Rubym na spotkaniach <a href="http://krakow.pm.org/">Perl Mongersów</a>. Zamieszczam slajdy. Była to moja pierwsza taka prezentacja więc możecie nie oszczędzać mnie i skrytykować (zarówno Ci którzy ją słuchali, a także jeśli chodzi o same slajdy).
+</p>
+
+
+             
+              <p class="readmore">
+               <a href="http://radarek.jogger.pl/2008/03/01/prezentacja-rubiego-i-dwie-inne-sprawy/#more">Czytaj dalej...</a>
+              </p>
+             
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2008</small>
+              <span>26</span>
+              <small>Sty</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2008/01/26/konferencja-rupy-2008/">Konferencja RuPy 2008</a></h2>
+            <a href="http://radarek.jogger.pl/2008/01/26/konferencja-rupy-2008/#comments">3 komentarze</a> |
+            Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/python/">Python,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby</a>
+             |
+            
+              <a href="http://radarek.jogger.pl/2008/01/26/konferencja-rupy-2008/trackback/">trackback</a>
+            <br />
+
+            
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/2008" rel="tag">
+                  2008</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/conference" rel="tag">
+                  conference</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/python" rel="tag">
+                  python</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/rupy" rel="tag">
+                  rupy</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <p>
+  Jeśli jeszcze nie wiecie, być może zainteresuje Was informacja, że w dniach 12-13 kwietnia 2008 roku odbędzie się konferencja poświęcona językom Ruby i Python (stąd jej nazwa "RuPy"). Muszę przyznać, że miałem rok temu możliwość uczestnicwa w tej konferencji (dzięki uprzejmości ówczesnej firmy, w której pracowałem) i mogę z całym sercem polecić ją każdemu (wierzcie mi, że nie mam żadnego interesu w tym by tak twierdzić :)).
+</p>
+
+
+             
+              <p class="readmore">
+               <a href="http://radarek.jogger.pl/2008/01/26/konferencja-rupy-2008/#more">Czytaj dalej...</a>
+              </p>
+             
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2007</small>
+              <span>31</span>
+              <small>Gru</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2007/12/31/ruby-1-9-wydany-opis-glownych-zmian-i-nowosci/">Ruby 1.9 wydany - opis głównych zmian i nowości</a></h2>
+            <a href="http://radarek.jogger.pl/2007/12/31/ruby-1-9-wydany-opis-glownych-zmian-i-nowosci/#comments">18 komentarzy</a> |
+            Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+             |
+            
+              <a href="http://radarek.jogger.pl/2007/12/31/ruby-1-9-wydany-opis-glownych-zmian-i-nowosci/trackback/">trackback</a>
+            <br />
+
+            
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/1.9" rel="tag">
+                  1.9</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/release" rel="tag">
+                  release</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby1.9" rel="tag">
+                  ruby1.9</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/yarv" rel="tag">
+                  yarv</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <img src="http://images30.fotosik.pl/145/112f589ebfa862b2.png" style="float: left;" />
+<p>
+Niosę Wam nowinę: Ruby w wersji 1.9 już jest! Otóż zgodnie z obietnicą Matza, 24 grudnia została wydana kolejna odsłona tego języka. Być może wielu z Was nie zdaje sobie sprawy jak ważne jest to dla nas, programistów Rubiego. Dlatego chciałbym opisać jakie zmiany niesie ta wersja, jaki jest jej cel oraz podyskutować nad innymi aspektami tego wydania. Myślę że znajdą się tu także przydatne informacje dla tych, którzy do tej pory omijali język Ruby z jakiegoś powodu (np. braku jakiegoś elementu języka). Dowiecie się o zmianach w stosunku do poprzedniej wersji, a tych jest całkiem sporo. Niektóre są dosyć odważne, a nawet można by rzec, że ryzykowne.
+
+</p>
+
+
+             
+              <p class="readmore">
+               <a href="http://radarek.jogger.pl/2007/12/31/ruby-1-9-wydany-opis-glownych-zmian-i-nowosci/#more">Czytaj dalej...</a>
+              </p>
+             
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2007</small>
+              <span>10</span>
+              <small>Gru</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2007/12/10/mity-na-temat-rubiego/">Mity na temat Rubiego</a></h2>
+            <a href="http://radarek.jogger.pl/2007/12/10/mity-na-temat-rubiego/#comments">70 komentarzy</a> |
+            Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+             |
+            
+              <a href="http://radarek.jogger.pl/2007/12/10/mity-na-temat-rubiego/trackback/">trackback</a>
+            <br />
+
+            
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/myths" rel="tag">
+                  myths</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <p>
+Język Ruby i różne rozwiązanie mu towarzyszące (np. Ruby on Rails) istnieją już na tyle długo, by dorobić się wielu opinii, sądów i zdań na jego temat. Zarówno tych pozytywnych jak i negatywnych. Sprawa jest o tyle niewygodna, gdyż wiele z nich to na dzień dzisiejszy po prostu mity. Dziś zajmę się nimi. <a href="http://dsc.discovery.com/fansites/mythbusters/mythbusters.html">Mity zwykle nie są łatwe do obalenia</a>, ale postaram się sprostać postawionemu zadaniu.
+</p>
+
+<p>
+Oto kilka, według mnie mitów, nieprawdziwych opinii, które wciąż powtarzane są w wypowiedziach różnych ludzi:
+</p>
+
+
+             
+              <p class="readmore">
+               <a href="http://radarek.jogger.pl/2007/12/10/mity-na-temat-rubiego/#more">Czytaj dalej...</a>
+              </p>
+             
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2007</small>
+              <span>25</span>
+              <small>Lis</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2007/11/25/heroku-tworzenie-aplikacji-rails-w-przegladarce/">Heroku - tworzenie aplikacji Rails w przeglądarce!</a></h2>
+            <a href="http://radarek.jogger.pl/2007/11/25/heroku-tworzenie-aplikacji-rails-w-przegladarce/#comments">15 komentarzy</a> |
+            Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/web/">Web</a>
+             |
+            
+              <a href="http://radarek.jogger.pl/2007/11/25/heroku-tworzenie-aplikacji-rails-w-przegladarce/trackback/">trackback</a>
+            <br />
+
+            
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/application" rel="tag">
+                  application</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/browser" rel="tag">
+                  browser</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ide" rel="tag">
+                  ide</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/online" rel="tag">
+                  online</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/rails" rel="tag">
+                  rails</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <p>
+<a href="http://heroku.com/">Heroku</a> to aplikacja umożliwiająca tworzenie aplikacji internetowych z wykorzystaniem Ruby on Rails. Nie byłoby w tym nic dziwnego (każdy w temacie słyszał o Aptana, NetBeans) gdyby nie fakt, że wszystko działa online. Nie ma żadnego ściągania, instalowania. Potrzebna jest tylko przeglądarka (aktualnie jest tylko wspierany Firefox - nie dziwi mnie to w ogóle). Co mnie także zaskoczyło, nie ma tam ani grama flasha. Wszystko oparte na javascript po stronie klienta.
+</p>
+
+
+             
+              <p class="readmore">
+               <a href="http://radarek.jogger.pl/2007/11/25/heroku-tworzenie-aplikacji-rails-w-przegladarce/#more">Czytaj dalej...</a>
+              </p>
+             
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+
+        
+        <div class="arch-navigation">
+          
+          <a class="prev" href="/startid/364188">Wcześniejsze wpisy</a>
+           
+
+           
+          <a class="next" href="/startid/392066">Nowsze wpisy</a>
+          
+        </div>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="/">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

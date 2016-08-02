@@ -1,0 +1,1085 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Ruby - przegląd języka dla niewtajemniczonych - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="/files/favicon.png" type="image/png" />
+    <meta name="keywords" content="introduction, overview, ruby, Ruby, Techblog, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="/files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/files/common.js"></script>
+    <script type="text/javascript" src="/files/highlight.js"></script>
+    <script type="text/javascript" src="/files/dynamic.js"></script>
+    <script type="text/javascript" src="/files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="/" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="/"><span>Wpisy</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/04/29/o-blogu/"><span>O blogu</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kanaly-rss/"><span>RSS</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kontakt/"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2009/01/01/gist-odpicowane-pastie/">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2008/10/12/mp3-przeboje/">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="http://radarek.jogger.pl/kategoria/blog/">Blog (6)</a></li>
+          
+            <li id="c"><a href="http://radarek.jogger.pl/kategoria/c/">C (1)</a></li>
+          
+            <li id="gamedev"><a href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="http://radarek.jogger.pl/kategoria/git/">Git (2)</a></li>
+          
+            <li id="humor"><a href="http://radarek.jogger.pl/kategoria/humor/">Humor (3)</a></li>
+          
+            <li id="java"><a href="http://radarek.jogger.pl/kategoria/java/">Java (1)</a></li>
+          
+            <li id="jruby"><a href="http://radarek.jogger.pl/kategoria/jruby/">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="http://radarek.jogger.pl/kategoria/python/">Python (4)</a></li>
+          
+            <li id="ruby"><a href="http://radarek.jogger.pl/kategoria/ruby/">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="http://radarek.jogger.pl/kategoria/techblog/">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="http://radarek.jogger.pl/kategoria/web/">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/blog/">Blog</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/c/">C</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/git/">Git</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/humor/">Humor</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/java/">Java</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/jruby/">JRuby</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/python/">Python</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/web/">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="/startid/470765">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="/startid/433510">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="/startid/425293">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="/startid/423490">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="/startid/392066">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="/startid/383421">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="/startid/364188">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="/startid/337815">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="/startid/323920">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2007</small>
+              <span>18</span>
+              <small>Maj</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2007/05/18/ruby-przeglad-jezyka-dla-niewtajemniczonych/">Ruby - przegląd języka dla niewtajemniczonych</a></h2>
+            
+            <a href="http://radarek.jogger.pl/2007/05/18/ruby-przeglad-jezyka-dla-niewtajemniczonych/#comments">14 komentarzy</a>
+            | Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+            
+            
+              | <a href="http://radarek.jogger.pl/2007/05/18/ruby-przeglad-jezyka-dla-niewtajemniczonych/trackback/">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/introduction" rel="tag">
+                  introduction</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/overview" rel="tag">
+                  overview</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <p>
+<a href="http://radarek.jogger.pl/2007/05/05/ruby-garsc-faktow-na-zachete-1/">W poprzednich</a> <a href="http://radarek.jogger.pl/2007/05/10/ruby-historii-slow-kilka">dwóch wpisach</a> starałem się przybliżyć Wam kilka, mniej lub bardziej ciekawych faktów na temat Rubiego. Tym razem chciałbym pokazać te jego cechy, które sprawiły, że każdy dotąd poznany przeze mnie język został zepchany na drugi plan. Jeśli nie masz jeszcze zainstalowanego interpretera tego języka zrób to czym prędzej!:) O tym jak to zrobić <a href="http://www.ruby-lang.org/pl/downloads/">dowiesz się na stronie domowej Rubiego</a>. Instalacja pod windowsem to kwestia ściągnięcia pliku .exe i zainstalowania go. Użytkownicy systemu linux zapewne sobie poradzą :) (instalacja ze źródeł bądź klasyczne <kbd>apt-get install ruby</kbd>)
+</p>
+
+
+<p>
+Jeśli miałbym w kilku słowach opisać dlaczego <span class="strike">lubię</span> uwielbiam Rubiego to powiedziałbym, że dlatego gdyż język ten jest bardzo elastyczny, dynamiczny a programowanie w nim to czysta przyjemność. Co dokładnie mam na myśli pisząc "bardzo elastyczny, dynamiczny" wyjaśnię za chwilę. Wpierw chciałbym zrobić szybkie porównanie do innych języków. Tym bardziej, że prawdopodobnie znasz jeden z języków php, java, c#, python i chciałbyś mieć jako takie pojęcie o Rubim.
+</p>
+
+<p>
+Jak wspomniałem w <a href="http://radarek.jogger.pl/2007/05/10/ruby-historii-slow-kilka">poprzednim wpisie</a> twórca Rubiego (Matz) projektując język wzorował się na tych, które już znał. Pozwolił sobie na zapożyczenie najlepszych, wg niego, cech i dodanie tych, których mu brakowało do pełnego szczęścia (oczywiście tego programistycznego). Tak więc składnia Rubiego jest bardzo podobna do innych języków (zresztą wymyślanie języka, którego składnia bardzo odbiega od już istniejących jest głupotą, gdyż tylko nieliczni będą chcieli się go nauczyć i używać! - przykład: lisp), co nie oznacza (jak się zaraz przekonamy), że jest identyczna. Zacznijmy od tego co w Rubim nie jest wyjątkowe, gdyż każdy dobry język to ma. Podam kilka przykładów.
+</p>
+
+
+<pre><code class="ruby">#pasuje sie przywitac
+puts "Hello World! Mów mi Ruby!"
+
+#umiem...
+
+#dodawac
+sum_1_3 = 1 + 3
+puts sum_1_3 #=> 4
+
+#inne dzialania? szkoda na to czasu!
+#zwroc tylko uwage, ze mam wbudowana obsluge potegowania
+power_2_3 = 2 ** 3
+puts power_2_3 # => 8
+
+#aha, gdybys chcial wiedziec, jak duze liczby potrafie zapamietac...
+#to wiedz, ze duze...
+puts 2 ** 40 #=> 1099511627776
+
+#naprawde duze...
+puts 2 ** 100 #=> 1267650600228229401496703205376
+
+#jakie tylko chcesz, serio...
+puts 2 ** 10000 #=> sprawdz sam :-)
+
+#warunki, petle? no prosze bardzo...
+a = 2
+if a == 2
+  puts "Tak jest, 'a' rowna sie 2!"
+else
+  puts "No przykro mi, 'a' nie rowna sie2!"
+end #=> Tak jest, 'a' rowna sie 2!
+
+i = 1
+while i &lt; 10
+  puts i
+  i += 1
+end #=> 1 2 3 ... 8 9
+
+#umiem definiowac funkcje (ok tak naprawde to sa metody, ale nie jest to takie istotne)
+def factorial(n)
+  if n &lt;= 1
+    return 1
+  else
+    return n * factorial(n - 1)
+  end
+end
+
+puts factorial(5) #=> 120
+
+#tablice? skoro musze...
+array = [10, 24, 38]
+#dolozmy jakis napis...
+array[3] = "to tylko napis"
+puts array #=> 10 24 38 to tylko napis
+
+#hashe? tablice haszujace? hashmapy?...
+hash = {'ala' => 'ma kota', 'sierotka' => 'ma rysia'}
+puts hash['ala'] #=> ma kota
+
+#wyrazenia regularne, regexpy... (czyli cos co raz piszesz, a potem nie umiesz tego odczytac :-))
+str = "Python is cool!"
+puts str.gsub(/Python/, 'Ruby') #=> Ruby is cool
+
+#oop? inaczej bym nie chcial...
+class MyString &lt; String #dziedziczenie po klasie String
+  def initialize(str) #metoda inicjalizujaca
+    super(str) #wywolanie konstruktra z nadklasy
+  end
+  
+  def length #male oszustwo :-)
+    return super() + 1 #super() wywoluje nadpisana metode, czyli length z klasy String
+  end
+end
+
+str = MyString.new("123")
+puts str.length #=> 4
+
+#obsluga wyjatkow? oczywiscie, przeciez jestem wyjatkowy...
+def throw_exception() #metoda rzuca wyjatek
+  raise "Exception - catch it!"
+end
+
+begin
+  throw_exception() #wywolujemy metode
+  puts "To sie nie wypisze"
+rescue => e
+  puts "Zlapalem wyjatek!"
+  puts e.message()
+end
+</code></pre>
+
+<p>
+Powiedzmy sobie szczerze. To była najnudniejsze co mogłem Ci pokazać. Nie ma nic nadzwyczajnego w powyższym kodzie. Ale chciałem Ci pokazać jedną rzecz, mianowicie to co robiłeś do tej pory w Twoim ulubionym języku będziesz robić podobnie w Rubim. Liczyć, sprawdzać warunki, "obracać się w pętli", wypisywać na ekran i tym podobne. To tylko zaleta. Nie chciałbyś przecież nad takimi trywialnymi czynnościami myśleć zbyt długo, prawda? I nie będziesz, przecież rozumiesz wszystko co do tej pory Ci pokazałem.
+</p>
+
+<p>
+Mógłbym powiedzieć, że nadszedł ważny moment. Moment, w którym Ruby pokaże swoje prawdziwe ja. Uprzedzę tylko, że nie jestem w stanie pokazać wszystkiego. Musiałbym napisać książkę, a to tylko wpis na blogu... Weź to pod uwagę, gdyż prawdopodobnie bez spróbowania na własnej skórze, bez napisania kilkunastu linii kodu nie poczujesz tego, co sprawia, że Ruby jest magiczny.
+</p>
+
+<p>
+Zacznijmy od tego, że w Rubim praktycznie wszystko jest obiektem. Jak się o tym przekonać? Bardzo prosto. Każdy obiekt jest instancją jakiejś klasy. W Rubim by sprawdzić klasę danego obiektu używamy metodę <code>class</code> (jak zaraz się przekonasz nawiasy () nie są wymagane, ale to wciąż jest wywołanie metody). A więc uruchom naszego przyjaciela: <kbd>irb</kbd> i pisz równo ze mną.
+</p>
+
+<pre><code class="ruby">puts "napis".class #=> String
+puts 1.class #=> Fixnum
+puts 1.2.class #=> Float
+puts [1, 2, 3].class #=> Array
+puts ({'a' => 1}.class) #=> Hash (bez nawiasów () nie skompiluje się, ktoś wie dlaczego?)
+</code></pre>
+
+<p>
+Zdefiniujmy teraz własną klasę i pokażmy, że nawet ona jest obiektem!
+</p>
+
+<pre><code class="ruby">class MyClass
+  def instance_method
+    puts "Wywolales metode instancji!"
+  end
+  
+  def self.class_method
+    puts "Wywolales metode klasy!"
+  end
+end
+
+o = MyClass.new #tworzymy instance klasy
+o.instance_method #metoda instancji
+
+MyClass.class_method #metoda klasy
+if o.class == MyClass
+  puts "o jest instancja klasy MyClass"
+end
+</code></pre>
+
+<p>
+<code>MyClass</code> jest klasą. W językach takich jak Java, Php czy C# klasa może mieć zwykłe metody (w Rubim nazywa się je metodami instacji, ponieważ są wywoływane na rzecz instancji tej klasy) oraz metody statyczne (w Rubim nazywamy je metodami klasy, ponieważ wywołuje się je na rzecz klasy, a dokładniej na rzecz obiektu klasu). A więc pisząc <code>MyClass.new</code> wywoływaliśmy metodę <code>new</code> klasy MyClass (Ruby już sam się o to zatroszczy, by taka metoda istniała). Metoda ta zwróciła nam obiekt (instancję) klasy MyClass. I dla przykładu wywoujemy metodę instancji <code>instance_method</code>. Następnie wywołujemy własną metodę klasy <code>class_method</code>. Na sma koniec odsłaniam dodatkową tajemnicę: metoda class zwraca obiekt... klasy. Ale nie byle jaki. Obiekt, z którym możemy rozmawiać, którego możemy zapytać o różne ciekawe rzeczy. Wyobraź sobie, że chciałbyś poznać wszystkie nazwy metod instancji, które posiada klasa. Jakbyś to zrobił? Czy zapytasz o to jakiś magiczny obiekt, z niewiadomo jakiego pakietu/bilbioteki? W świecie Rubiego pytasz o to zainteresowanego, a nie jakiejś wróżki.
+</p>
+
+<pre><code class="ruby">#porozmawiajmy z obiektem klasy String
+
+#chce wiedziec jakie metody klasy ma klasa String
+puts "Metody klasy String"
+puts String.methods
+puts "-" * 50
+
+#chce wiedziec jakie metody instancji (czyli wywolywane na obiektach klasy String, np. "123".length) ma klasa String
+puts "Metody instancji klasy String"
+puts String.instance_methods
+puts "-" * 50
+
+#z jakiej klasy dziedziczy klasa String?
+puts String.superclass
+puts "-" * 50
+</code></pre>
+
+<p>
+Co jeszcze można zrobić z obiektem klasy? Możemy poprosić go o utworzenie kolejnej instancji, np w ten sposób.
+</p>
+
+<pre><code class="ruby">class MyClass
+  def initialize
+    puts "Tak jest szefie!"
+  end
+  
+  def who_am_i
+    #metoda ta wypisuje na ekran id obiektu, kazdy obiekt ma swoj unikalny identyfikator (w zakresie instancji programu:))
+    puts "Moj identyfikator w swiecie Rubiego to: #{object_id}"
+  end
+end
+
+o1 = MyClass.new
+o1.who_am_i
+
+o2 = o1.class.new #prosimy obiekt o1 o "przedstawienie sie" i tworzymy kolejna instancje obiektu
+o2.who_am_i
+</code></pre>
+
+<p>
+Jeśli miałbym wymienić tylko jedną cechę, która sprawia, że tak bardzo lubię ten język to powiedziałbym, że jest nią dynamizm. Tak. Ruby jest dynamiczny. Oczywiście Perl, Python, Php też są dynamiczne prawda? Ale czy w tych językach możesz w dowolnym momencie dodać metodę do istniejącej (nawet tej wbudowanej w język!) klasy? Popatrz na to:
+</p>
+
+<pre><code class="ruby">require 'digest/md5' #dolaczamy dodatkowa biblioteke, zaraz sie przyda
+
+s = "zzzz"
+
+begin
+  puts s.md5
+rescue NoMethodError => e
+  puts "wywolano metode, ktora nie istnieje!"
+  puts e.message
+end
+
+class String #klasa ta jest wbudowana w jezyk, "123" jest instancja tej klasy
+  #otwieramy klase, nie oznacza to ze nadpiszemy dotychczasowa definicje
+  #my tylko cos do niej dodamy :-)
+
+  #definiujemy wlasna metode
+  def md5
+    return Digest::MD5.hexdigest(self)
+  end
+end
+
+puts "123456789".md5
+
+#wczesniej obiekt 's' nie mial metody md5, sprawdzmy teraz
+puts s.md5
+</code></pre>
+
+<p>
+Chyba nie muszę Ci tłumaczyć jaką siła w tym drzemie?
+</p>
+
+<p>
+Bloki i iteratory, to kolejne elementy Rubiego, które wyróżniają go (w tym dobrym sensie). Popatrz na ten prosty przykład.
+</p>
+
+<pre><code class="ruby">def call_with_block
+  yield
+  puts "wciskam sie pomiedzy 2 wywolania"
+  yield
+end
+
+call_with_block do
+  puts "jestem w bloku!"
+end
+
+def call_with_block_and_param
+  yield 1
+end
+
+call_with_block_and_param do |param|
+  puts "Dostalem parametr #{param}"
+end
+</code></pre>
+
+<p>
+Prześledźmy ten prosty kawałek kodu. Najpierw definiujemy metodę <code>call_with_block</code>. Metoda ta wywołuje wpierw metodę <code>yield</code> (za chwilę powiemy co to za metoda), potem wypisujemy na ekran komunikat "wciskam sie pomiedzy 2 wywolania" i znów wywołujemy tą samą metodę co poprzednio. Dalej mamy wywołanie metody <code>call_with_block</code>, jednak zaraz za nim pomiędzy słowa kluczowe <code>do</code> i <code>end</code> wciskamy swój kawałek kodu. To co robi "magiczna" metoda <code>yield</code> to wywołuje skojarzony z metodą blok kodu. Drugi przykład pokazuje w jaki sposób do bloku przekazać parametr i jak go w nim użyć. Być może zastanawiasz się do czego coś takiego może się przydać, więc podam Ci kilka przykładów.
+</p>
+
+<pre><code class="ruby">#bloki wykorzystywane są jako iteratory
+a = [1, 2, 3]
+a.each do |elem|
+  puts elem
+end
+
+#fikcyjny kod, ale tak sie programuje w Rubim
+b = Button.new
+b.on_click do
+  puts "Przycisk zostal nacisniety!"
+end
+
+#przyklad atomowej transakcji (przykład z prezentacji twórcy Railsów, DHH)
+#Account zadba o to, ze jesli cos sie nie powiedzie to zostanie wykonany rollback
+Account.transaction(david, mary) do
+  david.withdrawal(100)
+  marry.withdrawal(100)
+end
+
+#klasyczny przyklad
+File.open('file.txt', 'w') do |file|
+  file &lt;&lt; "Zapisuje do plik"
+end
+#nie musze zamykac pliku bo zadba o to, klasa File
+
+#szukamy wszystkich liczb i do każdej dodajemy 10 i zamieniamy
+"Ala ma 20 kotow, a sierotka 30 rysiow".gsub(/\d+/) do |m|
+  m.to_i + 10
+end
+</code></pre>
+
+<p>
+Na koniec podam jeszcze kilka przykładów, które wprost zabijają swoją kulturą i zwięzłością. Spróbuj je przeanalizować na własną rękę.
+</p>
+
+<pre><code class="ruby">require 'singleton'
+
+#wystarczy jedna linia by uczynić klase singletonem
+class SingletonClass
+  include Singleton
+end
+
+o1 = SingletonClass.instance
+o2 = SingletonClass.instance
+
+puts o1 == o2
+
+#spotkales sie z wyrazeniem "przegrepowac cos"?
+a = ["123", "aaa", "a123", "bbb", "zzzz", "777", "438921"]
+#szukamy tylko stringow zlozonych ze cyfr
+puts a.grep(/^\d+$/)
+
+#zadanie: posortuj, nastepnie usun duplikaty i odwroc kolejnosc tablicy
+a = [32, 54, 3, 66, 13, 3, 4, 99, 76, 3, 3, 3, 3]
+puts a.sort.uniq.reverse
+
+class Object
+  def self.inherited_from
+    if superclass
+      return [self] + superclass.inherited_from
+    else
+      return [self]
+    end
+  end
+end
+
+class MyHash &lt; Hash
+end
+
+#wyswietla sciezke dziedziczenia klasy MyHash
+puts MyHash.inherited_from.join(', ')
+
+#sortujemy tablice pod dlugosci lancuchow
+puts ["zzzzzzzz", "zzz", "zzzz", "z", "zzzzzzzzzzzzzzzzzz"].sort {|a,b| a.length &lt;=&gt; b.length }
+</code></pre>
+
+<p>
+Spójrz na ten kod. Jest zwięzły, ale przede wszystkim przejrzysty! To jest ogromna zaleta Rubiego. Spróbuj to napisac w swoim języku. Chyba jedynie Python jest w stanie (chodź nie zawsze) dorównać.
+</p>
+
+<p>
+Uff, trochę tego wyszło. Być może za dużo jak na początek przygody z Rubim, jednak zbyt mało by pokazać wszystkie pazurki. Jedno jest pewne, jeśli sam nie dasz szansy temu językowi, to choćbym się dwoił i troił to nie przekonam Cię. Spróbuj sam, a nie będzie Cię musiał nikt przekonywać. Przekona Cię sam Ruby.
+</p>
+
+<p>
+Polecam też przeczytać, jako dobry wstęp do języka (są to chyba jedyne opracowania w języku polskim):<br />
+<a href="http://www.stifflog.com/pl/ruby.html">Cały cykl (6 części) na blogu <strong>stiffblog</strong></a><br />
+<a href="http://blog.razorjack.net/2007/03/27/ruby-wprowadzenie/">Ruby - wprowadzenie, na blogu <strong>RazorJacka</strong></a>
+</p>
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-826571" class="comment1 jogger">
+            
+            1.
+            
+            <img class="avatar-icon" src="http://stary.blog.ravbaker.net/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://stary.blog.ravbaker.net">RaVbaker</a></strong> napisał(a) 18 Maj 2007 o godz. 20:56:
+            <div class="top"></div>
+            <div class="content">
+              <p>Niezwykle miłe wprowadzenie do Ruby. Równie zwięzłe jak <a href="http://tryruby.hobix.com" rel="nofollow" >tryruby.hobix.com</a>. O tym też mógłbyś wspomnieć. ;-)</p>
+
+<p>Pozdrawiam i będę oczekiwał na kolejne odcinki. (Mimo, że sam jestem rubi(n)owym wyjadaczem i zmagam się z RoR już. :P )</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-826718" class="comment2 owner">
+            
+            2.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 18 Maj 2007 o godz. 23:25:
+            <div class="top"></div>
+            <div class="content">
+              <p>Wspomnę i o tym, prawdopodobnie następny wpis będzie zawierać pewne tips&amp;tricks związane z <a href="tryruby.hobix.com" rel="nofollow" >tryruby.hobix.com</a> i czymś podobnym&#8230; ale nie będę zapeszać :-).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-826928" class="comment1 jogger">
+            
+            3.
+            
+            <img class="avatar-icon" src="http://emes.jogger.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://emes.jogger.pl">MySZ</a></strong> napisał(a) 19 Maj 2007 o godz. 12:26:
+            <div class="top"></div>
+            <div class="content">
+              <p>Wprowadzenie ciekawe (szukam takich prostych info nt Ruby, choć nie zamierzam się jak na razie jakoś specjalnie nim zajmować), ale:</p>
+
+<blockquote>
+<p>Oczywiście Perl, Python, Php też są dynamiczne prawda? Ale czy w tych językach możesz w dowolnym momencie dodać metodę do istniejącej (...) klasy?</p>
+</blockquote>
+
+<p>I owszem, w Pythonie czy Perlu można dodać dowolną metodę w dowolnym momencie do istniejącej klasy.</p>
+
+<blockquote>
+<p>(nawet tej wbudowanej w język!)</p>
+</blockquote>
+
+<p>W perlu jak najbardziej. W Pythonie nie, i wcale nie uważam tego za jakiś problem czy niedogodność, wręcz przeciwnie.</p>
+
+<blockquote>
+<p>Spójrz na ten kod. Jest zwięzły, ale przede wszystkim przejrzysty!</p>
+</blockquote>
+
+<p>W Perlu i Pythonie da się te same rzeczy zrobić podobnie ładnie i czysto.</p>
+
+<p>Ps. Nie, nie próbuję bronić jakiegokolwiek języka (każdy z nich to tylko narzędzie), a próbuję pokazać że pisanie że tylko w jednym się da nie jest najlepszym rozwiązaniem, jeśli inne zna się słabiej.<br />
+Ps2. Chciałem pokazać kilka kawałków kodu,ale textile lite kiepsko sobie z tym radzi, więc sobie odpuściłem.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-826945" class="comment2 jogger">
+            
+            4.
+            
+            <img class="avatar-icon" src="http://stary.blog.ravbaker.net/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://stary.blog.ravbaker.net">RaVbaker</a></strong> napisał(a) 19 Maj 2007 o godz. 13:00:
+            <div class="top"></div>
+            <div class="content">
+              <p>@MySZ Spróbuj taką oto konstrukcję przy dodawaniu kodu do komentarza:</p>
+
+<pre><code>NOWA_LINIA
+.bc PIERWSZA LINIA KODU
+JAKIŚ KOD
+I W KOLEJNEJ LINII TEŻ JAKIŚ KOD
+ITD.
+NOWA_LINIA
+CIAG DALSZY KOMENTARZA.
+</code></pre>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-827068" class="comment1 owner">
+            
+            5.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 19 Maj 2007 o godz. 16:00:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@mysz</strong>, w kwestii znajomości innych języków to nie ukrywam, że znam bardzo dobrze Php (obecnie staram się uciec od niego na rzecz Rubiego).<br />
+Perlowi dałem dużą szansę, ale to nie ten poziom (przykładowo klasy tak na prawdę są haszami (sam język nie wspiera składniowo klas), pobłogosławionymi (bless!) i nawet jeśli ten język daje dużą elastyczność to traci na tym czytelność kodu (te ciągłe domyślne przypisania do magicznych zmiennych itp, co chwile jakieś wyjątki, niekonsekwencje).<br />
+Z Pythonem z kolei miałem krótką przygodę i jest to jak najbardziej ciekawy język, aczkolwiek mnie jego filozofia nie spasowała.<br />
+W kwestii Perl/Php mówię otwarcie: nie widzę możliwości sensownego (zwięzłość, czytelność oraz elastyczność) pisania kodu w nich. W kwestii Ruby/Python jakiekolwiek &#8222;święte wojny&#8221; nie mają sensu. Oba języki są świetne, aczkolwiek ich filozofia jest trochę inna, więc każdy powinien zaznajomić się z nimi i wybrać tą, która mu pasuje.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-827279" class="comment2 jogger">
+            
+            6.
+            
+            <img class="avatar-icon" src="http://rubedo.jogger.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://rubedo.jogger.pl">RazorJack</a></strong> napisał(a) 19 Maj 2007 o godz. 20:30:
+            <div class="top"></div>
+            <div class="content">
+              <p class="modified"><a href="http://jogger.pl/pokaz_komentarz/827279"><small>(Komentarz zmodyfikowany 24.05.2007 o 15:23)</small></a></p><blockquote>
+<pre><code class="ruby">puts ({'a' =&#62; 1}.class) #=&#62; Hash (bez nawiasów () nie skompiluje sie, ktos wie dlaczego?)</code></pre>
+</blockquote>
+
+<p>Co oznacza <code>puts {...}</code>? Wykonanie <code>puts</code> z przekazaniem bloku <code>{...}</code>.</p>
+
+<p>Jeśli wykonasz kod,</p>
+
+<pre>puts { a = 5 }
+a
+</pre>
+
+<p>otrzymasz pusty wiersz (czyli wykonanie <code>puts</code> bez parametrów). I powiadomienie &#8211; że nie zna zmiennej a (bo <code>puts</code> nie wykonuje przekazanych bloków, ergo zmienna nie została zadeklarowana). Można więc wywnioskować, że Ruby taką klamrę interpretuje jako blok. A blok zawierający kod <code>'a' =&#62; 1</code> nie jest poprawny składniowo, stąd błąd kompilacji.</p>
+
+<p>Ale kiedy umieścisz całość w okrągłych nawiasach, Ruby zacznie uznawać to nie za blok, a za parametr. I wtedy będziemy mieli do czynienia z tworzeniem hasza. :-)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-827329" class="comment1 jogger">
+            
+            7.
+            
+            <img class="avatar-icon" src="http://emes.jogger.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://emes.jogger.pl">MySZ</a></strong> napisał(a) 19 Maj 2007 o godz. 21:10:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>RaVbaker</strong>:<br />
+Daję sobie uciąć którąś z kończyn, że wcześniej nie działało &#8211; interpretowało linijkę z &#8216;@&#8217; jako kod, wycinając samą małpę, a bc. wyświetlało nienaruszone.</p>
+
+<p><strong>Radarek</strong>:<br />
+W perlu da się ładnie i czytelnie pisać ;) My piszemy (firma gdzie pracuję) :)<br />
+Przypisywać do zmiennej standardowej nie trzeba &#8211; poza prawymi pętlami, mapem i grepem :) ale nie sądzę żeby to był problem. My nie stsosujemy tejże zmiennej praktycznie nigdzie indziej.<br />
+A co do obiektowości w Perlu &#8211; ja go osobiście traktuję jako język proceduralny, i praktycznie obiektówkę jego pomijam. </p>
+
+<p>Mam nadzieję że nie odebrałeś mojego wpisu jako atak na siebie &#8211; wręcz przeciwnie, artykuł czytało się bardzo przyjemnie :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-827342" class="comment2 owner">
+            
+            8.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 19 Maj 2007 o godz. 21:20:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@Mysz</strong>: bynajmniej nie odebrałem tego jako atak, jestem otwarty na dyskusje :-). Pracujesz może w Krakowie?</p>
+
+<p><strong>@Razorjack</strong>: dzisiaj siedząc na spotkaniu <a href="http://www.ruby.org.pl/" rel="nofollow" >KRUG</a> dokładnie to samo sobie uświadomiłem :-). Tak czy siak dzięki za czujność.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-827503" class="comment1 jogger">
+            
+            9.
+            
+            <img class="avatar-icon" src="http://emes.jogger.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://emes.jogger.pl">MySZ</a></strong> napisał(a) 19 Maj 2007 o godz. 23:03:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>Radarek</strong>: nie, w Szczecinie :) </p>
+
+<p>Co do kodu o którym mówiłem wcześniej:<br />
+Sortowanie po perlowemu:</p>
+
+<pre><code>my @q = ('a', 'aaa', 'aa', 'aaaaaa', 'aaaa');
+print join (', ', sort {length $a &#60;=&#62; length $b} @q), "\n";
+</code></pre>
+
+<p>Po pythonowemu:</p>
+
+<pre><code>q = ['a', 'aaa', 'aa', 'aaaaaa', 'aaaa']
+print ', '.join ( sorted (q, lambda a, b: cmp(len(a), len(b)) ) )
+</code></pre>
+
+<p>Grepowanie perlowe:</p>
+
+<pre><code>@q = ("123", "aaa", "a123", "bbb", "zzzz", "777", "438921");
+print join (', ', grep {/^\d+$/} @q), "\n";
+</code></pre>
+
+<p>I pythonowe:</p>
+
+<pre><code>import re
+q = ["123", "aaa", "a123", "bbb", "zzzz", "777", "438921"]
+print ', '.join( filter(lambda a: re.match('^\d+$', a), q ) )
+</code></pre>
+
+<p>Perl jako taki jest niesamowicie szybkim językiem. U nas trzyma się przede wszystkim właśnie ze względu na wydajność &#8211; tutaj Python mu niestety ustępuje (nie mówiąc o Rubym &#8211; opierając się na doniesieniach z sieci). Gdybyśmy chcieli cały system postawić na Rubym, musielibyśmy conajmniej podwoić liczbę serwerów :)<br />
+Mam zamiar za jakiś czas (może rok, może więcej) zacząć agitować za zmianą języka na Pythona, ale na tą chwilę kiepsko to widzę ;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-827577" class="comment2 jogger">
+            
+            10.
+            
+            <img class="avatar-icon" src="http://rubedo.jogger.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://rubedo.jogger.pl">RazorJack</a></strong> napisał(a) 19 Maj 2007 o godz. 23:52:
+            <div class="top"></div>
+            <div class="content">
+              <p class="modified"><a href="http://jogger.pl/pokaz_komentarz/827577"><small>(Komentarz zmodyfikowany 24.05.2007 o 13:40)</small></a></p><p><strong>MySZ</strong>:<br />
+Przedstawiony przez Ciebie kod w Rubim wyglądałby mniej więcej tak:</p>
+
+<pre><code class="ruby">q = ['a', 'aaa', 'aa', 'aaaaaa', 'aaaa']
+puts (q.sort_by { |s| s.length }).join(", ")
+
+oraz
+</code>
+</pre>
+
+<pre><code class="ruby">q = ["123", "aaa", "a123", "bbb", "zzzz", "777", "438921"]
+puts q.grep(/^\d+$/).join(", ")
+</code>
+</pre>
+
+<p>Fakt, że rubinowa wersja jest bardziej zwięzła, jest bezdyskusyjny. Czytelność to rzecz degustibusów, dla mnie wygrywa Ruby, szczególnie, gdy się rozumie zasadę działania wyrażeń w tym języku.</p>
+
+<p>A co do szybkości, to długo trzeba będzie czekać na język, który szybkością pobije Perla. Ruby tutaj nieco kuleje, aczkolwiek zapowiadają się zmiany w wersji 2.0&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-979450" class="comment1 guest">
+            
+            11.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://nexus.vrak.pl" rel="nofollow">psionides</a></strong> napisał(a) 16 Paź 2007 o godz. 21:29:
+            <div class="top"></div>
+            <div class="content">
+              <p>def self.inherited_from -&#62; czy mi się zdaje, czy te linijki z if i else powinny być zamienione? :)</p>
+
+<blockquote>
+<p>Oczywiście Perl, Python, Php też są dynamiczne prawda? Ale czy w tych językach możesz w dowolnym momencie dodać metodę do istniejącej (nawet tej wbudowanej w język!) klasy?</p>
+</blockquote>
+
+<p>W Pythonie bym to zrobił tak, nie wiem czy się da ładniej:</p>
+
+<pre><code>def foo(self):
+  print "qq"
+Klasa.foo = foo
+</code></pre>
+
+<p>(ale do klas wbudowanych się nie da dodawać, to fakt)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-979484" class="comment2 owner">
+            
+            12.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 16 Paź 2007 o godz. 21:49:
+            <div class="top"></div>
+            <div class="content">
+              <p>@psionides, widzę, że ostro czytasz, hehe :).</p>
+
+<p>Co do &#8216;inherited_from&#8217; -&#62; masz rację! Tyle milionów to przeczytało, a nikt nie zauważył :). Zaraz poprawię.</p>
+
+<p>Co do dodawania nowych metod do istniejących klas. Źle to trochę ująłem bo już wcześniej gdzieś słyszałem (z lenistwa nie sprawdziłem), że można robić coś takiego w Pythonie. Jednakże pozwolę sobie pomarudzić:  nie podoba mi się Twój kawałek :D. Najpierw zwykła deklaracja, a potem przypisanie jako atrybut klasy&#8230; ja wiem, że to pewnie &#8222;pythonowo&#8221;, ale mnie nie podchodzi :).</p>
+
+<p>A co do wbudowanych klas i ich rozszerzaia &#8211; to w Rubym jest świetne.</p>
+
+<p>Przykładowo w railsach dodano nowe metody np. do klasy Numeric, dzięki czemu możesz napisać:</p>
+
+<pre><code>size = 20.bytes + 1.megabyte #=&#62; 1048596
+</code></pre>
+
+<p>Brakuje Ci jakiejś metody w klasie Array? Dodajesz i nie marudzisz.<br />
+Rzecz jasna to kwestia smaku co komu się podoba :).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-979884" class="comment1 guest">
+            
+            13.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://nexus.vrak.pl" rel="nofollow">psionides</a></strong> napisał(a) 17 Paź 2007 o godz. 14:23:
+            <div class="top"></div>
+            <div class="content">
+              <blockquote>
+<p>widzę, że ostro czytasz, hehe :)</p>
+</blockquote>
+
+<p>Przeczytałem już wszystkie stare posty, teraz czekam na nowe ;)</p>
+
+<blockquote>
+<p>Tyle milionów to przeczytało, a nikt nie zauważył :)</p>
+</blockquote>
+
+<p>Bo ja w przeciwieństwie do innych czytam ze zrozumieniem :]</p>
+
+<p>A co do rozszerzania &#8211; to z drugiej strony pewnie to wprowadza lekki chaos, że musisz pamiętać, że jak chcesz w klasie X użyć metody y, to oprócz pliku X musisz dołączyć jeszcze plik Y, a jak metody z, to jeszcze plik Z :) Ale przyznaję, że ogólnie pomysł fajny.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-980337" class="comment2 owner">
+            
+            14.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 17 Paź 2007 o godz. 23:38:
+            <div class="top"></div>
+            <div class="content">
+              <blockquote>
+<p>A co do rozszerzania – to z drugiej strony pewnie to wprowadza lekki chaos, że musisz pamiętać, że jak chcesz w klasie X użyć metody y, to oprócz pliku X musisz dołączyć jeszcze plik Y, a jak metody z, to jeszcze plik Z :) Ale przyznaję, że ogólnie pomysł fajny.</p>
+</blockquote>
+
+<p>Tak mogłoby być, ale na szczęście nie jest. Rzecz w tym, że takie rozszerzenia dodawane są przez konkretne biblioteki. Np. piszesz bibliotekę matematyczną i stwierdzasz, że dużo operujesz na macierzach to przydałaby się metoda &#8216;to_matrix&#8217; na tablicy. Potem jako programista piszesz &#8216;require &#8222;math_lib&#8221;&#8217; i przy okazji dostajesz te metody. Z tym, że prawd. nie pomyślisz w ten sposób &#8222;aha, wiem, że biblioteka math_lib dodaje metodę to_matrix do klasy Array to ją użyję...&#8221;.</p>
+
+<p>Trzeba sobie powiedzieć jasno: jest to dosyć potężny mechanizm, ale można także sobie strzelić w stopę. Trzeba go używać z głową :).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="/">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

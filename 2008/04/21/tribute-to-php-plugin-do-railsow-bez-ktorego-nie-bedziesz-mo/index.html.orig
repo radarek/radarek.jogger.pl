@@ -1,0 +1,1121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Tribute to PHP - plugin do railsów, bez którego nie będziesz mógł żyć! - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="/files/favicon.png" type="image/png" />
+    <meta name="keywords" content="humor, php, plugin, rails, ruby, Humor, Ruby, Ruby on Rails, Techblog, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="/files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/files/common.js"></script>
+    <script type="text/javascript" src="/files/highlight.js"></script>
+    <script type="text/javascript" src="/files/dynamic.js"></script>
+    <script type="text/javascript" src="/files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="/" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="/"><span>Wpisy</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/04/29/o-blogu/"><span>O blogu</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kanaly-rss/"><span>RSS</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kontakt/"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2009/01/01/gist-odpicowane-pastie/">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2008/10/12/mp3-przeboje/">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="http://radarek.jogger.pl/kategoria/blog/">Blog (6)</a></li>
+          
+            <li id="c"><a href="http://radarek.jogger.pl/kategoria/c/">C (1)</a></li>
+          
+            <li id="gamedev"><a href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="http://radarek.jogger.pl/kategoria/git/">Git (2)</a></li>
+          
+            <li id="humor"><a href="http://radarek.jogger.pl/kategoria/humor/">Humor (3)</a></li>
+          
+            <li id="java"><a href="http://radarek.jogger.pl/kategoria/java/">Java (1)</a></li>
+          
+            <li id="jruby"><a href="http://radarek.jogger.pl/kategoria/jruby/">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="http://radarek.jogger.pl/kategoria/python/">Python (4)</a></li>
+          
+            <li id="ruby"><a href="http://radarek.jogger.pl/kategoria/ruby/">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="http://radarek.jogger.pl/kategoria/techblog/">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="http://radarek.jogger.pl/kategoria/web/">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/blog/">Blog</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/c/">C</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/git/">Git</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/humor/">Humor</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/java/">Java</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/jruby/">JRuby</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/python/">Python</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/web/">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="/startid/470765">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="/startid/433510">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="/startid/425293">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="/startid/423490">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="/startid/392066">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="/startid/383421">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="/startid/364188">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="/startid/337815">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="/startid/323920">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2008</small>
+              <span>21</span>
+              <small>Kwi</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2008/04/21/tribute-to-php-plugin-do-railsow-bez-ktorego-nie-bedziesz-mo/">Tribute to PHP - plugin do railsów, bez którego nie będziesz mógł żyć!</a></h2>
+            
+            <a href="http://radarek.jogger.pl/2008/04/21/tribute-to-php-plugin-do-railsow-bez-ktorego-nie-bedziesz-mo/#comments">33 komentarze</a>
+            | Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/humor/">Humor,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+            
+            
+              | <a href="http://radarek.jogger.pl/2008/04/21/tribute-to-php-plugin-do-railsow-bez-ktorego-nie-bedziesz-mo/trackback/">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/humor" rel="tag">
+                  humor</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/php" rel="tag">
+                  php</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/plugin" rel="tag">
+                  plugin</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/rails" rel="tag">
+                  rails</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <!-- Love for PHP -->
+
+<p>
+Myślę, że niewiele ryzykuję twierdząc, że większość piszących w Rubym tudzież Railsach dosyć intensywnie pisała wcześniej w PHP.
+Ja też nie jestem tu wyjątkiem. I chociaż uciekam od PHP jak najdalej i chyba tylko siłą można mnie zmusić by w tym pisać to są
+takie chwile, że tęskni się za pewnymi rozwiązaniami tego języka/środowiska.
+</p>
+
+
+
+<p>
+Jednym z takich elementów PHP, za którym tęsknią bezwzględnie wszyscy są globalne zmienne $_GET, $_POST, $_COOKIE, $_SESSION.
+Otóż Railsy próbowały w jak najbardziej elegancki sposób rozwiązać te kwestie, jednak w tej kwestii na tle PHP wypadają słabo.
+</p>
+
+<p>
+Sztucznie narzucony model MVC tylko zabiera nam swobodę programowania. Ile razy chciałeś sięgnąć w modelu to sesji, parametrów
+żądania czy też ciasteczek? A co z innymi miejscami takimi jak szablony czy też kod w katalogu RAILS_ROOT/lib/? Tak, tutaj Railsy
+są mocne ograniczone i tylko próbują to przed nami ukryć!
+</p>
+
+<p>
+Na szczęście są sposoby by to obejść. Specjalnie na tę okazję napisałem dla Was plugin: Tribute to PHP. Wprowadza on wspomniane
+globalne zmienne. Możesz je używać dokładnie tak jak w PHP! Dodatkowo posiada chyba najlepsze co mogło się przydarzyć PHPowi
+(i nie wiem dlaczego zostało to wycofane z najnowszych wersji PHP - być może to jeden z tych złych posunięć, które poprowadzi PHP
+do śmierci:( ) a chodzi oczywiście o słynne (nie bez przyczyny) "register globals". W oryginale można było włączyć bądź wyłączyć tę
+opcję, w tym pluginie "register globals" jest włączone zawsze. Uważam, że wyłączanie tak przydatnej opcji mija się z celem.
+</p>
+
+<p>
+Pozostaje mi tylko pokazanie małego przykładu użycia i umieszczenia kodu samego pluginu. Zachęcam wszystkich do pisania własnych
+propozycji co do rozwoju pluginu. Myślę, że Railsy w połączeniu z tymi najlepszymi cechami PHP mogą być jeszcze lepsze!
+</p>
+
+<pre><code class="ruby">class User &lt; ActiveRecord::Base
+  def self.authenticate
+    return $_POST['login'] == &quot;radarek&quot;
+  end
+end
+
+class HelloController &lt; ApplicationController
+  def index
+    if request.post?
+      render :layout =&gt; true, :inline =&gt; %Q{
+      Twoj imie to: #{$imie}
+      }
+    else
+      render :layout =&gt; true, :inline =&gt; %Q{
+      &lt;form method=&quot;post&quot;&gt;
+        Podaj imie: &lt;input type=&quot;text&quot; name=&quot;imie&quot; /&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Ok&quot; /&gt;
+      &lt;/form&gt;
+      }
+    end
+  end
+  
+  def login_form
+    render :layout =&gt; true, :inline =&gt; %Q{
+    &lt;form method=&quot;post&quot; action=&quot;login&quot;&gt;
+      Podaj imie: &lt;input type=&quot;text&quot; name=&quot;login&quot; /&gt;
+      &lt;input type=&quot;submit&quot; value=&quot;Ok&quot; /&gt;
+    &lt;/form&gt;
+    }
+  end
+  
+  def login
+    if User.authenticate
+      render :text =&gt; &quot;OK&quot;
+    else
+      render :text =&gt; &quot;Sorry...&quot;
+    end
+  end
+  
+  def guess
+    if $_GET[&quot;a&quot;] == &quot;1&quot; &amp;&amp; $_GET[&quot;b&quot;] == &quot;2&quot;
+      $_SESSION[&quot;c&quot;] = &quot;3&quot;
+      redirect_to :action =&gt; &quot;guessed&quot;
+      return
+    end
+    render :text =&gt; &quot;guess&quot;
+  end
+  
+  def guessed
+    render :text =&gt; $_SESSION[&quot;c&quot;]
+  end
+end
+
+</code></pre>
+
+<p>
+To tylko kilka prostych przykładów. Pamiętaj o tym, że dostęp do tych zmiennych masz z każdego miejsca aplikacji! Otwiera to nowe możliwości
+i tylko Twoja wyobraźnia jest ich ograniczeniem. Czekam na Wasze opinie i jestem ciekaw ilu z Was oprze się pokusie użycia tego
+w produkcji!
+</p>
+
+<p>
+Na koniec kod pluginu
+</p>
+
+<p>
+Kod pliku init.rb
+</p>
+<pre><code class="ruby">TributeToPhp.setup_global_variables
+ActionController::Base.send(:include, TributeToPhp::Controller)</code></pre>
+
+<p>
+Kod pliku lib/tribute_to_php.rb
+</p>
+<pre><code class="ruby"># TributeToPhp
+module TributeToPhp
+  module Controller
+    def self.included(base)
+      base.alias_method_chain :perform_action, :extract_php_params
+    end
+    
+  protected
+  
+    def perform_action_with_extract_php_params(*args, &amp;block)
+      $_GET.params     = self.request.query_parameters
+      $_POST.params    = self.request.request_parameters
+      $_COOKIE.params  = self.request.cookies
+      $_SESSION.params = self.session
+      
+      # register globals
+      registered_globals = []
+      [$_GET, $_POST, $_COOKIE, $_SESSION.data].each do |superglobal|
+        superglobal.each do |name, value|
+          if name =~ /^[a-zA-Z_][a-zA-Z_0-9]*$/
+            registered_globals &lt;&lt; name
+            eval(&quot;$#{name} = #{value.inspect}&quot;)
+          end
+        end
+      end
+      begin
+        perform_action_without_extract_php_params(*args, &amp;block)
+      ensure
+        registered_globals.each do |variable_name|
+          eval(&quot;$#{variable_name} = nil&quot;)
+        end
+      end
+    end
+  end # Controller
+  
+  class HashParamsProxy
+    attr_accessor :params
+    
+    def initialize(params = nil)
+      @params = params
+    end
+    
+    def [](*args)
+      self.params.send(:[], *args) if self.params
+    end
+    
+    def []=(*args)
+      self.params.send(:[]=, *args) if self.params
+    end
+    
+    def method_missing(method_name, *args, &amp;block)
+      if self.params &amp;&amp; self.params.respond_to?(method_name)
+        return self.params.send(method_name, *args, &amp;block)
+      else
+        return super(method_name, *args, &amp;block)
+      end
+    end
+  end # HashParamsProxy
+  
+  def self.setup_global_variables
+    $_GET  = TributeToPhp::HashParamsProxy.new
+    $_POST = TributeToPhp::HashParamsProxy.new
+    $_COOKIE = TributeToPhp::HashParamsProxy.new
+    $_SESSION = TributeToPhp::HashParamsProxy.new
+  end
+end
+</code></pre>
+
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-1140967" class="comment1 jogger">
+            
+            1.
+            
+            <img class="avatar-icon" src="http://blog.albitos.eu/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://blog.albitos.eu">Albi</a></strong> napisał(a) 21 Kwi 2008 o godz. 07:18:
+            <div class="top"></div>
+            <div class="content">
+              <p>Żart? Register globals doprowadziło do tylu błędów, że jak widzę kod z ich użyciem, to mnie mdli&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141030" class="comment2 jogger">
+            
+            2.
+            
+            <img class="avatar-icon" src="http://epicweb.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://epicweb.pl">BTM</a></strong> napisał(a) 21 Kwi 2008 o godz. 10:05:
+            <div class="top"></div>
+            <div class="content">
+              <p>ZOMG! Jesteś chyba jedyną osobą, która uważa że RG jest dobre, a wynika to pewnie z: &#8211; byciem omega-programistą, który przewiduje każdy wypadek wykorzystania skryptu i definiuje każdą zmienną przed jej użyciem &#8211; nie znajomości zagrożeń z tym związanych &#8211; skończonego kretynizmu &#8211; byciem dupą a nie programistą ;-)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141031" class="comment1 jogger">
+            
+            3.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://tomash.jogger.pl">Tomash</a></strong> napisał(a) 21 Kwi 2008 o godz. 10:11:
+            <div class="top"></div>
+            <div class="content">
+              <p><span class="caps">LOL</span><br />
+666/10 za pomysł i realizację :D<br />
+Globale pehapowe to pikuś, wykorzystanie inline&#8217;owych renderów niszczy w tym tekście najbardziej. :D </p>
+
+<p>Brawo dla wszystkich, którzy nie zrozumieli dowcipu Radarka ;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141032" class="comment2 jogger">
+            
+            4.
+            
+            <img class="avatar-icon" src="http://epicweb.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://epicweb.pl">btm</a></strong> napisał(a) 21 Kwi 2008 o godz. 10:13:
+            <div class="top"></div>
+            <div class="content">
+              <p>Jeżeli defacto jest to dowcip, to wyjątkowo nie udany &#8211; nie każdy musi znać RoR. Tak samo mogę zaraz napisać dowcip w Brainfuck&#8217;u i ciekawe, kto zrozumie? ;&#62;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141052" class="comment1 jogger">
+            
+            5.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://tomash.jogger.pl">Tomash</a></strong> napisał(a) 21 Kwi 2008 o godz. 11:12:
+            <div class="top"></div>
+            <div class="content">
+              <p>Targetem tej notki są programiści RoR, co widać po &#8211; tytule &#8211; wstępie &#8211; tagach &#8211; tekście &#8211; fragmentach kodu</p>
+
+<p>Po prostu nie złapałeś dowcipu i tyle, nie ma co się wykręcać z braku lotności :P</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141096" class="comment2 guest">
+            
+            6.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://blog.sebastiannowak.net" rel="nofollow">Seban</a></strong> napisał(a) 21 Kwi 2008 o godz. 13:11:
+            <div class="top"></div>
+            <div class="content">
+              <p>Co za perfidna prowokacja. ;-)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141130" class="comment1 guest">
+            
+            7.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>dr_bonzo</strong> napisał(a) 21 Kwi 2008 o godz. 14:10:
+            <div class="top"></div>
+            <div class="content">
+              <p>jak prowokacja &#8211; to dobra :D<br />
+jak rzeczywista potrzeba &#8211; to o japierdole</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141185" class="comment2 jogger">
+            
+            8.
+            
+            <img class="avatar-icon" src="http://blog.albitos.eu/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://blog.albitos.eu">Albi</a></strong> napisał(a) 21 Kwi 2008 o godz. 15:19:
+            <div class="top"></div>
+            <div class="content">
+              <p>Właśnie dlatego pytałem, czy to żart :&#62;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141324" class="comment1 owner">
+            
+            9.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 21 Kwi 2008 o godz. 17:51:
+            <div class="top"></div>
+            <div class="content">
+              <p>Nie myślałem, że ktoś weźmie to na poważnie :D. Dobrze chociaż, że Ci co dobrze odgadli moje intencje byli tego w 100% pewni.</p>
+
+<blockquote>
+<p>Jeżeli defacto jest to dowcip, to wyjątkowo nie udany – nie każdy musi znać RoR.</p>
+</blockquote>
+
+<p>Dobre żarty zwykle wymagają pewnej wiedzy. Mój blog jest dedykowany Rubiemu, a póki co po ludziach piszących w tym języku mogę się spodziewać, że znają Railsy.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141325" class="comment2 jogger">
+            
+            10.
+            
+            <img class="avatar-icon" src="http://epicweb.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://epicweb.pl">BTM</a></strong> napisał(a) 21 Kwi 2008 o godz. 17:53:
+            <div class="top"></div>
+            <div class="content">
+              <p>Akurat nie piszę w Ruby, a wpis ukazał się na jogger.pl a nie ruby.pl więc nie zakładajmy, że każdy kto odwiedza Twój blog wie o czym jest ;-)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141326" class="comment1 owner">
+            
+            11.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 21 Kwi 2008 o godz. 17:55:
+            <div class="top"></div>
+            <div class="content">
+              <p>Oczywiście nikomu nie zabraniam, a właściwie zachęcam do śledzenia mojego bloga :). Każdy blog ma swoją tematykę, wystarczy prześledzić kilka postów z głównej strony joggera. Czyżby zachęciło Cię słowo &#8222;PHP&#8221; w tytule do przeczytania wpisu?:P</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141328" class="comment2 jogger">
+            
+            12.
+            
+            <img class="avatar-icon" src="http://epicweb.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://epicweb.pl">btm</a></strong> napisał(a) 21 Kwi 2008 o godz. 17:56:
+            <div class="top"></div>
+            <div class="content">
+              <p>Jak programistę <span class="caps">PHP</span>, tak właśnie się stało ;-)<br />
+Nie ukrywam, że <span class="caps">PHP</span> nie jest w moich oczak idealnym językiem, ma wiele wad ale nadaje się do tego, czego od niego oczekuję.<br />
+Ruby liznąłem parę razy &#8211; ma fajną składnie, ale jakoś do mnie RoR nie przemawia ;-)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141338" class="comment1 owner">
+            
+            13.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 21 Kwi 2008 o godz. 18:06:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@btm</strong> i wiesz co Ci powiem? Pozostań przy <span class="caps">PHP</span> póki co. Serio. Dopóki jest to dla Ciebie wystarczające narzędzie i nie denerwuje Cię to co denerwowało nas wszystkich* w <span class="caps">PHP</span> to nie ma sensu na siłę pisać w Rubym/Rails. Railsy są super, ale to nie jest złoty środek na wszystko. </p>
+
+<p>Czasem też trzeba tak bardzo pomęczyć dany język, aż zacznie nas coś w nim denerwować (tak miałem z <span class="caps">PHP</span>). U mnie to się przerodziło we frustrację stąd przejście na Ruby. I nie dość, że Ruby to co denerwowało mnie w <span class="caps">PHP</span> ma zrobione porządnie (przede wszystki <span class="caps">OOP</span>) to jeszcze doszło do tego masę wspaniałych rzeczy (np. metaprogramowanie, <span class="caps">DSL</span>). </p>
+
+<p>Aczkolwiek tak jak wspomniałem, gdybym nie posiadał pewnej wiedzy to nie doceniłbym tego w Rubym. To tak jakbyś komuś chciał pokazać, że <span class="caps">MVC</span> jest lepsze niż 1 plik php w którym masz html + php + sql, osobie, która w ogóle nie programowała. Trzeba wpierw poczuć na własnej skórze czym to się kończy :).</p>
+
+<p>*nas wszystkich &#8211; czyli ludzi piszących w Rubym, którzy wcześniej pisali w <span class="caps">PHP</span> (myślę, że około 95% obecnych programistów Rubiego)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141349" class="comment2 jogger">
+            
+            14.
+            
+            <img class="avatar-icon" src="http://epicweb.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://epicweb.pl">btm</a></strong> napisał(a) 21 Kwi 2008 o godz. 18:11:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ale widzisz, ja (aktualnie) nie mam ambicji pisać większych aplikacji, bo wiem ile przy tym jest rypania &#8211; wiem ile jest rypania już przy średnich aplikacjach.<br />
+Nie chcę zaczynać dyskusji o przewadze proszku A nad proszkiem B &#8211; jak mówiłem, w <span class="caps">PHP</span> jest <strong>wiele</strong> rzeczy które mnie denerwują (np. nie ma możliwości przeładowania większości funkcji, że o przeładowaniu operatorów nie wspomnę) &#8211; ale jako osoba koncentrująca się raczej na tworzeniu stron, sklepów i średni zaawansowanych portali a przy tym w <span class="caps">PHP</span> orientująca się &#8211; powiem nie skromnie &#8211; doskonale + posiadająca pewien warsztat (swój własny <span class="caps">CMS</span>, swój własny framework) etc. nie widzę aktualnie potrzeby zmiany platformy. <br />
+Dodatkowo, wierzę, że rozwój języka zmierzać będzie w dobrym kierunku.</p>
+
+<p>A dodatkowo, jak mam z tego kasę na którą nie mam podstaw narzekać (powiem tylko, że ostatnio pewna firma oferowała mi prawie 4.500 netto na miesiąc, ale im odmówiłem i zostałem tam gdzie jestem) ;-)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141351" class="comment1 owner">
+            
+            15.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 21 Kwi 2008 o godz. 18:17:
+            <div class="top"></div>
+            <div class="content">
+              <p>Dlatego właśnie napisałem: Ruby nie jest złotym środkiem, nie trafi do każdego i nie ma potrzeby bo wszyscy na niego przechodzili :). To nie są żadne podchody, ale życiowe i pragmatyczne podejście. Jeśli ktoś zainwestował sporo czasu w swoje umiejętności (np. programowania <span class="caps">PHP</span>, frameworki, biblioteki) to przejście na inną technologię nigdy nie obędzie się bez ogromnego wysiłku i sporej ilości czasu.</p>
+
+<p>ps. Ruby też ma wady, swoje kruczki i &#8222;quirks&#8221;... :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141382" class="comment2 guest">
+            
+            16.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://blog.temp.rsc.pl" rel="nofollow">Paweł Rutkowski</a></strong> napisał(a) 21 Kwi 2008 o godz. 19:02:
+            <div class="top"></div>
+            <div class="content">
+              <p>Trollujesz :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141385" class="comment1 owner">
+            
+            17.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 21 Kwi 2008 o godz. 19:05:
+            <div class="top"></div>
+            <div class="content">
+              <p>Jak to trolluje?:&#62;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141404" class="comment2 guest">
+            
+            18.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Psi</strong> napisał(a) 21 Kwi 2008 o godz. 19:23:
+            <div class="top"></div>
+            <div class="content">
+              <p>Kurde, Radarek, aleś nawymyślał... :D sam się nabrałem, dopiero po paru akapitach zacząłem mieć wątpliwości, a przy widokach inline sprawa się wyjaśniła ;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141406" class="comment1 owner">
+            
+            19.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 21 Kwi 2008 o godz. 19:24:
+            <div class="top"></div>
+            <div class="content">
+              <p>Psi, zobaczysz, jeszcze będą tacy co będą mi dziękować za ten plugin! :P</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1141678" class="comment2 jogger">
+            
+            20.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://tomash.jogger.pl">Tomash</a></strong> napisał(a) 21 Kwi 2008 o godz. 21:58:
+            <div class="top"></div>
+            <div class="content">
+              <p><span class="caps">BTM</span>, prosta sprawa &#8211; do odrzucenia pehapa trzeba&#8230; jak by to ująć, żeby nie urazić pehapowców (sam jestem, co prawda byłym, ale zawsze)... dojrzeć. Zrobić w tym języku jakiś poważniejszy sajt &#8222;from scratch&#8221; albo chociaż uczestniczyć w tworzeniu lub utrzymaniu takiego.<br />
+To główny powód, dla którego rubiowcy (railsowcy konkretnie) nie ewangelizują &#8222;na siłę&#8221; pehapowców &#8211; dojrzeją, sfrustrują się, po drodze poznają zaawansowane techniki i narzędzia i będą bardzo dobrym i podatnym materiałem na nauczenie RoR :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1142110" class="comment1 guest">
+            
+            21.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>egzemplarz</strong> napisał(a) 22 Kwi 2008 o godz. 13:43:
+            <div class="top"></div>
+            <div class="content">
+              <p>E tam, wcale nie trzeba dojrzewać. Czasem wystarczy poznać inny język i już :). Ja odrzuciłem <span class="caps">PHP</span> od kiedy poznałem Pythona i zacząłem interesować się Django, oraz <a href="http://code.google.com/appengine/" rel="nofollow" >GAE</a> . Co prawda programowaniem zajmuje się totalnie hobbystycznie (nie wiążę z tym swojej przyszłości), ale naprawdę poznanie Pythona wystarczyło do stwierdzenia, że jeżeli musiał nie będę to do <span class="caps">PHP</span> nie wrócę.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1142585" class="comment2 guest">
+            
+            22.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://nhw.pl/wp/" rel="nofollow">NetManiac</a></strong> napisał(a) 22 Kwi 2008 o godz. 21:37:
+            <div class="top"></div>
+            <div class="content">
+              <blockquote>
+<p>Psi, zobaczysz, jeszcze będą tacy co będą mi dziękować za ten plugin! :P</p>
+</blockquote>
+
+<p>Na pewno się tacy znajdą.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1142587" class="comment1 owner">
+            
+            23.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 22 Kwi 2008 o godz. 21:39:
+            <div class="top"></div>
+            <div class="content">
+              <p>Nie no, bądźmy poważni. Jak ktoś użyje tego na serio to ma lekko niepoukładane w głowie. Nie wierzę, że jest ktoś w stanie przebrnąć przez railsy i widzieć sens użycia tego :).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1142608" class="comment2 jogger">
+            
+            24.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://sharp.jogger.pl">JO</a></strong> napisał(a) 22 Kwi 2008 o godz. 21:52:
+            <div class="top"></div>
+            <div class="content">
+              <p>Szanuje cie Radarek ale to są spore Jaja :) JA nie pisałem nigdy w <span class="caps">PHP</span> ale jakbym zobaczyl ten plugin to bym sie wystraszył i zapytał ludzi w projekcie czy komuś przez przypadek nie zlasował sie mózg.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1142617" class="comment1 guest">
+            
+            25.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://nhw.pl/wp/" rel="nofollow">NetManiac</a></strong> napisał(a) 22 Kwi 2008 o godz. 21:55:
+            <div class="top"></div>
+            <div class="content">
+              <p>Serio, serio</p>
+
+<p>Moje ostatnie doświadczenia z wyrobnikami od Javy, którzy zostali zmuszeni do pisania w Rails (w sensie &#8211; klienci na nich to wymogli) jest takie, że z chęcią po coś takiego by sięgnęli.</p>
+
+<p>A tak na poważnie &#8211; niestety, ale są miejsca gdzie brak dostępu do sesji <span class="caps">HTTP</span> uniemożliwia pisanie aplikacji fat model/skinny controller (dopuszczam możliwość, że czegoś nie wiem ;) ). Chodzi na przykład o Facebook <span class="caps">API</span> &#8211; obiekty do komunikacji z FB muszą mieć dostęp do sesji, więc w modelu nie użyjesz ich, a to oznacza że cała logika korzystająca z calli do FB <span class="caps">API</span> musi pozostać w kontrolerze.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1142618" class="comment2 owner">
+            
+            26.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 22 Kwi 2008 o godz. 21:56:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@JO</strong>: no bo to są po prostu jaja. Taki przerywnik. Przy okazji można czegoś się nauczyć (ktoś analizował kod pluginu?). Chyba nie wziąłeś tego serio?;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1142623" class="comment1 jogger">
+            
+            27.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://sharp.jogger.pl">JO</a></strong> napisał(a) 22 Kwi 2008 o godz. 21:57:
+            <div class="top"></div>
+            <div class="content">
+              <p>Nie no :D niema czasu na takie marnotrastow jak analiza kodu plugina :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1142642" class="comment2 owner">
+            
+            28.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 22 Kwi 2008 o godz. 22:02:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@JO</strong>: aha, Ty jesteś z tych co wezmą, skopiują i użyją?:D (żart)</p>
+
+<p><strong>@NetManiac</strong>: niech zgadnę, Ci javowcy piszą kod Javy w Rubym?;) (http://radarek.jogger.pl/2008/04/14/you-can-write-fortran-in-any-language/ ).</p>
+
+<p>To, że są miejsca, w których nie ma dostępu do żądania http czy też sesji to zbawienie. Inaczej kończysz na zapytaniach <span class="caps">SQL</span> wprost z szablonu.<br />
+A co do FaceBook <span class="caps">API</span> &#8211; nie używałem ale pamiętam, że chyba opisywałeś ten problem na blogu. Nie ma tu innej siły jak po prostu przekazywać explicite parametr do metody.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1142655" class="comment1 guest">
+            
+            29.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://sharp.jogger.pl" rel="nofollow">JO</a></strong> napisał(a) 22 Kwi 2008 o godz. 22:09:
+            <div class="top"></div>
+            <div class="content">
+              <p>:D Tak ! masz mnie :&#62; Od dziś używam tylko PHP_RAILS i zaraz zaczne rozkminiac jego kod :&#62;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1152944" class="comment2 guest">
+            
+            30.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>ja</strong> napisał(a) 04 Maj 2008 o godz. 12:08:
+            <div class="top"></div>
+            <div class="content">
+              <p>akurat prowokacja&#8230; uratuwał swoją dupę w badziewny sposób&#8230;. &#8222;obłsuga parametrów żądań w modelu&#8221; .. mega kurwa lol</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1153097" class="comment1 owner">
+            
+            31.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 04 Maj 2008 o godz. 14:27:
+            <div class="top"></div>
+            <div class="content">
+              <p>Mr <strong>@ja</strong>: jeśli chcesz podyskutować to nie używaj brzydkich słów (te zostaw na inne okazje) i podpisz się. Mogę zrozumieć, że nie załapałeś żartu, ale takiego zachowania nie bardzo. Pozdro.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1153824" class="comment2 guest">
+            
+            32.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>pow(b*k; n)</strong> napisał(a) 05 Maj 2008 o godz. 10:38:
+            <div class="top"></div>
+            <div class="content">
+              <p>Gdybym znał RoR, gdybym znał <span class="caps">PHP</span> to bym może zaoszczędził życia na analizie tego kodu ;P a tak &#8230; zabrakło mi definicji metody perform_action_without_extract_php_params<br />
+i już wiedziałem, że coś tu śmierdzi :/<br />
+ehhh życie :D</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1153910" class="comment1 owner">
+            
+            33.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 05 Maj 2008 o godz. 13:11:
+            <div class="top"></div>
+            <div class="content">
+              <p>To po części magia rails.</p>
+
+<pre><code class="ruby">base.alias_method_chain :perform_action, :extract_php_params
+</code></pre>
+
+<p>to inny zapis</p>
+
+<pre><code class="ruby">base.class_eval do
+  alias_method :perform_action_without_extract_php_params, :perform_action
+  alias_method :perform_action, :perform_action_with_extract_php_params
+end
+</code></pre>
+
+<p>Tutaj można doczytać: <a href="http://weblog.rubyonrails.org/2006/4/26/new-in-rails-module-alias_method_chain" rel="nofollow" >http://weblog.rubyonrails.org/2006/4/26/new-in-rails-module-alias_method_chain</a> i <a href="http://www.google.pl/search?q=rails+alias_method_chain&amp;amp;ie=utf-8&amp;amp;oe=utf-8&amp;amp;aq=t&amp;amp;rls=com.ubuntu:pl-PL:unofficial&amp;amp;client=firefox-a" rel="nofollow" >google: alias_method_chain</a> .</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="/">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

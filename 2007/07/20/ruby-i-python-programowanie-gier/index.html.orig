@@ -1,0 +1,890 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Ruby i Python - programowanie gier - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="/files/favicon.png" type="image/png" />
+    <meta name="keywords" content="arkanoid, game, gamedev, programming, python, ruby, Gamedev, Python, Ruby, Techblog, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="/files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/files/common.js"></script>
+    <script type="text/javascript" src="/files/highlight.js"></script>
+    <script type="text/javascript" src="/files/dynamic.js"></script>
+    <script type="text/javascript" src="/files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="/" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="/"><span>Wpisy</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/04/29/o-blogu/"><span>O blogu</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kanaly-rss/"><span>RSS</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kontakt/"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2009/01/01/gist-odpicowane-pastie/">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2008/10/12/mp3-przeboje/">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="http://radarek.jogger.pl/kategoria/blog/">Blog (6)</a></li>
+          
+            <li id="c"><a href="http://radarek.jogger.pl/kategoria/c/">C (1)</a></li>
+          
+            <li id="gamedev"><a href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="http://radarek.jogger.pl/kategoria/git/">Git (2)</a></li>
+          
+            <li id="humor"><a href="http://radarek.jogger.pl/kategoria/humor/">Humor (3)</a></li>
+          
+            <li id="java"><a href="http://radarek.jogger.pl/kategoria/java/">Java (1)</a></li>
+          
+            <li id="jruby"><a href="http://radarek.jogger.pl/kategoria/jruby/">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="http://radarek.jogger.pl/kategoria/python/">Python (4)</a></li>
+          
+            <li id="ruby"><a href="http://radarek.jogger.pl/kategoria/ruby/">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="http://radarek.jogger.pl/kategoria/techblog/">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="http://radarek.jogger.pl/kategoria/web/">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/blog/">Blog</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/c/">C</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/git/">Git</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/humor/">Humor</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/java/">Java</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/jruby/">JRuby</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/python/">Python</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/web/">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="/startid/470765">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="/startid/433510">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="/startid/425293">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="/startid/423490">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="/startid/392066">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="/startid/383421">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="/startid/364188">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="/startid/337815">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="/startid/323920">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2007</small>
+              <span>20</span>
+              <small>Lip</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2007/07/20/ruby-i-python-programowanie-gier/">Ruby i Python - programowanie gier</a></h2>
+            
+            <a href="http://radarek.jogger.pl/2007/07/20/ruby-i-python-programowanie-gier/#comments">13 komentarzy</a>
+            | Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/python/">Python,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+            
+            
+              | <a href="http://radarek.jogger.pl/2007/07/20/ruby-i-python-programowanie-gier/trackback/">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/arkanoid" rel="tag">
+                  arkanoid</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/game" rel="tag">
+                  game</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/gamedev" rel="tag">
+                  gamedev</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/programming" rel="tag">
+                  programming</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/python" rel="tag">
+                  python</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <p>
+Tym razem postaram się pokazać kolejną dziedzinę, w której zarówno Ruby jak i Python potrafią radzić sobie całkiem dobrze. Jak widzisz po tytule wpis ten dotyczyć będzie programowanie gier. Zanim przejdę do właściwej części, taka mała refleksja :).
+</p>
+
+
+<p>Otóż dobre kilka lat temu (wychodzi mi, że około 6), gdy byłem jeszcze na etapie początkującego w programowaniu, miałem zajawkę na programowanie gier. Była to dla mnie świetna sprawa, gdyż łączyłem dwie rzeczy: naukę programowania oraz zabawę i radość (jeśli oczywiście udawało mi się ukończyć i dobrze zrobić gierkę, ale to już inna historia :-)). Do dzisiaj nie udało mi się zrealizować jednego z moich małych marzeń, by stworzyć grę, która będzie znana i lubiana, ale jeszcze trochę życia przede mnę (mam nadzieję...), więc jeszcze się nie poddaję. Jeśli chodzi o tworzenie gier, to uważam to za bardzo dobry sposób, by uczyć się programowania. Tym bardziej, że podczas pisania praktycznie każdej gry można nauczyć się wielu nowych i bardzo przydatnych rzeczy. Wynika to z bardzo prostego faktu. Mianowicie stworzenie gry wymaga często wiedzy z różnych dziedzin, m.in. grafika, muzyka i oczywiście programowanie. Oczywistym jest, że programistę interesuje to ostatnie. I dobrze, bo gwarantuję, że podczas kodowania będzie musiał rozwiązywać coraz to nowe problemy z tej dziedziny. Algorytmy grafowe, sztuczna inteligencja, efektywne algorytmy przeszukiwania i sortowania, wyszukiwanie najkrótszej drogi, wydajne wyświetlanie grafiki, programowanie sieciowe, synchronizacja, reprezentacja i struktury danych, generowanie danych (np. terenu), fizyka gry to z pewnością tylko część zagadnień z którymi prędzej czy później spotka się każdy programista gier. Każde z tych zagadnień jest pewnym wyzwaniem, które my programiści przecież kochamy, prawda? Bez wyzwania nie ma programowania :-).
+</p>
+
+<p>
+Chcąc napisać jakąkolwiek grę musimy dokonać wielu wyborów, od których to zależą jej dalsze losy. Jednym z pierwszych będzie wybór języka, a zaraz potem wybór odpowiedniej bilbioteki (bądź wielu) lub całego frameworka. Jeszcze kilka lat temu wybór był oczywisty: C++. Nikomu by nawet nie przyszło do głowy by pisać grę w innym języku, a jeśliby odważył się to zrobić skazany byłby prawdopodobnie na samotną walkę. Minęło kilka lat i dzisiaj nie jesteśmy skazani na jedno rozwiązanie. Jakkolwiek C++ wciąż jest najczęstszym wyborem (najczęściej w grach komputerowych liczy się wydajność) nie oznacza to, że w innych językach nie da się pisać gier. Obecnie mamy kilka alternatywnych rozwiązań. Są to na pewno Java i C#, ale także języki dynamiczne takie jak Ruby i Python. Czy jest sens pisać gry w tych językach skoro potrafią być wolniejsze o 1-2 rzędy wielkości (czyli 10-100 razy!) od C++? Oczywiście, że jest, bo należy pamiętać, że istnieją gry, które nie wymagają bardzo dużej mocy obliczeniowej procesora. Są to gry różnego typu, przykładowo logiczne, arcade, platformówki, czy też tzw. <a href="http://en.wikipedia.org/wiki/Casual_game">Casual Games</a>. Myślę, że każdą z tych gier (choć oczywiście zawsze znajdą się wyjątki) można spokojnie napisać czy to w Rubym, czy też Pythonie. Dodatkowo największym według mnie atutem tworzenia gier w dynamicznych językach jest uniknięcie, często bardzo skomplikowanego, mechanizmu kompilowania i linkowania projektu. A przecież taki początkujący game developer zapewne chce szybko wejść w cały cykl tworzenia gry, a nie męczyć się z kompilatorem (z własnego doświadczenia wiem, że może to być przeszkoda nie do przeskoczenia).
+</p>
+
+<h3>SDL (nie mylić z SLD i LSD;))</h3>
+<p>
+<img src="http://img126.imageshack.us/img126/5551/sdllogowd4.png" style="float: left;" alt="SDL library logo" />SDL, czyli Simple Directmedia Layer, to bilbioteka C/C++ udostępniająca funkcje do obsługi grafiki, muzyki oraz urządzeń sterujących (klawiatura, myszka, joystick). Biblioteka ta jest dostępna na różne platformy (m.in. Windows, Linux, Mac OS), a programy korzystające z niej są przenośne (a dokładniej rzecz biorąc źródła). <a href="http://www.libsdl.org/">Na stronie domowej projektu</a> możemy poczytać o niej więcej oraz przeglądnąć przykładowe gry korzystające z niej. Ruby posiada przynajmniej dwa porty tej bilbioteki, są to <a href="http://rubygame.sourceforge.net/">Rubygame</a> i <a href="http://sourceforge.net/projects/rudl/">RUDL</a>. Z kolei port tej biblioteki do Pythona to <a href="http://www.pygame.org/">PyGame</a>. W dzisiejszym wpisie zaprezentuję Wam bibliotekę Rubygame, pozostałe biblioteki być może znajdą miejsce na tym blogu kiedyś indziej, jednakże zachęcam do wypróbowania ich na własną rękę.
+</p>
+
+<h3>SDL.to_ruby => :Rubygame</h3>
+<p>
+<img src="http://img50.imageshack.us/img50/1445/rubygamelogoye8.png" style="float: right;" alt="Rubygame library logo" />Tak jak wspomniałem wcześniej Rubygame jest to wrapper (bind, port) biblioteki SDL do Rubiego. Do poprawnego działania tej biblioteki potrzebne będą nam także pliki oryginalnej biblioteki. Ponieważ, jak już wspomniałem, SDL działa na wielu platformach, dlatego musisz zaopatrzyć się w odpowiednie pliki w zależności od platformy. Rubygame wymaga także dodatkowych bibliotek, są to SLD_gfx (>= 2.0.10), SDL_image (>=1.2.3), SDL_mixer (>= 1.2.7), SDL_ttf (>= 2.0.6). Oto linki, pod którymi znajdziesz zarówno wersje binarne (te w zupełności Ci wystarczą) jak i wersje źródłowe każdej z tych bibliotek:
+</p>
+
+<ul id="sdllib-links" class="classic">
+	<li><a href="http://www.libsdl.org/download-1.2.php">SDL</a></li>
+	<li><a href="http://www.ferzkopp.net/joomla/content/view/19/14/">SDL_gfx</a>, niestety dostępne tam są tylko źródła, wersję binarną można pobrać <a href="http://users.skynet.be/sb306975/SDL_gfx.dll">stąd</a></li>
+	<li><a href="http://www.libsdl.org/projects/SDL_mixer/">SDL_mixer</a></li>
+	<li><a href="http://www.libsdl.org/projects/SDL_ttf/">SDL_ttf</a></li>
+</ul>
+
+<p>
+Na platformie windows teoretycznie powinniśmy skopiować te pliki do katalogu c:\windows\system32 i wszystko powinno działać. Niestety nie zawsze tak musi być. Otóż może się okazać, że inna biblioteka/program wymagają tego samego pliku .dll ale w innej wersji (a dokładniej istnienia jakiejś funkcji, która w tym pierwszym pliku nie istnieje) i będzie problem. Dlatego najlepiej jest skopiować wszystkie pliki .dll do katalogu z naszym programem (niestety nie doszedłem do w jaki sposób można utworzyć jakiś podkatalog z plikami dll, tak aby interpreter Rubiego brał go także pod uwagę - ktoś wie jak to rozwiązać?). Kolejnym krokiem jest zainstalowanie właściwej bilbioteki Rubygame, którą można pobrać <a href="http://sourceforge.net/project/showfiles.php?group_id=172781&amp;package_id=197774&amp;release_id=519897">stąd</a>. Gry piszę ten artykuł, aktualnie dostępna wersja to 2.0.1 (z datą 30.06.2007 co zapewne świadczy, że projekt jest rozwijany). Z podanej strony należy ściągnąć gem odpowiedni dla swojej platformy i zainstalować poleceniem <kbd>gem install -l nazwa_pliku.gem</kbd>. I to wszystko. Wpisując w irbie <kbd>require 'rubygame'</kbd> nie powinniśmy zostać poczęstowani żadnym błędem. Polecam na początek przyjrzeć się przykładom, które znajdziemy w katalogu z gemem RUBY_HOME/lib/ruby/gems/1.8/gems/rubygame-2.0.1-mswin32/samples. Przykłady trzeba uruchamiać z opcją -rubygems, gdyż same nie ładują biblioteki rubygems.
+</p>
+
+<h3>Piszemy "Hello World"</h3>
+<p>
+Zanim napiszemy jakąś grę napiszemy proste "Hello World". Oto program, wyświetlający okno w zadanej rozdzielczości (zamykamy 'x' albo escape):
+</p>
+
+<pre><code class="ruby">require 'rubygems'
+require 'rubygame'
+
+begin
+	Rubygame.init #inicjalizacja srodowiska
+
+	screen = Rubygame::Screen.set_mode([800, 600], 0, [Rubygame::HWSURFACE, Rubygame::DOUBLEBUF]) #tworzymy okno o zadanych parametrach
+	event_queue = Rubygame::EventQueue.new #kolejka zdarzen
+	
+	while true
+		event_queue.each do |event| #przetwarzamy zdarzenia
+			case event
+			when Rubygame::QuitEvent #pojawia sie gdy zostanie nacisniety 'x'
+				exit
+			when Rubygame::KeyDownEvent #pojawia sie gdy zostanie nacisniety jakis klawisz
+				if event.key == Rubygame::K_ESCAPE #jesli to escape to wychodzimy
+					exit
+				end
+			end
+		end
+	end
+ensure
+	Rubygame.quit
+end
+</code></pre>
+
+<h3>Piszemy grę</h3>
+<p>
+Pisanie tutoriala w sposób "tak się tworzy okno, tak się wyświetla tekst" wydaje mi się mało atrakcyjny, dlatego chciałbym napisać z Wami coś ciekawszego. Skoro wpis jest o pisaniu gier to spróbujmy taką stworzyć. Musiałem zastanowić się przez dłuższą chwilę jaka to będzie gra. Z jednej strony nie chciałem żeby była zbyt prymitywna, z drugiej strony zbyt trudna (jak na pierwszy raz) do implementacji (co przekłada się na ilość kodu, a wiadomo że im większa tym mniej osób w ogóle na to spojrzy). Żaden sensowny pomysł nie przyszedł mi do głowy więc postanowiłem wykorzystać coś co dało mi powód by napisać ten artykuł. Otóż na stronie <a href="http://wyklady.net/">wyklady.net</a> Katharsis, twórca <a href="http://ppcg.eu.org/">serwisu o Pythonie</a>, <a href="http://wyklady.net/logs/Katharsis_00-50.html">poprowadził wykład na temat programowanie gier 2d w Pythonie</a>. Rezultatem była prosta gra typu <a href="http://en.wikipedia.org/wiki/Arkanoid">Arkanoid</a> napisana w nieco ponad 100 lini kodu! Zachęcam także do zapoznania się z wykładem Katharsisa, a ja (za jego pozwoleniem oczywiście :)) pozwolę sobie na przeniesienie tej gry w realia Rubiego. Zaczynajmy!
+</p>
+
+<p>
+Pokazałem już wcześniej jak utworzyć proste okno. Kolejnym krokiem będzie wyświetlenie jakiejś bitmapy. Ponieważ nasz kod będzie w kolejnych krokach przybierać troszkę na wadze postaram się od razu wprowadzać klasy pomocnicze, łatwiej wtedy będzie czytać kod i wychwytywać pewne fragmenty kodu (tu się piłeczka wyświetla, tam się przesuwa itp). Spójrz proszę na listing arkanoid02.rb. Wprowadziłem klasę Ball:
+</p>
+
+<pre><code class="ruby">class Ball
+	def initialize
+		@img = Rubygame::Surface.load_image("pilka.gif")
+		@pos = [0, 0] #pozycja piłeczki
+	end
+	
+	def display(screen)
+		@img.blit(screen, @pos)
+	end
+end
+</code></pre>
+
+<p>
+Kolejnym krokiem będzie wprawienie w ruch piłeczki. Dla uproszczenia w każdym cyklu będziemy przesuwać piłeczkę o określoną liczbę pikseli (chodź nie jest to do końca dobre podejście, gdyż w ten sposób piłeczka będzie poruszać się z różną prędkością, to na początek wystarczy). Oto zmiany, które wprowadziłem w listingu arkanoid03.rb.
+</p>
+
+<pre><code class="ruby">#klasa ta reprezentuje obiekty w grze
+#kazdy taki obiekt moze byc wyswietlony (metoda display),
+#oraz musi byc uaktualniany jego stan w swiecie gry (metoda update)
+class GameObject
+	def initialize(screen)
+		@screen = screen
+	end
+	
+	def display
+	end
+	
+	def update
+	end
+end
+</code></pre>
+
+<p>
+Dodajmy tło (klasa Background) i sprawmy, że piłka będzie odbijać się od krawędzie ekranu. Zapewnia to warunek w metodzie update klasy Ball:
+</p>
+
+<pre><code class="ruby">class Ball
+	def update
+		@pos.move!(*@speed)
+		#jesli jestesmy tuz przy krawedzi to odbijamy pileczke (odpowiednia skladowa wetkora predkosci * -1)
+		if @pos.left &lt; 0 || @pos.right &gt;= @screen.w
+			@speed[0] *= -1
+		end
+		if @pos.top &lt; 0 || @pos.bottom &gt;= @screen.h
+			@speed[1] *= -1
+		end
+	end
+end
+</code></pre>
+
+<p>
+W listingu arkanoid05.rb dodajemy paletkę do odbijania piłki, oraz przechwytujemy zdarzenia naciskania klawiszy strzałek i odpowiednio na to reagujemy.
+</p>
+
+<pre><code class="ruby">class Pad &lt; GameObject
+	def initialize(screen)
+		super(screen)
+		@img = Rubygame::Surface.load_image("paletka.gif")
+		@pos = @img.clip.move(350,500)
+	end
+	
+	def display
+		@img.blit(@screen, @pos)
+	end
+	
+	def update
+		@pos.move!(*@speed)
+	end
+#(...)
+
+				when Rubygame::KeyDownEvent
+					throw :quit if event.key == Rubygame::K_ESCAPE
+					
+					if event.key == Rubygame::K_LEFT
+						pad.speed[0] -= 4
+					end
+					if event.key == Rubygame::K_RIGHT
+						pad.speed[0] += 4
+					end
+				when Rubygame::KeyUpEvent
+					if event.key == Rubygame::K_LEFT
+						pad.speed[0] += 4
+					end
+					if event.key == Rubygame::K_RIGHT
+						pad.speed[0] -= 4
+					end					
+				end
+end
+</code></pre>
+
+<p>
+Kolejna wersja (arkanoid06.rb) usuwa dwie niedoskonałości z wcześniejszej wersji. Przede wszystkim ruch paletki został ograniczony do krawędzi ekranu oraz piłeczka odbija się od paletki. Oto część kodu odpowiedzialnego za te rzeczy:
+</p>
+
+<pre><code class="ruby">class Pad
+	def update
+		@pos.move!(*@speed)
+		@pos.left = 0 if @pos.left < 0 #nie pozwalamy wyjsc paletce poza lewa krawedz ekranu
+		@pos.right = @screen.w - 1 if @pos.right >= @screen.w #to samo dla prawej krawedzi ekranu
+	end
+end
+
+#(...)
+
+			#sprawdzamy czy wystepuje kolizja pomiedzy paletka a pilka
+			#jesli jest, to skladowa pionowa wektora predkosci pileczki (*-1)
+			if ball.pos.collide_array([pad.clip]) && ball.speed[1] > 0
+				ball.speed[1] *= -1
+			end
+</code></pre>
+
+<p>
+W wersji 7 zmieniony został warunek zakończenia głównej pętli gry, oraz na końcu wyświetlany jest ekran z napisem "GAME OVER!".
+</p>
+<pre><code class="ruby">while ball.clip.bottom < screen.h
+end
+
+#(...)
+
+	#wczytujemy tlo koncowe, rysujemy je, a nastepnie czekamy na jakis event (obojetnie jaki)
+	game_over_background = Rubygame::Surface.load_image("gameover.gif")
+	game_over_background.blit(screen, [0, 0])
+	screen.flip
+	event_queue.ignore = [Rubygame::MouseMotionEvent]
+	event_queue.wait
+</code></pre>
+
+<p>
+W przedostatniej wersji programu dodaliśmy deseczki (bricks, klasa Brick), które należy zbijać piłką. Dodany został także kod sprawdzający kolizję piłki z deseczkami.
+</p>
+
+<pre><code class="ruby">class Brick < GameObject
+	def initialize(screen)
+		super(screen)
+		@@img ||= Rubygame::Surface.load_image("deska.gif")
+		@img = @@img
+		@pos = @img.clip
+	end
+	
+	def display
+		@img.blit(@screen, @pos)
+	end
+	
+	def clip
+		return @pos
+	end
+end
+
+#(...)
+
+	bricks = [] #lista deseczek/cegiełek
+	#generowanie pozycji (nie podobała mi się taka duża lista w wersji pythonowej :))
+	40.step(641, 150) do |x|
+		11.step(361, 50) do |y|
+			brick = Brick.new(screen) #tworzymy deseczke
+			brick.clip.move!(x, y) #przesuwamy ja na pewna pozycje
+			bricks &lt;&lt; brick #dodajemy do listy
+		end
+	end
+	
+#(...)
+
+			#sprawdzamy kolizje pomiedzy pileczka a deseczkami
+			#jesli ktora deseczka posiada kolizje z pilka, wyrzucamy ja z listy desek
+			bricks.clone.each do |brick|
+				if ball.clip.collide_array([brick.clip])
+					bricks.delete(brick)
+					ball.speed[1] *= -1
+					if rand(2) == 0
+						ball.speed[0] *= -1
+					end
+				end
+			end
+			
+#(...)
+
+			bricks.each {|brick| brick.display } #wyswietlenie deseczek
+</code></pre>
+
+<p>
+W finalnej wersji zostały dodane dźwięki. Jak widzicie źródła w Rubym są około dwa razy większe od tych Pythona. Wynika to z tego, że w mojej wersji starałem się pisać bardziej obiektowo. Wszystkie źródła i potrzebne pliki .dll znajdziecie pod adresem <a href="http://dl.getdropbox.com/u/640650/arkanoid.zip">http://dl.getdropbox.com/u/640650/arkanoid.zip</a>
+A oto filmik (dla leniwych :)) przedstawiający grę w akcji.
+</p>
+
+<div class="youtube-video">
+<object width="425" height="350"><param name="movie" value="http://www.youtube.com/v/CPa3FQCXs68"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/CPa3FQCXs68" type="application/x-shockwave-flash" wmode="transparent" width="425" height="350"></embed></object>
+</div>
+
+<p>
+Mam nadzieję, że udało mi się zachęcić przynajmniej niektórych z Was do spróbowania sił w programowaniu gier. Jeśli już miałeś z tym styczność to pochwal się w komentarzach.
+</p>
+
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-895726" class="comment1 guest">
+            
+            1.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>doiy</strong> napisał(a) 20 Lip 2007 o godz. 20:18:
+            <div class="top"></div>
+            <div class="content">
+              <p>Co do plików bibliotek w dowolnym folderze. Prawdopodobnie wystarczy dodać katalog do zmiennej <span class="caps">PATH</span> ( Właściwości Systemu -&#62; Zaawansowane -&#62; Zmienne środowiskowe ) tylko nie wiem jak to się będzie mieć do różnych wersji w różnych katalogach.<br />
+Wierzę też, że można to zrobić z poziomu aplikacji jak np. python:</p>
+
+<blockquote>
+<p>import os<br />
+os.path += [&#8216;C:\Moje DLL&#8217;]</p>
+</blockquote>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895735" class="comment2 guest">
+            
+            2.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>D4rky</strong> napisał(a) 20 Lip 2007 o godz. 20:34:
+            <div class="top"></div>
+            <div class="content">
+              <p>Wlasciwie to w <span class="caps">PHP</span> tez mozna tworzyc gry, zarowno sieciowe przez przegladarke jak i wlasnie takie, poprzez PHP-GTK2 i <span class="caps">PHP</span> <span class="caps">SDL</span> ;)</p>
+
+<p>Tylko blagam, nie ran mnie traktujac ten komentarz jako spam&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-896049" class="comment1 jogger">
+            
+            3.
+            
+            <img class="avatar-icon" src="http://rubedo.jogger.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://rubedo.jogger.pl">RazorJack</a></strong> napisał(a) 21 Lip 2007 o godz. 00:42:
+            <div class="top"></div>
+            <div class="content">
+              <p>Taaak, przypominają mi się stare, dobre czasy kodowania w <span class="caps">BGI</span>, potem Allegro, a na końcu OpenGL i DirectX&#8230; :)</p>
+
+<p>Swoją drogą, kiedyś przeglądałem przykładowe aplikacje dostarczane standardowo z Rubim. Moje zdziwienie było ogromne, kiedy znalazłem pokaźną dawkę przykładów pod OpenGL. Można się naprawdę fajnie pobawić.</p>
+
+<p>Kurdę, żeby gry pisało się z rubinową prostotą i zwięzłością... Toż to by był raj :D. Niestety, liczy się wydajność więc podejrzewam, że C++ nigdy nie zostanie wyparty przez inny język.</p>
+
+<p>Ale Ruby i Python nie są skreślone, jeśli chodzi o gry. Takie tytuły jak Neverwinter Nights intensywnie korzystają ze skryptowania w Lua &#8211; być może niedługo pałeczkę przejmą Ruby i Python ze względu na pewne zalety&#8230; ;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-896066" class="comment2 guest">
+            
+            4.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>sprae</strong> napisał(a) 21 Lip 2007 o godz. 02:28:
+            <div class="top"></div>
+            <div class="content">
+              <p>Nie należy zapominać, iż zarówno Python, jak i Ruby są językami-klejami. Służą do tego, by za ich pomocą łączyć różne binarne moduły w logiczną całość. Z Python-owych nowości warto zobaczyć elisa (centrum multimedialne) napisane przy użyciu Python-a z wykorzystaniem autorskiego modułu pigment (renderowanie <span class="caps">OGL</span>, budowa sceny). Ciekawą propozycją może wydawać się też Clutter (framework do budowania dynamicznych interfejsów użytkownika z wykorzystaniem <span class="caps">OGL</span> [stawiam, że wejdzie to do platformy GNOME]). Korzystanie z czystego <span class="caps">OGL</span> w językach dynamicznych nieco mija się z celem, a <span class="caps">SLD</span>... tj <span class="caps">SDL</span> to trochę już pieśń przeszłości którą na razie trudno zastąpić głównie ze względu na różnorodność innych bibliotek.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-896297" class="comment1 guest">
+            
+            5.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://soltys.wordpress.com" rel="nofollow">Soltys</a></strong> napisał(a) 21 Lip 2007 o godz. 14:43:
+            <div class="top"></div>
+            <div class="content">
+              <p>Hmmm chyba nie chcesz, żeby ktoś w tego arkanoida pograł...</p>
+
+<p>Proszę, zrób paczkę(zip i/lub tar.gz) oraz listę bibliotek wymaganych.<br />
+A także jak Rubygames zainstalować, albo co wpisać w gemsach.</p>
+
+<p>Poza tym wpis ciekawy, myślałem, że więcej będzie o pygame.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-903093" class="comment2 guest">
+            
+            6.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Q</strong> napisał(a) 29 Lip 2007 o godz. 00:12:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ciekawy art. wkrecilem sie troche i znalazlem dosc ciekawa biblioteczke g3druby http://g3d-ruby.rubyforge.org/ z tego co jest napisane to demowki maja podobna wydajnosc do tych napisanych w c++ :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-903123" class="comment1 guest">
+            
+            7.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>D4rky</strong> napisał(a) 29 Lip 2007 o godz. 00:57:
+            <div class="top"></div>
+            <div class="content">
+              <p>Dodam jeszcze, ze do Pythona jest pyOGRE, czyli bibiloteka 3D (neat)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-979581" class="comment2 guest">
+            
+            8.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://nexus.vrak.pl" rel="nofollow">psionides</a></strong> napisał(a) 16 Paź 2007 o godz. 22:50:
+            <div class="top"></div>
+            <div class="content">
+              <p>Wow, efekt na filmiku robi wrażenie :)</p>
+
+<blockquote>
+<p>Niestety, liczy się wydajność więc podejrzewam, że C++ nigdy nie zostanie wyparty przez inny język.</p>
+</blockquote>
+
+<p>Chyba że powstanie coś lepszego ale też kompilowanego do kodu maszynowego&#8230; Ostatnio czytałem o czymś co się nazywa D i to jest właśnie kompilowane tak jak C++ ale w założeniu ma być lepsze, a czy faktycznie jest to jeszcze nie sprawdzałem :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-982580" class="comment1 jogger">
+            
+            9.
+            
+            <img class="avatar-icon" src="http://blog-pl.piechotka.com.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://blog-pl.piechotka.com.pl">Uzytkownik</a></strong> napisał(a) 20 Paź 2007 o godz. 17:28:
+            <div class="top"></div>
+            <div class="content">
+              <p>Są już w końcu wstępne prace nad kompilacją Ruby-&#62;C&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1245539" class="comment2 guest">
+            
+            10.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://macroformats.com" rel="nofollow">Gruszks</a></strong> napisał(a) 27 Sie 2008 o godz. 00:36:
+            <div class="top"></div>
+            <div class="content">
+              <p>Czy byś mógł poprawić link do źródeł.<br />
+Dziękuję!</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1298690" class="comment1 guest">
+            
+            11.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>badzok</strong> napisał(a) 30 Lis 2008 o godz. 15:14:
+            <div class="top"></div>
+            <div class="content">
+              <p>moja walka zakonczyla się przy próbie instalacji rubygame. irb wypluwa </p>
+
+<p>LoadError: no such file to load &#8212; rubygame
+from (irb):2:in `require&#8217;
+from (irb):2</p>
+
+<p>hmm oco koaman?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1298761" class="comment2 owner">
+            
+            12.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 30 Lis 2008 o godz. 17:33:
+            <div class="top"></div>
+            <div class="content">
+              <p>Opisz dokładnie problem na forum.rubyonrails.pl (w tym wątku co zacząłeś).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1605066" class="comment1 guest">
+            
+            13.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>razor407</strong> napisał(a) 19 Lip 2011 o godz. 13:23:
+            <div class="top"></div>
+            <div class="content">
+              <p>Witam. Gdzie mam umieścić pliki .dll ???</p>
+
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="/">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

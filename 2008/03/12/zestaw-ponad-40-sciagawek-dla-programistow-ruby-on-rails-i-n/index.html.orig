@@ -1,0 +1,980 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Zestaw ponad 40 ściągawek dla programistów Ruby on Rails (i nie tylko) - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="/files/favicon.png" type="image/png" />
+    <meta name="keywords" content="cheat-sheet, rails, ruby, ściągi, Narzędzia, Programowanie, Ruby, Ruby on Rails, Techblog, Tips &amp; tricks, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="/files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/files/common.js"></script>
+    <script type="text/javascript" src="/files/highlight.js"></script>
+    <script type="text/javascript" src="/files/dynamic.js"></script>
+    <script type="text/javascript" src="/files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="/" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="/"><span>Wpisy</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/04/29/o-blogu/"><span>O blogu</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kanaly-rss/"><span>RSS</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kontakt/"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2009/01/01/gist-odpicowane-pastie/">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2008/10/12/mp3-przeboje/">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="http://radarek.jogger.pl/kategoria/blog/">Blog (6)</a></li>
+          
+            <li id="c"><a href="http://radarek.jogger.pl/kategoria/c/">C (1)</a></li>
+          
+            <li id="gamedev"><a href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="http://radarek.jogger.pl/kategoria/git/">Git (2)</a></li>
+          
+            <li id="humor"><a href="http://radarek.jogger.pl/kategoria/humor/">Humor (3)</a></li>
+          
+            <li id="java"><a href="http://radarek.jogger.pl/kategoria/java/">Java (1)</a></li>
+          
+            <li id="jruby"><a href="http://radarek.jogger.pl/kategoria/jruby/">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="http://radarek.jogger.pl/kategoria/python/">Python (4)</a></li>
+          
+            <li id="ruby"><a href="http://radarek.jogger.pl/kategoria/ruby/">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="http://radarek.jogger.pl/kategoria/techblog/">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="http://radarek.jogger.pl/kategoria/web/">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/blog/">Blog</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/c/">C</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/git/">Git</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/humor/">Humor</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/java/">Java</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/jruby/">JRuby</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/python/">Python</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/web/">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="/startid/470765">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="/startid/433510">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="/startid/425293">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="/startid/423490">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="/startid/392066">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="/startid/383421">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="/startid/364188">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="/startid/337815">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="/startid/323920">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2008</small>
+              <span>12</span>
+              <small>Mar</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2008/03/12/zestaw-ponad-40-sciagawek-dla-programistow-ruby-on-rails-i-n/">Zestaw ponad 40 ściągawek dla programistów Ruby on Rails (i nie tylko)</a></h2>
+            
+            <a href="http://radarek.jogger.pl/2008/03/12/zestaw-ponad-40-sciagawek-dla-programistow-ruby-on-rails-i-n/#comments">20 komentarzy</a>
+            | Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+            
+            
+              | <a href="http://radarek.jogger.pl/2008/03/12/zestaw-ponad-40-sciagawek-dla-programistow-ruby-on-rails-i-n/trackback/">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/cheat-sheet" rel="tag">
+                  cheat-sheet</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/rails" rel="tag">
+                  rails</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ściągi" rel="tag">
+                  ściągi</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <!-- Ściągawki dla programistów Ruby on Rails -->
+
+<p>
+  Jeden z czytelników mojego bloga, Marcin Urbański (dzięki!), podesłał mi zestaw ściągawek (cheat sheet) dotyczących zarówno Rubiego, Rails jak i innych narzędzi związanych z pisaniem aplikacji w tej technologii. Poszperałem jeszcze trochę w sieci, podzieliłem na kategorię i tak o to udostępniam je wszystkim. Podkreślam, że ani ja ani Marcin nie jesteśmy autorami tych ściągawek, większość nich zawiera odnośnik do źródła (w plikach pdf). Miłego ściągania :).
+</p>
+
+
+
+<h3>Ruby</h3>
+
+<p style="text-align: center">
+<a href="http://www.digilife.be/quickreferences/QRC/Ruby%20Language%20QuickRef.pdf"><img src="http://images33.fotosik.pl/175/18e7fc781a3a5e3e.png" /></a><br />
+Ruby Language QuickRef
+</p>
+
+<p style="text-align: center">
+<a href="http://www.digilife.be/quickreferences/QRC/Ruby%20Library%20QuickRef.pdf"><img src="http://images32.fotosik.pl/175/f806e287da979d97.png" /></a><br />
+Ruby Library QuickRef
+</p>
+
+<p style="text-align: center">
+<a href="http://ruby.cenophobie.com/RubyCheat.pdf"><img src="http://images33.fotosik.pl/175/d5fed13c22137818.png" /></a><br />
+Przegląd języka, głównych klas
+</p>
+
+<p style="text-align: center">
+<a href="http://aspectprogramming.com/agile2007/RubyMetaprogrammingCheatSheet.pdf"><img src="http://images30.fotosik.pl/175/d4e97d3ddc7cd09e.png" /></a><br />
+Meta programowanie
+</p>
+
+<h3>Ruby on Rails</h3>
+
+<p style="text-align: center">
+<a href="http://www.blainekendall.com/uploads/RubyOnRails-Cheatsheet-BlaineKendall.pdf"><img src="http://images26.fotosik.pl/174/00336d19a2360477.png" /></a><br />
+Przegląd Railsów
+</p>
+
+<p style="text-align: center">
+<a href="http://www.red91.com/downloads/Topfunky-Cheatsheet.pdf"><img src="http://images29.fotosik.pl/174/bb6f7353b72a0cb5.png" /></a><br />
+Kolejny przegląd Railsów
+</p>
+
+<p style="text-align: center">
+<a href="http://weblog.sourcescape.com/assets/2008/1/20/Rails2.pdf"><img src="http://images25.fotosik.pl/173/35ac6c14e4c682d6.png" /></a><br />
+Rails 2.0
+</p>
+
+<p style="text-align: center">
+<a href="http://www.slash7.com/cheats/form_helpers.pdf"><img src="http://images34.fotosik.pl/174/b15522bcf586b0a7.png" /></a><br />
+Helpery formularzy
+</p>
+
+<p style="text-align: center">
+<a href="http://www.slash7.com/cheats/activerecord_cheatsheet.pdf"><img src="http://images33.fotosik.pl/175/0b8c8647d51fa6a6.png" /></a><br />
+Krótki przegląd Relacji ActiveRecord
+</p>
+
+<p style="text-align: center">
+<a href="http://mboffin.com/stuff/ruby-on-rails-data-relationships.png"><img src="http://images27.fotosik.pl/174/7f4643cc72ff729d.png" /></a><br />
+Relacje modeli ActiveRecord
+</p>
+
+
+<p style="text-align: center">
+<a href="http://www.dizzy.co.uk/ruby_on_rails/cheatsheets/rails-migrations.pdf"><img src="http://images26.fotosik.pl/174/a6a22b501a2c1a0e.png" /></a><br />
+Migracje ActiveRecord
+</p>
+
+<p style="text-align: center">
+<a href="http://www.dizzy.co.uk/ruby_on_rails/cheatsheets/form-helpers.pdf"><img src="http://images25.fotosik.pl/173/767492e74cebb06e.png" /></a><br />
+Przegląd helperów dla formularzy
+</p>
+
+<p style="text-align: center">
+<a href="http://www.ilovejackdaniels.com/ruby_on_rails_cheat_sheet.pdf"><img src="http://images24.fotosik.pl/175/4ff3d848ef8b01f0.png" /></a><br />
+Przegląd Rails
+</p>
+
+<p style="text-align: center">
+<a href="http://topfunky.com/clients/peepcode/REST-cheatsheet.pdf"><img src="http://images33.fotosik.pl/175/95d9db02989f5c41.png" /></a><br />
+REST
+</p>
+
+<p style="text-align: center">
+<a href="http://undefinedrange.com/files/active_resource.pdf"><img src="http://images34.fotosik.pl/175/ddbb6f1dcd654401.png" /></a><br />
+ActiveResource
+</p>
+
+<p style="text-align: center">
+<a href="http://www.undefinedrange.com/files/strings_cheatsheet.pdf"><img src="http://images33.fotosik.pl/175/771863342fc5ba4a.png" /></a><br />
+ActiveSupport::CoreExtensions::String
+</p>
+
+<h3>RJS</h3>
+
+<p style="text-align: center">
+<a href="http://slash7.com/assets/2006/10/8/RJS-Demistified_Amy-Hoy-slash7_1.pdf"><img src="http://images33.fotosik.pl/175/1c8f02ad79f5bd97.png" /></a><br />
+Opis działania
+</p>
+
+<p style="text-align: center">
+<a href="http://localtype.org/rjs/rjs_cheat_sheet.pdf"><img src="http://images27.fotosik.pl/174/4e55a6fbbc16cdd3.png" /></a><br />
+Opis działania
+</p>
+
+<p style="text-align: center">
+<a href="http://thebitt.com/dropbox/rails/rjs_cheatsheet.pdf"><img src="http://images26.fotosik.pl/174/1732551a365d8500.png" /></a><br />
+Spis funkcji
+</p>
+
+<h3>Testy</h3>
+
+<p style="text-align: center">
+<a href="http://topfunky.com/clients/rails/ruby_and_rails_assertions.pdf"><img src="http://images34.fotosik.pl/175/4d800ddf9490561e.png" /></a><br />
+Asercje dla testów unitowych
+</p>
+
+<p style="text-align: center">
+<a href="http://labnotes.org/svn/public/ruby/rails_plugins/assert_select/cheat/assert_select.pdf"><img src="http://images32.fotosik.pl/175/3702ad0f6307ae71.png" /></a><br />
+Przegląd dla assert_select
+</p>
+
+<p style="text-align: center">
+<a href="http://blog.daveastels.com/files/QuickRef.pdf"><img src="http://images34.fotosik.pl/175/f468087848823af5.png" /></a><br />
+RSpec
+</p>
+
+<p style="text-align: center">
+<a href="http://coldfire.org.ua/blog/wp-content/uploads/2007/04/rspec_cheetsheet.pdf"><img src="http://images31.fotosik.pl/175/45b4b34101366369.png" /></a><br />
+RSpec
+</p>
+
+<h3>Bazy Danych</h3>
+
+<p style="text-align: center">
+<a href="http://www.ilovejackdaniels.com/mysql_cheat_sheet.pdf"><img src="http://images24.fotosik.pl/175/8818337d5bd47100.png" /></a><br />
+MySQL
+</p>
+
+<p style="text-align: center">
+<a href="http://www.cheat-sheets.org/saved-copy/postgresql-cheat-sheet.pdf"><img src="http://images29.fotosik.pl/174/d856e53378642e99.png" /></a><br />
+PostgreSQL
+</p>
+
+<h3>Systemy Kontroli Wersji</h3>
+
+<p style="text-align: center">
+<a href="http://docs.safehaus.org/download/attachments/563/svncheatsheet-1.0.pdf"><img src="http://images24.fotosik.pl/175/546840b51efae24a.png" /></a><br />
+SVN
+</p>
+
+<p style="text-align: center">
+<a href="http://ktown.kde.org/~zrusin/git/git-cheat-sheet-large.png"><img src="http://images29.fotosik.pl/174/c4f3334e208637c6.png" /></a><br />
+Git
+</p>
+
+<p style="text-align: center">
+<a href="http://drupal.org/files/issues/cheatsheet_5.pdf"><img src="http://images26.fotosik.pl/175/a3fd342138bcb64d.png" /></a><br />
+CVS
+</p>
+
+<h3>Edytory</h3>
+
+<p style="text-align: center">
+<a href="http://www.wishingline.com/downloads/desktops/textmate_shortcuts_1920.png"><img src="http://images26.fotosik.pl/174/2e6fb36ba717279a.png" /></a><br />
+Textmate
+</p>
+
+<p style="text-align: center">
+<a href="http://pragmaticstudio.com/rails/RailsTextMateCheats.pdf"><img src="http://images33.fotosik.pl/175/297b9d6fee75d2a6.png" /></a><br />
+Textmate
+</p>
+
+<p style="text-align: center">
+<p style="text-align: center">
+<a href="http://offtheline.net/assets/2007/12/11/netbeans_ror.pdf"><img src="http://images23.fotosik.pl/174/522aaa35cf7bad44.png" /></a><br />
+Netbeans
+</p>
+
+<p style="text-align: center">
+<p style="text-align: center">
+<a href="http://homepage3.nifty.com/moro/rails_vim_cheatsheet.pdf"><img src="http://images23.fotosik.pl/174/acd29d2d211c8792.png" /></a><br />
+Vim
+</p>
+
+<h3>HTML/XHTML</h3>
+
+<p style="text-align: center">
+<a href="http://www.ilovejackdaniels.com/html-cheat-sheet.pdf"><img src="http://images33.fotosik.pl/175/4feca5b8b700b5ca.png" /></a><br />
+Przegląd języka HTML
+</p>
+
+<p style="text-align: center">
+<a href="http://www.ilovejackdaniels.com/characters_cheat_sheet.pdf"><img src="http://images32.fotosik.pl/175/552704dcfdcebda3.png" /></a><br />
+Encje HTML
+</p>
+
+<p style="text-align: center">
+<a href="http://floele.flyspray.org/htmlcheatsheet.pdf"><img src="http://images31.fotosik.pl/175/9d02e30950bb03f0.png" /></a><br />
+Przegląd języka XHTML
+</p>
+
+<h3>CSS</h3>
+
+<p style="text-align: center">
+<a href="http://www.ilovejackdaniels.com/css_cheat_sheet.pdf"><img src="http://images25.fotosik.pl/173/63fe25481af06bfd.png" /></a><br />
+Przegląd języka
+</p>
+
+<h3>Javascript</h3>
+
+<p style="text-align: center">
+<a href="http://www.ilovejackdaniels.com/javascript_cheat_sheet.pdf"><img src="http://images24.fotosik.pl/175/56fa16e4be706af9.png" /></a><br />
+Przegląd języka
+</p>
+
+<p style="text-align: center">
+<a href="http://www.cheat-sheets.org/saved-copy/jquery12_colorcharge_bw.pdf"><img src="http://images23.fotosik.pl/174/b716920e74635c1b.png" /></a><br />
+JQuery
+</p>
+
+
+<p style="text-align: center">
+<a href="http://www.cheat-sheets.org/saved-copy/Jquery-Cheat-Sheet-1.2.pdf"><img src="http://images33.fotosik.pl/175/6cb0ddfed4e8c929.png" /></a><br />
+JQuery
+</p>
+
+<h3>Firefox</h3>
+
+<p style="text-align: center">
+<a href="http://lesliefranke.com/files/reference/firefoxcheatsheet.pdf"><img src="http://images25.fotosik.pl/173/cdf7a71f185768e5.png" /></a><br />
+Skróty klawiatury
+</p>
+
+<h3>Wyszukiwarki: Google, Yahoo, MSN</h3>
+
+<p style="text-align: center">
+<a href="http://www.feedsforme.com/google/?cheatsheet"><img src="http://images30.fotosik.pl/175/2d9f708b30b7e206.png" /></a><br />
+Google
+</p>
+
+<p style="text-align: center">
+<a href="http://www.e3internet.com/downloads/search-engine-query-cheatsheet.pdf"><img src="http://images26.fotosik.pl/175/2cfa0ba96b13d53c.png" /></a><br />
+Google, Yahoo, MSN
+</p>
+
+<h3>Wyrażenie Regularne</h3>
+<p style="text-align: center">
+<p style="text-align: center">
+<a href="http://www.ilovejackdaniels.com/regular_expressions_cheat_sheet.png"><img src="http://images31.fotosik.pl/175/310bff05f2938c11.png" /></a><br />
+Przegląd języka
+</p>
+
+<h3>mod_rewrite</h3>
+
+<p style="text-align: center">
+<a href="http://www.ilovejackdaniels.com/mod_rewrite_cheat_sheet.pdf"><img src="http://images31.fotosik.pl/175/171249fc01a1b6d5.png" /></a><br />
+Przegląd
+</p>
+
+<h3>UPDATE</h3>
+<p>
+Nie pomyślałem o tym, że w praktyce klikać 44 razy to spory wysiłek :). Zamieszczam poniżej skrypt napisany przez <a href="http://blog.zabiello.com">J. Zabiełło</a>, który ściągnie wszystkie pliki (niestety działa tylko przy dostępnym programie <i>wget</i>). <a href="http://pastie.caboo.se/165252">Bezpośredni link do skryptu</a> w serwisie <a href="http://pastie.caboo.se">pastie</a>.
+</p>
+
+<pre><code class="ruby">require 'net/http'
+require 'uri'
+url = 'http://radarek.jogger.pl/2008/03/12/zestaw-ponad-40-sciagawek-dla-programistow-ruby-on-rails-i-n/'
+Net::HTTP.get(URI.parse(url)).scan(/http:\/\/.+?\.pdf/).each{|x| `wget -c #{x}`}
+</code></pre>
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-1106672" class="comment1 guest">
+            
+            1.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Michał Górny</strong> napisał(a) 12 Mar 2008 o godz. 06:42:
+            <div class="top"></div>
+            <div class="content">
+              <p><span class="caps">IMO</span> (przynajmniej te pierwsze) — beznadziejne. Zbyt mały tekst (na A2 to drukować?), zbyt mały kontrast na „przyciemnionych” polach.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1106752" class="comment2 guest">
+            
+            2.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://blog.sebastiannowak.net" rel="nofollow">Seban</a></strong> napisał(a) 12 Mar 2008 o godz. 09:30:
+            <div class="top"></div>
+            <div class="content">
+              <p>Miodny zestaw. Ostatnio na Wykopie też zauważyłem coś takiego: http://blog.invisible.ch/files/rails-reference-1.1.html</p>
+
+<p>Można znaleźć info o ściągawce do Capistrano jednak samego pliku już nigdzie nie udało mi się ,,wyrwać&#8217;&#8216;.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1106770" class="comment1 guest">
+            
+            3.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Marcin Urbański</strong> napisał(a) 12 Mar 2008 o godz. 10:05:
+            <div class="top"></div>
+            <div class="content">
+              <p>@Seban: to mój wykop:) ale oczywiście zapomniałem wysłać tego Radarkowi:) fajnie byłoby zebrać powiązane tematycznie ściągi w jednym miejscu.</p>
+
+<p>@Michał Górny: fakt, niektóre są pisane zbyt małą czcionką:/ sam z braku lepszych narzędzi i pomysłu robiłem zrzuty ekranowe pdf`ów. Później wrzucałem do GIMP`a, ciąłem obraz na fragmenty i dopiero drukowałem w rozciągnięciu na pełne A4. Przekombinowane, ale zdało egzamin:)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1106774" class="comment2 guest">
+            
+            4.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Robert Begier</strong> napisał(a) 12 Mar 2008 o godz. 10:16:
+            <div class="top"></div>
+            <div class="content">
+              <p>fajna esencja &#8211; dzięki za share</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1106778" class="comment1 guest">
+            
+            5.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Robert Begier</strong> napisał(a) 12 Mar 2008 o godz. 10:22:
+            <div class="top"></div>
+            <div class="content">
+              <p>jeszcze jedno &#8211; nie wiem czy właściwy jest adres przy:<br />
+htto://docs.safehaus.org/download/attachments/563/svncheatsheet-1.0.pdf</p>
+
+<p>jest htto &#8211; po zmianie na http pobiera normalnie :)</p>
+
+<p>jeszcze raz thx</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1106783" class="comment2 owner">
+            
+            6.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 12 Mar 2008 o godz. 10:33:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@Robert</strong>, poprawione.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1106806" class="comment1 guest">
+            
+            7.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Piotr Usewicz</strong> napisał(a) 12 Mar 2008 o godz. 11:05:
+            <div class="top"></div>
+            <div class="content">
+              <p>Kudos. Lubie cheatsheety.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1107270" class="comment2 jogger">
+            
+            8.
+            
+            <img class="avatar-icon" src="http://zal.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://zal.jogger.pl">Zal</a></strong> napisał(a) 12 Mar 2008 o godz. 21:57:
+            <div class="top"></div>
+            <div class="content">
+              <p>Wykonanie różne, ale pomysł świetny. Popieram :]</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1107287" class="comment1 trackback">
+            
+            9.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.roscripts.com/nominate/show/14301" rel="nofollow">roScripts - Webmaster resource</a></strong> napisał(a) 12 Mar 2008 o godz. 22:15:
+            <div class="top"></div>
+            <div class="content">
+              <p>Radarek bloguje - blog programisty<br /><br />Radarek bloguje - blog programisty</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1107289" class="comment2 owner">
+            
+            10.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 12 Mar 2008 o godz. 22:17:
+            <div class="top"></div>
+            <div class="content">
+              <p>Czy ktoś wie o co chodzi z tym ostatnim komentarzem?;) Bot to raczej nie, bo jest captcha&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1107319" class="comment1 trackback">
+            
+            11.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://blog.jakk-im.com/2008/03/12/sciagawki-dla-programistow-net/" rel="nofollow">Zapiski programisty</a></strong> napisał(a) 12 Mar 2008 o godz. 22:48:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ściągawki dla programistów .NET<br /><br />Radarek na swoim blogu we wpisie Zestaw ponad 40 ściągawek dla programistów Ruby on Rails (i nie tylko) przedstawił linki do różnych ciekawych ściągawek dla programistów Ruby on Rails. Postanowiłem podzielić się odnalezionymi przeze mnie[...]</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1107797" class="comment2 guest">
+            
+            12.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://blog.zabiello.com" rel="nofollow">Jarosław Zabiełło</a></strong> napisał(a) 13 Mar 2008 o godz. 18:21:
+            <div class="top"></div>
+            <div class="content">
+              <p>Świetny pomysł z tymi PDF&#8217;ami. Muszę przyznać, że szybciej mi było napisać <a href="http://pastie.caboo.se/165253" rel="nofollow" >skrypt w Pythonie</a> niż Ruby aby zgrać na dysk te pliki  żmudnego klikania w odnośniki: . Tu dla porównania <a href="http://pastie.caboo.se/165252" rel="nofollow" >wersja w Ruby</a> (pythonowa jest moim zdaniem czytelniejsza łatwiejsza do zapamiętania)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1107918" class="comment1 owner">
+            
+            13.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 13 Mar 2008 o godz. 20:28:
+            <div class="top"></div>
+            <div class="content">
+              <p>Jarek, mógłbym powiedzieć, że dla mnie lepsza jest wersja Rubiego, ale nie ma sensu przenosić flame Ruby &#60;=&#62; Python tutaj ;-). Obie wersje są dobre i tyle :).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1108055" class="comment2 guest">
+            
+            14.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://blog.zabiello.com" rel="nofollow">Jarosław Zabiełło</a></strong> napisał(a) 13 Mar 2008 o godz. 22:12:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ja nie chcę powiedzieć która lepsza. Wiem tylko, że pythonową napisałem z pamięci a tą drugą, dopiero jak przeszukałem dokumentację bibliotek. Bruce Eckel w Thinking in Java sam wyznał, że on nigdy nie może zapamiętać jak w Javie używać plików. Im mniej trzeba zapamietać tym lepiej. Tu sprawdza się minimalizm Pythona.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1108403" class="comment1 guest">
+            
+            15.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Adam Ziaja</strong> napisał(a) 14 Mar 2008 o godz. 13:53:
+            <div class="top"></div>
+            <div class="content">
+              <p>Dzięki! Dobre!</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1113562" class="comment2 guest">
+            
+            16.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>czytelny podpis</strong> napisał(a) 20 Mar 2008 o godz. 22:34:
+            <div class="top"></div>
+            <div class="content">
+              <p>wszystko pięknie, skrypty też piękne, ale dlaczego nie ma paczuszki z całością, teraz są takie atrakcyjne hostingi plików</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1115806" class="comment1 guest">
+            
+            17.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>kotosha</strong> napisał(a) 22 Mar 2008 o godz. 21:52:
+            <div class="top"></div>
+            <div class="content">
+              <p>Nie muszę dodawać po raz kolejny że to świetny pomysł, ale właśnie taki jest. Wszystko się na pewno przyda. Wymaga to &#8222;tylko&#8221; trochę klikologii:/. Magiczna liczba 44 trochę przeraża..</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1118347" class="comment2 guest">
+            
+            18.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>hm</strong> napisał(a) 25 Mar 2008 o godz. 20:15:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ściągawki na konsole http://errtheblog.com/posts/21-cheat :D</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1126294" class="comment1 jogger">
+            
+            19.
+            
+            <img class="avatar-icon" src="http://coldpeer.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://coldpeer.jogger.pl">coldpeer</a></strong> napisał(a) 03 Kwi 2008 o godz. 20:21:
+            <div class="top"></div>
+            <div class="content">
+              <p><a href="http://www.ilovejackdaniels.com/cheat-sheets/ruby-on-rails-cheat-sheet/" rel="nofollow" >http://www.ilovejackdaniels.com/cheat-sheets/ruby-on-rails-cheat-sheet/</a></p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1424591" class="comment2 guest">
+            
+            20.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>mejdej</strong> napisał(a) 03 Sie 2009 o godz. 01:11:
+            <div class="top"></div>
+            <div class="content">
+              <p>http://www.ilovejackdaniels.com/cheat-sheets/ruby-on-rails-cheat-sheet/</p>
+
+<p>hmm</p>
+
+<p>The site formerly hosted at ILoveJackDaniels.com has, at the request of the Jack Daniel's trademark team, been moved to the new domain AddedBytes.com.</p>
+
+<p>:)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="/">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

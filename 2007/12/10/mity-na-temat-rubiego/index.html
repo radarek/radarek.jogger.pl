@@ -1,0 +1,1853 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Mity na temat Rubiego - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="../../../../files/favicon.png" type="image/png" />
+    <meta name="keywords" content="myths, ruby, Ruby, Techblog, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="../../../../files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../../files/common.js"></script>
+    <script type="text/javascript" src="../../../../files/highlight.js"></script>
+    <script type="text/javascript" src="../../../../files/dynamic.js"></script>
+    <script type="text/javascript" src="../../../../files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="../../../../index.html" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="../../../../index.html"><span>Wpisy</span></a></li>
+          <li><a href="../../../04/29/o-blogu/index.html"><span>O blogu</span></a></li>
+          <li><a href="../../../05/01/kanaly-rss/index.html"><span>RSS</span></a></li>
+          <li><a href="../../../05/01/kontakt/index.html"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="http://radarek.jogger.pl/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="../../../../2009/01/01/gist-odpicowane-pastie/index.html">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="../../../../2008/10/12/mp3-przeboje/index.html">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="../../../../kategoria/blog/index.html">Blog (6)</a></li>
+          
+            <li id="c"><a href="../../../../kategoria/c/index.html">C (1)</a></li>
+          
+            <li id="gamedev"><a href="../../../../kategoria/gamedev/index.html">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="../../../../kategoria/git/index.html">Git (2)</a></li>
+          
+            <li id="humor"><a href="../../../../kategoria/humor/index.html">Humor (3)</a></li>
+          
+            <li id="java"><a href="../../../../kategoria/java/index.html">Java (1)</a></li>
+          
+            <li id="jruby"><a href="../../../../kategoria/jruby/index.html">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="../../../../kategoria/miniblog/index.html">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="../../../../kategoria/narzedzia/index.html">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="../../../../kategoria/programowanie/index.html">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="../../../../kategoria/python/index.html">Python (4)</a></li>
+          
+            <li id="ruby"><a href="../../../../kategoria/ruby/index.html">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="../../../../kategoria/ruby/merb/index.html">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="../../../../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="../../../../kategoria/techblog/index.html">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="../../../../kategoria/tips-tricks/index.html">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="../../../../kategoria/web/index.html">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="../../../../kategoria/blog/index.html">Blog</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/c/index.html">C</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/gamedev/index.html">Gamedev</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/git/index.html">Git</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/humor/index.html">Humor</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/java/index.html">Java</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/jruby/index.html">JRuby</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/miniblog/index.html">Miniblog</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/narzedzia/index.html">Narzędzia</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/programowanie/index.html">Programowanie</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/python/index.html">Python</a>
+          
+            <a class="catlvl3" href="../../../../kategoria/ruby/index.html">Ruby</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/ruby/merb/index.html">Merb</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="../../../../kategoria/techblog/index.html">Techblog</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/tips-tricks/index.html">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/web/index.html">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="../../../../startid/470765.html">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/433510.html">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/425293.html">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/423490.html">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/392066.html">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/383421.html">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/364188.html">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/337815.html">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/323920.html">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2007</small>
+              <span>10</span>
+              <small>Gru</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="index.html">Mity na temat Rubiego</a></h2>
+            
+            <a href="index.html#comments">70 komentarzy</a>
+            | Kategorie:
+            
+              <a class="strong" href="../../../../kategoria/ruby/index.html">Ruby,</a>
+            
+              <a class="strong" href="../../../../kategoria/techblog/index.html">Techblog</a>
+            
+            
+              | <a href="trackback/index.html">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/myths" rel="tag">
+                  myths</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <p>
+Język Ruby i różne rozwiązanie mu towarzyszące (np. Ruby on Rails) istnieją już na tyle długo, by dorobić się wielu opinii, sądów i zdań na jego temat. Zarówno tych pozytywnych jak i negatywnych. Sprawa jest o tyle niewygodna, gdyż wiele z nich to na dzień dzisiejszy po prostu mity. Dziś zajmę się nimi. <a href="http://dsc.discovery.com/fansites/mythbusters/mythbusters.html">Mity zwykle nie są łatwe do obalenia</a>, ale postaram się sprostać postawionemu zadaniu.
+</p>
+
+<p>
+Oto kilka, według mnie mitów, nieprawdziwych opinii, które wciąż powtarzane są w wypowiedziach różnych ludzi:
+</p>
+
+
+
+<style type="text/css">
+.ruby-mit {
+  float: left;
+  width: 80px;
+  height: 80px;
+  background: url(http://images32.fotosik.pl/74/dad90bd7fc6a1f86.png) no-repeat 50% 50%;
+  display: block;
+}
+</style>
+
+<h3><span class="ruby-mit">&nbsp;</span>1. Ruby jest wolny</h3>
+
+<p>
+To chyba jeden z częstszych zarzutów. Jest to bardzo delikatna kwestia. Programiści lubią się pokłócić, że to ich 'język' jest najszybszy. Wymyślają przeróżne, często <a href="http://antoniocangiano.com/2007/11/28/holy-shmoly-ruby-19-smokes-python-away/">specyficzne benchmarki</a>, które mają udowodnić kto jest najszybszy. Nie chcę podawać takich śmiesznych przykładów, bo to się mija z celem. Dla mnie sprawa jest oczywista. Jeśli wybieram język Ruby, który z jednej strony daje mi niesamowite konstrukcje językowe, pełną obiektowość, dynamizm, domknięcia oraz wiele innych elementów, to jasne jest, że nie ma nic za darmo (i często płaci się utratą wydajności). Jeśli dla Ciebie kluczowym czynnikiem jest wydajność - patrzysz w złą stronę przyjacielu. Potrzebujesz prawdopodobnie C, C++ lub Java, a więc języki typowane statycznie, kompilowane. Języki takie jak Python, Php, Perl a także i Ruby to inna kategoria. Programy w nich działają przeważnie 10-100 razy wolniej niż w tych wcześniej wymienionych. No tak, a jakby porównać języki Python, Perl, Ruby, Php? W końcu to języki o podobnych założeniach (interpretowane, dynamiczne). Bardzo proszę, nie mamy nic do ukrycia i czego się wstydzić:<br/>
+</p>
+
+<p>
+<a href="http://shootout.alioth.debian.org/gp4sandbox/benchmark.php?test=all&amp;lang=ruby&amp;lang2=python">Ruby vs Python</a><br />
+<a href="http://shootout.alioth.debian.org/gp4sandbox/benchmark.php?test=all&amp;lang=ruby&amp;lang2=php">Ruby vs PHP</a><br />
+<a href="http://shootout.alioth.debian.org/gp4sandbox/benchmark.php?test=all&amp;lang=ruby&amp;lang2=perl">Ruby vs Perl</a><br /><br />
+</p>
+
+<p>
+Jak widać Ruby jest trochę wolniejszy od pozostałej trójki. A co powiesz jeśli najnowsza wersje Rubiego (1.9) będzie około 3-4 razy szybsza od poprzedniej? Nie wierzysz?
+</p>
+
+<p>
+<a href="http://shootout.alioth.debian.org/gp4sandbox/benchmark.php?test=all&amp;lang=yarv&amp;lang2=python">Ruby 1.9 vs Python</a><br />
+<a href="http://shootout.alioth.debian.org/gp4sandbox/benchmark.php?test=all&amp;lang=yarv&amp;lang2=php">Ruby 1.9 vs PHP</a><br />
+<a href="http://shootout.alioth.debian.org/gp4sandbox/benchmark.php?test=all&amp;lang=yarv&amp;lang2=perl">Ruby 1.9 vs Ruby</a><br />
+</p>
+
+<p>
+Benchmarki pokazują, że nowe wersje Rubiego są tak samo szybkie jak pozostałe z wymienionych, a wierzcie mi, że na tym nie koniec. Czy ciągle uważasz, że Ruby jest wolny?
+</p>
+
+<p>
+Jednakże należy te kwestie traktować bardzo uważnie. Szybkość implementacji języka to często drugorzędna kwestia. Najczęściej prędkość aplikacji (powiedzmy webowej) zależy także od bazy, połączenia internetowego, użytych algorytmów, mechanizmów cachowania. Prędkości procesorów w ostatnich latach nie idą tak w górę jak dawniej (<a href="http://pl.wikipedia.org/wiki/Prawo_Moore'a">prawo Moora przestało działać</a>), jednak wciąż rosną. Czy zatem 5 lat temu nie warto było użyć PHP bo procesory były X razy wolniejsze (a więc i sam PHP)? Czy jeśli nagle PHP stanie się 5 razy szybsze od Pythona to porzucisz go dla tego języka? Czy kupując samochód kierujesz się tylko kwestiami prędkości i jadąc wolniejszym samochodem od jakiegoś innego czujesz się z tym źle? Dlaczego nie programujemy w asemblerze swoich aplikacji?
+</p>
+
+<p>
+Odpowiedź jest jedna: dopóki prędkość nie jest najważniejszym czynnikiem, a prędkość samej implementacji języka nie odstaje aż tak bardzo od pozostałych, to nie jest ona aż tak istotna. Najczęściej właśnie liczy się to jak się w danym języku pisze, czytelność kodu (tu także jest ważny język), rozszerzalność, łatwość utrzymania kodu. Ruby ma tą dodatkową cechę, że bardzo łatwo pisze się w nim rozszerzenia w C. Jeśli masz jakiś szczególny algorytm, strukturę danych, wąskie gardło, które powstrzymują Cię przed napisaniem tego w Rubym to możesz napisać to w C i powiązać z Rubym. Wierzcie mi, że w tej kwestii Ruby także jest po prostu świetny.
+</p>
+
+
+<h3><span class="ruby-mit">&nbsp;</span>2. Ruby nie nadaje się do pisania w większej grupie programistów, gdyż pozwala np na dodawanie nowych elementów do istniejących klas, redefinicję istniejących metod, przedefiniowanie operatorów +, - dla liczb oraz inne równie niebezpieczne operacje!</h3>
+
+<p>
+To jedna z cech odróżniające Rubiego od innych języków. Jedni twierdzą, że to jest fajne, użyteczne, inni zaś, że to kompletna głupota. Ci pierwsi widzą miejsca, gdzie można to efektownie zastosować, Ci drudzy ciągle powtarzają jakie to jest "bee". Pozwólcie, że użyję porównania (bardzo je lubię :)). Każdy z nas ma w domu nóż. Nóż to tylko narzędzie, możesz nim pokroić chleb, albo zabić bliźniego. Wybór należy do Ciebie. Jeśli jesteś człowiekiem myślącym, prawdopodobnie poprzestaniesz na tym pierwszym. Jeśli jednak coś jest z Tobą nie tak i chcesz kogoś zabić, to prawdopodobnie nie pomoże nawet schowanie wszystkich noży (bo zrobisz to młotkiem). Czyli przekładając to na nasz język. Ruby daje Ci wiele różnych ciekawych możliwości, ale to od Ciebie zależy do czego użyjesz. Nikt nie każe Ci przedefiniować metody Fixnum#+ tak aby zwracała wynik mnożenia... (jeśli jednak tego chcesz - proszę bardzo).
+</p>
+
+<p>
+Gdy programujesz w grupie musisz mieć zaufanie do swoich kolegów. Czy to zaufanie będzie większe, gdy język będzie zabraniać co popadnie? Komu miałoby służyć takie ograniczanie? Tym lepszym programistom, czy tym gorszym? Profesjonaliści pracują tylko ostrymi nożami, gdyż tylko one pozwalają im uzyskać pożądany efekt szybko i sprawnie. Pozostali używają tych tępych, które nie zrobią im krzywdy, ale by pokroić zwykły chleb będą musieli się sporo namęczyć...
+</p>
+
+<h3><span class="ruby-mit">&nbsp;</span>3. Kod Rubiego jest podobny do Perla ("tego się nie da czytać!")</h3>
+
+<p>
+Z tym stwierdzeniem spotykam się niestety bardzo często. Jest takie powiedzenie "You can write FORTRAN in any language". Gdzie za FORTRAN możesz tak na prawdę podstawić nazwę dowolnego języka. <a href="http://en.wikipedia.org/wiki/Yukihiro_Matsumoto">Matz</a> (twórca języka), wziął najlepsze (według niego) cechy ówcześnie znanych mu i lubianych języków. Stąd między zapożyczenie tzw "perlizmów" (perlism). Pozwala to na pisanie "dziwnego" kodu, czasem przypominającego Perla:
+</p>
+
+<pre><code class="ruby"># programista Perla napisałby tak
+while gets
+  if /Ruby/ # nie wiadomo co tu się dzieje, magia?
+    print # a to co takiego?
+  end
+end
+
+# programista Rubiego zdecydowanie tak
+ARGF.each_line do |line|
+  print line if line.match(/Ruby/) # nie wymaga komentarza
+end
+</code></pre>
+
+<p>
+Matz chciał by innym programistom łatwiej pisało się w Rubym, stąd te konstrukcje. Dzisiaj jednak nie jest wskazane używać takich konstrukcji, a Ruby zgłasza ostrzeżenia w większości przypadków ich użycia.
+
+Widziałem wystarczająco dużo kodu w Ruby i Perlu by jednoznacznie stwierdzić, że dobrze napisany kod tego pierwszego nijak ma się do tego drugiego.
+</p>
+
+<h3><span class="ruby-mit">&nbsp;</span>4. Ruby wcale nie jest taki dobry, to Ruby on Rails czyni z niego coś więcej niż kolejny, skryptowy język programowania. Gdyby nie ten framework nikt nie programowałby w Rubym!</h3>
+
+<p>
+To jeden z ulubionych argumentów tych, którzy za wszelką cenę chcą przekonać pozostałych, że Ruby to jakiś przypadkowo stworzony język, a popularność zawdzięcza tylko i wyłącznie Ruby on Rails. Ludzie Ci często poprzestali na obejrzeniu reklamowych screencastów RoR, które pokazują jakie to cuda można z nim wyczyniać. Niestety Panie i Panowie gdyby nie ogromne możliwości języka, RoR nie istniałby. Magia RoR to przede wszystkim magia Rubiego. Przekonali się już Ci, którzy znając RoR, próbowali jego klonów choćby i w PHP. Jak zwykle kończy się na znanym haśle "prawie robi wielką różnicę".
+</p>
+
+<h3><span class="ruby-mit">&nbsp;</span>5. Kod Rubiego jest nieczytelny</h3>
+
+<p>
+To podobny zarzut do podobieństwa z Perlem, ale bardziej ogólny. Jeśli tylko chcesz to napiszesz piękny/brzydki kod w każdym języku. Ruby jednak ma tą cechę, że przy pewnej wprawie, bardzo często kieruję programistę (choć często o tym nie wie) do ładnego DSL'a. Ruby to jeden z nielicznych języków, który pozwala Ci na pisanie takiego kodu:
+</p>
+
+<pre><code class="ruby">class Project &lt; ActiveRecord::Base
+  belongs_to              :portfolio
+  has_one                 :project_manage
+  has_many                :milestones
+  has_and_belongs_to_many :categories
+end
+
+##########################################
+# definiowanie stanów obiektów
+
+class User
+  acts_as_state_machine :initial => :inactive
+
+  state :inactive
+  state :active
+  state :blocked
+
+  event :accept do
+    transitions :from => :inactive, :to => :active
+  end
+
+  event :block do
+    transitions :from => :active, :to => :blocked 
+  end
+
+  event :unblock do
+    transitions from => :blocked, :to => :active:
+  end
+  
+end
+
+u = User.new
+u.accept! # akceptacja uzytkownika
+u.block! # zablokowanie
+
+##########################################
+# rake - czyli Ruby make
+
+desc "delete all *.o files"
+task :delete_files do
+  sh "rm *.o"
+end
+
+##########################################
+# piszesz grę?
+
+class Dragon &lt; Creature
+  life 1340
+  strength 451
+  charisma 1020
+  weapon 939
+end
+
+class Rabbit &lt; Creature
+ traits :bombs
+
+ life 10
+ strength 2
+ charisma 44
+ weapon 4
+ bombs 3
+end
+
+rabbit = Rabbit.new
+dragon = Dragon.new
+
+dragon.fight_with!(rabbit)
+
+##########################################
+# definicja tabeli SQL
+
+crate_table :users do |t|
+  t.column :login, :string, :limit => 60
+  t.column :created_at, :datetime, :null => false
+end
+
+##########################################
+
+a = [4, 5, 1, 4, 5, 2, 6, 7, 2, 1, 7, 1]
+puts a.uniq.sort #=> [1, 2, 4, 5, 6, 7]
+
+</code></pre>
+
+<p>
+Ciągle twierdzisz, że Ruby jest nieczytelny?
+</p>
+
+
+<h3><span class="ruby-mit">&nbsp;</span>6. Ruby (RoR) nie skaluje się</h3>
+
+<p>
+Ten zarzut może nie jest bezpośrednio kierowany do samego języka, ale bardzo często do Ruby on Rails, a to z kolei rzutuje na sam język. Ileż to ja się naczytałem dyskusji na ten temat. Co ciekawe, jeśli ktoś rozważa kwestię skalowania, to zakładam, że prezentuje pewien poziom wiedzy. A taki człowiek, po wcześniejszym zapoznaniu się ze sposobem działania RoR powinien wiedzieć, że: <strong>Ruby (RoR) skaluje się praktycznie w taki sam sposób jak PHP, Java, Python</strong>. W wielkim skrócie (chodzi o aplikacje webowe): kilka serwerów aplikacyjnych, memcached dla sesji, load balancer. Ruby i RoR mają tak na prawdę niewiele tu do powiedzenia. Aplikacje skaluje się w bardzo zbliżony sposób, niezależnie od użytego języka (frameworka).
+</p>
+
+<h3><span class="ruby-mit">&nbsp;</span>7. Ruby ma mało bibliotek</h3>
+
+<p>
+<a href="http://rubyforge.org/">Rubyforge</a>: Hosted Projects: 4,693. <a href="http://raa.ruby-lang.org/">RAA</a>: 1637 projects. Nie chcę przez te liczby powiedzieć, że znajdziesz każdą bibliotekę jaką sobie tylko wymyślisz. Jednakże powinny Ci dać pewien obraz, że nie jest tak źle jak niektórzy mówią. A wiesz, że w Rubym możesz także wykorzystać całe API Javy? Umożliwia to <a href="http://jruby.codehaus.org/">JRuby</a>, czyli implementacja Rubiego w Javie.
+</p>
+
+<h3><span class="ruby-mit">&nbsp;</span>8. Ruby nie nadaje się do dużych projektów</h3>
+
+<p>
+To jedna z pierwszych reakcji, zwłaszcza programistów pracujących z "cięższymi" technologiami (j2ee, .net). Gdy słyszą o ciekawych cechach języka (otwarte klasy, duck typing i inne) w pierwszej chwili nawet im się to podoba, a potem przychodzi szybka refleksja. "Jak nad tym da się zapanować? To nie możliwe żeby dało się w tym zrobić duży projekt. Po pierwsze czym jest dla Ciebie duży projekt? Wg mnie 80% projektów jakie zrobisz w życiu są jak najbardziej w zasięgu Rubiego. Zwłaszcza dlatego, że to co jest bardzo dużym projektem w Javie, w Rubym może być tylko średnim. W Rubym piszesz mniej kodu, a więc potrzeba mniej zasobów (szczególnie ludzkich). Bardzo często też ten "jeden duży projekt" w praktyce dzieli się na kilka dosyć niezależnych modułów, które są praktycznie oddzielnymi projektami. Pamiętaj, że zasady gry ciągle się zmieniają. Aplikacje, które dawniej pisało się tygodniami w kilkuosobowej grupie programistów, dzisiaj można napisać samemu w kilka wieczorów (porównaj pisanie aplikacji korzystającej z surowych socketów, a np z Java RMI. W Rubym odpowiednik RMI to DRb, który jest jeszcze prostszy w użyciu).
+</p>
+
+<p>
+Z drugiej strony, trzeba wiedzieć, że zawsze jest pewna granica. Języki takie jak C/C++/Java zostały stworzone do pisania dużych <strong>systemów</strong> i użycie Rubiego w takich projektach nie zawsze jest wskazane.
+</p>
+
+<h3><span class="ruby-mit">&nbsp;</span>9. Ruby jest mało popularny, to niszowy język</h3>
+<p>
+W Polsce - dopiero dociera do nas fala popularności. W USA, UK i Japonii jest bardzo popularny. W rankingu <a href="http://www.tiobe.com/tpci.htm">Tiobe Ruby znów zaliczył skok, tym razem na 9 miejsce</a> (poprzednie 10). Sun i Microsoft zainwestowały w projekty JRuby i IronRuby. Ludzie tacy jak <a href="http://www.tiobe.com/tpci.htm">Martin Fowler</a>, <a href="http://chadfowler.com/">Chad Fowler</a>, <a href="http://en.wikipedia.org/wiki/Bruce_Tate">Bruce Tate</a> i wielu innych znanych ludzi IT programuje w Rubym. Amazon bił rekordy sprzedanych książek o Rubym w 2006 roku w dziale "Programowanie". Nawet nasz polski helion jeszcze rok temu miał w swojej ofercie bodajże 1-2 książki. <a href="http://helion.pl/search.cgi?qa=2664&amp;wsprzed=1&amp;wprzyg=1&amp;szukaj=ruby">Teraz jest ich ponad 10</a>.
+</p>
+
+<p>
+Jakiego innego dowodu potrzebujesz bo uwierzyć, że Ruby to nie jest niszowy język?
+</p>
+
+<h3><span class="ruby-mit">&nbsp;</span>10. Wciąż brakuje narzędzi, a przede wszystkim IDE z prawdziwego zdarzenia dla Rubiego</h3>
+<p>
+Oczywiście, że są takie narzędzia! Jednakże porównanie z takimi narzędziami jak Java, .Net nie ma po prostu sensu. To dwa różne światy. Ruby nie potrzebuje dziesiątek narzędzi, które robią za programistę jakieś cuda. Do efektownej pracy z Rubym potrzebujesz przede wszystkim dobrego IDE. Najlepszym według mnie takim środowiskiem dla Rubiego jest Netbeans z modułem do Rubiego. <a href="http://blogs.sun.com/tor/">Tor Norbye's</a>, autor tego modułu <a href="http://blogs.sun.com/tor/category/Ruby">dokonał niezwykłej rzeczy w przeciągu ostatnich kilku miesięcy</a>. Netbeans nie jest jedynym takim IDE. O kilku innych możesz poczytać na <a href="http://blog.altsabon.com/porownanie-ide-edytorow-dla-ruby-on-rails/">blogu Sabona</a>. O braku porządnego IDE powiedzieć nie można. Oto kilka filmów prezentacyjnych tego środowiska (więcej dostępnych na stronach <a href="http://www.netbeans.org/kb/60/screencasts.html">Netbeans wiki</a> oraz <a href="http://netbeans.tv/">Netbeans.tv</a>):
+</p>
+
+<div class="video" id="videoPlayer"><embed width="410" height="331" flashvars="autoPlay=false&urlFileIdList=6423&show_title=true&PLAY_CALLBACK=emphasize&resizeLimitMax=true&lang=en&flash_play=true&author_name=NetBeans.tv&configUrl=http://sun.ora.ma/config.sun.ora.ma.xml" allowfullscreen="true" allowscriptaccess="sameDomain" quality="high" bgcolor="#666666" name="pv" id="pv" style="" src="http://netbeans.tv/images/playerWidget.swf" type="application/x-shockwave-flash"/></div>
+<p>Tworzenie Webloga używając Netbeans IDE</p>
+
+<div class="video" id="videoPlayer"><embed width="410" height="331" flashvars="autoPlay=false&urlFileIdList=5095&show_title=true&PLAY_CALLBACK=emphasize&resizeLimitMax=true&lang=en&flash_play=true&author_name=NetBeans.tv&configUrl=http://sun.ora.ma/config.sun.ora.ma.xml" allowfullscreen="true" allowscriptaccess="sameDomain" quality="high" bgcolor="#666666" name="pv" id="pv" style="" src="http://netbeans.tv/images/playerWidget.swf" type="application/x-shockwave-flash"/></div>
+<p>Praca z edytorem, podpowiadanie nazw metod, klas, zmiennych</p>
+
+<div class="video" id="videoPlayer"><embed width="410" height="331" flashvars="autoPlay=false&urlFileIdList=5956&show_title=true&PLAY_CALLBACK=emphasize&resizeLimitMax=true&lang=en&flash_play=true&author_name=NetBeans.tv&configUrl=http://sun.ora.ma/config.sun.ora.ma.xml" allowfullscreen="true" allowscriptaccess="sameDomain" quality="high" bgcolor="#666666" name="pv" id="pv" style="" src="http://netbeans.tv/images/playerWidget.swf" type="application/x-shockwave-flash"/>
+<p>Debugowanie aplikacji RoR</p>
+
+<p>
+Na pewno znalazłyby się kolejne mity, ale te powtarzają się dosyć często. Jestem otwarty na dyskusję. Proszę tylko o kulturę, flame wara nie zamierzam tu prowadzić :). Czekam na Wasze komentarze!
+</p>
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-1026083" class="comment1 guest">
+            
+            1.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>lego</strong> napisał(a) 10 Gru 2007 o godz. 08:07:
+            <div class="top"></div>
+            <div class="content">
+              <p>To biadolenie na temat wydajności to oznaka że ktoś na siłę chce się już do czegoś przyczepić a jaranie się  jakimiś bencharkami to oznaka niedojrzałości (programistycznej lub innej :) . </p>
+
+<p>Z resztą wydajność w dzisiejszych czasach kiedy po prostu dokłada się kolejny serwer do szafy nie jest sprawą najistotniejszą. Priorytetem jest szybkość powstawania i jakość kodu. </p>
+
+<p>Jeśli zaś mówimy o pehapowych klonach Railsa to cóż &#8211; są ok, ułatwiają znacznie pracę (tam gdzie trzeba użyć <span class="caps">PHP</span>), ale nadal są to tylko klony, wolę oryginał :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026171" class="comment2 guest">
+            
+            2.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://wijet.pl" rel="nofollow">wijet</a></strong> napisał(a) 10 Gru 2007 o godz. 10:38:
+            <div class="top"></div>
+            <div class="content">
+              <p>Super post, kawal dobrej roboty. Bez zastanowanienia moge odsylac tutaj ludzi rozsylajacych niedokonca sluszne opinie o Ruby. Celne porownanie z nozamia w kuchni, trzeba to puscic w miasto :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026173" class="comment1 owner">
+            
+            3.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 10 Gru 2007 o godz. 10:43:
+            <div class="top"></div>
+            <div class="content">
+              <p>@wijet, o to właśnie chodzi. Dużo jest szumu w okół Rubiego, na pewno w Polsce jesteśmy na etapie &#8222;dużo o nim słyszało, ale do końca nie wie co w trawie piszczy&#8221;. Wiele opinii, buzzu, a przy tym bardzo dużo mitów. To ciekawe, że programiści innych języków, którzy ledwo usłyszeli  o Rubym, mają często bardzo silnie wyrobione zdanie. Dla nich jest ten wpis, bo community Rubiego prawdopodobnie podpisze się pod wszystkimi punktami.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026176" class="comment2 guest">
+            
+            4.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://langs-tech-stuff.blogspot.com/" rel="nofollow">adam bartosik</a></strong> napisał(a) 10 Gru 2007 o godz. 10:54:
+            <div class="top"></div>
+            <div class="content">
+              <p>Co do wydajności &#8211; to kwestia szybkości rozwoju aplikacji. Internet rozwija się bardzo szybko i mało jest udanych przykładów, gdzie wielkie serwisy powstały w językach stałotypowanych, jak java czy C/C++. Amazon to perl (potem weszła java, równolegle), Facebook to <span class="caps">PHP</span> itd. itd.</p>
+
+<p>Języki dynamiczne są po to, by łatwiej wprowadzać zmiany w projektach, wymagają jednak większej samodyscypliny &#8211; to jak wolna i bezpieczna jazda autobusem (java,C) a sportowym autem lub motorem (php/perl/ruby/python). Co komu potrzeba.</p>
+
+<p>Normalne jest też, że wąskie gardła programowe w razie potrzeby przepisuje się do C/C++/javy, dużo łatwiej to jednak zrobić mając działający projekt w języku wyższego poziomu.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026182" class="comment1 guest">
+            
+            5.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Felippe</strong> napisał(a) 10 Gru 2007 o godz. 11:12:
+            <div class="top"></div>
+            <div class="content">
+              <p>Witam.<br />
+Tekst stara się zachować pozory obiektywizmu, ale niestety widać, że autor postawił sobie cel &#8222;pokazać, że Ruby jest super&#8221; i pod ten cel pisze artykuł. Brak konkretów. Najczęstrzy wywód prowadzi do stwierdzenia &#8222;W prównaniu do innych skryptowych języków tak samo źle/dobrze&#8221;.</p>
+
+<p>Nie mam uprzedzeń do Ruby, tylko pytam &#8211; jaki będzie zysk mojej &#8222;przesiadki&#8221; z innych języków skryptowych. Artykuł ten pokazuje, że &#8222;nie będę stratny&#8221;. Dla mnie to za mało. Zwłaszcza, że inne języki, jako starsze, podparte są większym doświadczeniem/zapleczem.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026183" class="comment2 guest">
+            
+            6.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Felippe</strong> napisał(a) 10 Gru 2007 o godz. 11:13:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ups. Przepraszam za orta w moim komentarzu:(</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026202" class="comment1 jogger">
+            
+            7.
+            
+            <img class="avatar-icon" src="http://hoppke.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://hoppke.jogger.pl">Hoppke</a></strong> napisał(a) 10 Gru 2007 o godz. 12:05:
+            <div class="top"></div>
+            <div class="content">
+              <p>O, sympatyczny wpis. <br />
+Ad 1. Programistów prędkość języka nie obchodzi aż tak bardzo. Benchmarki to specjalność onanistów sprzętowych, którzy nie dostrzegają całego problemu tworzenia oprogramowania.</p>
+
+<p>Ad 2. Co do noża, to&#8230; W amerykańskich korporacjach pracownicy są jednym z największych zagrożeń. Większym nawet niż np. szpiegostwo przemysłowe, włamywacze itp. Zabawne, ale prawdziwe.</p>
+
+<p>No i &#8222;Ci pierwsi widzą miejsca, gdzie można to efektownie zastosować&#8221;. I w tym problem. Efekciarstwo w programowaniu jest równie głupie, jak onanizm benchmarkowy z punktu 1.</p>
+
+<p>Ad 3,4,5,6 &#8211; tak to wygląda. Z tym że czytelność kodu to śliski temat, bo dość subiektywny. Czy Ruby ma jakiś przewodni model formatowania kodu, jakiś przyjęty standard branżowy?</p>
+
+<p>Ad 7. W OpenSource liczba bibliotek nie przekłada się na ich dopracowanie czy możliwości. Jeśli np. potrzebuję biblioteki do operowania na <span class="caps">EXIF</span>, to znajdę pewnie z 10 projektów na rubyforge. 3 będą skrajnie niestabilne, 3 będą niezłe, ale nie poradzą sobie np. z tagami <span class="caps">EXIF</span> wstawianymi przez Canona, dwa będą całkiem całkiem, ale nie będą miały funkcji edytowania tagów, no i tylko jeden będzie obsługiwał od razu <span class="caps">IPTC</span> i <span class="caps">EXIF</span> w TIFF-ach itp. I jest to wariant optymistyczny ;) Ale jak by nie patrzeć Ruby ma sporo bibliotek do obróbki praktycznie wszystkich podstawowych rzeczy i bindingi do popularnych bibliotek OpenSource.</p>
+
+<p>Ad 8. W wielu językach masz wyrafinowane frameworki które zdejmują z Ciebie ciężar kodowania. Jeśli w Rubym nie znajdziesz akurat równie pomocnego narzędzia (co się często zdarza w dużych projektach), to będziesz klepać kod który w innym języku byś po prostu wziął w postaci jakiejś biblioteki. Faktycznie w Rubym pewna klasa aplikacji będzie dużo prostsza do napisania, niż w innych językach. No ale to wiadomo już od dawna &#8211; dobieraj język do zadania. Jeśli mam przetwarzać dużą ilość plików tekstowych, to pewnie skrobnę sobie coś szybko w Perlu czy Pythonie, nie będę się bawił z Javą czy C. </p>
+
+<p>Ad 9. Święta prawda.</p>
+
+<p>Ad 10. &#8222;Ruby nie potrzebuje dziesiątek narzędzi, które robią za programistę jakieś cuda&#8221;.</p>
+
+<p>Żaden język tego nie <em>potrzebuje</em>. W Javie też mogę pisać przy użyciu choćby Notatnika. Ale nie można zaprzeczyć, że wszystkie te udogodnienia znane z &#8222;dużych&#8221; środowisk są cholernie przydatne.</p>
+
+<p>Najlepiej to widać w sukcesie ruby&#8217;owego modułu do netbeans. Wcześniej zealoci ruby&#8217;ego wciskali wszystkim kit, że nie potrzebują w ogóle <span class="caps">IDE</span>, bo Ruby to zupełnie inny paradygmat kodowania, że wszystko jest proste i nieskomplikowane (i nagrywali filmiki z kodowania przykładowego webappa <span class="caps">CRUD</span> w jakimś prostym edytorze tekstowym). Jeśli kiedyś pojawią się do Ruby&#8217;ego automaty potrafiące robić za programistę różne &#8222;cuda&#8221;, to nagle okaże się, że jednak fajnie jest mieć takie dodatki.</p>
+
+<p>Nie ma czegoś takiego jak &#8222;zbyt wiele&#8221; wspomagaczy :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026211" class="comment2 owner">
+            
+            8.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 10 Gru 2007 o godz. 12:23:
+            <div class="top"></div>
+            <div class="content">
+              <p>@Felippe, przyznaję, czasem trudno jest pozostać całkowicie obiektywnym. Ale zauważ, że ja nie porównuję Ruby z jakimś konkretnym językiem. Owszem, pojawiły się pewne porównania, ale nie na zasadzie &#8222;Ruby ma fajniejsze coś, czego nie ma język X&#8221;. Nie mam nic do Perla, <span class="caps">PHP</span> czy też Pythona. Tekst nie jest o wywyższaniu Rubiego ponad te języki. A tym bardziej nie ma przekonać Cię do przesiadki na ten język. Przeczytaj go proszę jeszcze raz ;)</p>
+
+<p>@Hopke:<br />
+Ad1. Chciałbym żeby takie było zdanie wszystkich programistów, ale niestety tak nie jest. Tak jak programiści mają skłonność do przedwczesnej optymalizacji, tak robią to już na poziomie samego języka.</p>
+
+<p>Ad7. Oczywiście, że ilość nie przekłada się na jakość. Aczkolwiek byłoby dziwne, gdyby wszystkie te projekty (liczone w tysiącach) okazywały się bezużyteczne :). Bardzo dużo pojawia się bindingów bilbiotek z C, gdyż łatwo (relatywnie) się je pisze.</p>
+
+<p>Ad8. Framework jest bardzo ważny. Jednakże często czytam o zarzutach bezpośrednio do Rubiego, że nie bardzo go można użyć do &#8222;dużych&#8221; (pojęcie bardzo względne) projektów. Niektórzy widzą wykorzystanie go w prostych shellowych skryptach&#8230;</p>
+
+<p>Ad10. Narzędzia są ważne, nie zamierzam twierdzić inaczej. Jednakże java, .net w dużej mierze są nastawione na przeróżne narzędzia. Ruby zdecydowanie nie (aczkolwiek dobre narzędzie mu nie zaszkodzi ;)).</p>
+
+<blockquote>
+<p>&#8222;Czy Ruby ma jakiś przewodni model formatowania kodu, jakiś przyjęty standard branżowy?&#8221; </p>
+</blockquote>
+
+<p>Szczerze mówiąc chyba nie, ale widziałem wystarczająco dużo kodu by powiedzieć Ci jak powinno, a jak nie powinno się w nim pisać :).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026287" class="comment1 jogger">
+            
+            9.
+            
+            <img class="avatar-icon" src="http://marcin.sobczak.me/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://marcin.sobczak.me">marcins</a></strong> napisał(a) 10 Gru 2007 o godz. 14:18:
+            <div class="top"></div>
+            <div class="content">
+              <p>Mi bardziej pasuje kod pythona, ale do rubiego chyba też się przekonam, argumenty dałeś naprawdę dobre ;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026494" class="comment2 guest">
+            
+            10.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 10 Gru 2007 o godz. 16:56:
+            <div class="top"></div>
+            <div class="content">
+              <p>Pisanie programów <span class="caps">GTK</span> w Ruby to coś wspaniałego&#8230;<br />
+Ten kod jest taki&#8230; przyjemny :) .</p>
+
+<p>Ale nie ma <span class="caps">IDE</span> typu <span class="caps">RAD</span> do tworzenia aplikacji <span class="caps">GUI</span> w Rubym :/ .</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026506" class="comment1 jogger">
+            
+            11.
+            
+            <img class="avatar-icon" src="http://hoppke.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://hoppke.jogger.pl">Hoppke</a></strong> napisał(a) 10 Gru 2007 o godz. 17:07:
+            <div class="top"></div>
+            <div class="content">
+              <p>Livio: a jak się obsługuje gtk+ w rubym? To są zwykłe bindingi, czy może przerobione na obiektowość? A może masz porównanie z gtk pod pythonem&#8230;?</p>
+
+<p><span class="caps">BTW</span>, jeśli <span class="caps">GUI</span> robisz w GTK+, to chyba postępujesz tak samo jak w każdym innym języku &#8211; interfejs wyklikać w Glade, a potem w aplikacji tylko wczytywać opis <span class="caps">GUI</span> z XML-a&#8230;</p>
+
+<p>Inna sprawa, że projektowanie <span class="caps">GUI</span> w <span class="caps">RAD</span> ciężko jest dobrze zrobić (sądząc po tym, co do tej pory widziałem w różnych językach). Z jednej strony trzeba mieć klikane &#8222;coś&#8221; do konstruowania <span class="caps">GUI</span> i integrowania tego z kodem, z drugiej strony nic nie powinno się rozjechać jeśli programista coś ręcznie &#8222;nagrzebie&#8221; w kodzie. NetBeans ma to chyba nieźle zrobione, jeśli dobrze kojarzę, ale całościowo to chyba narzędzia Qt najlepsze wrażenie na mnie robiły.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026507" class="comment2 owner">
+            
+            12.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 10 Gru 2007 o godz. 17:08:
+            <div class="top"></div>
+            <div class="content">
+              <p>@marcins: nie ma problemu by umieć oba języki :).</p>
+
+<p>@Livio: chętnie bym dowiedział się coś więcej o tym, gdyż generalnie Ruby z aplikacjami <span class="caps">GUI</span> nie stoi za dobrze. Widziałem tylko <a href="http://www.youtube.com/watch?v=PXpwC1o5AcI" rel="nofollow" >film pokazujący tworzenie prostej aplikacji Gtk w Rubym</a>. Czy glade, który jest użyty nie podchodzi pod takie proste narzędzie RAD?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026508" class="comment1 guest">
+            
+            13.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 10 Gru 2007 o godz. 17:09:
+            <div class="top"></div>
+            <div class="content">
+              <p>#Hoppke: Poszukaj u mnie o Rubym, znajdziesz przykładowy kod.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026510" class="comment2 guest">
+            
+            14.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 10 Gru 2007 o godz. 17:10:
+            <div class="top"></div>
+            <div class="content">
+              <p>#Radarek: Glade pozwala stworzyć plik .glade i nic więcej, a narzędzie <span class="caps">RAD</span> pozwala w łatwy sposób stworzyć zdarzenie i z <span class="caps">GUI</span> przejść do odpowiedniego miejsca w kodzie. Takie pół GUI-pół kod.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026516" class="comment1 owner">
+            
+            15.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 10 Gru 2007 o godz. 17:13:
+            <div class="top"></div>
+            <div class="content">
+              <p>@Linio: dlatego użyłem określenia &#8222;proste narzędzie RAD&#8221; ;). Wydaje mi się, że sytuację (choćby trochę) zmieni JRuby. Możesz sobie wyklikać w Netbeans <span class="caps">GUI</span>, a potem logikę dopisać w Rubym. Powstają także biblioteki opakowujące Swing <span class="caps">API</span>, które w znaczny sposób ułatwiają pisane ręcznie takich aplikacji.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026518" class="comment2 guest">
+            
+            16.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 10 Gru 2007 o godz. 17:14:
+            <div class="top"></div>
+            <div class="content">
+              <p>JRuby? Znaczy miałbym pisać kodem Ruby&#8230; ale w Javie?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026520" class="comment1 owner">
+            
+            17.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 10 Gru 2007 o godz. 17:15:
+            <div class="top"></div>
+            <div class="content">
+              <p>JRuby to implementacja Rubiego, ale w Javie. Jedną z korzyści jest dostęp do całego <span class="caps">API</span> Javy.</p>
+
+<p>Pisałem o tym jakiś czas temu:<br />
+<a href="../../../07/12/java-i-ruby-w-jednym-stali-domku/index.html" rel="nofollow" >http://radarek.jogger.pl/2007/07/12/java-i-ruby-w-jednym-stali-domku/</a></p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026527" class="comment2 guest">
+            
+            18.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 10 Gru 2007 o godz. 17:21:
+            <div class="top"></div>
+            <div class="content">
+              <p>Nie wiem, czy opłaca mi sie zabawa w Javie, ale NetBeans, Swing &#8211; to wszystko brzmi zachęcająco, ale myśl o .jarach, classach itede odstrasza. Naprawdę</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026528" class="comment1 owner">
+            
+            19.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 10 Gru 2007 o godz. 17:24:
+            <div class="top"></div>
+            <div class="content">
+              <p>Jeśli nie masz za bardzo do czynienia z Javą to nie ma sensu się zmuszać. Siła JRubiego m.in. tkwi w tym, że jeśli ktoś do tej pory zainwestował sporo w Javę to nie rezygnuje ze swojej wiedzy i może ją wykorzystywać w Rubym.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026530" class="comment2 guest">
+            
+            20.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 10 Gru 2007 o godz. 17:25:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ja chciałbym zostać programistą, ale nauka tych wszystkich static, void itd. nie podoba mi się...</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026748" class="comment1 jogger">
+            
+            21.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://seban.jogger.pl">Seban</a></strong> napisał(a) 10 Gru 2007 o godz. 20:09:
+            <div class="top"></div>
+            <div class="content">
+              <p>Livio z czasem prawie nie zwracasz na to uwagi, po prostu samo się pisze ;-)<br />
+Jako programista Rails mogę powiedzieć, że pisanie w Rubym jest cholernie wygodne. W tym momencie nie wyobrażam sobie przesiadki na coś innego. <br />
+Jednak nawet w najlepszym języku można napisać crap code.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026757" class="comment2 guest">
+            
+            22.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 10 Gru 2007 o godz. 20:23:
+            <div class="top"></div>
+            <div class="content">
+              <p>Pisanie w Rubym, wiem, że jest przyjemne, ale ja nie chce się babrać w Rubym w opisywanie całego interfejsu. Tj. kolejno tworzenie i dodawanie komponentów <span class="caps">GUI</span>. Tę część i sygnały wolałbym sobie nieco ułatwić.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026760" class="comment1 owner">
+            
+            23.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 10 Gru 2007 o godz. 20:27:
+            <div class="top"></div>
+            <div class="content">
+              <p>@Livio, ale to właśnie umożliwia Ci wspomniany glade. Zobacz sobie film video. Nie jest to może dokładnie takie jak Ty chcesz, bo nie masz możliwości podpięciu od razy event handlera, ale nie jest tak źle. Jak dobrze sobie to rozbijesz to nie będzie problemu z przegenerowaniem pliku .glade -&#62; .rb i nadpisywaniem tego co do tej pory napisałeś (kwestia dziedziczenia po klasie wygenerowanej). Spróbuj, powinno Ci spasować :).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026761" class="comment2 guest">
+            
+            24.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 10 Gru 2007 o godz. 20:28:
+            <div class="top"></div>
+            <div class="content">
+              <p>Co to jest Glade, to ja wiem, ale składania, gdy używany jest ruby-libglade a nie ruby-gtk2, komplikuje się.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026762" class="comment1 guest">
+            
+            25.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 10 Gru 2007 o godz. 20:29:
+            <div class="top"></div>
+            <div class="content">
+              <ul>
+<li>składnia</li>
+</ul>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026769" class="comment2 guest">
+            
+            26.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>D4rky</strong> napisał(a) 10 Gru 2007 o godz. 20:41:
+            <div class="top"></div>
+            <div class="content">
+              <p>co do predkosci i zasobozernosci, to tutaj troche zaOTuje, ale ona <span class="caps">JEST</span> wazna. np taki Python jest swietnym jezykiem, bla bla bla, ale pozera pamiec niczym nie waz, a smok ;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026777" class="comment1 guest">
+            
+            27.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 10 Gru 2007 o godz. 20:48:
+            <div class="top"></div>
+            <div class="content">
+              <p>D4rky, to zależy, np. taki Gajim, klient <span class="caps">XMPP</span>. Potrafi szybciej otworzyć okno rozmowy niż taki Pidgin w C. Ale z kolei oferuje mniej. Sonata &#8211; klient <span class="caps">MPD</span>. Właściwie wiele nie robi, bo tylko korzysta z daemona odwalającego czarną robotę, ale mimo wszystko jest szybka. Można wykopać masę innych przykładów, ale wiele zależy od sprzętu i [uży]szkodnika ;&#62; .</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026792" class="comment2 jogger">
+            
+            28.
+            
+            <img class="avatar-icon" src="http://blog.gruszka.info/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://blog.gruszka.info">snipe</a></strong> napisał(a) 10 Gru 2007 o godz. 20:58:
+            <div class="top"></div>
+            <div class="content">
+              <p>Artykuł na pewno się przyda aby uzmysłowić innym, że niektóre kwestie dot. Rubiego to tylko stereotypy, a prawda jest całkiem inna :) W każdym bądź razie, dzięki za ten tekst :D</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026794" class="comment1 guest">
+            
+            29.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 10 Gru 2007 o godz. 20:58:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ja stereotypy usłyszałem dopiero jak się za Rubiego dla zabawy zabrałem :P .</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1026837" class="comment2 guest">
+            
+            30.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 10 Gru 2007 o godz. 21:26:
+            <div class="top"></div>
+            <div class="content">
+              <p>Metoda na ruby-glade-create-template nie działa&#8230; Tylko się natworzyłem pięknego <span class="caps">GUI</span> i &#8222;GUI*NO&#8221; z tego.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027150" class="comment1 guest">
+            
+            31.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>aleksandra</strong> napisał(a) 11 Gru 2007 o godz. 10:15:
+            <div class="top"></div>
+            <div class="content">
+              <p><b>Ad 3. Kod Rubiego jest podobny do Perla (&#8222;tego się nie da czytać!&#8221;)</b></p>
+
+<p>Kod programu jest na tyle czytelny, na ile postara się o to autor. Niektóre języki wymuszają ładne formatowanie, inne nie &#8211; ale w każdym da się stworzyć składniowego potworka, którego działanie trudno będzie zrozumieć. Podobnie &#8211; w każdym da się ładnie i czytelnie pisać, jeśli tylko autor tego chce.<br />
+Brainfucki i inne wynalazki będące celem samym w sobie pomijam.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027157" class="comment2 guest">
+            
+            32.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>szyder</strong> napisał(a) 11 Gru 2007 o godz. 10:23:
+            <div class="top"></div>
+            <div class="content">
+              <p>Są również czynniki niemerytoryczne. Średni programista <span class="caps">ROR</span> za chińskiego boga nie zarobi tyle co przeciętny koder J2EE. Jakoś tak ciężko w imię dynamizmów, elastyczności i innych takich obciąć sobie zarobki o połowę.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027173" class="comment1 jogger">
+            
+            33.
+            
+            <img class="avatar-icon" src="http://hoppke.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://hoppke.jogger.pl">Hoppke</a></strong> napisał(a) 11 Gru 2007 o godz. 10:55:
+            <div class="top"></div>
+            <div class="content">
+              <p>To prawda. Sam kocham pythona (i pewnie bardzo polubiłbym też Ruby), ale zawodowo dłubię w Javie. Bo tu mogę do woli przebierać w ofertach&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027211" class="comment2 guest">
+            
+            34.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.doniek.pl" rel="nofollow">Doniek</a></strong> napisał(a) 11 Gru 2007 o godz. 11:56:
+            <div class="top"></div>
+            <div class="content">
+              <p>Świetny artykuł, choć wątpie czy przekona on watpiących</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027224" class="comment1 owner">
+            
+            35.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 11 Gru 2007 o godz. 12:11:
+            <div class="top"></div>
+            <div class="content">
+              <p><code>szyder, </code>Hoppke: średnie zarobki programisty Javy zapewne są większe niż <span class="caps">PHP</span> czy też Rubiego (chociaż jest relatywnie mało ludzi, którym płacą za programowanie w tym języku). Ale.. Czasem można też dobrze trafić. Mój kolega ostatnio zmienił pracę ze znanego portalu na literkę &#8222;O&#8221;, gdzie pisał od Javy, przezp <span class="caps">PHP</span>, Perl do Javascript. Teraz programuje w Pythonie i na początek dostał 100% tego co zarabiał do tej pory. Także nie ma jakiejś konkretnej reguły. Mówi się, że zarabiasz tyle na ile się cenisz.</p>
+
+<p>@Doniek: ależ on nie miał przekonać wątpiących, tylko przestawić tych co głupoty na około gadają ;-).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027237" class="comment2 jogger">
+            
+            36.
+            
+            <img class="avatar-icon" src="http://hoppke.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://hoppke.jogger.pl">Hoppke</a></strong> napisał(a) 11 Gru 2007 o godz. 12:28:
+            <div class="top"></div>
+            <div class="content">
+              <p>Radarek: nie myślałem tu akurat o pieniądzach (jeśli chcesz kosić naprawdę szybką kasę, to najlepiej wejść w C++ i pracować na kontraktach dla banków), a po prostu o wyborze firmy.</p>
+
+<p>Pisząc w Javie mogę sobie wybrać firmę o odpowiadającej mi w danej chwili wielkości (20-70 pracowników), z odpowiadającą mi metodologią tworzenia softu (agile/xp/test-driven), pracującą z odpowiadającymi mi technologiami (Java 5, Spring, Hibernate, bez <span class="caps">EJB</span>, <span class="caps">JSP</span> i reszty antycznego złomu J2EE) , w sektorze który mi pasuje (ryzyko/finanse), no i oczywiście za pasujące mi pieniądze i w sensownej lokalizacji. Bo po prostu zapotrzebowanie jest tak wielkie, że nawet ze szczegółowym &#8222;filtrem&#8221; znajduję sporo potencjalnie pasujących firm.</p>
+
+<p>Ruby by mnie w życiu zawodowym pewnie zmusił do paru kompromisów (np. pisania w RoR).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027310" class="comment1 guest">
+            
+            37.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://0x1fff.com" rel="nofollow">sinx</a></strong> napisał(a) 11 Gru 2007 o godz. 14:03:
+            <div class="top"></div>
+            <div class="content">
+              <p>imo programista perla napisal by tak:</p>
+
+<p>while ( &#60;&#62; ) # zamiast &#60;&#62; mozna dac &#60;STDIN&#62;<br />
+{<br />
+print if /Perl/<br />
+}</p>
+
+<p>ewentualnie tak:</p>
+
+<p>map { print if /Perl/ } &#60;&#62;;</p>
+
+<p>Ewentualnie jeszcze inaczej :) . Najwydajniejszy sie wydaje sposob numer 1. To co napisales, to jest programista Javy / C / C++ albo jakiegos pseudokodu.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027325" class="comment2 guest">
+            
+            38.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://0x1fff.com" rel="nofollow">sinx</a></strong> napisał(a) 11 Gru 2007 o godz. 14:13:
+            <div class="top"></div>
+            <div class="content">
+              <p>ha znow nie doczytalem ;&#62; tylko spojrzalem na kod i komentarz &#8230; ehhh, a byl na tyle lakoniczny, ze nie domyslilem sie o co chodzi. huh, niedobrze.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027350" class="comment1 jogger">
+            
+            39.
+            
+            <img class="avatar-icon" src="http://marcin.sobczak.me/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://marcin.sobczak.me">marcins</a></strong> napisał(a) 11 Gru 2007 o godz. 14:37:
+            <div class="top"></div>
+            <div class="content">
+              <p>Pobawiłem się trochę rubim i powiem tyle: na starcie ładuje wiele modułów których się w danej chwili nie używa. W pythonie aby pobrać <span class="caps">ARGV</span> należy załadować lib &#8222;sys&#8221;, do wyrażeń regularnych potrzeba &#8222;re&#8221;.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027432" class="comment2 guest">
+            
+            40.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Piotr Usewicz</strong> napisał(a) 11 Gru 2007 o godz. 16:26:
+            <div class="top"></div>
+            <div class="content">
+              <p>Prosze, to jednak istnieja normalni ludzie :) Gratuluje tekstu.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027511" class="comment1 jogger">
+            
+            41.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://seban.jogger.pl">Seban</a></strong> napisał(a) 11 Gru 2007 o godz. 18:18:
+            <div class="top"></div>
+            <div class="content">
+              <p>@Marcins: a co Ci Ruby załadował na starcie? A co do wyrażeń regularnych to ,,Ruby zapewnia wbudowaną dopasowania wzorców i ich podmiany&#8217;&#8216;.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027513" class="comment2 owner">
+            
+            42.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 11 Gru 2007 o godz. 18:23:
+            <div class="top"></div>
+            <div class="content">
+              <p>@marcins: uważasz, że to czyni jeden język gorszym od drugiego? <span class="caps">ARGV</span> i regexpy to chleb powszedni, nie widzę powodu by nie były to elementy wbudowane w język.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027514" class="comment1 jogger">
+            
+            43.
+            
+            <img class="avatar-icon" src="http://hoppke.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://hoppke.jogger.pl">Hoppke</a></strong> napisał(a) 11 Gru 2007 o godz. 18:24:
+            <div class="top"></div>
+            <div class="content">
+              <p>No to choćby te wyrażenia załadował na starcie ;)</p>
+
+<p>Ale do mnie akurat ten argument nie przemawia. Ruby nie jest przeznaczony do zastosowań w których liczy się każdy kilobajt pamięci, więc taki narzut nie jest chyba istotny?</p>
+
+<p>Zresztą, o jakim narzucie mówimy? Ile KB zajmuje uruchomione &#8222;hello world&#8221; w ruby? Jak długo startuje?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027527" class="comment2 guest">
+            
+            44.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>D4rky</strong> napisał(a) 11 Gru 2007 o godz. 18:42:
+            <div class="top"></div>
+            <div class="content">
+              <p>Hoppke &#8211; w takich wypadkach to sie liczy <span class="caps">ASM</span> ;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027544" class="comment1 jogger">
+            
+            45.
+            
+            <img class="avatar-icon" src="http://marcin.sobczak.me/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://marcin.sobczak.me">marcins</a></strong> napisał(a) 11 Gru 2007 o godz. 18:51:
+            <div class="top"></div>
+            <div class="content">
+              <p>Seban, Radarek: powiedzcie mi gdzie napisałem że ruby jest gorszy? Stwierdziłem że python nie ładuje pewnych rzeczy, co ruby robi. Nie napisałem nawet że to, że tak ładuje jest złe.</p>
+
+<p>Wy wszędzie widzicie językowych fanatyków i próbę krytyki? ;&#62;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027548" class="comment2 owner">
+            
+            46.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 11 Gru 2007 o godz. 18:55:
+            <div class="top"></div>
+            <div class="content">
+              <p>@marcins: napisałeś coś z czego ciężko było cokolwiek wywnioskować. Zapytałem więc czy uważasz, że to czyni jeden język od drugiego lepszym (gorszym). Jak widzisz sam zinterpretowałeś moje pytanie jako stwierdzenie &#8222;Ruby jest lepszy!&#8221;, a przecież nic takiego nie napisałem :).</p>
+
+<p>Ok, to teraz wytłumacz nam co chciałeś powiedzieć przez &#8222;na starcie ładuje wiele modułów których się w danej chwili nie używa. W pythonie aby pobrać <span class="caps">ARGV</span> należy załadować lib „sys”, do wyrażeń regularnych potrzeba „re”.&#8221; Bo nie wiem czy to jakiś zarzut, czy też zwykłe stwierdzenie typu &#8222;programowałem w Javie, aby dodać klasę z innego pakiety należy użyć konstrukcji import&#8221; ;).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027563" class="comment1 jogger">
+            
+            47.
+            
+            <img class="avatar-icon" src="http://marcin.sobczak.me/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://marcin.sobczak.me">marcins</a></strong> napisał(a) 11 Gru 2007 o godz. 19:04:
+            <div class="top"></div>
+            <div class="content">
+              <p>Po prostu głośno wypowiedziałem swoje myśli ;) Przeczytałem o rubim na wikibooks i zaznaczyłem tą różnicę między pythonem.<br />
+Być może to jest jedną z przyczyn, że ruby uznawane jest za wolne , ale jeden mały moduł w tą czy w tą wiosny nie czyni.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027767" class="comment2 guest">
+            
+            48.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>lopex</strong> napisał(a) 11 Gru 2007 o godz. 21:08:
+            <div class="top"></div>
+            <div class="content">
+              <p>@marcins: tutaj nie ma mowy o żadnych modułach (just built in features), poza tym wspomniane przez Ciebie ficzery są lazy i nie mają żadnego wpływu na start/wydajność interpretera. Główną bolączka 1.8 jest to, że to jest zwykły <span class="caps">AST</span> walker z powolnym dispatchem metod.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027774" class="comment1 guest">
+            
+            49.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Litania</strong> napisał(a) 11 Gru 2007 o godz. 21:16:
+            <div class="top"></div>
+            <div class="content">
+              <p>Brak tu justowania tekstu i komentarzy. To poprawi czytelność! ;-)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027775" class="comment2 owner">
+            
+            50.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 11 Gru 2007 o godz. 21:17:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@Litania</strong>: możesz używać składnie <a href="http://wiki.jogger.pl/wiki/Textile" rel="nofollow" >Textile</a> (chociaż przyznaję że ta joggerowa jest momentami ciężka do zastosowania).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1027813" class="comment1 guest">
+            
+            51.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Kyku</strong> napisał(a) 11 Gru 2007 o godz. 21:49:
+            <div class="top"></div>
+            <div class="content">
+              <p>Rubiego poznałem chyba jakies 6 lat temu. Od tego czasu przydawał mi się w różnych skryptach i do tworzenia prototypów. W Rails piszę dosyć intensywnie od ponad roku. Jedyną zaletą Rubiego i RoR jest chyba to że programuje się w nich bardzo szybko i wygodnie. Poza tym nic czego by nie byłoby w innych językach.</p>
+
+<p>Co do wydajności, to gdybym mój główny projekt nie był aplikacją, którą odwiedza jedynie wąskie grono klientów, to pewnie pracodawca szybko wybiłby mi z głowy rzeczy w stylu RoR. A muszę przyznać, że włożyłem (i ciągle wkładam) dużo wysiłku  w poprawę wydajności.</p>
+
+<p>Co do bibliotek to niby jest ich dużo, ale niestety wiele z nich to szybkie projekty zawierające błedy, i/lub minimum funkcjonalności. Wyglada to kiepsko w porównaniu do Perla i Pythona nie wspominając o Javie lub C/C++.</p>
+
+<p>W każdym razie mam nadzieję, że RoR i Ruby 2.0 poprawią tą sytuację i Ruby nie skończy jak Lisp.</p>
+
+<p>Pozdrawiam,<br />
+Kyku</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1028574" class="comment2 guest">
+            
+            52.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>T2</strong> napisał(a) 12 Gru 2007 o godz. 21:21:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ludzie! <span class="caps">ASP</span>.<span class="caps">NET</span> na frameworku 3.5 &#8211; z tym można porównywać, a nie ze starym php czy pearlem&#8230;.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1028576" class="comment1 guest">
+            
+            53.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 12 Gru 2007 o godz. 21:22:
+            <div class="top"></div>
+            <div class="content">
+              <p>MS ze swoimi rozwiązaniami może w <span class="caps">USA</span> jest popularny, ale Polacy wiedzą co dobre i tego nie używają.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1028633" class="comment2 guest">
+            
+            54.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.stifflog.com/" rel="nofollow">sztywny</a></strong> napisał(a) 12 Gru 2007 o godz. 22:02:
+            <div class="top"></div>
+            <div class="content">
+              <p>puts <span class="caps">ARGF</span>.grep(/Ruby/) :P</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1029228" class="comment1 guest">
+            
+            55.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Moarc/J-23</strong> napisał(a) 13 Gru 2007 o godz. 16:59:
+            <div class="top"></div>
+            <div class="content">
+              <p>5. Nie zgadzam się. Ruby, Python i podobne to czysty bełkot.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1029229" class="comment2 jogger">
+            
+            56.
+            
+            <img class="avatar-icon" src="http://hoppke.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://hoppke.jogger.pl">Hoppke</a></strong> napisał(a) 13 Gru 2007 o godz. 16:59:
+            <div class="top"></div>
+            <div class="content">
+              <p>A jaki język uważasz za czytelny?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1029247" class="comment1 owner">
+            
+            57.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radosław Bułat</a></strong> napisał(a) 13 Gru 2007 o godz. 17:18:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@T2</strong>: tekst nie miał na celu porównania języków, aczkolwiek pojawiły się nazwy języków, które w jakiś sposób są najbliższe Rubiemu.</p>
+
+<p><strong>@Moarc/J-23</strong>: Przecież takie stwierdzenie nie pojawiło się w tekście.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1029402" class="comment2 guest">
+            
+            58.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>kotosha</strong> napisał(a) 13 Gru 2007 o godz. 20:12:
+            <div class="top"></div>
+            <div class="content">
+              <p>W takim razie i ja Wam coś powiem. Artykuł jest ok i sam miałem go dodać do wykopu gdyby ktoś tego wcześniej nie zrobił. Ruby się rozpędza i zyskuje coraz szersze grono zwolenników. A jeśli chodzi o artykuł:</p>
+
+<p>1) Jeśli szybkość działania jest problemem to jest to tylko kwestia czasu. Odsyłam do: http://antoniocangiano.com/2007/12/03/the-great-ruby-shootout/</p>
+
+<p>2) Masz rację &#8211; absurd, bo to od dobrze zgranej grupy w większości zależy czy program będzie dobrze napisany.</p>
+
+<p>3) Napisałem kiedyś fragment kodu ruby i dałem do przeczytania laikowi. Bez problemu powiedział do czego służy. Ludzie, jeden problem można w Rubym napisać na wiele sposobów.</p>
+
+<p>4) Rails jest integralną częścią Ruby. Rails jest napisany w Ruby:D. Nic dziwnego że dobrze ze sobą współgrają</p>
+
+<p>5) Zamiast używać polskiego możemy pisać w Ruby:), pewnie byśmy się zrozumieli, (ale to byłoby już chyba zboczenie zawodowe;)</p>
+
+<p>6) Racja! Kolejny błąd. Rails jest szybszy od php-owego symphony. A skalowanie poziome jest szybkie(chodzi o dołączenie kolejnego serwera)</p>
+
+<p>7) Bez komentarza. Wyśmiać i napiętnować:). Biblioteki ciągle powstają!</p>
+
+<p>8) Ojej. Jeżeli w tym problem to chodzi tylko o szybkość, ale to kwestia czasu. <span class="caps">MVC</span> rulez &#8211; czytaj ład i porządek &#8211; chaos opanowany. </p>
+
+<p>9) Poczekamy zobaczymy, ale ktoś tu źle obstawił. Rubin jest ciągle szlifowany no i ma to coś. </p>
+
+<p>10) NetBeans świetne środowisko, bo sam go używam. Ide nie brakuje, brak za to dystansu krytykom:)</p>
+
+<p>No i powstała piękna mitologia. Ludzie mają dużą wyobraźnię, za to brak rozwagi. Art. pierwsza klasa.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1029406" class="comment1 guest">
+            
+            59.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>D4rky</strong> napisał(a) 13 Gru 2007 o godz. 20:14:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ja Rubiego po prostu nie lubie. Nawet nie bede wymyslal ku temu racjonalnych podstaw czy krytykowal jakichs cech jezyka.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1029408" class="comment2 guest">
+            
+            60.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 13 Gru 2007 o godz. 20:15:
+            <div class="top"></div>
+            <div class="content">
+              <p>De gustibus non cośtam.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1031123" class="comment1 guest">
+            
+            61.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Moarc/J-23</strong> napisał(a) 15 Gru 2007 o godz. 17:10:
+            <div class="top"></div>
+            <div class="content">
+              <p>@Hoppkke: Wszystkie niewcięciowe i niejavowe, i nieMS-owe &#8211; C, <span class="caps">CPP</span>, Perla, Assemblera, Basha, <span class="caps">PHP</span>, Delphi, Pascala&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1031128" class="comment2 jogger">
+            
+            62.
+            
+            <img class="avatar-icon" src="http://hoppke.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://hoppke.jogger.pl">Hoppke</a></strong> napisał(a) 15 Gru 2007 o godz. 17:16:
+            <div class="top"></div>
+            <div class="content">
+              <p>To ja chyba wolę bardziej czytelną czytelność.  Taką z wcięciami.</p>
+
+<p>Nie bez powodu <span class="caps">IOCC</span> czy perlgolf dotyczą określonych języków.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1031658" class="comment1 guest">
+            
+            63.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Moarc/J-23</strong> napisał(a) 16 Gru 2007 o godz. 10:04:
+            <div class="top"></div>
+            <div class="content">
+              <p>Dobra, nie będę się użerał, bo <span class="caps">JAPH</span> jestem ;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1032122" class="comment2 guest">
+            
+            64.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Pavel</strong> napisał(a) 17 Gru 2007 o godz. 16:19:
+            <div class="top"></div>
+            <div class="content">
+              <p>Co do edytorów &#8211; może kogoś zainteresuje dodatek do Aptana <span class="caps">IDE</span> &#8211; RadRails. Prezentacje można obejrzeć na http://www.aptana.tv/</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1038912" class="comment1 guest">
+            
+            65.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Wojtek B.</strong> napisał(a) 25 Gru 2007 o godz. 19:12:
+            <div class="top"></div>
+            <div class="content">
+              <p>Gratulacje Radar, fajny tekst. </p>
+
+<p>To ja dorzucę coś od siebie. Używam Rubiego, gdyż czasami trzeba przeformatować logi jakiejś aplikacji, wygenerować z nich jakieś statystyki itd. itp. Proste zadania do których trzeba coś zaprogramować, nie ma gotowej aplikacji która to &#8222;coś&#8221; zrobi.</p>
+
+<p>&#8222;Perl sie w 100% nadaje do tego&#8221; ktoś pewnie powie, ale sprawa jest taka, że ja <span class="caps">NIE</span> POTRAFIĘ pisać w Perlu, tak samo jak nie potrafię w Rubym. Nie chce mi sie uczyć języków programowania po to tylko, żeby przeglądać logi jakieś, dlatego wybieram to co działa i coś w czym pisanie nie sprawi mi problemu.</p>
+
+<p>Nauczyłem się jednak jednej rzeczy, jak coś próbowałem pisać w &#8222;moim Perlu&#8221; i &#8222;moim Ruby&#8221;, to wynik był zawsze taki: &#8211; program w &#8222;moim Rubym&#8221; działał rzędy wielkości szybciej &#8211; program w &#8222;moim Rubym&#8221; pisałem rzędy wielkości szybciej/krócej &#8211; program w &#8222;moim Rubym&#8221; wygląda ładnie i widać na pierwszy rzut oka co robi</p>
+
+<p>W &#8222;moim Perlu&#8221; napisałem tylko 3 skrypty, jeden z nich nigdy się nie doczekał końca wykonywania dla pliku 50MB (program w &#8222;moim Rubym&#8221; obrabiał go w mniej niż sekundę).</p>
+
+<p>Kumplom, którzy piszą w &#8222;Perlu&#8221; a nie &#8222;moim Perlu&#8221; jak pokazałem co wyprodukowałem, uśmiechali się tylko :)</p>
+
+<p>I za to lubię Rubiego, nie umiem w nim pisać a piszę i to co napiszę działa, w przeciwieństwie do Perla.</p>
+
+<p>I chyba niedługo zacznę się bawić RoR :) Bo ciekawi mnie o co to chodzi, że wszyscy sie tak cieszą jak słyszą to słowo :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1042361" class="comment2 guest">
+            
+            66.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Programmer</strong> napisał(a) 28 Gru 2007 o godz. 20:59:
+            <div class="top"></div>
+            <div class="content">
+              <p>Jestem zawodowym programistą Java. Na ten blog trafilem splotem linków. Nie zamierzam tutaj charakteryzować poszczególnych języków, ich wad i zalet. Jedno co mogę powiedzieć to, że Ruby można narazie traktować jako hobby i moim zdaniem troszkę tracenie czasu pod względem atrakcyjności na rynku pracy. Bo na rynku nie ma za dużo ofert dla Ruby, a jak już się zdarzają to raczej jest to testowe zastosowanie języka w projektach. Warto też zwrócić uwagę, iż wybór technologii w wielu companiach wyznacza strategię na wiele, wiele lat. I tak jak giganci typu Oracle, <span class="caps">IBM</span>, HP, <span class="caps">SAP</span>, Sun Microsystems tworzą rozwiązania związane z Java lub Microsoft C# (.Net), to można zadać pytanie kiedy Ruby osiągnie tak mocną pozycję na rynku? Na to pytanie, każdy powinien odpowiedzieć sobie sam.<br />
+Pozdrawiam!</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1042439" class="comment1 owner">
+            
+            67.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 28 Gru 2007 o godz. 21:52:
+            <div class="top"></div>
+            <div class="content">
+              <p>@Programmer, cenię Twoją opinię, jednakże nie zgodzę się z Tobą. Gdyby iść Twoim tokiem rozumowania to nie ma sensu próbować nowych rozwiązań, języków, frameworków, zwłaszcza tych, które są mało znane.</p>
+
+<p>Uważasz, że zainteresowanie Sun (JRuby), Microsoft (IronRuby &#8211; Silverlight będzie wspierać)</p>
+
+<p>Praca? Idąc do firm jakie wymieniłeś stajesz się tak na prawdę niewolnikiem. Nie masz prawie głosu co do wyboru technologii, robisz w tym czym każą Ci inni. Sorry, ale to nie dla mnie. Nie muszę pracować w Google, <span class="caps">IBM</span> czy innej znanej firmie by spełnić się zawodowo.</p>
+
+<p>Wspomniałeś także o pozycji na rynku. <a href="http://www.tiobe.com/tpci.htm" rel="nofollow" >http://www.tiobe.com/tpci.htm</a> &#8211; ten link już podałem w artykule. Ruby obecnie jest na 9 miejscu. I wiesz co? Mnie to w zupełności wystarcza. Nie zależy mi na tym, żeby cały świat używał tego języka.</p>
+
+<p>Myślę, że wychodzisz ze złego założenia. Prawdopodobnie nie będzie już &#8222;wielkiej zamiany&#8221; (jak C/C++ -&#62; Java). Jednakże są obszary, w których Java okazuje się po prostu zbyt kobylasta, np. web. I tu Ruby (on Rails) pokazuje swoją siłę. Uważam, że przyszłość to takie połączenia jak JRuby i Java.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1042511" class="comment2 guest">
+            
+            68.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Programmer</strong> napisał(a) 28 Gru 2007 o godz. 22:52:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ok pisząc poprzedni komentarz miałem na myśli, iż osobiście nie doradzam wszystkim Tym osobom, którzy chcą zostać profesjonalnymi programistami, a nie tylko hobbystami, którym wydaje się, że wiedzą coś o programowaniu, stawianie Ruby na pierwszym miejscu języków programowania. Natomiast nie miałem na myśli, aby nie interesować sie nowinkami technologicznymi, lub nie interesować sie Ruby. Wszyscy Ci, którzy chcą utrzymywać się z programowania i rozwijać się, narazie powinni na pierwszym miejscu postawić na inny język, bo największy rozwój związany jest z prawdziwymi projektami, podczas których powinno się wyciągać wnioski uczyć pokory i nabierać profesjonalizmu i cech pożądanych dla tego zawodu.<br />
+Narazie sam Ruby raczej nie daje takich możliwości jest to technologia stosowana rzadko i traktowana jako suplement, bez którego można z całą pewnością się obejść.</p>
+
+<p>Pisząc o firmach typu Oracle, <span class="caps">IBM</span> itp. nie miałem na myśli pracy w tych firmach, ale możliwość w pełni korzystania z produktów tych firm, a co za tym idzie wykorzystanie konkretnej technologii zaimplementowanej w produkcie.</p>
+
+<p>A co do stwierdzenia bycie niewolnikiem danej technologii, to niestety profesjonalne podejście do developmentu powoduje, w wielu przypadkach/firmach iż raz wybrana technologia wyzwala potrzebę wykorzystania tej technologii przez wiele, wiele lat. To już jest mocno związane z zarządzaniem projetkami, a nie tylko z programowaniem.<br />
+Podobnie jest z ofertami pracy, teraz firmy z profesjonalnym podejściem do programowania szukają na dane stanowisko specjalisty w jednym konkretnym języku programowania plus ewentualnie <span class="caps">SQL</span> i bazy danych. <br />
+W większości przypadków pracodawcy zrozumieli, iż szukanie osób ze znajomością kilku języków programowania jest równoznaczne z tym iż szukają osoby, która nie umie nic konrentego na wysokim i profesjonalnym poziomie.</p>
+
+<p>Ja obecnie jestem programistą i project managerem, który odpowiada za konkretny, duży project i tutaj kolejny raz mogę powiedzieć, że z punktu widzenia zarządzania projektami, oceny rentowności i ryzyka stwierdzenie, że dana technologia jest zbyt kobylasta jest jak największym atutem bo jest to technologia kompleksywna. A to czy Java jest kobylasta dla aplikacji web to już zależy od projektanta i architekta danej aplikacji z jakich framework`ów i biliotek zadecydują, aby korzystać w konkretnym przypadku.<br />
+(Niejednokrotnie zwracałem uwagę moim współpracownikom iż wykorzystują Struts itp do aplikacji składających się z kilkunastu stron i o których wiadomo, że nie będą się rozrastać &#8211; a to jest ewidentyny błąd wynikający ze złego projetkowania aplikacji a nie z problemu technologii).</p>
+
+<p>Pisząc o JRuby i Java nie trudno oprzeć się wrażeniu, że JRuby traktowane jest  jako kolejna specyfikacja dla języka Java niż język, który miałby zastąpić Java.<br />
+Pozdrawiam!</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1078056" class="comment1 guest">
+            
+            69.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Slawek</strong> napisał(a) 04 Lut 2008 o godz. 00:47:
+            <div class="top"></div>
+            <div class="content">
+              <p>@Programmer &#8211; widze ze jestes apostolem Javy.</p>
+
+<p>Masz racje ze w developerce podejmuje sie decyzje dlugofalowe i dlatego Java 10 lat temu przegrala jako mlody niedorobiony  nieprzenosny i kosztowny produkt, kiedy podejmowalem decyzje czy nadal pisac w C i Perl czy zastosowac Jave.<br />
+I przegrywa dzisiaj z C a nawet z starym TCLem ;-) w wielu zastosowaniach. </p>
+
+<p>Duzo na temat Javy to tylko mit stworzony przez  sprzedawcow serwerow (<span class="caps">SUN</span>,<span class="caps">IBM</span>) bo im to drastycznie zwieksza zyski.  Jak juz ktos kupil to <span class="caps">JEE</span> to musi brnac dalej w uzasadnienia i kupowac coraz drozsze serwery.<br />
+I tu masz racje ze programista niewiele ma do powiedzenia w duzej korporacji bo decyzje zapadaja na szczeblu biznesowym. Sa to decyzje czesto tak samo dobre jak gdyby programista podejmowal decyzje finansowe i dyktowal ksiegowym co maja robic. </p>
+
+<p>Osobiscie lubie Perla bo dziala i jest prawie wszedzie oraz ma <span class="caps">CPAN</span>.</p>
+
+<p>Bardzo polubilem od kilku lat Ruby bo wiekszosc potrzebnych bibliotek ma juz zazwyczaj zainstalowanych w standardzie (istotne w shared hosting) oraz ma bardzo czysty kod. </p>
+
+<p>To niesamowicie zwieksza produktywnosc.<br />
+Coraz wiecej programow narzedziowych mam w Ruby, dobrze sie skaluja idealne w konserwacji, dobra dokumentacja. <br />
+Zreszta jak czegos zabraknie to mozna sobie dopisac w C. </p>
+
+<p>Z pomiarów wydajnosci w wersji 1.9 wynika ze szybkosc nie stanowi zadnego problemu, zarowno w aplikacjach desktopowych jak i w webowych.</p>
+
+<p>Jak ktos pisze w jednym jezyku programowania (wszystko jedno jakim) kazda aplikacje to chyba mu sie zdrowo cos pomylilo albo uwierzyl tym co go zatrudnili.<br />
+To tak jak kierowca i prawojazdy B, nie ma prawa jazdy np. na Peugeota tylko na samochody do 3,5 tony.</p>
+
+<p>@Programmers.   Javy zastapic sie nie da, żaden inny jezyk programowania nie zamula serwera wystarczajaco dobrze ;-)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1078092" class="comment2 owner">
+            
+            70.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 04 Lut 2008 o godz. 05:41:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@Slawek</strong>, dzięki za komentarz :). Ja dokładnie staram się prezentować postawę &#8222;wybór odpowiedniego narzędzia do odpowiedniego zadania&#8221;. Owszem, czasem można by pomyśleć, że wszędzie widzę tylko Ruby, ale tak nie jest :). Javę w pewnych zastosowaniach także używam/lubię, ale w całe to bagno z etykietą &#8222;j2ee&#8221; nie chcę brnąć. Zbyt głębokie, a potem ciężko z tego wybrnąć...</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="../../../../index.html">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="index.html#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

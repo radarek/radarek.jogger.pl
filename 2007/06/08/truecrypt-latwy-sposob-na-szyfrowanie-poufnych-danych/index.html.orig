@@ -1,0 +1,1060 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>TrueCrypt - łatwy sposób na szyfrowanie poufnych danych - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="/files/favicon.png" type="image/png" />
+    <meta name="keywords" content="filesystem, security, system, tools, truecrypt, Narzędzia, Techblog, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="/files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/files/common.js"></script>
+    <script type="text/javascript" src="/files/highlight.js"></script>
+    <script type="text/javascript" src="/files/dynamic.js"></script>
+    <script type="text/javascript" src="/files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="/" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="/"><span>Wpisy</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/04/29/o-blogu/"><span>O blogu</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kanaly-rss/"><span>RSS</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kontakt/"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2009/01/01/gist-odpicowane-pastie/">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2008/10/12/mp3-przeboje/">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="http://radarek.jogger.pl/kategoria/blog/">Blog (6)</a></li>
+          
+            <li id="c"><a href="http://radarek.jogger.pl/kategoria/c/">C (1)</a></li>
+          
+            <li id="gamedev"><a href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="http://radarek.jogger.pl/kategoria/git/">Git (2)</a></li>
+          
+            <li id="humor"><a href="http://radarek.jogger.pl/kategoria/humor/">Humor (3)</a></li>
+          
+            <li id="java"><a href="http://radarek.jogger.pl/kategoria/java/">Java (1)</a></li>
+          
+            <li id="jruby"><a href="http://radarek.jogger.pl/kategoria/jruby/">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="http://radarek.jogger.pl/kategoria/python/">Python (4)</a></li>
+          
+            <li id="ruby"><a href="http://radarek.jogger.pl/kategoria/ruby/">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="http://radarek.jogger.pl/kategoria/techblog/">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="http://radarek.jogger.pl/kategoria/web/">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/blog/">Blog</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/c/">C</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/git/">Git</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/humor/">Humor</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/java/">Java</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/jruby/">JRuby</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/python/">Python</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/web/">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="/startid/470765">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="/startid/433510">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="/startid/425293">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="/startid/423490">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="/startid/392066">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="/startid/383421">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="/startid/364188">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="/startid/337815">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="/startid/323920">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2007</small>
+              <span>08</span>
+              <small>Cze</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2007/06/08/truecrypt-latwy-sposob-na-szyfrowanie-poufnych-danych/">TrueCrypt - łatwy sposób na szyfrowanie poufnych danych</a></h2>
+            
+            <a href="http://radarek.jogger.pl/2007/06/08/truecrypt-latwy-sposob-na-szyfrowanie-poufnych-danych/#comments">37 komentarzy</a>
+            | Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+            
+            
+              | <a href="http://radarek.jogger.pl/2007/06/08/truecrypt-latwy-sposob-na-szyfrowanie-poufnych-danych/trackback/">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/filesystem" rel="tag">
+                  filesystem</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/security" rel="tag">
+                  security</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/system" rel="tag">
+                  system</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/tools" rel="tag">
+                  tools</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/truecrypt" rel="tag">
+                  truecrypt</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <img class="entry-image" src="http://img507.imageshack.us/img507/4536/truecryptpd4.png" alt="TrueCrypt " />
+<p>
+Do tej pory pisałem tylko na temat Rubiego. Jednak nie samym Rubym człowiek żyje :). Tym razem chciałbym opisać bardzo fajny program, którego nazwę wymieniłem w tytule. Jest nim TrueCrypt - program dzięki któremu możemy w łatwy sposób szyfrować dane (a co za tym idzie chronić przed dostępem przez niepowołane osoby). Oczywistym jest, że jak każde narzędzie, tak i to można użyć w złym celu np. ukrywając nielegalne oprogramowanie, pliki mp3 czy też filmy divx. Nasze cele mogą być jednak jak najbardziej słuszne. Być może chcemy uniemożliwić dostęp do prywatnych zdjęć (rozbieranych?:)), danych (pliki z hasłami, numerami kont), tajnym projektem (konkurencja) i innych rzeczy. To w jakim celu wykorzystacie ten program pozostawiam Wam i Waszym sumieniom.
+</p>
+
+
+<p>
+Siłą tego programu jest prostota. Stosując się do prostych wskazówek, praktycznie każdy użytkownik komputera jest w stanie w taki sposób ukryć (zaszyfrować) dane, że nawet przy pomocy mega wydajnego komputera nikt nie będzie w stanie ich odszyfrować. Nie pomoże żadne hackowanie, żaden spec, tudzież informatyk (oficjalnie zaprzeczam plotkom jakoby Gorion potrafił złamać zabezpieczenia tego programu...). Dodatkowo program ten działa w przeźroczysty dla nas i systemu sposób (dostępne wersje zarówno na linux jak i windows, ale o tym za chwilę). Poniższy diagram przedstawia sposób działania TrueCrypt.
+</p>
+
+<img class="" src="http://img171.imageshack.us/img171/3120/truecryptdiagramik6.png" alt="TrueCrypt schema diagram" />
+
+<p>Po odpowiednim jego zainstalowaniu i przygotowaniu będziemy pracować dokładnie w taki sam sposób jak do tej pory (kopiowanie, usuwanie plików). Przystąpmy zatem do instalacji.
+</p>
+
+<h3>Instalacja</h3>
+<p>
+<a href="http://www.truecrypt.org/">Na stronie domowej programu TrueCrypt</a> znajdujemy <a href="http://www.truecrypt.org/downloads.php">zakładkę download</a>. W zależności od systemu operacyjnego, na którym pracujemy, wybieramy wersję dla Windows (przykład będzie opierał się na tym systemie) lub Linux (ściągamy paczkę .deb, .rpm bądź też źródła programu). Gdy piszę ten artykuł, aktualnie dostępna wersja to 4.3a. Jeśli już jesteśmy na stronie downloadu, ściągnijmy od razu wersję <a href="http://www.truecrypt.org/localizations.php">spolszczenie programu bądź też inną wersję językową</a>.
+</p>
+
+<p>
+Po ściągnięciu plik .zip należy postępować w standardowy sposób: rozpakować, odpalić setup.exe i potwierdzić chęć zainstalowania programu na dysku (domyślne ustawienia są jak najbardziej w porządku). Jeśli ściągnęliśmy wcześniej plik ze spolszczeniem programu to kopiujemy jego zawartość (plik Language.pl.xml) bezpośrednio do katalogu z programem.
+</p>
+
+<h3>Uruchomienie</h3>
+<img class="entry-image" src="http://img245.imageshack.us/img245/2294/securitydiskkt6.jpg" alt="CD disk with padlock" />
+<p>
+Zanim uruchomimy program polecam przynajmniej rzucić okiem na <a href="http://www.truecrypt.org/docs/?s=tutorial">tutorial dla początkujących</a>. Postaram się pokrótce pokazać jak korzystać z tego programu, ale tak czy siak nie jestem w stanie pokazać wszystkiego. Ok, uruchommy program. Po uruchomieniu widzimy okno, które większość miejsca zajmuje spis szyfrowanych dysków. A ponieważ jeszcze nie posiadamy takiego dysku spis ten nie zawiera żadnych informacji, prócz kolejnych literek alfabetu. Dlatego kolejnym krokiem będzie utworzenie szyfrowanego dysku.
+</p>
+
+<h3>Tworzymy szyfrowany dysk</h3>
+<p>
+Zanim utworzymy szyfrowany dysk muszę wytłumaczyć na jakiej zasadzie działa TrueCrypt. Gdy pracujemy na standardowych systemach plików (fat32, ntfs czy też linuksowe ext2, ext3) każdy plik jest reprezentowany na dysku w postaci kolejnych bajtów. A więc jeśli utworzysz plik "file.txt", wpiszesz do niego "Ala ma kota" to na dysku gdzieś zostanie zapisany taki ciąg bajtów (jest to oczywiście uproszczenie, ale sens jest zachowany). Mówiąc krótko: system operacyjny nie modyfikuje twoich plików. W momencie gdy system operacyjny próbuje odczytać, zmodyfikować bądź zapisać coś do pliku zaczyna działać "magia". Wspomniany wcześniej plik, z zawartością "Ala ma kota", będzie zapisany na dysk z zupełnie innymi danymi, które nikt poza osobą znającą hasło dostępu nie odczyta. Dane te dla osób trzecich będą zupełnie losowe (jeden wielki śmietnik). TrueCrypt daje 2 sposoby na utworzenie takiego szyfrowanego dysku. Pierwszym (najmniej bolesnym) sposobem jest wygospodarowanie odpowiedniej ilości miejsca na jednym z naszym dysków (c, d). Następnie w programie zostanie utworzony specjalny plik we wskazanym miejscu. Plik ten będzie służyć jako miejsce na nową, ale szyfrowaną partycję. Następnie taki plik zostanie podmontowany w systemie jako całkowicie odrębny dysk (np. G) i będziemy z niego korzystać tak jak z normalnego dysku. Jednak wszystkie pliki z tego dysku tak na prawdę będą zapisywane do tego pliku. Innym sposobem jest wydzielenie miejsca na dysku fizycznym i utworzenie całkowicie nowej partycji, która także będzie szyfrowana. O wadach i zaletach porozmawiamy sobie za chwilę. Spróbujmy najpierw utworzyć szyfrowaną partycję.
+</p>
+
+<p>
+Pokażę pierwszy sposób, gdyż jest łatwiejszy. Sposób drugi wymaga pewnej wiedzy o dyskach, bez której osoba niewprawiona może narobić sobie tylko kłopotów (dodatkowo nie obyłoby się prawdopodobnie bez pomocy takiego programu jak Partition Magick lub podobnego).
+Klikamy kolejno (korzystam z angielskiej wersji programu):</p>
+<ol class="steps">
+<li>Create Volume</li>
+<li>Create standard TrueCrypt volume. Next.</li>
+<li>Select File... (wybieramy dysk, a potem wpisujemy nazwę pliku w którym będzie trzymana szyfrowana partycja, np. D:\volume). Next.</li>
+<li>Wybór algorytmów szyfrujących i haszujących - o każdym z algorytmów można poczytać klikając linki 'More information about...'. Jeśli nas to nie interesuje możemy zostawić domyślne opcje (AES, RIPEMD-160). Next.</li>
+<li>Określenie rozmiaru partycji. W ten sposób określamy pojemność naszego szyfrowanego dysku. Pamiętajmy, że to przekłada się na wielkość naszego pliku i od samego początku ten plik będzie miał taki rozmiar (nie będzie zmieniać rozmiaru). Pamiętajmy także o ograniczeniu wielkości pliku do 4GB, jeśli system plików partycji na której znajduje się plik szyfrowanej partycji to FAT32. NTFS potrafi obsługiwać pliki do 16TB. Next.</li>
+<li>Ustawienie hasła zabezpieczającego. Dobrze jest przeczytać poradę i użyć mocnego hasła, tj. przynajmniej 20 znaków, zawierającego znaki liter, cyfr i znaków specjalnych (@ # $ itp.). Next.</li>
+<li>Określenie systemu plików na dysku. W zależności od preferencji możemy wybrać FAT bądź NTFS. Next.</li>
+<li>Naciskamy przycisk 'Format' (spokojnie, żadne dane nie zostaną utracone ;)).</li>
+</ol>
+
+<h3>Szyfrowany dysk mamy, co dalej?</h3>
+<p>
+No tak, dysk jest, ale jeszcze system go nie widzi. Musimy go podmontować, czyli sprawić, że dysk (partycja) będzie widziany dokładnie w taki sam sposób przez system jak pozostałe dyski. W tym celu z listy literek wybieramy jakąś wolną, następnie klikamy 'Select File' i wybieramy wcześniej utworzony plik z partycją. Dalej klikamy 'Mount'. Zostaniemy poproszeni o hasło (podawaliśmy je podczas tworzenia partycji). Po poprawnym wpisaniu hasła powinniśmy mieć w systemie dodatkowy dysk. By odmontować partycję należy ją zaznaczyć i nacisnąć 'Dismount'. W ten sposób musimy postępować za każdym razem gdy chcemy podłączyć dysk (np. po uruchomieniu systemu).
+</p>
+
+<h3>Inne możliwości</h3>
+<p>
+Z dodatkowych możliwości pozwolę sobie wymienić: możliwość utworzenia całkowicie odrębnej, szyfrowanej partycji (sprawdzenie tej możliwości pozostawiam Wam), a także możliwość utworzenia tzw. ukrytej partycji. Ta druga opcja jest bardzo ciekawa. Otóż wyobraźmy sobie taką sytuację. Ktoś pod groźbą (np. pobicia) wymusza od nas hasło do szyfrowanego dysku i dostaje do niego pełny dostęp. Tyle wysiłku na nic. Otóż nie do końca. TrueCrypt umożliwia utworzenia tzw. podwójnej partycji (jedna z nich jest ukryta). Polega to mniej więcej na tym, że podczas tworzenia partycji podajemy 2 hasła: jedno do udawanej partycji (fake-owej) i drugie do tej prawdziwej (ukrytej). Podczas montowania partycji podajemy jedno z tych haseł, a to która partycja zostanie podmontowana zdecyduje podane hasło. Nawet jeśli napastnik wie o istnieniu takiej opcji to nie jest w stanie udowodnić, że tą opcję wykorzystaliśmy. Wynika to z faktu, że na dysku są tak na prawdę "śmieci", niezależnie czy jest to wolna przestrzeń czy też zajęta przez pliki.
+</p>
+
+<h3>Podsumowanie</h3>
+<p>
+TrueCrypt to świetne narzędzie, a przede wszystkim bardzo proste w użyciu. W zasadzie każdy z nas ma dane, którymi nie chcielibyśmy dzielić się z innymi (np. maile). Warto więc poświęcić trochę czasu na opanowane go i zabezpieczenie takich danych.
+</p>
+
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-849354" class="comment1 guest">
+            
+            1.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Barthalion</strong> napisał(a) 08 Cze 2007 o godz. 07:54:
+            <div class="top"></div>
+            <div class="content">
+              <p>Rozumiem, że warto? :D</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849364" class="comment2 jogger">
+            
+            2.
+            
+            <img class="avatar-icon" src="http://clou.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://clou.jogger.pl">Clou</a></strong> napisał(a) 08 Cze 2007 o godz. 08:17:
+            <div class="top"></div>
+            <div class="content">
+              <p>Szukam właśnie czegoś do szyfrowania danych. Testowałeś ten program? Zastanawiam się, jak jest z szybkością dostepu do danych i użyciem zasobów (proc, pamięć) przy odczycie czy zapisie szyfrowanych danych. <br />
+Może wiesz też, co w przypadku awarii systemu. Jak zrobie reinstalkę, to starczy instalacja TrueCrypt i znajomość hasła (pisze o przypadku osobnej szyfrowanej partycji)?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849375" class="comment1 guest">
+            
+            3.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://rzegocki.pl" rel="nofollow">ajgon</a></strong> napisał(a) 08 Cze 2007 o godz. 08:52:
+            <div class="top"></div>
+            <div class="content">
+              <p>Dobra, to teraz jaka jest biblioteka w Rubym do obslugi tego, bo jestem pewien ze do tego zmierzales, tylko wstydziles sie dopisac :P</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849377" class="comment2 guest">
+            
+            4.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Michał Górny</strong> napisał(a) 08 Cze 2007 o godz. 08:56:
+            <div class="top"></div>
+            <div class="content">
+              <p>…i jak wrażliwe są tak zaszyfrowane partycje na uszkodzenia? Czy to nie jest czasem kolejna z zabawek „zawieszka = żegnajcie, dane”?</p>
+
+<p>Ja swego czasu bawiłem się w szyfrowanie partycji przez CryptoLoop, ale znudziło mi się wpisywanie hasła ( ;. A jak już ktoś ma coś znaleźć — i tak to znajdzie… chyba że przy każdym odejściu od komputera odmontowujesz owe szyfrowane partycje, kilkakrotnie czyścisz <span class="caps">RAM</span> i swap (żeby przypadkiem gdzieś tam hasło nie zostało).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849540" class="comment1 guest">
+            
+            5.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>majkolaj</strong> napisał(a) 08 Cze 2007 o godz. 11:18:
+            <div class="top"></div>
+            <div class="content">
+              <p>Wymaga praw admina&#8230;Btw. Czy ktos zna cos co tego nie wymaga (kafejki i te sprawy)?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849550" class="comment2 guest">
+            
+            6.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Michał Górny</strong> napisał(a) 08 Cze 2007 o godz. 11:26:
+            <div class="top"></div>
+            <div class="content">
+              <p>Pewnie coś na <span class="caps">FUSE</span> by się znalazło. Tylko że w kafejce to ani <span class="caps">FUSE</span> nie będzie, ani Linuksa ( ;.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849710" class="comment1 guest">
+            
+            7.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>majkolaj</strong> napisał(a) 08 Cze 2007 o godz. 12:30:
+            <div class="top"></div>
+            <div class="content">
+              <p>No wlasnie lepiej, aby pod win. to bylo. Szukalem ostatnio ale ciezko cos z tym.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849711" class="comment2 guest">
+            
+            8.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Michał Górny</strong> napisał(a) 08 Cze 2007 o godz. 12:31:
+            <div class="top"></div>
+            <div class="content">
+              <p>Tylko z drugiej strony… w kawiarence zawsze możesz keyloggera trafić ( ;.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849715" class="comment1 jogger">
+            
+            9.
+            
+            <img class="avatar-icon" src="http://siergiej.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://siergiej.jogger.pl">Siergiej</a></strong> napisał(a) 08 Cze 2007 o godz. 12:35:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ja używam tego na linuksie. Podejrzewam że tak jak Peres mówił, jakiś błąd na dysku i bye bye dane. A używam tego jako że jestem student polibudy i mieszkam w akademiku&#8230; tyko czekać jak policja mnie odwiedzi ;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849901" class="comment2 guest">
+            
+            10.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>majkolaj</strong> napisał(a) 08 Cze 2007 o godz. 12:51:
+            <div class="top"></div>
+            <div class="content">
+              <p><code>MG: az taki paranoiczny nie jestem. Bardziej chodzi o to,  ze jak zgubie to albo haslo albo format :-P
+</code>Siergiej: gdzies czytalem, ze jak cos ma sie na haslo i POlicja odwiedza to musisz im haslo tez dac. bla bla bla :-)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849929" class="comment1 owner">
+            
+            11.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 08 Cze 2007 o godz. 13:11:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@Barthalion</strong> oczywiście, że tak :)</p>
+
+<p><strong>@Clou</strong>, co do wydajności to przy tworzeniu partycji jest taki przycisk &#8216;Benchmark&#8217;, dzięki czmeu można przetestować szybkość szyfrowania/deszyfrowania danych w pamięci <span class="caps">RAM</span> (a więc badasz szybkość algorytmów, a nie Twojego dysku). U mnie mam wyniki od około 10MB/s do 40MB/s. Oto wyniki na moim komputerze:</p>
+
+<p><img src="http://img246.imageshack.us/img246/9164/truecryptperformanceteskh9.png" alt="" width="352" height="116" /></p>
+
+<p>Chyba są wystarczające? (pamiętajmy, że stosowane są silne algorytmy, niektóre z nich używane są przez rząd <span class="caps">USA</span>).</p>
+
+<p>Co do awarii systemu, to zachowanie będzie takie samo jak przy zwykłym dysku. Reinstalacja systemu także nie ma znaczenia (no chyba, że system zrobi Ci format tego dysku to nie spodziewaj się miłej niespodzianki;)). Tak, wystarczy znajomość hasła i instalacja TrueCrypt.</p>
+
+<p><strong>@ajgon</strong>, nie ma tu żadnego podstępu :P.</p>
+
+<p><strong>@Michał Górny</strong>,  awaria ma takie same skutki jak przy każdym innym systemie plików.</p>
+
+<p><strong>@majkolaj</strong>, na tę okazję jest właśnie &#8216;hidden volume&#8217; (ukryta partycja). Masz 2 hasła, jedno do udawanej partycji, drugie do prawdziwej. Nikt nie jest w stanie udowodnić Ci, że masz 2 partycje (doczytajcie szczegóły w dokumentacji TrueCrypt:)).</p>
+
+<p>Jeszcze odnośnie jakiegoś błędu, utraty danych itp. Można zminimalizować ten fakt, poprzez robienie backupu nagłówka partycji (jest do tego osobna opcja w programie).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849949" class="comment2 guest">
+            
+            12.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://rzegocki.pl" rel="nofollow">ajgon</a></strong> napisał(a) 08 Cze 2007 o godz. 13:23:
+            <div class="top"></div>
+            <div class="content">
+              <p>Zawsze mozesz powiedziec ze zapomniales hasla &#8211; zgodnie z zasada domniemania niewinnosci, musza Ci udowodnic ze jest inaczej ;]</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849958" class="comment1 owner">
+            
+            13.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 08 Cze 2007 o godz. 13:28:
+            <div class="top"></div>
+            <div class="content">
+              <p>No tak też można. Ale przy ukrytej partycji podajesz hasło do tej fejkowej (po podmontowaniu na to hasło widać jakieś pliki, które wcześniej skopiowaliśmy, reszta dysku jest pusta) i po kłopocie.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849965" class="comment2 guest">
+            
+            14.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>majkolaj</strong> napisał(a) 08 Cze 2007 o godz. 13:30:
+            <div class="top"></div>
+            <div class="content">
+              <p>@radarek, to jeszcze jak uzywac jak nie jest sie adminem i praca obroniona ;-). A propo drugiej partycji: Rozumiem, ze nawet w jakims oknie ze statystykami w TC nie widac, ze sa dwie partycje na tym napedzie?</p>
+
+<p>&#60;upierdliwiec mode off&#62; :-P</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849972" class="comment1 owner">
+            
+            15.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 08 Cze 2007 o godz. 13:35:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@majkolaj</strong>, rozumiem, że pytasz o linuksa? Nie testowałem tego programu pod tym systemem, ale zapewne bez uprawnień roota się nie obędzie. Ew. musisz mieć uprawnienia do montowania partycji, ale niestety nie wiem. Pod windowsem wystarczy, że administrator zainstaluje TrueCrypt, potem każdy może go normalnie używać.</p>
+
+<p>Co do drugiego pytania: tak, widać tylko i wyłącznie 1 partycję :).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-849983" class="comment2 guest">
+            
+            16.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>majkolaj</strong> napisał(a) 08 Cze 2007 o godz. 13:41:
+            <div class="top"></div>
+            <div class="content">
+              <p>o windowsa:-P. I sa sytuacje kiedy admin nie moze/nie chce instalowac&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-850113" class="comment1 owner">
+            
+            17.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 08 Cze 2007 o godz. 15:36:
+            <div class="top"></div>
+            <div class="content">
+              <p>No to chyba musisz mieć uprawnienia do instalacji softu. Trzeba by sprawdzić. Ktoś chętny?:)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-850219" class="comment2 guest">
+            
+            18.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>3stan</strong> napisał(a) 08 Cze 2007 o godz. 17:13:
+            <div class="top"></div>
+            <div class="content">
+              <p>majkolaj: nie musisz dać hasła. Jest takie magiczne słowo ,,nie pamiętam&#8217;&#8216;. Tylko nie możesz się wkopać mówiąc coś więcej. Mówisz <span class="caps">TYLKO</span> ,,nie pamiętam&#8217;&#8216;. Żadne ,,dawno nie korzystałem&#8217;&#8216; bo być może umieją udowodnić, że korzystałeś niedawno. Mówisz magiczne ,,nie pamiętam hasła&#8217;&#8216; i nie są w stanie udowodnić, że pamiętasz. </p>
+
+<p>Inna sprawa, że zawsze mnie dziwili akademikowcy który koniecznie chcą być ekstremalnie nielegalni&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-850231" class="comment1 owner">
+            
+            19.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 08 Cze 2007 o godz. 17:27:
+            <div class="top"></div>
+            <div class="content">
+              <blockquote>
+<p>Inna sprawa, że zawsze mnie dziwili akademikowcy który koniecznie chcą być ekstremalnie nielegalni…</p>
+</blockquote>
+
+<p>Tak, jestem studentem, tak, mieszkam w akademiku. I nie uważam by studenci (lub jak to nazwałeś &#8222;akademikowcy&#8221; :)) odróżniali się jakoś od innych ludzi pod względem legalności oprogramowania. Tylko proszę mi tu nie wywoływać wojny z cyklu &#8222;nie pochlebiam używania pirackiego softu&#8221; :P. Niech każdy odpowiada sam za siebie&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-850232" class="comment2 guest">
+            
+            20.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>3stan</strong> napisał(a) 08 Cze 2007 o godz. 17:29:
+            <div class="top"></div>
+            <div class="content">
+              <p>Myślę jednak że studenci się odróżniają. A akademikowcy odróżniają się  jeszcze bardziej. </p>
+
+<p>To już jest choroba, co robią niektórzy. Z przerażeniem patrzyłem w czasach studiów na ludzi, którzy zbierali nielegalne oprogramowanie jak żebracy rzeczy ze śmietnika. Wszystkie najnowsze wersje wszystkiego co kiedykolwiek się objawiło. Olać że ani razu nie użyte&#8230; Ważne, że jest, jest, jest..</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-850234" class="comment1 owner">
+            
+            21.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 08 Cze 2007 o godz. 17:34:
+            <div class="top"></div>
+            <div class="content">
+              <p>Wiesz, to może wynikać z faktu, że nie ma net jest za darmo, ewentualnie za małą lub jednorazową (u mnie tak jest) opłatą. Dodatkowo net na akademikach przeważnie jest bardzo szybki (transfery po kilkaset kB/s, a nawet czasem liczony w MB/s). To sprawia, że czasem ludzie nie zastanawiają się co ściągają. Jak masz przykładowo limity na transfer to już sobie na to nie możesz pozwolić. Ale tak czy siak to o czym mówisz to margines. Pozostali to typowi użytkownicy komputera.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-850865" class="comment2 jogger">
+            
+            22.
+            
+            <img class="avatar-icon" src="http://siergiej.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://siergiej.jogger.pl">Siergiej</a></strong> napisał(a) 09 Cze 2007 o godz. 11:03:
+            <div class="top"></div>
+            <div class="content">
+              <p>Odnośnie tych kwestii prawnych &#8211; mówię &#8222;nie wiem&#8221;|&#8222;nie pamiętam&#8221;|&#8222;nie znam&#8221; i nie są w stanie mi niczego udowodnić, niczego. A puki co posiadanie zaszyfrowanej partycji nie jest nielegalne, więc nie mają prawa zrobić Ci cokolwiek.<br />
+W kwestii linuksa to potrzebujesz uprawnień do montowania i przy montowaniu truecrypt pyta o hasło roota lub hasło usera.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-851019" class="comment1 guest">
+            
+            23.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>3stan</strong> napisał(a) 09 Cze 2007 o godz. 13:42:
+            <div class="top"></div>
+            <div class="content">
+              <p>Nieee&#8230; Nie wolno rzeczy sprawdzalnych. Nie wolno ,,nie znam&#8217;&#8216; albo ,,nie wiem&#8217;&#8216; bo udowodnią że znasz i wiesz. Mówisz tylko ,,nie pamiętam&#8217;&#8216;. Jak udowodnią że wiesz, to masz że kłamałeś, jeśli mówiłeś że nie wiesz. A jak udowodnią że wiesz, jak mówiłeś ,,nie pamiętam&#8217;&#8216; to po prostu sobie przypomniałeś.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-851023" class="comment2 owner">
+            
+            24.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 09 Cze 2007 o godz. 13:44:
+            <div class="top"></div>
+            <div class="content">
+              <p>No to teraz pytanie: czy ktoś jest w stanie udowodnić, że jednak pamiętasz? Rozumiem, że do tego dążysz, że tego udowodnić się nie da?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-851025" class="comment1 guest">
+            
+            25.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>3stan</strong> napisał(a) 09 Cze 2007 o godz. 13:45:
+            <div class="top"></div>
+            <div class="content">
+              <p>No właśnie się da udowodnić, że coś wiesz czasami. Więc jak mówiłeś wcześniej, że nie wiesz &#8212;&#62; kłamałeś. A jeśli mówiłeś ,,nie pamiętam&#8217;&#8216;, to w końcu zawsze mogłeś sobie przypomnieć.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-851027" class="comment2 owner">
+            
+            26.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 09 Cze 2007 o godz. 13:47:
+            <div class="top"></div>
+            <div class="content">
+              <p>No dobrze, ale Ty nie mówisz, że nie wiesz. Bo wiedziałeś to kiedyś, ale zupełnie zapomniałeś. No to nie ma siły, żeby Ci kazali sobie coś przypomnieć, bo nie jest to zależne tylko od Ciebie (twoja słaba pamięć itp). Musiałoby istnieć urządzenie czytające w myślach, a z tego co wiem takowego jeszcze nie ma :P.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-851028" class="comment1 jogger">
+            
+            27.
+            
+            <img class="avatar-icon" src="http://siergiej.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://siergiej.jogger.pl">Siergiej</a></strong> napisał(a) 09 Cze 2007 o godz. 13:50:
+            <div class="top"></div>
+            <div class="content">
+              <p>Panowie. Sytuacja jest taka: Wszystko co nielegalne mam na partycji zaszyfrowanej. Nie da się udowodnić że jest to partycja zaszyfrowana(truecrypt to gwarantuje). Czyli nie ma żadnego powodu by postawić mi jakiekolwiek zarzuty. Domniemanie niewinności.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-851108" class="comment2 guest">
+            
+            28.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>cOyOte</strong> napisał(a) 09 Cze 2007 o godz. 15:51:
+            <div class="top"></div>
+            <div class="content">
+              <p>Oskarżony ma prawo odmówić zeznań jeśli mogły by pogrążyć jego lub jego rodzinę. Tak samo jest również w tym przypadku.</p>
+
+<p>Tak jest napisane (nie dosłownie) w dziale prawnym CHIPa (06/2007  str. 137).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-857230" class="comment1 guest">
+            
+            29.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>WojtekB</strong> napisał(a) 14 Cze 2007 o godz. 23:21:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ważne info: polecam wyłączyć System Volume Restore dla dysku na którym macie pliki z partycjami jeżeli macie WinXP.</p>
+
+<p>Ja odpaliłem jeden plik 60G na partycji 140G i mi system zabiło. Po restarcie nie dało się odpalić nawet go w trybie awaryjnym. <span class="caps">CHKDSK</span> szedł ponad godzinę, jak skończył uruchomił się system i na szczęście wpadło mi do głowy wyłączenie <span class="caps">SVR</span> (przeglądałem ich forum i była wzmianka o tym ale przy okazji innego wątku). Teraz chodzi OK.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-857247" class="comment2 owner">
+            
+            30.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 14 Cze 2007 o godz. 23:36:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ja zawsze wyłączam <span class="caps">SVR</span> zaraz po instalce windozy. Zawsze uważałem że to marnowanie  miejsca na partycji ;). Ale dobrze wiedzieć, że z dużymi plikami sobie nie radzi. Dzięki za info.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-892791" class="comment1 guest">
+            
+            31.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>xXx</strong> napisał(a) 17 Lip 2007 o godz. 18:15:
+            <div class="top"></div>
+            <div class="content">
+              <p>fajny artykuł &#8211; przezorny zawsze ubezpieczony tak więc lepiej mieć tak wrazie co zaszyfrowane dane &#8211; chociaż te najbardziej istotne :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1015484" class="comment2 guest">
+            
+            32.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>WARning</strong> napisał(a) 27 Lis 2007 o godz. 16:56:
+            <div class="top"></div>
+            <div class="content">
+              <p>Pewnego dnia postanowiłem zaszyfrować jedną z dwoch partycji na dysku. Udało się wszystko było ok. Po restarcie systemu (system miałem na zupełnie innym dysku) gdy wpisalem haslo w TC nagle wyskoczyło: błędne hasło lub &#8222;cos tam&#8230;&#8221; byłem w szoku. Co wiecej gdy chciałem wejsc do partycji niezaszyfrowanej pokazało mi że: &#8222;dysk jest niesformatowany. System windows musi sformatowac partycję&#8221; &#8211; tą niezaszyftowaną!!! (Zaszyfrowanej wogole nie bylo widac, nawet w TC&#8230;)</p>
+
+<p>W koncu doczytalem sie gdzies ze przyczyna mogl byc antyvir &#8211; NOD32, ktory cos spie***ł...! </p>
+
+<p>Odzyskalem czesc danych za 50 zeta, ale odradzam łączenia tego programu chocby z Nodem i partycji <span class="caps">NTFS</span>... </p>
+
+<p>POZDRO</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1056339" class="comment1 guest">
+            
+            33.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>zdesperowana</strong> napisał(a) 12 Sty 2008 o godz. 20:28:
+            <div class="top"></div>
+            <div class="content">
+              <p>mam problem i proszę cię o pomoc, a więc sprawa wygląda tak że mam na kompie pewne rzeczy i nie chce żeby ktokolwiek je ruszał (zwłaszcza tata który od nie dawna się tym interesuje i grzebie we wszystkich plikach), tak że mam już ściągnięty ten program i spolszczenie ale w nijak sposób nie mogę zrobić tak żeby było po polsku, w &#8222;language&#8221; w programie jest polski ale jak dam ok to wyskakuje jakiś komunikat i dalej jest po angielsku, błagam pomóż miii,</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1056383" class="comment2 owner">
+            
+            34.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 12 Sty 2008 o godz. 20:46:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@zdesperowana</strong>: odezwij się do mnie na jabbera, albo maila (zakładka &#8222;Kontakt&#8221;) to spróbuję Ci pomóc.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1506384" class="comment1 guest">
+            
+            35.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>iwanszatow</strong> napisał(a) 06 Mar 2010 o godz. 11:32:
+            <div class="top"></div>
+            <div class="content">
+              <p>swietny przewodnik, jano i przejrzyscie, polecam dla braku watpliwosci i ułatwienia sprawy spolszczenie wrzucic po przerobieniu tutorialu;p<br />
+Wielkie dziękczynienie wobec autora , a nawet komentarzy z ktorych niemalo sie mozna bylo dowiedziec cieawego<br />
+Pozdrawiam:)</p>
+
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1551428" class="comment2 guest">
+            
+            36.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Ola</strong> napisał(a) 06 Wrz 2010 o godz. 17:44:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ja się tylko zastanawiam jak zapamiętać, że dana partycja jest fejk i że jest jeszcze druga. Jak zrobi się wiele partycji, szczególnie z opcją hidden to się ich nie pamięta a przecież nie zapiszę sobie na pulpicie w pliku txt "Ala ma kota i ma hidden" haha. Tak czy siak program dobry. Byleby haseł nie zapomnieć.<br />
+Co do formatowania- mi na viście też kazal formatować partycję hidden i też mam NODa, ale nie wydaje mi się, że to w nim przyczyna. Poza tym są programy, które pokazują ostatnio wpisywane słowa i hasło ma się wtedy jak na dłoni- szczególnie łatwe na komputerze używanym przez kilka osób. Jedynie hasła jednorazowe + truecrypt dałyby jako tako naprawdę ochronę danych :)</p>
+
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1906325" class="comment1 guest">
+            
+            37.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://the-woman-men-adore--review.blogspot.com/" rel="nofollow">The Woman Men Adore Reviews</a></strong> napisał(a) 21 Paź 2014 o godz. 13:08:
+            <div class="top"></div>
+            <div class="content">
+              <p>Could I inquire if your are fine with paid for blog posts? All I'd require is for <br />
+you to write content for me and a website link or reference to my site.<br />
+Allow me to compensate you.</p>
+
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="/">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

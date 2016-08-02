@@ -1,0 +1,651 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="../files/favicon.png" type="image/png" />
+    <meta name="keywords" content="ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="../files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../files/common.js"></script>
+    <script type="text/javascript" src="../files/highlight.js"></script>
+    <script type="text/javascript" src="../files/dynamic.js"></script>
+    <script type="text/javascript" src="../files/jruby.js"></script>
+
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+    
+    <div id="top">
+      <a href="../index.html" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="../index.html"><span>Wpisy</span></a></li>
+          <li><a href="../2007/04/29/o-blogu/index.html"><span>O blogu</span></a></li>
+          <li><a href="../2007/05/01/kanaly-rss/index.html"><span>RSS</span></a></li>
+          <li><a href="../2007/05/01/kontakt/index.html"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">
+        <div class="submenu">
+          <form action="http://radarek.jogger.pl/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <h3>O blogu</h3>
+          Cześć. Nazywam się Radosław Bułat. Dla przyjaciół i znajomych Radarek. <a href="../2007/04/29/o-blogu/index.html">Czytaj dalej...</a>
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="../2009/01/01/gist-odpicowane-pastie/index.html">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="../2008/10/12/mp3-przeboje/index.html">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="../kategoria/blog/index.html">Blog (6)</a></li>
+          
+            <li id="c"><a href="../kategoria/c/index.html">C (1)</a></li>
+          
+            <li id="gamedev"><a href="../kategoria/gamedev/index.html">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="../kategoria/git/index.html">Git (2)</a></li>
+          
+            <li id="humor"><a href="../kategoria/humor/index.html">Humor (3)</a></li>
+          
+            <li id="java"><a href="../kategoria/java/index.html">Java (1)</a></li>
+          
+            <li id="jruby"><a href="../kategoria/jruby/index.html">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="../kategoria/miniblog/index.html">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="../kategoria/narzedzia/index.html">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="../kategoria/programowanie/index.html">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="../kategoria/python/index.html">Python (4)</a></li>
+          
+            <li id="ruby"><a href="../kategoria/ruby/index.html">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="../kategoria/ruby/merb/index.html">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="../kategoria/techblog/index.html">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="../kategoria/tips-tricks/index.html">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="../kategoria/web/index.html">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+
+          
+            <a class="catlvl0" href="../kategoria/blog/index.html">Blog</a>
+          
+            <a class="catlvl0" href="../kategoria/c/index.html">C</a>
+          
+            <a class="catlvl0" href="../kategoria/gamedev/index.html">Gamedev</a>
+          
+            <a class="catlvl0" href="../kategoria/git/index.html">Git</a>
+          
+            <a class="catlvl0" href="../kategoria/humor/index.html">Humor</a>
+          
+            <a class="catlvl0" href="../kategoria/java/index.html">Java</a>
+          
+            <a class="catlvl0" href="../kategoria/jruby/index.html">JRuby</a>
+          
+            <a class="catlvl1" href="../kategoria/miniblog/index.html">Miniblog</a>
+          
+            <a class="catlvl1" href="../kategoria/narzedzia/index.html">Narzędzia</a>
+          
+            <a class="catlvl1" href="../kategoria/programowanie/index.html">Programowanie</a>
+          
+            <a class="catlvl0" href="../kategoria/python/index.html">Python</a>
+          
+            <a class="catlvl3" href="../kategoria/ruby/index.html">Ruby</a>
+          
+            <a class="catlvl0" href="../kategoria/ruby/merb/index.html">Merb</a>
+          
+            <a class="catlvl0" href="../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="../kategoria/techblog/index.html">Techblog</a>
+          
+            <a class="catlvl1" href="../kategoria/tips-tricks/index.html">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="../kategoria/web/index.html">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="470765.html">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="433510.html">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="425293.html">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="423490.html">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="392066.html">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="383421.html">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="364188.html">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="337815.html">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="323920.html">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2008</small>
+              <span>06</span>
+              <small>Gru</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="../2008/12/06/nowosci-i-zmiany-w-ruby-1-9-3-zmiany-odnosnie-argumentow-met/index.html">Nowości i zmiany w Ruby 1.9 #3 - zmiany odnośnie argumentów metod</a></h2>
+            <a href="../2008/12/06/nowosci-i-zmiany-w-ruby-1-9-3-zmiany-odnosnie-argumentow-met/index.html#comments">2 komentarze</a> |
+            Kategorie:
+            
+              <a class="strong" href="../kategoria/ruby/index.html">Ruby,</a>
+            
+              <a class="strong" href="../kategoria/techblog/index.html">Techblog</a>
+             |
+            
+              <a href="../2008/12/06/nowosci-i-zmiany-w-ruby-1-9-3-zmiany-odnosnie-argumentow-met/trackback/index.html">trackback</a>
+            <br />
+
+            
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/1.9" rel="tag">
+                  1.9</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby1.9" rel="tag">
+                  ruby1.9</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <div class="info">
+  <img src="http://img150.imageshack.us/img150/3792/ruby19approvedhf8.jpg" style="float: left; margin: 0 1em 0 0; " alt="ruby 1.9 changes approved - logo" />
+  <p>
+  Wpis ten jest jedną z części cyklu pt "Nowości i zmiany w Ruby 1.9". Pełną listę wpisów znajdziesz pod adresem <a href="../2008/11/30/nowosci-i-zmiany-w-ruby-1-9/index.html">http://radarek.jogger.pl/2008/11/30/nowosci-i-zmiany-w-ruby-1-9/</a>.
+  </p>
+  <span style="display: block; clear: left;"></span>
+</div>
+
+<p>
+Kontynuując mały cykl tym razem chciałbym opisać zmianę dotyczącą parametrów metod. Do tej pory deklaracja metody wyglądała następująco: <code class="inline">def fun(r<sub>1</sub>, r<sub>2</sub>, .., r<sub>m</sub>, o<sub>1</sub>=v<sub>1</sub>, o<sub>2</sub>=v<sub>2</sub>, ..., o<sub>n</sub>=v<sub>n</sub>[, *rest][, &amp;block])</code>.
+</p>
+
+<p>
+Suchy zapis jest często ciężki w odbiorze, zatem opisując słownie mamy: lista parametrów wymaganych (może być pusta), lista parametrów opcjonalnych (może być pusta), opcjonalny argument zbierający pozostałe parametry, opcjonalny parametr bloku. Prezentuje to przykładowy kod:
+</p>
+
+<pre><code class="ruby">def foo(a, b = 1, *rest, &amp;block)
+  p [a, b, rest, block]
+end
+
+foo(10)
+foo(10, 20)
+foo(10, 20, 30)
+</code></pre>
+
+
+             
+              <p class="readmore">
+               <a href="../2008/12/06/nowosci-i-zmiany-w-ruby-1-9-3-zmiany-odnosnie-argumentow-met/index.html#more">Czytaj dalej...</a>
+              </p>
+             
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2008</small>
+              <span>02</span>
+              <small>Gru</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="../2008/12/02/nowosci-i-zmiany-w-ruby-1-9-2-nowa-skladnia-hasha/index.html">Nowości i zmiany w Ruby 1.9 #2 - nowa składnia Hasha</a></h2>
+            <a href="../2008/12/02/nowosci-i-zmiany-w-ruby-1-9-2-nowa-skladnia-hasha/index.html#comments">5 komentarzy</a> |
+            Kategorie:
+            
+              <a class="strong" href="../kategoria/ruby/index.html">Ruby,</a>
+            
+              <a class="strong" href="../kategoria/techblog/index.html">Techblog</a>
+             |
+            
+              <a href="../2008/12/02/nowosci-i-zmiany-w-ruby-1-9-2-nowa-skladnia-hasha/trackback/index.html">trackback</a>
+            <br />
+
+            
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/1.9" rel="tag">
+                  1.9</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby1.9" rel="tag">
+                  ruby1.9</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <div class="info">
+  <img src="http://img150.imageshack.us/img150/3792/ruby19approvedhf8.jpg" style="float: left; margin: 0 1em 0 0; " alt="ruby 1.9 changes approved - logo" />
+  <p>
+  Wpis ten jest jedną z części cyklu pt "Nowości i zmiany w Ruby 1.9". Pełną listę wpisów znajdziesz pod adresem <a href="../2008/11/30/nowosci-i-zmiany-w-ruby-1-9/index.html">http://radarek.jogger.pl/2008/11/30/nowosci-i-zmiany-w-ruby-1-9/</a>.
+  </p>
+  <span style="display: block; clear: left;"></span>
+</div>
+
+<p>
+Tym razem chciałbym pokazać Wam nową zmianę w składni języka, która dotyczy także Hasha. Zmiana ta dotyczy nowej składni dla literału hasha, którego kluczami są symbole. Do tej pory taki hash definiowaliśmy w następujący sposób:
+</p>
+
+<pre><code class="ruby">h = {:foo =&gt; 1, :bar =&gt; 2}
+p h
+# =&gt; {:foo=&gt;1, :bar=&gt;2}</code></pre>
+
+<p>Od wersji 1.9 można to zrobić trochę inaczej</p>
+
+<pre><code class="ruby">h = {foo: 1, bar: 2}
+p h
+# =&gt; {:foo=&gt;1, :bar=&gt;2}</code></pre>
+
+
+             
+              <p class="readmore">
+               <a href="../2008/12/02/nowosci-i-zmiany-w-ruby-1-9-2-nowa-skladnia-hasha/index.html#more">Czytaj dalej...</a>
+              </p>
+             
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2008</small>
+              <span>30</span>
+              <small>Lis</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="../2008/11/30/nowosci-i-zmiany-w-ruby-1-9-1-ordered-hash/index.html">Nowości i zmiany w Ruby 1.9 #1 - ordered Hash</a></h2>
+            <a href="../2008/11/30/nowosci-i-zmiany-w-ruby-1-9-1-ordered-hash/index.html#comments">16 komentarzy</a> |
+            Kategorie:
+            
+              <a class="strong" href="../kategoria/ruby/index.html">Ruby,</a>
+            
+              <a class="strong" href="../kategoria/techblog/index.html">Techblog</a>
+             |
+            
+              <a href="../2008/11/30/nowosci-i-zmiany-w-ruby-1-9-1-ordered-hash/trackback/index.html">trackback</a>
+            <br />
+
+            
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/1.9" rel="tag">
+                  1.9</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby1.9" rel="tag">
+                  ruby1.9</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <div class="info">
+  <img src="http://img150.imageshack.us/img150/3792/ruby19approvedhf8.jpg" style="float: left; margin: 0 1em 0 0; " alt="ruby 1.9 changes approved - logo" />
+  <p>
+  Wpis ten jest jedną z części cyklu pt "Nowości i zmiany w Ruby 1.9". Pełną listę wpisów znajdziesz pod adresem <a href="../2008/11/30/nowosci-i-zmiany-w-ruby-1-9/index.html">http://radarek.jogger.pl/2008/11/30/nowosci-i-zmiany-w-ruby-1-9/</a>.
+  </p>
+  <span style="display: block; clear: left;"></span>
+</div>
+
+<p>
+Od wersji 1.9 Ruby zachowuje kolejność elementów w Hashu ("ordered Hash", czyli Hash zachowujący kolejność). Oznacza to, że iteracja po elementach hasha następuje dokładnie w takiej samej kolejności w jakiej były <strong>wstawiane elementy</strong>. Podkreślam słowo <strong>"wstawiane"</strong>, co nie ma związku z sortowaniem kluczy (np. leksykograficznie).
+</p>
+
+
+             
+              <p class="readmore">
+               <a href="../2008/11/30/nowosci-i-zmiany-w-ruby-1-9-1-ordered-hash/index.html#more">Czytaj dalej...</a>
+              </p>
+             
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2008</small>
+              <span>30</span>
+              <small>Lis</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="../2008/11/30/nowosci-i-zmiany-w-ruby-1-9/index.html">Nowości i zmiany w Ruby 1.9</a></h2>
+            <a href="../2008/11/30/nowosci-i-zmiany-w-ruby-1-9/index.html#comments">Brak komentarzy</a> |
+            Kategorie:
+            
+              <a class="strong" href="../kategoria/ruby/index.html">Ruby</a>
+             |
+            
+              <a href="../2008/11/30/nowosci-i-zmiany-w-ruby-1-9/trackback/index.html">trackback</a>
+            <br />
+
+            
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/1.9" rel="tag">
+                  1.9</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby1.9" rel="tag">
+                  ruby1.9</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            
+<p>
+<img src="http://img150.imageshack.us/img150/3792/ruby19approvedhf8.jpg" style="float: left; margin: 0 1em 0 0; " />
+
+<a href="../2007/12/31/ruby-1-9-wydany-opis-glownych-zmian-i-nowosci/index.html">Blisko rok temu pisałem</a> o zmianach jakie zaszły w wersji 1.9 Rubiego. W kilku następnych wpisach opiszę bardziej szczegółowo najważniejsze z nich. Prócz samego pokazania na czym dana zmiana/nowość polega postaram się także pokazać jakiś użyteczny kod, który wykorzystuje nowy "ficzer". Jak zwykle będą osoby, które pokochają nowe elementy języka, a także takie, które będą kręcić nosem. Tym bardziej, że o niektórych modyfikacjach języka można powiedzieć, że są kontrowersyjne (a przynajmniej po pierwszym spojrzeniu). W takich wypadkach opiszę także jak należy prawidłowo (co oczywiście będzie tylko moim punktem widzenia) używać konstrukcji lub czego się wystrzegać. Innymi słowy: to czego nie znajdziecie w "suchym" manualu (tudzież Changelogu).
+</p>
+
+
+             
+              <p class="readmore">
+               <a href="../2008/11/30/nowosci-i-zmiany-w-ruby-1-9/index.html#more">Czytaj dalej...</a>
+              </p>
+             
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2008</small>
+              <span>21</span>
+              <small>Lis</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="../2008/11/21/python-ruby-challenge-2-poziomy-6-10/index.html">Python (Ruby) Challenge #2, poziomy 6-10</a></h2>
+            <a href="../2008/11/21/python-ruby-challenge-2-poziomy-6-10/index.html#comments">5 komentarzy</a> |
+            Kategorie:
+            
+              <a class="strong" href="../kategoria/python/index.html">Python,</a>
+            
+              <a class="strong" href="../kategoria/ruby/index.html">Ruby,</a>
+            
+              <a class="strong" href="../kategoria/techblog/index.html">Techblog</a>
+             |
+            
+              <a href="../2008/11/21/python-ruby-challenge-2-poziomy-6-10/trackback/index.html">trackback</a>
+            <br />
+
+            
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/challenge" rel="tag">
+                  challenge</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/game" rel="tag">
+                  game</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/programming" rel="tag">
+                  programming</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/python" rel="tag">
+                  python</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/riddles" rel="tag">
+                  riddles</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            
+<p>
+<a href="../2007/05/29/python-ruby-challenge/index.html">Jakiś czas temu starałem się zachęcić Was</a> do zabawy pod nazwą <a href="http://www.pythonchallenge.com/">"Python Challenge"</a>. Umieściłem wtedy rozwiązania pierwszych 5 zagadek. Brak większego odzewu spowodował, że do tej pory nie opisałem rozwiązań kolejnych zagadek. Uważam jednak, że temat jest wart odświeżenia.
+</p>
+
+<p>
+Jeśli jeszcze nie wiesz jaka jest idea tej zabawy to opiszę Ci ją w kilku zdaniach. Idea jest następująca. Zabawę zaczynasz od <a href="http://www.pythonchallenge.com/pc/def/0.html">strony startowej</a>. Twoim celem jest odgadnięcie adresu następnego etapu. Podpowiedzi należy szukać w obrazku widocznym na stronie jak i w samym jej źródle. Przykładowo w zagadce oznaczonej numerem zero widać monitor, na którym jest napis "2<sup>38</sup>". Jeśli obliczymy wartość tego wyrażenia a następnie podmienimy w adresie URL 0 na tą wartość dostaniemy się do następnego etapu. Następny poziomy są co raz trudniejsze.
+</p>
+
+
+             
+              <p class="readmore">
+               <a href="../2008/11/21/python-ruby-challenge-2-poziomy-6-10/index.html#more">Czytaj dalej...</a>
+              </p>
+             
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+
+        
+        <div class="arch-navigation">
+          
+          <a class="prev" href="423490.html">Wcześniejsze wpisy</a>
+           
+
+           
+          <a class="next" href="433510.html">Nowsze wpisy</a>
+          
+        </div>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="../index.html">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="425293.html#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

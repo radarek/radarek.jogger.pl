@@ -1,0 +1,787 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Jaka to metoda? - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="/files/favicon.png" type="image/png" />
+    <meta name="keywords" content="ruby, tips&amp;tricks, tools, Narzędzia, Ruby, Techblog, Tips &amp; tricks, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="/files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/files/common.js"></script>
+    <script type="text/javascript" src="/files/highlight.js"></script>
+    <script type="text/javascript" src="/files/dynamic.js"></script>
+    <script type="text/javascript" src="/files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="/" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="/"><span>Wpisy</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/04/29/o-blogu/"><span>O blogu</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kanaly-rss/"><span>RSS</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kontakt/"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2009/01/01/gist-odpicowane-pastie/">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2008/10/12/mp3-przeboje/">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="http://radarek.jogger.pl/kategoria/blog/">Blog (6)</a></li>
+          
+            <li id="c"><a href="http://radarek.jogger.pl/kategoria/c/">C (1)</a></li>
+          
+            <li id="gamedev"><a href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="http://radarek.jogger.pl/kategoria/git/">Git (2)</a></li>
+          
+            <li id="humor"><a href="http://radarek.jogger.pl/kategoria/humor/">Humor (3)</a></li>
+          
+            <li id="java"><a href="http://radarek.jogger.pl/kategoria/java/">Java (1)</a></li>
+          
+            <li id="jruby"><a href="http://radarek.jogger.pl/kategoria/jruby/">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="http://radarek.jogger.pl/kategoria/python/">Python (4)</a></li>
+          
+            <li id="ruby"><a href="http://radarek.jogger.pl/kategoria/ruby/">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="http://radarek.jogger.pl/kategoria/techblog/">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="http://radarek.jogger.pl/kategoria/web/">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/blog/">Blog</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/c/">C</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/git/">Git</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/humor/">Humor</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/java/">Java</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/jruby/">JRuby</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/python/">Python</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/web/">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="/startid/470765">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="/startid/433510">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="/startid/425293">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="/startid/423490">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="/startid/392066">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="/startid/383421">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="/startid/364188">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="/startid/337815">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="/startid/323920">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2007</small>
+              <span>20</span>
+              <small>Lis</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2007/11/20/jaka-to-metoda/">Jaka to metoda?</a></h2>
+            
+            <a href="http://radarek.jogger.pl/2007/11/20/jaka-to-metoda/#comments">17 komentarzy</a>
+            | Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+            
+            
+              | <a href="http://radarek.jogger.pl/2007/11/20/jaka-to-metoda/trackback/">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/tips&amp;tricks" rel="tag">
+                  tips&amp;tricks</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/tools" rel="tag">
+                  tools</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <h3>Nikt nie jest nieomylny</h3>
+<p>
+Praca z Rubym (także Railsami i innymi rubinowymi tworami) to nie tylko pisania kodu, uruchamianie czy testowanie. To także bardzo często zabawa <a href="http://radarek.jogger.pl/2007/05/28/interaktywny-ruby/">bezpośrednio z kodem w konsoli</a>. Języki dynamiczne, które posiadają taką konsolę (w Rubym oczywiście to irb) dają możliwość poczucia i zrozumienia co tak na prawdę dzieje się z naszym kodem kiedy jest uruchamiany. Dają możliwość szybkiego wskoczenia 'w temat', a także bezpośredniego eksperymentowania z kodem. Namiastką tego w takich językach jak Java czy C# jest debugowanie w IDE, gdzie krok po kroku możemy przyglądać się co się dzieje w kodzie.
+</p>
+
+
+
+<p>
+Im więcej pracujemy tym bardziej denerwują nas wszelkie literówki ('m' zamiast 'n', 'a' zamiast 'A' i tak dalej). Jeśli mamy włączone rozszerzenie 'readline' wystarczy nacisnąć strzałkę w górę, przesunąć kursor w odpowiednie miejsce i poprawić błąd. Okazuje się, że można jeszcze prościej. Ba! Ruby może zrobić to za nas... może nie dosłownie, ale zaraz zobaczycie o co mi chodzi.
+</p>
+
+<h3>Guess Method na ratunek</h3>
+<p>
+Odpowiedzią jest <a href="http://guessmethod.rubyforge.org/">Guess Method</a>, gem który stara się automatycznie wykryć błędnie wpisane nazwy metod oraz stałych. Przykładowo jeśli zamiast 1.to_s napiszemy 1.tos, błąd zostanie wykryty, a zamiast NoMethodError zostanie wywołana poprawna (domniemana) metoda 'to_s' (sic!).
+</p>
+
+<p>
+Zanim zaczniemy zabawę - instalacja. Klasycznie za pomocą gem (użytkownicy windows oczywiście pomijają 'sudo').
+</p>
+
+<pre><code>sudo gem install guessmethod
+</code></pre>
+
+<p>
+Zobacz kilka przykładów z sesji irb:
+</p>
+
+<pre><code>&gt;&gt; require 'guessmethod'
+=&gt; true
+&gt;&gt; Stirng.tos
+attention: replacing non-existant constant Stirng with String for Object
+attention: sending to_s instead of tos to String:Class
+=&gt; "String"
+&gt;&gt; ['1','2','3'].mp {|x| x.tof}
+attention: sending map instead of mp to ["1", "2", "3"]:Array
+attention: sending to_f instead of tof to "1":String
+attention: sending to_f instead of tof to "2":String
+attention: sending to_f instead of tof to "3":String
+=&gt; [1.0, 2.0, 3.0]
+&gt;&gt; 1.tos
+attention: sending to_s instead of tos to 1:Fixnum
+=&gt; "1"
+&gt;&gt; eixt
+attention: sending exit instead of eixt to main:Object
+</code></pre>
+
+<p>
+(dodatkowo Guess Method dosyć ładnie koloruje wyświetlane komunikaty)
+</p>
+
+<p>
+Trzeba od razu sobie powiedzieć jasno: to nie nadaje się do 'produkcyjnego' użycia. Żeby Ci nie przyszło do głowy używać tego w normalnym kodzie źródłowym. Chyba, że lubisz wyzwania i szukasz nowych doznań ;).
+</p>
+
+<h3>Ale jak to działa?</h3>
+<p>
+Nie byłbym sobą gdybym nie dowiedział się 'jak oni to zrobili'. Moje podejrzenia się sprawdziły. Algorytm jest następujący:<br />
+1. Przechwyć wywołanie nieistniejącej metody<br />
+2. Znajdź metodę, która istnieje w aktualnym obiekcie i jest 'najbliższa' metodzie, która została wywołana<br />
+3. Wywołaj znalezioną metodę lub rzuć wyjątek jeśli takiej nie ma
+</p>
+
+<p>
+Punkt nr 1 jest prosty. Jak wiadomo, w Rubym można przechwycić wywołanie nieistniejącej metody za pomocą 'method_missing':
+</p>
+
+<pre><code class="ruby">class MyClass
+  def method_missing(name, *args)
+    puts "przechwycono wywołanie: #{name} z argumentami [#{args.join(',')}]"
+  end
+end
+
+MyClass.new.test
+MyClass.new.test(1, 2)
+</code></pre>
+
+<p>
+Punkt nr 2 wydaje się (i rzeczywiście jest) kluczowym. Po pierwsze, żeby znaleźć jakąś metodę, wpierw trzeba pobrać jakąś listę, która zostanie przeszukana. Czy już pisałem, że Ruby jest w takich sprawach po prostu świetny?
+</p>
+
+<pre><code class="ruby">s = "hello"
+puts s.methods
+</code></pre>
+
+<p>
+Teraz najtrudniejsza rzecz. Jak opisać 'najbliższą metodę'? Mózg człowieka potrafi w jednej chwili skojarzyć, że 'tos' to prawdopodobnie pomyłka i powinno być 'to_s', ale jak ma to zrobić program? Z pomocą przychodzi algorytm wyliczający <a href="http://pl.wikipedia.org/wiki/Odleg%C5%82o%C5%9B%C4%87_Levenshteina">odległość Levenshteina</a>. Jest to algorytm, który dla zadanych dwóch wejściowych słów s1, s2 wyznacza pewną miarę ich odmienności (odległości). W praktyce algorytm wyznacza ilość kroków, takich jak usunięcie, dodanie i zamiana znaku, tak aby przekształcić słowo s1 na s2. Przykładowo aby przekształcić nasze 'tos' w 'to_s' potrzeba 1 kroku: dodanie '_' na 3 pozycji. Dodatkowo można ustalać pewne wagi dla operacji wstawiania, usuwania i zamiany. Po co? Spójrz na klawiaturę, zrobienie literówki 's' zamiast 'a' jest bardziej prawdopodobne niż 'z' zamiast 'p'!
+</p>
+
+<p>
+W tym momencie sprawa powinna być prosta. Mając błędną metodę o nazwie s i zbiór X wszystkich metod obiektu (na którym metoda została wywołana) obliczamy wszystkie odległości dla pary [s, x], gdzie x jest słowem ze zbioru X. Następnie wybieramy najmniejszą odległość i.. gotowe :).
+</p>
+
+<p>
+Dodam jeszcze, że algorytm Levenshteina może posłużyć do implementacji własnego spell-checkera. Ale to już wiecie, prawda?
+</p>
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-1009618" class="comment1 owner">
+            
+            1.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 20 Lis 2007 o godz. 16:17:
+            <div class="top"></div>
+            <div class="content">
+              <p>Implementację algorytmu Levenshteina w Rubym znajdziecie pod adresem: <a href="http://raa.ruby-lang.org/project/levenshtein/">http://raa.ruby-lang.org/project/levenshtein/</a>. Dostępne także jako gem (<a href="http://rubyforge.org/projects/text">http://rubyforge.org/projects/text</a>).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1009699" class="comment2 jogger">
+            
+            2.
+            
+            <img class="avatar-icon" src="http://hoppke.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://hoppke.jogger.pl">Hoppke</a></strong> napisał(a) 20 Lis 2007 o godz. 17:05:
+            <div class="top"></div>
+            <div class="content">
+              <p>Tak co problemu &#8222;literówki w nazwie metody&#8221;, to do eliminowania takich rzeczy używa się <span class="caps">IDE</span>, w trakcie pisania kodu. Żeby potem nie tracić czasu.</p>
+
+<p>I jeśli mówimy o namiastkach, to raczej irb nazwałbym namiastką prawdziwego debuggera. Jako interaktywna konsola jest super, ale porównajmy np. czynności potrzebne by ustawić &#8222;conditional breakpoint&#8221; w Javie pod Eclipsem z tą samą czynnością w irb. Albo nawigowanie po stosie wywołań metod&#8230;</p>
+
+<p>Ech, jak ja bym chciał porządny zestaw narzędzi do pisania w rubym/pythonie&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1009737" class="comment1 owner">
+            
+            3.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 20 Lis 2007 o godz. 17:49:
+            <div class="top"></div>
+            <div class="content">
+              <p>@Hoppke, Nie czytałeś dokładnie, albo nie zrozumiałeś. Chodzi o używanie interaktywnej konsoli irb. Nie nazwałem irb debuggerem.</p>
+
+<blockquote>
+<p>&#8222;Ech, jak ja bym chciał porządny zestaw narzędzi do pisania w rubym/pythonie…&#8221; </p>
+</blockquote>
+
+<p>Czego Ci brakuje?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1009739" class="comment2 jogger">
+            
+            4.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://dozzie.jogger.pl">Stanisław 'dozzie' Klekot</a></strong> napisał(a) 20 Lis 2007 o godz. 17:51:
+            <div class="top"></div>
+            <div class="content">
+              <blockquote>
+<p>Namiastką tego w takich językach jak Java czy C# jest debugowanie w <span class="caps">IDE</span>, gdzie krok po kroku możemy przyglądać się co się dzieje w kodzie.</p>
+</blockquote>
+
+<p>Porównujesz dwie nieporównywalne rzeczy. Wierszowy interpreter niektórych języków skryptowych służy do zupełnie innych rzeczy niż debugger. Pokaż mi, jak w takim interpreterze chcesz zatrzymać działanie programu po wejściu do jakiejś funkcji, żeby obejrzeć jej argumenty i aktualne wartości zmiennych globalnych, bo to jest nagminna operacja przy debuggowaniu.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1009741" class="comment1 owner">
+            
+            5.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 20 Lis 2007 o godz. 17:53:
+            <div class="top"></div>
+            <div class="content">
+              <p>Dobra, przykład nie jest może zbyt dobry. Ale chodziło mi o to, że java czy c# nie mają interaktywnej konsoli, gdzie na bieżąco można wpisywać kod i wykonywać go. w Javie natomiast, możesz napisać wpierw kod, a potem go debugować krok po kroku, patrząc np co zwracają metody itp. Pomijam tu sam debugowania, czyli szukania błędów. Irb oczywiście do tego nie służy.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1009743" class="comment2 jogger">
+            
+            6.
+            
+            <img class="avatar-icon" src="http://hoppke.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://hoppke.jogger.pl">Hoppke</a></strong> napisał(a) 20 Lis 2007 o godz. 17:56:
+            <div class="top"></div>
+            <div class="content">
+              <p>Sorry. <br />
+Mówienie o irb i debuggerze w jednym zdaniu mnie zmyliło.</p>
+
+<p>A czego bym chciał? Jakiegoś fajnego <span class="caps">IDE</span>, w którym możnaby napisać duży projekt. Z sensownym debuggerem (takim jakie są do Javy). Z uprzyjemniaczami takimi jak np. refaktoryzacje (zmieniam nazwę jakiejś klasy, czy przenoszę metodę z jednej klasy do drugiej i chciałbym, żeby kod automatycznie poprawiło). Albo mam metodę która przyjmuje 5 parametrów, i chcę z nich zrobić jeden obiekt-pojemnik&#8230; i żeby mi to automat zrobił w całym kodzie, stworzył nową klasę-pojemnik, dodał jej instancje wszędzie gdzie poprzednio wywoływałem daną metodę... no, takich rzeczy mi brakuje.</p>
+
+<p>Plus wszelkiej maści profilery.</p>
+
+<p>W miarę jak projekt się rozrasta coraz trudniej nad nim zapanować bez odpowiednich narzędzi. I dlatego nadal tak wiele projektów pisze się w językach toporniejszych niż Ruby czy Python&#8230; :(</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1009748" class="comment1 jogger">
+            
+            7.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://dozzie.jogger.pl">Stanisław 'dozzie' Klekot</a></strong> napisał(a) 20 Lis 2007 o godz. 18:00:
+            <div class="top"></div>
+            <div class="content">
+              <p>Hoppke, to ty chcesz języka ze statycznym typowaniem. W ogólnym przypadku nie wyobrażam sobie algorytmu refaktoryzacji dla języka z dynamicznym systemem typów.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1009749" class="comment2 owner">
+            
+            8.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 20 Lis 2007 o godz. 18:00:
+            <div class="top"></div>
+            <div class="content">
+              <p>Próbowałeś Netbeans 6.0? Ma podpowiadanie kodu, robią coś w kwestii refaktoryzacji(*), ma debugowanie wizualne (tak, odpalasz server, ustalasz breakpoint, odpalasz przeglądarkę i jesteś w debuggerze :)). Profilowanie też widziałem, że jest możliwe. Może kiedyś coś napiszę o tym.</p>
+
+<p>
+*Trzeba zawsze wziąć na poprawkę to, że języki dynamiczne nigdy nie będą tak łatwo dawały się refaktoryzować jak statyczne. To wynika z ich natury. Tutaj raczej trzeba pomyśleć o <span class="caps">TDD</span> czy <span class="caps">BDD</span>
+</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1009755" class="comment1 jogger">
+            
+            9.
+            
+            <img class="avatar-icon" src="http://hoppke.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://hoppke.jogger.pl">Hoppke</a></strong> napisał(a) 20 Lis 2007 o godz. 18:10:
+            <div class="top"></div>
+            <div class="content">
+              <p>Bez środowiska developerskiego dorównującego tym używanym do Javy czy .<span class="caps">NET</span> Ruby nadal będzie traktowany jak &#8222;taki lepszy PHP&#8221;.</p>
+
+<p>Bez refaktoryzacji ciężko zarządzać większym projektem. Da się, ale ogranicza to wolność w wprowadzaniu rozleglejszych modyfikacji kodu. I siłą rzeczy koder zaczyna szukać rozwiązań, które da radę wprowadzić. Bo jak wiadomo praca programisty to obok kodowania głównie pałowanie się z narzędziami, a każdy kombinuje jak się najmniej namęczyć ;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1009757" class="comment2 owner">
+            
+            10.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 20 Lis 2007 o godz. 18:13:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ale zrozum, że to jest język dynamiczny. Tu nigdy nie będzie pełnej refaktoryzacji. Są ludzie, którzy uważają, że potężne narzędzia (CASE?) załatwią za niego sprawę. Inni z kolei (Ci pragmatyczni) biorą sprawy w swoje ręce i piszą. No i trzeba sobie powiedzieć jasno: Ruby nie ma zamiaru wkraczać tam gdzie Java ma się dobrze, ale raczej tam gdzie użycie Javy jest toporne (np aplikacje webowe).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1010224" class="comment1 guest">
+            
+            11.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.stifflog.com/" rel="nofollow">sztywny</a></strong> napisał(a) 21 Lis 2007 o godz. 09:24:
+            <div class="top"></div>
+            <div class="content">
+              <p>&#8222;Ale zrozum, że to jest język dynamiczny. Tu nigdy nie będzie pełnej refaktoryzacji.&#8221; </p>
+
+<p>Smalltalk.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1010489" class="comment2 owner">
+            
+            12.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 21 Lis 2007 o godz. 16:52:
+            <div class="top"></div>
+            <div class="content">
+              <p>@sztywny, o smalltalku mam blade pojęcie, więc nie wiem co dokładnie chciałeś powiedzieć... ale Ruby nigdy nie będzie miał w pełni funkcjonajlną refaktoryzację (tzn. żadne <span class="caps">IDE</span> tego nie da). Jeśli się mylę to rozwiń proszę myśl :).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1010623" class="comment1 guest">
+            
+            13.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.stifflog.com/" rel="nofollow">sztywny</a></strong> napisał(a) 21 Lis 2007 o godz. 19:21:
+            <div class="top"></div>
+            <div class="content">
+              <p>Pierwsze narzędzia do automatycznej refaktoryzacji powstały właśnie w Smalltalku i z tego co wiem to do dziś wiele innych języków może tych narzędzi Smalltalkowi pozazdrościć. Jest to przy tym język tak dynamiczny jak tylko się da, dynamika Rubego wiąże się zresztą w dużej mierze z inspiracjami z tego języka. Ruby ma jednak dużo bardziej złożoną i elastyczną składnie, co jest dodatkowym problemem przy opracowywaniu tego typu narzędzi. Podsumowując: dynamika nie musi być przeszkodą dla tworzenia takich narzędzi, oraz uważam że mocno przesadziłeś z &#8222;nigdy&#8221; &#8211; dotąd nikt się poważnie rozwojem takich narzędzi dla Ruby nie zajmował, wystarczyło że pare miesięcy temu wziął się za to Sun z NetBeansem i już jakąś tam bazę mają. Gdyby pracował przy tym taki zespół jak np. budował refactoring w Eclipse, to pewnie byliby jeszcze dalej.</p>
+
+<p>Pytanie czy w języku takim jak Ruby te narzędzią wogóle są aż tak bardzo koniecznie niezbędnie potrzebne. Steve Yegge bardzo ładnie to opisał: </p>
+
+<p>http://steve.yegge.googlepages.com/transformation</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1011116" class="comment2 jogger">
+            
+            14.
+            
+            <img class="avatar-icon" src="http://hoppke.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://hoppke.jogger.pl">Hoppke</a></strong> napisał(a) 22 Lis 2007 o godz. 11:16:
+            <div class="top"></div>
+            <div class="content">
+              <p>Obecnie w programowaniu bardzo modne jest podejście &#8222;jak najszybciej przygotuj coś, co z grubsza działa, a potem to rozbudowuj&#8221; (no i &#8222;release early, release often&#8221;, model krótkich iteracji i częstego pokazywania aplikacji klientowi do akceptacji itp.).  </p>
+
+<p>Refactoring jest tu nieocenioną pomocą. Jasne, da się i bez tego pisać kod (tak samo jak da się i bez podświetlania/dopełniania składni i automatycznego formatowania kodu), ale fajnie gdy ma się takie dodatki.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1012700" class="comment1 guest">
+            
+            15.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.stifflog.com/" rel="nofollow">sztywny</a></strong> napisał(a) 24 Lis 2007 o godz. 09:44:
+            <div class="top"></div>
+            <div class="content">
+              <p>Porównanie refactoringu do podświetlania kodu i auto-indentu mnie zabiło :] Obawiam się, że nie przeczytałeś linka, więc w skrócie: refactoring to <span class="caps">NIE</span> <span class="caps">JEST</span> nazwa-parasol dla narzędzi transformujących kod wbudowanych  w <span class="caps">IDE</span>. To pewien zestaw przekształceń, które są opisane na tyle ściśle, że niekiedy można ja zautomatyzować, ale równie dobrze można aplikować je ręcznie &#8211; ma to nawet pewne przewagi, widać wtedy jaki jest ich cel i mechanika działania. </p>
+
+<p>No chyba że pisząc &#8222;Refactoring&#8221;, miałeś na myśli &#8222;Automatyczny refactoring&#8221;, wtedy przepraszam za wykład. Chociaż nie do końca rozumiem co same te narzędzia miałby mieć wspólnego z krótkimi iteracjami.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1013509" class="comment2 guest">
+            
+            16.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Hoppke</strong> napisał(a) 25 Lis 2007 o godz. 01:43:
+            <div class="top"></div>
+            <div class="content">
+              <p>@sztywny: tekst przeczytałem. Widać byłem niedostatecznie wyraźny :) Więc:</p>
+
+<p>Zacznę od fragmentu definicji refactoringu z wikipedii: &#8222;In extreme programming and other agile methodologies, refactoring is an integral part of the software development cycle: developers alternate between adding new tests and functionality and refactoring the code to improve its internal consistency and clarity. Automatic unit testing ensures that refactoring does not make the code stop working.&#8221; </p>
+
+<p>Refactoring jest po prostu częścią procesu tworzenia kodu &#8211; przytoczony wcześniej linkowany tekst opiera się na książce Fowlera i sprowadza refactoring do zamieniania &#8222;bad code&#8221; w &#8222;good code&#8221; (spłycając strasznie to, co książka próbuje przekazać) i sugeruje, że jeśli od razu napiszesz good code, to refactoring jest zbędny. Wydaje mi się, że tamten pan nie miał okazji by pracować w środowisku, gdzie refactoring nie jest tylko teorią (inaczej nie odwoływałby się tylko do swojej interpretacji książki &#8211; której zresztą praktycznie żaden z jego kolegów inżynierów nie czytał, co chyba najlepiej świadczy o środowisku w którym przyszło mu się obracać).</p>
+
+<p>Bo ja widzę w tekście wnioski, które osobiście uważam za błędne &#8211; bo po pierwsze refactoring to nie tylko przerabianie zepsutego kodu na dobry, po drugie nawet pisząc idealny (w danym momencie) kod i tak możesz mieć refactoring wpisany w proces i będzie to tylko świadczyło o tym, że kod/produkt rozwija się prawidłowo. Jak to możliwe? Ano, w Agile to norma.</p>
+
+<p>W agile refactoring to nie jest &#8222;ratowanie&#8221; kodu ani jego &#8222;naprawianie&#8221;. To najzupełniej normalna część cyklu tworzenia oprogramowania. Pisanie testów, pisanie kodu, ew. refactoring, pisanie/zmienianie testów, pisanie/zmienianie kodu, ew.  refactoring. I to wszystko jeszcze ujęte w ramach iteracji, po których zwiększa się szansa na konieczność zrefaktoryzowania kodu.</p>
+
+<p>Refactoring będzie miał tu na celu podniesienie jakości kodu, ale również po prostu jego przetworzenie tak, by spełnił nowe wymogi. W agile wymogi mogą zmieniać się bardzo szybko, z jednej iteracji na drugą. Ta metodologia wręcz zakłada gotowość do przeprowadzania małych rewolucji w kodzie całkiem regularnie. I niezależnie od użytego języka będzie to wymagało jakiejś pracy.</p>
+
+<p>Automatyczny refactoring oferowany przez <span class="caps">IDE</span> to mechanizmy z których koder może skorzystać w swojej pracy. I przydają się tak samo jak dopełnianie składni, formatowanie tekstu czy integracja z frameworkami od testów jednostkowych.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1013987" class="comment1 guest">
+            
+            17.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.stifflog.com/" rel="nofollow">sztywny</a></strong> napisał(a) 25 Lis 2007 o godz. 18:43:
+            <div class="top"></div>
+            <div class="content">
+              <p>Myśle, że główną myślą artykułu było to, że ludzie zbyt często mylą &#8222;Refactoring&#8221;, z klikanymi narzędziami w <span class="caps">IDE</span> które go automatyzują, a że wpis niżej odniosłeś ten termin do wcinania / podświetlania&#8230; Teraz rozumiem co miałeś na myśli, szacun ;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="/">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

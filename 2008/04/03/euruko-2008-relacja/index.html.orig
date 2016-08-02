@@ -1,0 +1,634 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Euruko 2008 - relacja - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="/files/favicon.png" type="image/png" />
+    <meta name="keywords" content="2008, euruko, euruko2008, ruby, Blog, Ruby, Techblog, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="/files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/files/common.js"></script>
+    <script type="text/javascript" src="/files/highlight.js"></script>
+    <script type="text/javascript" src="/files/dynamic.js"></script>
+    <script type="text/javascript" src="/files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="/" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="/"><span>Wpisy</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/04/29/o-blogu/"><span>O blogu</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kanaly-rss/"><span>RSS</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kontakt/"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2009/01/01/gist-odpicowane-pastie/">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2008/10/12/mp3-przeboje/">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="http://radarek.jogger.pl/kategoria/blog/">Blog (6)</a></li>
+          
+            <li id="c"><a href="http://radarek.jogger.pl/kategoria/c/">C (1)</a></li>
+          
+            <li id="gamedev"><a href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="http://radarek.jogger.pl/kategoria/git/">Git (2)</a></li>
+          
+            <li id="humor"><a href="http://radarek.jogger.pl/kategoria/humor/">Humor (3)</a></li>
+          
+            <li id="java"><a href="http://radarek.jogger.pl/kategoria/java/">Java (1)</a></li>
+          
+            <li id="jruby"><a href="http://radarek.jogger.pl/kategoria/jruby/">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="http://radarek.jogger.pl/kategoria/python/">Python (4)</a></li>
+          
+            <li id="ruby"><a href="http://radarek.jogger.pl/kategoria/ruby/">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="http://radarek.jogger.pl/kategoria/techblog/">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="http://radarek.jogger.pl/kategoria/web/">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/blog/">Blog</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/c/">C</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/git/">Git</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/humor/">Humor</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/java/">Java</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/jruby/">JRuby</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/python/">Python</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/web/">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="/startid/470765">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="/startid/433510">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="/startid/425293">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="/startid/423490">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="/startid/392066">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="/startid/383421">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="/startid/364188">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="/startid/337815">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="/startid/323920">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2008</small>
+              <span>03</span>
+              <small>Kwi</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2008/04/03/euruko-2008-relacja/">Euruko 2008 - relacja</a></h2>
+            
+            <a href="http://radarek.jogger.pl/2008/04/03/euruko-2008-relacja/#comments">9 komentarzy</a>
+            | Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/blog/">Blog,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+            
+            
+              | <a href="http://radarek.jogger.pl/2008/04/03/euruko-2008-relacja/trackback/">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/2008" rel="tag">
+                  2008</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/euruko" rel="tag">
+                  euruko</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/euruko2008" rel="tag">
+                  euruko2008</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <!-- euruko -->
+
+<p>
+<img src="http://img233.imageshack.us/img233/33/euruko2008xf9.png" style="float: left;" />
+W ubiegły weekend miałem okazję być na konferencji <a href="http://www.euruko2008.org/">Euruko</a> dotyczącej języka programowania Ruby (jak zwykle pełne zaskoczenie dla czytelników;)). Chciałbym podzielić się wrażeniami z tymi, którzy nie mieli okazji tam być, co być może zachęci Was do uczestnictwa w takiej imprezie w przyszłości.
+</p>
+
+
+
+<p>
+Tegoroczna edycja odbywała się w Pradze, stolicy Czech (miejsce konferencji zmienia się co roku). Wraz ze znajomymi z #ruby.pl i #rubyonrails.pl (comboy, pkondzior i neque) postanowiliśmy dojechać z Krakowa do Cieszyna autobusem, stamtąd już bezpośrednio pociągiem do Pragi. Taka opcja była najtańsza, na czym wszystkim zależało. Od samego początku zaczęły się różne dyskusje, oczywiście królowały tematy około Rubinowe :). Comboy i neque grali też w Go, ja z pkondziorem tylko się przypatrywaliśmy.
+</p>
+
+<p style="text-align: center;">
+  <a href="http://www.flickr.com/photos/43204138@N00/2382902507/"><img src="http://farm4.static.flickr.com/3086/2382902507_911ca67f34.jpg?v=0" class="single" alt="Go board" /></a>
+  Białe ostro napierają, ale czarne się nie dają.
+</p>
+
+<p>
+Do hotelu w Pradze dotarliśmy koło 22, dosyć zmęczeni. Trzeba było iść dosyć wcześnie spać (jak na programistę ;)) by wstać nazajutrz.
+</p>
+
+<h3>Dzień pierwszy</h3>
+<p>
+Następnego dnia wstaliśmy pełni sił i chęci na całodniowe wykłady o Rubym. Jednak wpierw trzeba było dotrzeć na miejsce. Jak do tej pory wszystko szło nam gładko (każda uliczka, przystanek, zakręt był właściwym wyborem) tak w tym momencie szczęście nas opuściło :(. Przez dobre dwie godziny błądziliśmy po Pradze by znaleźć Uniwersytet Karola. Niestety zostawiliśmy wydrukowaną mapkę w hotelu, a pytani przechodnie wskazywali co chwilę inny kierunek. Udało nam się trafić tylko dlatego, że złapaliśmy połączenie WiFi trzymając laptopa nad głową.
+</p>
+
+<p>
+Pierwszy wykład (prowadzony przez samego Matz'a), najważniejszy ze wszystkich rozpoczął się dla nas od słów "Thank You". Matz, my Tobie też dziękujemy :). Na szczęście nagrania video mają być dostępne, więc nic straconego.
+</p>
+
+<p style="text-align: center;">
+  <a href="http://www.flickr.com/photos/43204138@N00/2383852326/"><img src="http://farm3.static.flickr.com/2369/2383852326_35b9a67e0a.jpg?v=0" class="single" alt="Last Matz slide on euruko"/></a>
+  Ostatni slajd Matz'a, nasz pierwszy...
+</p>
+
+<p>
+No cóż, pierwszej prezentacji nie widzieliśmy, ale kolejne były już w naszym zasięgu. Nie będę opisywać tutaj co na których było omawiane, <a href="http://www.euruko2008.org/pages/2-program">cały program możecie obejrzeć na stronie euruko</a>. Na pewno były wykłady ciekawe, ale też i nudne. Były takie, które czegoś mnie nauczyły, a także i takie, które tego nie dały mi nowej wiedzy. Zresztą większość ludzi była nastawiona na samą atmosferę, na nowe kontakty, rozmowy z innymi członkami społeczności. Co do wykładów na pewno podobała mi się ta o JRubym, widać, że chłopaki mają już ją opanowaną do perfekcji. <a href="http://drnicwilliams.com/">Dr Nic Williams</a> też nieźle dawał czadu, tylko szkoda, że jego akcent był dla mnie dosyć często niezrozumiały (ale chyba nie tylko dla mnie). Widać, że David A. Black ma spory bagaż doświadczeń. Jego prezentacja była konkretna i spójna.
+</p>
+
+<p style="text-align: center;">
+  <a href="http://flickr.com/photos/madrobby/2380965262/"><img src="http://farm3.static.flickr.com/2368/2380965262_2cd7156db6.jpg?v=0" class="single" alt="No Ruby, no Life - Koichi shirt" /></a>
+  "No Ruby, no Life" - nic dodać nic ująć :-).
+</p>
+
+<p style="text-align: center;">  
+  <a href="http://flickr.com/photos/madrobby/2370946736/"><img src="http://farm3.static.flickr.com/2155/2370946736_23068c3a5d.jpg?v=0" class="single" alt="Merging YARV is not a goal, but start" /></a>
+  "Merging YARV is not a goal, but start"
+</p>
+
+<p>
+Na koniec dnia odbyła się video konferencja z twórcą Railsów, Davidem Heinemeier Hansson (DHH).
+</p>
+
+<p style="text-align: center;">
+  <a href="http://flickr.com/photos/brightbox/2382006835/"><img src="http://farm4.static.flickr.com/3200/2382006835_518cfee392.jpg?v=0" class="single" alt="Video conference with David Heinemeier Hansson (DHH)" /></a>
+</p>
+
+<h3>Geek Party</h3>
+<p>
+Wieczorem odbyła się impreza dla uczestników konferencji, choć imprezą raczej tego nazywać nie można. Raczej pogaduchy przy piwie i muzyce. Pojawił się nawet Matz. Ludzie do siebie podchodzili, zagadywali. Moja wrodzona wstydliwość przed obcymi, zwłaszcza jak mam coś wydukać po angielsku trochę mnie przyblokowała, ale za to przysłuchiwałem się jak rozmawiali inni. Comboy nawet pogadał z Matzem. Zawiódł się bo Matz nie gra w Go :). Takie chwile pokazują, że język sam w sobie to jedna wartość, ale tak samo cenna jest sama społeczność. Mojej póki co nie zamieniłbym na inną :).
+</p>
+
+<p style="text-align: center">
+  <a href="http://flickr.com/photos/fearoffish/2379374597/"><img src="http://farm3.static.flickr.com/2345/2379374597_44c659fbbb.jpg?v=0" class="single" alt="Matz" /></a>
+  Jak widać Matz też człowiek i poczucie humoru ma ;)
+</p>
+
+<p style="text-align: center">
+  <a href="http://flickr.com/photos/raymanoz/2377718867/"><img src="http://farm4.static.flickr.com/3292/2377718867_45991ba3ea.jpg?v=0" class="single" alt="Thomas Enebo and Charles Nutter" /></a>
+  W środku Thomas Enebo i Charles Nutter (lopex, Ty też tam powinieneś być!), główni programiści <a href="http://jruby.codehaus.org/">JRuby</a>
+</p>
+
+<h3>Dzień drugi</h3>
+
+<p>
+Kontynuując tradycję spóźniliśmy się na pierwszy wykład. Nie dość że wstaliśmy później niż planowaliśmy, to dopiero rano uświadomiliśmy sobie o zmianie czasu z zimowego na letni. Muszę jednak przyznać, że w drugim dniu prezentacje były trochę słabsze. Nawet nie chodzi o tematy, ale o sposób ich prezentacji. Przykładowo prezentacja pt "Building Rails Playground - using Ruby's dynamic nature" aplikacji bardzo podobnej do <a href="http://heroku.com/">Heroku</a> mogłaby być fajna, ale nie była. Niezbyt wyraźna mowa + po prostu nudne prezentowania idealnie psują efekt. Najciekawszą dla mnie była prezentacja Matt'a Ford pt. "Aspect Oriented Programming in Ruby", w której autor zaprezentował framework <a href="http://aquarium.rubyforge.org/">Aquarium</a> pozwalający na <a href="http://en.wikipedia.org/wiki/Aspect-oriented_programming">programowanie aspektowe (AOP)</a> w Rubym.
+</p>
+
+<p>
+Na koniec odbyły się tzw "Lightning Talks", czyli krótkie prezentacje (około 10 min). Co najważniejsze większość była ciekawa bo konkretna. Żadnego wodolejstwa. Temat, omówienie zagadnienia i do widzenia :). W tym miejscu pozdrawiam Daniela Liszkę, któru uparcie mówił "rabi" i "lajnuks" (sic!). Daniel - wszędzie tylko nie na konferencji o Rubym...
+</p>
+
+<p>
+Ostatnią krótką prezentacją, przygotowaną w czasie konferencji był pokaz nowego ficzera w <a href="http://newgem.rubyforge.org/">newgem</a> (generator szkieletu dla gemów). O szczegółach można przeczytać na <a href="http://drnicwilliams.com/2008/04/01/writing-c-extensions-in-rubygems/">blogu Dr. Nic</a>
+</p>
+
+<p>
+W międzyczasie udało się nam złapać Matz'a i zrobić fotkę.
+</p>
+
+<p style="text-align: center">
+  <a href="http://flickr.com/photos/43204138@N00/2379375465/"><img src="http://farm3.static.flickr.com/2159/2379375465_44a769e3a8.jpg?v=0" class="single" alt="radarek, comboy, Matz and neque" /></a>
+</p>
+
+<h3>A potem się rozeszliśmy</h3>
+<p>
+A że do pociągu mięliśmy sporo czasu to poszliśmy do pobliskiego pubu. W zasadzie nie pisałbym o tym gdyby nie fakt, że po pewnym czasie do tego samego pubu przyszeł... nie kto inny jak Matz :). Comboy znów miał okazję pogadać z nim, akurat siedział na skraju kanapy. Żeby tego było mało w knajpie na ścianie wisiał taki plakat:
+</p>
+
+<p style="text-align: center">
+  <a href="http://flickr.com/photos/43204138@N00/2383347675/"><img src="http://farm4.static.flickr.com/3152/2383347675_4b8c8017f7.jpg?v=0" class="single" alt="Zed's dead baby. Zed's dead." /></a>
+</p>
+
+<p>
+"Zed's dead baby but Ruby is alive!" - chciałoby się rzec. Na prawdę było warto tam być :).
+</p>
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-1125801" class="comment1 guest">
+            
+            1.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://md6.org/" rel="nofollow">oki</a></strong> napisał(a) 03 Kwi 2008 o godz. 07:19:
+            <div class="top"></div>
+            <div class="content">
+              <p>Radar z wifi i Rabi na Lajnuksie :D<br />
+...na dobry początek dnia :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1125878" class="comment2 guest">
+            
+            2.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Robert Begier</strong> napisał(a) 03 Kwi 2008 o godz. 10:57:
+            <div class="top"></div>
+            <div class="content">
+              <p>fajna impra &#8222;where the God says hallo :)&#8221;, szkoda że się nie wybrałem :(</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1126523" class="comment1 guest">
+            
+            3.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Psi</strong> napisał(a) 04 Kwi 2008 o godz. 00:32:
+            <div class="top"></div>
+            <div class="content">
+              <p>O, teraz wiem jak wyglądasz :P</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1126777" class="comment2 guest">
+            
+            4.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.warhammer-online.pl" rel="nofollow">Paweł Kondzior</a></strong> napisał(a) 04 Kwi 2008 o godz. 15:21:
+            <div class="top"></div>
+            <div class="content">
+              <p>Rubi Rubi Rydz.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1128611" class="comment1 jogger">
+            
+            5.
+            
+            <img class="avatar-icon" src="http://moarc.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://moarc.jogger.pl">Moarc/J-23</a></strong> napisał(a) 06 Kwi 2008 o godz. 15:32:
+            <div class="top"></div>
+            <div class="content">
+              <p>Te pionki wyglądają jak tabletki :D</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1128665" class="comment2 owner">
+            
+            6.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 06 Kwi 2008 o godz. 16:37:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ja stwierdziłem, że wyglądają jak dropsy :D.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1131264" class="comment1 jogger">
+            
+            7.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://tomash.jogger.pl">Tomash</a></strong> napisał(a) 09 Kwi 2008 o godz. 13:26:
+            <div class="top"></div>
+            <div class="content">
+              <p>Łoo, szkoda że na moim spiczu najwyraźniej nie byłeś :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1131673" class="comment2 owner">
+            
+            8.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 09 Kwi 2008 o godz. 20:04:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@Tomash</strong>, jak nie byłem jak byłem?:) Prezentacja w porządku, chociaż my siedzieliśmy tam u gory, to słabiej tam było słychać i widać :D.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1134834" class="comment1 jogger">
+            
+            9.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://blog.7tonlnu.pl">sharnik</a></strong> napisał(a) 13 Kwi 2008 o godz. 20:37:
+            <div class="top"></div>
+            <div class="content">
+              <p>&#62; W tym miejscu pozdrawiam Daniela Liszkę, któru uparcie mówił &#8222;rabi&#8221; i &#8222;lajnuks&#8221; (sic!). Daniel &#8211; wszędzie tylko nie na konferencji o Rubym&#8230;</p>
+
+<p>Dodam jedynie, że na RuPy się wymowa nie poprawiła ;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="/">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

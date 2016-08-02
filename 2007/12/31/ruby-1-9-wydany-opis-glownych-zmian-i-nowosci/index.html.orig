@@ -1,0 +1,1190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Ruby 1.9 wydany - opis głównych zmian i nowości - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="/files/favicon.png" type="image/png" />
+    <meta name="keywords" content="1.9, release, ruby, ruby1.9, yarv, Ruby, Techblog, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="/files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/files/common.js"></script>
+    <script type="text/javascript" src="/files/highlight.js"></script>
+    <script type="text/javascript" src="/files/dynamic.js"></script>
+    <script type="text/javascript" src="/files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="/" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="/"><span>Wpisy</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/04/29/o-blogu/"><span>O blogu</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kanaly-rss/"><span>RSS</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kontakt/"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2009/01/01/gist-odpicowane-pastie/">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2008/10/12/mp3-przeboje/">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="http://radarek.jogger.pl/kategoria/blog/">Blog (6)</a></li>
+          
+            <li id="c"><a href="http://radarek.jogger.pl/kategoria/c/">C (1)</a></li>
+          
+            <li id="gamedev"><a href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="http://radarek.jogger.pl/kategoria/git/">Git (2)</a></li>
+          
+            <li id="humor"><a href="http://radarek.jogger.pl/kategoria/humor/">Humor (3)</a></li>
+          
+            <li id="java"><a href="http://radarek.jogger.pl/kategoria/java/">Java (1)</a></li>
+          
+            <li id="jruby"><a href="http://radarek.jogger.pl/kategoria/jruby/">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="http://radarek.jogger.pl/kategoria/python/">Python (4)</a></li>
+          
+            <li id="ruby"><a href="http://radarek.jogger.pl/kategoria/ruby/">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="http://radarek.jogger.pl/kategoria/techblog/">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="http://radarek.jogger.pl/kategoria/web/">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/blog/">Blog</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/c/">C</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/git/">Git</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/humor/">Humor</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/java/">Java</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/jruby/">JRuby</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/python/">Python</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/web/">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="/startid/470765">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="/startid/433510">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="/startid/425293">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="/startid/423490">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="/startid/392066">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="/startid/383421">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="/startid/364188">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="/startid/337815">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="/startid/323920">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2007</small>
+              <span>31</span>
+              <small>Gru</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2007/12/31/ruby-1-9-wydany-opis-glownych-zmian-i-nowosci/">Ruby 1.9 wydany - opis głównych zmian i nowości</a></h2>
+            
+            <a href="http://radarek.jogger.pl/2007/12/31/ruby-1-9-wydany-opis-glownych-zmian-i-nowosci/#comments">18 komentarzy</a>
+            | Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+            
+            
+              | <a href="http://radarek.jogger.pl/2007/12/31/ruby-1-9-wydany-opis-glownych-zmian-i-nowosci/trackback/">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/1.9" rel="tag">
+                  1.9</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/release" rel="tag">
+                  release</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby1.9" rel="tag">
+                  ruby1.9</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/yarv" rel="tag">
+                  yarv</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <img src="http://images30.fotosik.pl/145/112f589ebfa862b2.png" style="float: left;" />
+<p>
+Niosę Wam nowinę: Ruby w wersji 1.9 już jest! Otóż zgodnie z obietnicą Matza, 24 grudnia została wydana kolejna odsłona tego języka. Być może wielu z Was nie zdaje sobie sprawy jak ważne jest to dla nas, programistów Rubiego. Dlatego chciałbym opisać jakie zmiany niesie ta wersja, jaki jest jej cel oraz podyskutować nad innymi aspektami tego wydania. Myślę że znajdą się tu także przydatne informacje dla tych, którzy do tej pory omijali język Ruby z jakiegoś powodu (np. braku jakiegoś elementu języka). Dowiecie się o zmianach w stosunku do poprzedniej wersji, a tych jest całkiem sporo. Niektóre są dosyć odważne, a nawet można by rzec, że ryzykowne.
+
+</p>
+
+
+
+<h3>Dla kogo Ruby 1.9?</h3>
+<p>
+Zanim przejdę do zmian, chciałbym omówić bardzo ważną kwestię. Tym bardziej, że panuje wiele odmiennych opinii. Chodzi o następujące kwestie: dla kogo przeznaczona jest wersja 1.9, czy jest przeznaczona do środowisk produkcyjnych, czy to tylko wersja developerska (rozwojowa)? Właściwe zrozumienie przez społeczność roli wersji 1.9 jest bardzo ważne dla dalszego rozwoju języka. Otóż Ruby 1.9 oznaczony jest jako 'development release', czyli jest to wersja rozwojowa. Może zawierać (i zawiera) błędy, nie wszystko działa tak jak powinno. Jednakże nie jest prawdą, że dopiero wersja 2.0 będzie wersją stabilną (<a href="http://blog.zabiello.com/articles/2007/12/16/status-rubiego19">tak napisał Jarosław Zabiełło na swoim blogu</a>). <a href="http://groups.google.com/group/ruby-talk-google/browse_thread/thread/cf2e6fd2cf8159ee/7b402b23b39c6925">Zapytałem o to na grupie ruby-talk</a> by upewnić się i dostałem <a href="http://groups.google.com/group/ruby-talk-google/browse_thread/thread/cf2e6fd2cf8159ee/7b402b23b39c6925?lnk=gst&amp;q=purpose#7b402b23b39c6925">odpowiedź od Matz'a</a>. Dowiedziałem się z niej, że zrezygnowano ze stylu *nixowego w oznaczaniu wersji i kolejne wersje 1.9.x będą w zamiarze stabilne, a więc przeznaczone do użycia produkcyjnego (tak jak wersje 1.8.x).
+</p>
+
+<h3>Ściągamy, kompilujemy i instalujemy</h3>
+<p>
+Zatem jest jeszcze za wcześnie by instalować wersję 1.9 jako podstawową. Jednakże polecam każdemu już ją zainstalować, obok wersji 1.8. Poniżej zamieszczam adresy ftp, skąd można ją pobrać:<br />
+Wersja binarne dla windows 32bit: <a href="ftp://ftp.ruby-lang.org/pub/ruby/binaries/mswin32/unstable/ruby-1.9.0-0-i386-mswin32.zip">ftp://ftp.ruby-lang.org/pub/ruby/binaries/mswin32/unstable/ruby-1.9.0-0-i386-mswin32.zip</a><br />
+Wersja binarne dla windows 64bit: <a href="ftp://ftp.ruby-lang.org/pub/ruby/binaries/mswin32/unstable/ruby-1.9.0-0-x64-mswin64_80.zip">ftp://ftp.ruby-lang.org/pub/ruby/binaries/mswin32/unstable/ruby-1.9.0-0-x64-mswin64_80.zip</a>
+Źródła do samodzielnego zbudowania: <a href="ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.0-0.tar.gz">ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.0-0.tar.gz</a>
+</p>
+
+<h4>Windows</h4>
+<p>
+By zainstalować interpreter pod tym systemem należy rozpakować archiwum .zip, proponuję katalog c:\ruby1.9), a następnie dodać katalog c:\ruby1.9\bin do zmiennej systemowej PATH (Mój komputer -> Właściwości -> Zaawansowane -> Zmienne środowiskowe). Jeśli posiadasz w systemie wersję 1.8, zwróć uwagę by ściezka do tej wersji była wcześniej niż do wersji 1.9. Jest to pierwszy krok by zapobiec konfliktowi tych wersji (wersja 1.8 powinna być wciąż domyślnie używana). Następnie zmień nazwy plików z katalogu c:\ruby1.9\bin\, dodając sufiks 1.9 (ruby.exe -> ruby1.9.exe). Zrób to dla wszystkich plików *.exe, *.bat. Dzięki temu wersja 1.9 będzie dostępna poprzez polecenie 'ruby1.9', a 1.8 tak jak do tej pory 'ruby'. Dodatkowo zrób kopię ruby1.9.exe -> ruby.exe, bo tego pliku używają bezpośrednio pliki .bat. Po tych krokach przetestuj czy wersje 1.8 i 1.9 działają poprawnie:
+</p>
+
+<pre><code class="shell">C:\&gt;ruby -v
+ruby 1.8.6 (2007-03-13 patchlevel 0) [i386-mswin32]
+
+C:\&gt;ruby1.9 -v
+ruby 1.9.0 (2007-12-25 revision 14709) [i386-mswin32]
+
+C:\&gt;irb
+&gt;&gt; RUBY_VERSION
+=&gt; "1.8.6"
+&gt;&gt; exit
+
+
+C:\&gt;irb1.9
+&gt;&gt; RUBY_VERSION
+=&gt; "1.9.0"
+&gt;&gt; exit
+</code></pre>
+
+<h4>Linux</h4>
+<p>
+Podobnie jak poprzednio chcemy zapobiec konfliktowi. Tutaj jest jeszcze prościej, bo podczas kompilacji użyjemy przełącznika --program-suffix. Jeśli chcesz to możesz zainstalować także interpreter bez praw roota - użyj wtedy opcji --prefix by określić katalog, do którego zostanie zainstalowany program. Oto przebieg przykładowej kompilacji i instalacji:
+</p>
+
+<pre><code class="shell">$ wget 'ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.0-0.tar.gz'
+$ tar xvfz ruby-1.9.0-0.tar.gz
+$ cd ruby-1.9.0-0
+$ autoconf
+$ ./configure --prefix=/home/radarek/opt/ --program-suffix=1.9
+$ make
+$ make rdoc
+$ make install
+$ ruby -v
+ruby 1.8.6 (2007-06-07 patchlevel 36) [x86_64-linux]
+$ ruby1.9 -v
+ruby 1.9.0 (2007-12-28 revision 0) [x86_64-linux]
+$ irb
+&gt;&gt; RUBY_VERSION
+=&gt; "1.8.6"
+&gt;&gt; exit
+$ irb1.9
+&gt;&gt; RUBY_VERSION
+=&gt; "1.9.0"
+&gt;&gt; exit
+</code></pre>
+
+
+
+<h3>Ruby.include?(YARV) #=> true</h3>
+
+<p>
+
+Dotychczasowe MRI (Matz Ruby Interpreter) obecnie zostało zintegrowane z YARV ("Yet Another Ruby Vm" albo "YARV Aint Ruby Vm"), czyli maszyną wirtualną. Nie będę się zagłębiał w zbędne (w tej chwili) szczegóły. Z punktu widzenia użytkownika (programisty) Rubiego, dostajemy do rąk około 3-4 razy szybszą implementację (chociaż niektóre operacje są takie same bądź nawet wolniejsze), optymalizacja operacji na liczbach oraz mniejsze zużycie pamięci. A z tego co wiem to nie jest ostatnie słowo. W przyszłości prawdopodobnie będzie można użyć pewnych podpowiedzi dla interpretera, które dadzą kolejnego kopa prędkości. Nie wybiegajmy jednak tak do przodu...;-) I zapamiętajcie: Ruby to YARV, YARV to Ruby. Z resztą YARV jest tylko nazwą kodową i lepiej pozostać przy dotychczasowym nazewnictwie.
+
+</p>
+
+<h3>Ruby.include?(Rubygems) &amp;&amp; Ruby.include?(Rake) #=> true</h3>
+<p>
+Zarówno <a href="http://rubyforge.org/projects/rubygems/">Rubygems</a> jak i <a href="http://rubyforge.org/projects/rake/">Rake</a> zostały włączone do samego języka i nie trzeba ich już instalować osobno.
+</p>
+
+<p style="text-align: center">
+  <img class="single" src="http://www.atmarkit.co.jp/news/200712/25/ruby01.jpg" />
+  Matz (Yukihiro Matsumoto) i Ko1 (Sasada Koichi) - twórca i implementator (<a href="http://www.atmarkit.co.jp/news/200712/25/ruby.html">źródło - niestety po japońsku</a>)
+</p>
+
+
+<h3>Zmiany</h3>
+
+<p>
+Przejdźmy do sedna sprawy - zmiany w samym języku. Tak jak wspomniałem wcześniej - jest ich dosyć sporo (nie wszystkie jestem w stanie tu zaprezentować), niektóre budzą obawy czy były potrzebne i czas je zweryfikuje. Jakkolwiek by nie było mnie odpowiada zdecydowanie twórcy języka (porównując do niezdecydowania twórców PHP i walka z kompatybilnością wstecz). Co ciekawe dzięki otwartym klasom i łatwości w tzw <a href="http://en.wikipedia.org/wiki/Monkey_patch">"monkey patching"</a> przystosowanie aktualnych aplikacji do wersji 1.9 powinno być o wiele łatwiejsze (oczywiście autorzy bibliotek, gemów, frameworków powinni to zrobić w normalny sposób, czyli poprawić sam kod). Przykładowo jeśli usunięto jakąś metodę z klasy String, zawsze można dodać ją na własną rękę (klasy są otwarte, pamiętasz?).
+</p>
+
+
+<h4>Zmiany dotyczące składni i semantyki</h4>
+
+
+
+<p>
+
+- argumenty bloków są zawsze lokalne
+
+</p>
+
+
+<pre><code class="ruby">i = 100
+10.times {|i| }
+puts i
+
+#ruby1.8 => 9
+#ruby1.9 => 100
+</code></pre>
+
+
+
+<p>
+
+- koniec z możliwością używania "dziwnych" zmiennych jako parametry bloków (@par1, $par2, par3['x'] nie są już poprawne, używamy więc zwykłych nazw zmiennych par1, par2 takich jak w metodach)
+
+</p>
+
+<pre><code class="ruby"># poniższy kod nie zadziała w ruby 1.9 (za to w 1.8 tak)
+h = {}
+10.times {|h['a']| }
+</code></pre>
+
+
+
+<p>
+
+- lokalne zmienne w bloku - możemy po normalnych argumentach bloku wyspecyfikować zmienne lokalne dla bloku (po średniku), które przysłonią zmienne spoza bloku
+
+</p>
+
+
+<pre><code class="ruby">a = 1
+Proc.new {|v| a = v }.call(10)
+puts a #=> 10
+
+a = 1
+Proc.new {|v; a| a = v }.call(10)
+puts a #=> 1
+</code></pre>
+
+
+
+<p>
+
+- poprawiona składnia dla specyfikowania parametrów bloków i domknięć - parametrem może być także blok
+
+proc {|a, *rest, &amp;block| }
+
+</p>
+
+<pre><code class="ruby">p = Proc.new {|&amp;b| b.call(:bar)}
+p.call {|bar| puts bar }
+</code></pre>
+
+<p>
+- 'proc' jest synonimem Proc.new (do tej pory był synonimem 'lambda')
+</p>
+
+
+<h4>Klasa String</h4>
+
+<p>
+
+- obsługa różnych kodowań znaków (kodowanie pliku określa się tak jak w pythonie)
+
+</p>
+
+
+<pre><code class="ruby"># -*- encoding: utf-8 -*-
+
+s = "ąęćśńłóźż"
+
+puts s.length                  #=&gt; 9
+puts s.bytes.to_a.size         #=&gt; 18
+puts s.reverse                 #=&gt; "żźółńśćęą"
+puts s.split("").reverse.join  #=&gt; "żźółńśćęą"
+puts s[0]                      #=&gt; "ą"
+puts s.encoding                #=&gt; zwraca obiekt kodowania, w tym wypadku Encoding:UTF-8
+</code></pre>
+
+<p>
+
+- String nie jest już więcej typem wyliczeniowym Enumerable. Jeśli chcesz iterować po stringu musisz jawnie określić czy iterujesz po znakach, bajtach czy też liniach:
+
+</p>
+
+
+<pre><code class="ruby"># -*- encoding: utf-8 -*-
+s = "ąęć\nśńł\nóźż"
+
+puts "Kodowanie: #{s.encoding}" #=&gt; UTF-8
+
+puts "-" * 20, "| each_char ", "-" * 20
+s.each_char do |c|
+  puts "znak: #{c}"
+end
+
+puts "-" * 20, "| each_byte ", "-" * 20
+s.each_byte do |b|
+  puts "bajt: #{b}"
+end
+
+puts "-" * 20, "| each_line ", "-" * 20
+s.each_line do |line|
+  puts "linia: #{line}"
+end
+</code></pre>
+
+
+
+<p>
+
+- semantyka dla "string"[0]: zwraca jednoznakowy string, a nie kod znaku<br/>
+
+- semantyka dla ?c, ?D: zwraca jednoznakowy string, a nie kod znaku
+
+</p>
+
+
+
+<pre><code class="ruby"># -*- encoding: utf-8 -*-
+puts "żaba"[1]       #=&gt; "a"
+puts ?c              #=&gt; "c"
+puts ?A              #=&gt; "A"
+</code></pre>
+
+<h4>Operacje IO</h4>
+
+<p>
+- <a href="http://www.ruby-doc.org/core-1.9/classes/IO.html#M002275">IO#getc</a> zwraca jednoznakowy string, a nie kod znaku
+- do konwersji znak <=> liczba skorzystaj z metod <a href="http://www.ruby-doc.org/core-1.9/classes/Integer.html#M001234">Fixnum.chr</a> oraz <a href="http://www.ruby-doc.org/core-1.9/classes/String.html#M000896">String#ord</a>
+</p>
+
+<pre><code class="ruby">puts "Podaj znak i naciśnij enter"
+char = $stdin.getc
+puts "wpisałeś: #{char}"
+puts "char.ord: #{char.ord}"
+puts 261.chr("utf-8")         #=&gt; "ą"
+</code></pre>
+
+<h4>Nowa składnia dla haszy o kluczach będących symbolami</h4>
+
+<p>
+- hash {:ala => 1, :kot => 2} może być zapisany jako {ala: 1, kot: 2} (pamiętaj, że klucze są symbolami)
+</p>
+
+<p>
+- nowa składnia pozwala symulować nazwane argumenty dla metod (coś jak <a href="http://docs.python.org/tut/node6.html#SECTION006720000000000000000">keyword arguments w Pythonie</a>)
+</p>
+
+<pre><code class="ruby">def foo(args)
+  args.each do |key, value|
+    puts "#{key}: #{value}"
+  end
+end
+
+foo(ala: 1, kot: 2)
+</code></pre>
+
+<p>
+- można mieszać nowy i stary styl hashy:
+</p>
+
+<pre><code class="ruby">{ala: 1, "kot" => 2} #=> {:ala=>1, "kot"=>2}
+</code></pre>
+
+<h4>defined? i zmienne lokalne bloku</h4>
+<pre><code class="ruby">p = Proc.new {|a| puts defined?(a) }
+p.call(1)
+
+#ruby1.8 =&gt; local-variable(in-block)
+
+#ruby1.9 =&gt; local-variable
+</code></pre>
+
+<h4>Kernel#require i zmienna $"</h4>
+<p>
+- ścieżki plików dołączanych za pomocą require zapamiętywane są w zmiennej $" (alias $LOADED_FEATURES) jako bezwzględne
+- działa to mniej więcej tak jak poniższy kod:
+</p>
+
+<pre><code class="ruby">$" &lt;&lt; File.expand_path(loaded_file)
+</code></pre>
+
+<h4>Module#instance_methods, Object#singleton_methods i inne z tej rodziny</h4>
+
+<p>
+- teraz zwracają tablicę symboli a nie stringów
+</p>
+
+<pre><code class="ruby">class A
+  def foo
+  end
+end
+
+p A.instance_methods(false)
+
+#ruby1.8 =&gt; ["foo"]
+#ruby1.9 =&gt; [:foo]
+</code></pre>
+
+<h4>Iteratory: Enumerable oraz Enumerable::Enumerator</h4>
+
+<p>
+- iteratory są zintegrowane z core (nie wymagają oddzielnego dołączania poprzez require)
+- iteratory pozwalają na równoległą iterację kilku kolekcji
+- jeśli iterator nie ma więcej elementów, a zostanie wywołana metoda 'next' to zostanie rzucony wyjątek StopIteration
+- pętla 'loop' potrafi przechwycić taki wyjątek i zakończyć działanie
+</p>
+
+<pre><code class="ruby">e1 = [1, 2, 3, 4].each
+e2 = [10, 11, 4].each
+
+loop do
+  puts e1.next + e2.next
+end
+
+#11
+#13
+#7
+</code></pre>
+
+<p>
+- część metod modułu Enumerable zwraca iterator, jeśli nie podamy stowarzyszonego bloku. Dzięki temu można łączyć iteratory i tworzyć nowe własne
+</p>
+
+<pre><code class="ruby">6.times.map {|e| e ** 2} #=&gt; [0, 1, 4, 9, 16, 25]
+</code></pre>
+
+- powyższy kod wydaje się oczywiście niezbyt praktyczny, ale idealnym przykładem łączenia iteratorów jest metoda 'with_index'. Jeśli brakowało Ci przy niektórych metodach dostępu do indeksu aktualnego elementu to nie musisz się już martwić. Metoda ta potrafi dodawać do parametrów iteracji aktualny indeks elementu:
+
+<pre><code class="ruby">a = [1, 2, 10, 3, 5, 4, 0]
+
+# znajdź wszystkie elementy, których wartość nie przekracza indeksu
+a.find_all.with_index {|e, i| e &lt;= i }
+
+[1, 2, 3].map.with_index {|e,i| e + i}
+</code></pre>
+
+<h4>Operatory lambda ->, .()</h4>
+<p>
+- lambda, czyli domknięcie to jeden z podstawowych elementów języka. Właśnie zyskał nowy operator: -> (np: lambda {|name| puts "hello #{name}" } można zapisać jako ->(name){ puts "hello #{name}" })<br />
+- z początku wydaje się być dziwny, ale według mnie jest bardzo czytelny (po prostu jest to niespotykana do tej pory konstrukcja). Matz <a href="http://www.rubyist.net/~matz/slides/rc2007/mgp00054.html">wybrał taki symbol nie bez przyczyny</a>.<br />
+- po co ten operator? Dzięki niemu parametry domknięć mogą być tak samo definiowane jak parametry metod, czyli możemy np. ustawić wartości domyślne (do tej pory niemożliwe). Nowy operator był potrzebny gdyż używany do tej pory parser nie umożliwiał dodania tych elementów do istniejącej składni (|par1, par2=1|)<br />
+- Ruby 1.9 wprowadza także nowy sposób wywoływania: .()
+</p>
+
+<pre><code class="ruby">add = -&gt;(a, b) { puts "suma: #{a + b}" }
+add.call(1, 2)
+
+#lub
+
+add.(3, 4)
+
+hello = -&gt;(name = "Matz"){ puts "Hello #{name}" }
+hello.()
+</code></pre>
+
+<h4>Wielokrotny operator unarny * (splat)</h4>
+<p>
+- przy wywoływaniu metody z wieloma argumentami możemy w ten sposób przesłać argumenty z wielu tablic (do tej pory tylko z jednej)
+</p>
+<pre><code class="ruby">def foo(*a)
+ a
+end
+
+foo(1, *[2,3], 4, *[5,6])   # =&gt; [1, 2, 3, 4, 5, 6]
+</code></pre>
+
+<h4>Obowiązkowe argumenty za opcjonalnymi</h4>
+<p>
+- pozwala na wyspecyfikowanie parametrów w metodzie, które są wymagane, za parametrami opcjonalnymi
+- jest to jeden z "ficzerów", który budzi wiele kontrowersji, jednakże nie będę tu teraz prowadzić wywodów czy ma sens czy nie.
+</p>
+<pre><code class="ruby">def foo(a, b = 10, c)
+  p [a, b, c]
+end
+
+foo(1, 2)           #a = 1, b = 10, c = 2
+foo(1, 2, 3)        #a = 1, b = 2, c = 3
+
+def bar(a, b = 5, *c, d)
+  p [a, b, c, d]
+end
+
+bar(1, 2)           #a = 1, b = 5, c = [], d = 2
+bar(1, 2, 3)        #a = 1, b = 2, c = [], d = 3
+bar(1, 2, 3, 4)     #a = 1, b = 2, c = [3], d = 4
+</code></pre>
+
+<h4>BasicObject</h4>
+<p>
+- jest to klasa, z której dziedziczy klasa Object, a więc jest klasą podstawową (dotychczas Object)
+- jest to odchudzona wersja Object
+</p>
+<pre><code class="ruby">Object.superclass        #=&gt; BasicObject
+BasicObject.ancestors   #=&gt; [BasicObject]
+</code></pre>
+
+<h4>Kontynuacje</h4>
+<p>
+- wciąż istnieją ale wymagają jawnego dołączenia: require 'continuation'
+</p>
+
+<h4>Fiber</h4>
+<p>
+- pozwala na pisanie "nieskończonych" generatorów
+- więcej w artykule <a href="http://www.infoq.com/news/2007/08/ruby-1-9-fibers">"Ruby 1.9 adds Fibers for lightweight concurrency"</a>
+</p>
+
+<pre><code class="ruby">fib = Fiber.new do 
+  x, y = 0, 1
+  loop do 
+    Fiber.yield y
+    x,y = y, x+y
+  end
+end
+
+20.times { puts fib.resume }
+</code></pre>
+
+<h4>Method#receiver, Method#name, Method#owner</h4>
+<p>
+- receiver - odbiorca
+- owner - właściciel
+- name - nazwa metody
+</p>
+
+<pre><code class="ruby">class Foo
+  def bar
+    puts "bar!"
+  end
+end
+
+o = Foo.new
+m = o.method(:bar)
+
+puts m.receiver
+puts m.owner
+puts m.name
+m.()
+</code></pre>
+
+<h4>Symbol#to_proc</h4>
+<p>
+- wypromowane przez rails, teraz wbudowane w Ruby core
+</p>
+
+<pre><code class="ruby">a = ["a", "qwerty", "czx", "bb"]
+
+puts a.sort_by {|e| e.length}
+# jest równoważne
+puts a.sort_by(&amp;:length)
+</code></pre>
+
+<h4>Nowy silnik wyrażeń regularnych - Oniguruma</h4>
+<p>
+- wprowadza rozszerzoną składnię wyrażeń regularnych, np. nazwane grupy (<a href="http://www.geocities.jp/kosako3/oniguruma/doc/RE.txt">więcej tutaj</a>)
+</p>
+
+<pre><code class="ruby">text = "Yukihiro Matsuomoto"
+
+m = text.match(/(?&lt;first_name&gt;\w+)\s+(?&lt;last_name&gt;\w+)/)
+puts m["first_name"] #=&gt; "Yukihiro"
+puts m["last_name"]  #=&gt; "Matsumoto"
+</code></pre>
+
+<h4>Wątki - Thread</h4>
+<p>
+- zrezygnowano z green-threads na rzecz wątków systemowych (OS threads), niestety wciąż wątki nie są odpalane na kilku procesorach jednocześnie (zdecydowano się na to m.in. by obecnie rozszerzenie w C działały bez zmian)
+- nie oznacza to że w przyszłości nie zmieni się to (warto przeczytać artykuł <a href="http://www.infoq.com/news/2007/05/ruby-threading-futures">http://www.infoq.com/news/2007/05/ruby-threading-futures</a>)
+</p>
+
+<h3>Podsumowanie</h3>
+<p>
+Zmiany zawsze niosą mieszane uczucia. Jedni polubią nową składnię (pamiętajmy, że opcjonalną) dla domknięć, inni będą na nią psioczyć. Mnie zaskoczył tylko jeden ficzer - foo(a, b = nil, c)... Mam nadzieję, że społeczność po prostu nie będzie tego używać i być może zostanie to jeszcze wycofane ;). Jakby nie było postęp jest ogromny. Przejście na maszynę wirtualną (szybkość!), obsługa różnych kodowań znaków, iteratory (naprawdę świetne!), nowy silnik regexpów, nowa składnia dla hashy (bardzo mi przypadła do gustu). A to tylko mały krok do wersji 2.0 więc czeka nas na pewno więcej ulepszeń. Niekompatybilności oczywiście są, ale tak jak wspomniałem w dużej mierze zostaje to uproszczone dzięki możliwościom samego języka (otwarte klasy, łatwość "monkey patching"). Nie ma co narzekać, tym bardziej, że patrząc na rozwój PHP wiemy co się dzieje gdy ciągle ogląda się do tyłu. Dlatego bądźmy dumni i wdzięczni Matzowi (oraz innym programistom Rubiego, a jest ich wielu) za dokonaną pracę. Tak trzymać Panowie :) (jeszcze nie wiem jak to będzie po japońsku :)).
+</p>
+
+<h3>Przydatne Linki</h3>
+<p>
+Na koniec garść linków:<br />
+<a href="http://www.ruby-doc.org/core-1.9/index.html">RDoc dla wersji 1.9</a><br />
+<a href="http://eigenclass.org/hiki/Changes+in+Ruby+1.9">Change in Ruby 1.9</a> - lista zmian, które zostały wyłapane z ChangeLoga, nie wszystkie już aktualne (w chwili gdy piszę te słowa strona nie działa, skorzystaj z <a href="http://web.archive.org/web/20070613154111/http://eigenclass.org/hiki/Changes+in+Ruby+1.9#l30">cache</a>)<br />
+<a href="http://svn.ruby-lang.org/repos/ruby/trunk/doc/NEWS">plik ze spisem nowości i zmian (niestety bez opisu)</a>
+</p>
+
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-1044703" class="comment1 guest">
+            
+            1.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>sawyer</strong> napisał(a) 31 Gru 2007 o godz. 10:27:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ruby 2.0, Perl 6, Python 3.0, C++0x, D 2.0&#8230; dzieje się, oj dzieje :) Szkoda tylko, że zacząłem poznawać niecały miesiąc temu Ruby 1.8 a tu już nowa wersja&#8230; nie nadążę za tymi zmianami :( Ale w sumie zmiany bardzo mi się podobają, poza tymi argumentami domniemanymi. Ruby jest fajny :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1045036" class="comment2 guest">
+            
+            2.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.apohllo.pl" rel="nofollow">apohllo</a></strong> napisał(a) 31 Gru 2007 o godz. 15:17:
+            <div class="top"></div>
+            <div class="content">
+              <p>W przykładzie z Symobl.to_proc jest chyba błąd</p>
+
+<p>puts a.sort_by(&amp;;:length)</p>
+
+<p>- nie powinno być średnika.</p>
+
+<p>A poza tym artykuł wyśmienity :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1045088" class="comment1 owner">
+            
+            3.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 31 Gru 2007 o godz. 16:06:
+            <div class="top"></div>
+            <div class="content">
+              <p>@apohllo, też to zauwazyłem. Ale to wina tego skryptu, który koloruje składnię. Jak wyłączysz js to będzie ok. Próbowałem na różne sposoby zapisać (encja &amp;amp; oraz poprzez #nn) ale ten sam efekt.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1045774" class="comment2 guest">
+            
+            4.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>pnowak</strong> napisał(a) 01 Sty 2008 o godz. 13:17:
+            <div class="top"></div>
+            <div class="content">
+              <p>Jak się ma <span class="caps">YARV</span> do Rails i jego obecnej wersji ?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1045793" class="comment1 jogger">
+            
+            5.
+            
+            <img class="avatar-icon" src="http://mcv.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://mcv.jogger.pl">mcv</a></strong> napisał(a) 01 Sty 2008 o godz. 13:43:
+            <div class="top"></div>
+            <div class="content">
+              <p>Heh, Matz mógłby dać możliwość użycia unikodowego znaku λ. :-)</p>
+
+<p>render partial: &#8216;list&#8217;, link: λ(x) { some_url(x_id: x.id) }</p>
+
+<p>Mnie by się taki kod bardzo podobał. :D</p>
+
+<p>Z jednej strony bardzo podobają mi się rozszerzone iteratory czy też zapis { a: 1, b: 2 }, z drugiej jednak trochę boli mnie, że zaczynają się mnożyć różne metody na zrobienie tej samej rzeczy.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1045806" class="comment2 owner">
+            
+            6.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 01 Sty 2008 o godz. 14:05:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@pnowak</strong>: nie powiem Ci dokładnie, jednak dużo rzeczy jest już w tej chwili dostosowywanych do 1.9 i zapewne jest także z rails. Nie ma powodu, dla którego rails nie miałoby być dostosowane do 1.9, trzeba nam tylko czekać na wersję stabilną (prawdopobonie 1.9.1), ale to wymaga rzetelnego przetestowania przez społeczność. Dlatego zachęcam do testowania i zgłaszania bugów (<a href="http://rubyforge.org/projects/ruby/" rel="nofollow" >http://rubyforge.org/projects/ruby/</a> -&#62; bugs).</p>
+
+<p><strong>@mcv</strong>: pamiętaj że nie wszyscy używają unicode i lepiej żeby znaki spoza ascii nie były używane w języku :). Zawsze możesz na własną rękę zrobić sobie alias do &#8216;proc&#8217; (to jest metoda). <a href="http://radarek.jogger.pl/2007/11/03/zabawa-z-unicode/" rel="nofollow" >Pisałem o tym jakiś czas temu</a>.  Niestety -&#62; jest już operatorem i nie da się go przeładować/zaliasować.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1046087" class="comment1 guest">
+            
+            7.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.warhammer-online.pl" rel="nofollow">Paweł Kondzior</a></strong> napisał(a) 01 Sty 2008 o godz. 18:44:
+            <div class="top"></div>
+            <div class="content">
+              <p>@mcv: http://www.oreillynet.com/ruby/blog/2007/10/fun_with_unicode_1.html</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1046541" class="comment2 guest">
+            
+            8.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://community.programuj.com/user/comboy" rel="nofollow">comboy</a></strong> napisał(a) 02 Sty 2008 o godz. 07:03:
+            <div class="top"></div>
+            <div class="content">
+              <p>Że też Ci się chicało ;)<br />
+Kawał dobrej roboty :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1046657" class="comment1 guest">
+            
+            9.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>qunis</strong> napisał(a) 02 Sty 2008 o godz. 11:24:
+            <div class="top"></div>
+            <div class="content">
+              <p>Bardzo fany artykul.<br />
+Panie Radku powiem tylko iz gleboko wierze w Rubinka. Jako byly juz programista Perl przeszedlem na strone pythona dopoki moja zona nie kupila mi ksiazki <span class="caps">TAO</span> <span class="caps">RUBY</span>. Juz dzis przepisanych zostalo kilka skryptow zarzadzajacych serwerem na Rubinka.<br />
+Wszystkim przeciwnikom Ruby mam do powiedzenia tylko tyle &#8222;Nikt was nie zmusza do programowania w Ruby&#8221;.</p>
+
+<p>Co do Wersji D 2.0 :) masz racje sawyer zapowiada sie calkiem ciekawa zabawa.</p>
+
+<p>qunis.<br />
+Znowu chce mi sie programowac.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1047070" class="comment2 jogger">
+            
+            10.
+            
+            <img class="avatar-icon" src="http://mcv.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://mcv.jogger.pl">mcv</a></strong> napisał(a) 02 Sty 2008 o godz. 18:39:
+            <div class="top"></div>
+            <div class="content">
+              <p>Paweł: O, super! :D Widzę, że kluczem jest tu <del>Ku. :</del>)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1050893" class="comment1 jogger">
+            
+            11.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://sharp.jogger.pl">JO</a></strong> napisał(a) 06 Sty 2008 o godz. 15:36:
+            <div class="top"></div>
+            <div class="content">
+              <p>&#62;&#62;<br />
+&#62;&#62;W przykładzie z Symobl.to_proc jest chyba &#62;&#62;błąd<br />
+&#62;&#62;puts a.sort_by(&amp;;:length)<br />
+&#62;&#62;- nie powinno być średnika.<br />
+&#62;&#62;A poza tym artykuł wyśmienity :)</p>
+
+<p>A ja myślałem ze to brud na moim monitorze :)</p>
+
+<p>Podoba mi się tylko troche zawiodłem się że 1.9 .0 to nie jest jeszcze wersja produkcyjna, miałem takie nadzieje.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1050928" class="comment2 owner">
+            
+            12.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 06 Sty 2008 o godz. 15:58:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@JO</strong>, cierpliwości, nie od razu Rzym zbudowano :). Bardziej to ja się nie mogę doczekać Rubiniusa, smaka robią niezłego.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1061564" class="comment1 jogger">
+            
+            13.
+            
+            <img class="avatar-icon" src="http://diary.ludwikc.net/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://diary.ludwikc.net">ludwikc</a></strong> napisał(a) 18 Sty 2008 o godz. 07:44:
+            <div class="top"></div>
+            <div class="content">
+              <p>dzięki!</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1064848" class="comment2 guest">
+            
+            14.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.bobrowski.org.pl" rel="nofollow">Sebastian</a></strong> napisał(a) 21 Sty 2008 o godz. 22:04:
+            <div class="top"></div>
+            <div class="content">
+              <p>Fajny artykuł!</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1077300" class="comment1 jogger">
+            
+            15.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://sharp.jogger.pl">JO</a></strong> napisał(a) 03 Lut 2008 o godz. 11:18:
+            <div class="top"></div>
+            <div class="content">
+              <p>jak do joggera dodałeś kolorwanie składni  ? to było razem z szablonem ?</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1077474" class="comment2 owner">
+            
+            16.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 03 Lut 2008 o godz. 15:20:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@JO</strong>: to kwestia odpowiedniego skryptu w js + css. U mnie to działa w ten sposób, że skrypt po załadowaniu strony szuka wszystkich elementów &#8222;code&#8221; osadzonych w &#8222;pre&#8221; i je koloruje. Zobacz na źródła plików code_highlighter.js (ten trochę przerobiłem, żeby korzystał z jquery), languages.js. Do tego potrzebne są regułki css, niestety mam je wbite w jeden główny szablon. Jak chcesz to odezwij się na jabbera to Ci pomogę.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1299828" class="comment1 guest">
+            
+            17.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>szymon</strong> napisał(a) 02 Gru 2008 o godz. 19:30:
+            <div class="top"></div>
+            <div class="content">
+              <p>&#62; po prostu jest to niespotykana do tej pory konstrukcja</p>
+
+<p>ja osobiście widzę pewne podobieństwo do &#8222;haskellowej lambdy&#8221;, tzn. tam też używają &#8222;strzałki&#8221; z tym że (w przypadku wyrażenia lambda) w połączeniu z beksleszem, tzn.</p>
+
+<p>\pattern1 pattern2 &#8230; patternn -&#62; expression</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1542100" class="comment2 guest">
+            
+            18.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://blog.sekcja.net/krzysztof-krakowiak/" rel="nofollow">Krzysztof</a></strong> napisał(a) 24 Lip 2010 o godz. 14:45:
+            <div class="top"></div>
+            <div class="content">
+              <p>Fajny artykuł, a co do ruby to jakoś mnie nie przekonuje...</p>
+
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="/">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

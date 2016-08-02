@@ -1,0 +1,843 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Nowy stary wykop.pl - zmiany nie zawsze są dobre... - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="../../../../files/favicon.png" type="image/png" />
+    <meta name="keywords" content="php, rails, ruby, wykop, Ruby, Ruby on Rails, Web, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="../../../../files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../../files/common.js"></script>
+    <script type="text/javascript" src="../../../../files/highlight.js"></script>
+    <script type="text/javascript" src="../../../../files/dynamic.js"></script>
+    <script type="text/javascript" src="../../../../files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="../../../../index.html" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="../../../../index.html"><span>Wpisy</span></a></li>
+          <li><a href="../../../04/29/o-blogu/index.html"><span>O blogu</span></a></li>
+          <li><a href="../../../05/01/kanaly-rss/index.html"><span>RSS</span></a></li>
+          <li><a href="../../../05/01/kontakt/index.html"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="http://radarek.jogger.pl/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="../../../../2009/01/01/gist-odpicowane-pastie/index.html">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="../../../../2008/10/12/mp3-przeboje/index.html">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="../../../../kategoria/blog/index.html">Blog (6)</a></li>
+          
+            <li id="c"><a href="../../../../kategoria/c/index.html">C (1)</a></li>
+          
+            <li id="gamedev"><a href="../../../../kategoria/gamedev/index.html">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="../../../../kategoria/git/index.html">Git (2)</a></li>
+          
+            <li id="humor"><a href="../../../../kategoria/humor/index.html">Humor (3)</a></li>
+          
+            <li id="java"><a href="../../../../kategoria/java/index.html">Java (1)</a></li>
+          
+            <li id="jruby"><a href="../../../../kategoria/jruby/index.html">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="../../../../kategoria/miniblog/index.html">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="../../../../kategoria/narzedzia/index.html">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="../../../../kategoria/programowanie/index.html">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="../../../../kategoria/python/index.html">Python (4)</a></li>
+          
+            <li id="ruby"><a href="../../../../kategoria/ruby/index.html">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="../../../../kategoria/ruby/merb/index.html">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="../../../../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="../../../../kategoria/techblog/index.html">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="../../../../kategoria/tips-tricks/index.html">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="../../../../kategoria/web/index.html">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="../../../../kategoria/blog/index.html">Blog</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/c/index.html">C</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/gamedev/index.html">Gamedev</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/git/index.html">Git</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/humor/index.html">Humor</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/java/index.html">Java</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/jruby/index.html">JRuby</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/miniblog/index.html">Miniblog</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/narzedzia/index.html">Narzędzia</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/programowanie/index.html">Programowanie</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/python/index.html">Python</a>
+          
+            <a class="catlvl3" href="../../../../kategoria/ruby/index.html">Ruby</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/ruby/merb/index.html">Merb</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="../../../../kategoria/techblog/index.html">Techblog</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/tips-tricks/index.html">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/web/index.html">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="../../../../startid/470765.html">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/433510.html">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/425293.html">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/423490.html">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/392066.html">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/383421.html">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/364188.html">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/337815.html">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/323920.html">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2007</small>
+              <span>20</span>
+              <small>Lip</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="index.html">Nowy stary wykop.pl - zmiany nie zawsze są dobre...</a></h2>
+            
+            <a href="index.html#comments">21 komentarzy</a>
+            | Kategorie:
+            
+              <a class="strong" href="../../../../kategoria/ruby/index.html">Ruby,</a>
+            
+              <a class="strong" href="../../../../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails,</a>
+            
+              <a class="strong" href="../../../../kategoria/web/index.html">Web</a>
+            
+            
+              | <a href="trackback/index.html">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/php" rel="tag">
+                  php</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/rails" rel="tag">
+                  rails</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/wykop" rel="tag">
+                  wykop</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <p>
+<a href="http://wykop.pl/blog/post/10">W poniedziałek zawita kolejna odsłona</a> serwisu <a href="http://wykop.pl">wykop.pl</a>. Po raz kolejny <a href="http://antyweb.pl/juz-wiemy-jak-bedzie-wygladal-nowy-wykoppl/">zagości nowa szata graficzna </a>. Nie mógłbym jednak, zwłaszcza na tym blogu, nie zwrócić uwagi na to, że <a href="http://yashke.com/2007/05/13/no-luv-4-ror-at-wykoppl/">wykop jest przepisywany (a właściwie już został) na PHP</a>.
+</p>
+
+
+<p>
+Pozwolę sobie przytoczyć wypowiedź Pana Tomasza Drożdżyńskiego, właściciela wykopu:
+</p>
+
+<blockquote>
+<p>
+Dyskusja na temat przejścia z RoR na PHP zupełnie niepotrzebnie nabrała emocji, więc jako osoba odpowiedzialna za tą decyzję, chciałbym ustosunkować się do Waszych uwag. Oto trzy równorzędne powody:
+</p>
+
+<p>
+Po pierwsze: Wydajność. Porównanie wydajności RoR do frameworków PHP’owych nie ma sensu, ponieważ piszemy w czystym PHP. Wydajność nie jest problemem bieżącym, mamy dobry serwer, który zupełnie wytrzymuje obecne obciążenie strony. Lecz ilość odwiedzających rośnie z dnia na dzień w dość szybkim tempie.
+</p>
+
+<p>
+Po pierwsze: Ludzie. Aktualnie dysponujemy 3 osobowym zespołem programistów PHP. Dzięki przewadze w popularności PHP nad Rubym, każdy z członków zespołu może być szybko zastąpiony, bardzo łatwo znaleźć dodatkowe, doświadczone osoby do pracy.
+</p>
+
+<p>
+Po pierwsze: Moment. Zdecydowaliśmy się na taki krok teraz, póki serwis jest w miarę prostą aplikacją.
+</p>
+
+<p>
+Zanim zaczniecie przedstawiać kontrargumenty, chciałbym abyście pamiętali, ze dla użytkowników, czyli dla Was, nie powinno to mieć zbytnio znaczenia w czym piszemy. Bardzo wiele świetnych aplikacji webowych jest w PHP, są też świetne rzeczy napisane w RoR (Twitter.com jest największym serwisem napisanym w RoR w sieci i niestety ma duże problemy z wydajnością).
+</p>
+
+<p>
+“Czasem o zakupie auta, decyduje dostępność części oraz punktów serwisowych”
+</p>
+<p><a href="http://yashke.com/2007/05/13/no-luv-4-ror-at-wykoppl/">źródło</a>
+</blockquote>
+
+<h3>"Wydajność"</h3>
+<p>
+Jak pewnie wiecie <a href="http://www.webaudit.pl/blog/2006/czy-wykop-zapomnial-o-hostingu/">wykop miał ogromne problemy z wydajnością</a>. Był na tyle popularny, że dzielony hosting na <a href="http://www.dreamhost.com/">dreamhost</a> po prostu nie wyrabiał. Potem serwis został przeniesiony na serwer dedykowany i do tego czasu moim zdaniem chodzi bardzo dobrze. Pominę tu dosyć znany błąd "Ups... Chyba znowu coś nawaliło. Przepraszamy za problemy.", który był błędem programistycznym i nie miał nic wspólnego z serwerem. Zatem czy argument, że czysty PHP (czyli bez frameworka, swoją drogą to będzie masakra, daleko na tym nie zajadą:)) jest szybszy od RoR ma sens? Równie dobrze można przepisać na assembler, będzie jeszcze szybszy :). A nawet jeśli nadejdzie taki moment, że serwer okaże się zbyt wolny niekoniecznie trzeba myśleć o szybszym bądź kolejnym serwerze. Jest jeszcze cache, który w znaczący sposób może przyspieszyć serwowanie stron. <a href="http://forum.rubyonrails.pl/viewtopic.php?id=204">Jak można przeczytać</a> wykop nie używa keszowania danych (choć jest to dosyć stara wypowiedź p_ch to jestem pewien, że do dzisiaj w tej kwestii nic się nie zmieniło) bo "Na wykopie nie ma zbytnio co keszować - za dużo szybko zmieniającej się treści, różnej dla każdego usera." No cóż, bzdura. To co każdy (zalogowany) użytkownik ma innego na stronie to tekst "witaj Radarek", reszta jest taka sama. W takim wypadku żaden serwis nie mógłby korzystać z zalet keszowania bo przecież każdemu użytkownikowi pokazuje inną treść... Z tym, że keszować można nie tylko cały kod html, ale prawie każde dane (część kodu html, zapytania sql itp).
+</p>
+
+<h3>"Aktualnie dysponujemy 3 osobowym zespołem programistów PHP"</h3>
+<p>
+To, że na świecie, w Polsce jest masa programistów PHP jest oczywiste. Inaczej jest z Rubym, programistów jest zdecydowanie mało, ale są. Ba, jestem prawie pewien, że jest więcej programistów Rubiego niż ofert pracy! Bo przecież zanim pojawiają się oferty prac, Ci najbardziej zatwardziali, ciekawscy programiści na własną rękę uczą się Rubiego i Railsów. I jeszcze taka uwaga, czy do wykopu trzeba milionów programistów Rubiego? Setki tysięcy? Setki? No właśnie, wystarczy 2-3 (2 wcale nie najlepszych programistów Rubiego spokojnie by wystarczyło). A czy tak źle się pracuje programistom wykopu, że już trzeba kolejnych na wymianę? No właśnie, skoro przy tym jesteśmy. Otóż koszt wdrożenia nowej osoby do projektu w PHP (a już na pewno takiego, który nie używa żadnego frameworka) jest nieporównywalnie większy niż do projektu w Railsach (railsowcy mówią tym samym językiem i to ma w tym wypadku podwójne znaczenie).
+</p>
+
+<h3>"Moment. Zdecydowaliśmy się na taki krok teraz, póki serwis jest w miarę prostą aplikacją"</h3>
+<p>
+Tak, jest dość prostą aplikacją (wszystko zamyka się praktycznie w trójce: użytkownicy, linki, komentarze). Rozumiem, że wykop zostanie wzbogacony o nową funkcjonalność. Tym bardziej zrezygnowanie z RoR jest w tym wypadku średnim posunięciem. Skoro aplikacja będzie się rozrastać dobrze by było żeby z programistycznego punktu widzenia trzymała się kupy. A jak wyglądają aplikacje pisane w czystym PHP to chyba wszyscy zainteresowani wiedzą. Jednym słowem - burdel. Na prawdę nie korzystacie z żadnego frameworka?
+</p>
+
+<h3>"Twitter.com jest największym serwisem napisanym w RoR w sieci i niestety ma duże problemy z wydajnością"</h3>
+<p>
+Po pierwsze miał, bo już się z tym uporał. Po drugie porównywanie wykopu do twittera jest śmieszne. To nie ta liga... Twitterowi nie pomógłby nawet czysty PHP. Nie przy tylu użytkownika i tylu requestach na sekundę. O MySQL też pisano, że to wolna baza danych (przy komercyjnych się chowa itp), ale Google jakoś jest w stanie używać tego na dużą skalę.
+</p>
+
+<h3>Czekamy na efekty</h3>
+<p>
+Pozostaje nam zatem czekać na efekty pracy. Zapewne użytkownicy dogłębnie sprawdzą i ocenią czy przesiadka na PHP wyszła na dobre czy nie wykopowi. Aha, takie wcale niemałe serwisy jak <a href="http://slideshare.net/">Slideshare</a>, <a href="http://scribd.com/">Scribd</a>, <a href="http://www.revolutionhealth.com/">Revolution Health</a> chodzą na Railsach i nie narzekają :-). Oby tylko wykop nie przemawiał do nas zbyt często "Ups... Chyba znowu coś nawaliło.".
+</p>
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-895177" class="comment1 jogger">
+            
+            1.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://cthulhu.jogger.pl">Cthulhu</a></strong> napisał(a) 20 Lip 2007 o godz. 02:51:
+            <div class="top"></div>
+            <div class="content">
+              <p>Fakt, bardzo dziwna decyzja z przejściem na czyste <span class="caps">PHP</span>. No chyba, że pójdą za modą i będą pisać własny &#8222;Frejmwork&#8221;. No i jeszcze to łatwe zastąpienie jednego programisty jakimś nowym&#8230; brr..<br />
+Swoją drogą jeśli miałbym się przenosić z Railsów to chyba tylko na Django. <br />
+Z resztą postu też się zgadzam więc w sumie nie ma sensu dalej komentować</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895226" class="comment2 guest">
+            
+            2.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>ajgon</strong> napisał(a) 20 Lip 2007 o godz. 09:01:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ich serwis &#8211; ich problem ;) Jak beda pisac taki kod w <span class="caps">PHP</span> jak w Railsach, to juz nie bedzie &#8222;Oooops&#8230; cos nawalilo&#8221; tylko &#8222;Fatal error &#8211; shackuj mnie na /home/p_ch/wykop.pl/include/admin.class.php&#8221; ;]</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895324" class="comment1 guest">
+            
+            3.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>maszyna</strong> napisał(a) 20 Lip 2007 o godz. 11:15:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ten tekst jest kompletnie nie obiektywny. Zgodze sie z niektorymi argumentami obu stron. Ja pisze w <span class="caps">PHP</span> i RoR. Skalowalnosc oprogramowania zarowno napisanego w R0R jak i w PhP zalezy bardziej od jakosci programisty niz od mozliwosci obu jezykow. <br />
+Zgodze się z tym, że programista z 2 miesięcznym doświadczeniem w RoR i podobnym w <span class="caps">PHP</span> napisze 1000 bardziej skalowalna i wydajna aplikacje w RoR. Ale rzecz zmienia się wraz z doświadczeniem twórcy.</p>
+
+<p>Ja mam doświadczenie w obu językach. Rubiego jednak bardziej używam do aplikacji Intranetowych niż serwisów w jakimś tam standardzie web 2.0.</p>
+
+<p>Prawdę mówiąc ja myślałem podobnie jak ty zanim problem jednostki nie zaczął mnie dotykać osobiście.  Bowiem w pewnym momencie przedsięwzięcie internetowe może przestać być zabawą albo projektem przynoszącym małe dochody i stać się poważnym biznesem.</p>
+
+<p>Zadaj sobie teraz pytanie dlaczego w biznesie używa się Windowsa, Offica, itd skoro wiadomo, że Linux, Mac są stabilniejsze, wydajniejsze i bezpieczniejsze.</p>
+
+<p>W biznesie już nie liczy się pasja a logistyczna skalowalność przedsięwzięcia. Skoro twórcy wykopu postanowili zrobić, ze swojego przedsięwzięcia biznes ich posunięcie jest całkowicie zrozumiałe w innym wypadku nie bauuuudzo rozumiem.</p>
+
+<p>Otóż drodzy programiści, jako inny programista muszę wam powiedzieć, że podczas rozwijania własnego projektu w necie przychodzi okres kiedy trzeba puścić swoje dziecko i zając się czymś innym niż przerabianiem non stop kodu.</p>
+
+<p>Uwierzcie lub nie ale rotacja ludzi w tym biznesie może być ogromna a wybór programistów <span class="caps">PHP</span> jest znacznie większy niż RoR.</p>
+
+<p>A tak pozatym jeżeli twierdzisz, że każdy programista RoR jest doskonały to się mylisz. Dokładnie tak samo jak w <span class="caps">PHP</span>. Są programiści i &#8222;programisci&#8221;. </p>
+
+<p>Aplikacje w Rubym można skaszanić równie dobrze jak w php ;]</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895345" class="comment2 guest">
+            
+            4.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 20 Lip 2007 o godz. 11:54:
+            <div class="top"></div>
+            <div class="content">
+              <p>Mnie się bardzo podoba nowy design &#8211; jest profesjonalny.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895408" class="comment1 guest">
+            
+            5.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Maruder</strong> napisał(a) 20 Lip 2007 o godz. 13:13:
+            <div class="top"></div>
+            <div class="content">
+              <p>Wytrzyj pianę z ust koleś i zaufaj ludziom, którzy w przeciwieństwie do Ciebie zainwestowali w wykop.pl kasę. Ty liznąłeś RoR i cholera Cię bierze, że coraz więcej osób/firm nie chce być &#8222;cool&#8221; i &#8222;trendy&#8221; i wybiera starego, poczciwego <span class="caps">PHP</span>. Są powody.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895409" class="comment2 guest">
+            
+            6.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Livio</strong> napisał(a) 20 Lip 2007 o godz. 13:13:
+            <div class="top"></div>
+            <div class="content">
+              <p><span class="caps">PHP</span> jest popularne, bo jest proste i wydajne ;) . To jest moje zdanie.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895415" class="comment1 owner">
+            
+            7.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 20 Lip 2007 o godz. 13:16:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@Maruder</strong>, gdzie Ty widzisz pianę? To już nie można mieć swojego, odmiennego od kogoś zdania? Czy inne zdanie zawsze równa się piana na ustach? W przeciwieństwie do pewnych osób ja podaję rzeczywiste argumenty niż RoR jest &#8222;cool&#8221; i &#8222;trendy&#8221;. Wyluzuj.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895597" class="comment2 guest">
+            
+            8.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Anonim</strong> napisał(a) 20 Lip 2007 o godz. 17:06:
+            <div class="top"></div>
+            <div class="content">
+              <p>A dlaczego nie w JEE? ;-)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895762" class="comment1 jogger">
+            
+            9.
+            
+            <img class="avatar-icon" src="http://riddle.jogger.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://riddle.jogger.pl">Riddle</a></strong> napisał(a) 20 Lip 2007 o godz. 21:11:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ja już pisałem, że decyzja o przejściu na <span class="caps">PHP</span> to strzał w nogę, ale oczywiście mnie prawie zjedzono. </p>
+
+<p>Nie dość, że serwis kopiuje wszystko co jest na Diggu, to jeszcze teraz straci ogromny plus w postaci RoR.</p>
+
+<p>Polska scena Web2.0 to w ogromnej większości copy-cats i ludzie nastawieni tylko i wyłącznie na zysk. Wymieniam na palcach jedej ręki wyjątki (tworzone przez parę znanych mi osób).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895800" class="comment2 guest">
+            
+            10.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>blah</strong> napisał(a) 20 Lip 2007 o godz. 21:34:
+            <div class="top"></div>
+            <div class="content">
+              <p>&#8222;Polska scena Web2.0 to w ogromnej większości copy-cats i ludzie nastawieni tylko i wyłącznie na zysk.&#8221; </p>
+
+<p>Ohh straszne, sami krwiożerczy wyzyskiwacze kapitaliści co za swoją pracę (o zgrozo!) każą sobie płacić. Katastrofa, upadek moralny, koniec, nie ma już nic :) Ostatni gasi światło :)</p>
+
+<p>I jakiż to niby plus dają Railsy na Wykopie? He? Że RoR jest bardziej &#8222;trendi&#8221;? No lol&#8230; </p>
+
+<p>Ah ale zapomniałbym &#8211; przecież Web2.0 w Polsce już umarło ;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895807" class="comment1 jogger">
+            
+            11.
+            
+            <img class="avatar-icon" src="http://riddle.jogger.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://riddle.jogger.pl">Riddle</a></strong> napisał(a) 20 Lip 2007 o godz. 21:38:
+            <div class="top"></div>
+            <div class="content">
+              <p>Gdzie ja miałem poradnik „jak gadać z trollami”…</p>
+
+<p>Otóz drogi kolego, znam ja ambitne projekty wykonywane przez Polaków i jakoś żaden z nich (również, z wyjątkami które tak naprawdę potwierdzają regułę) nie jest skierowany na rynek polski. Bo ten jest uważany przez osoby mające pojęcie o Web2.0 za denny i śmierdzący.</p>
+
+<p>Możesz się nie zgadzać, możesz się ośmieszać, możesz produkować kilobajty śmieciowych komentarzy bez jakiejkolwiek konstruktywnej krytyki – ale przeciwko Tobie jest setka serwisów klonów i zaledwie parę pozytywnych inicjatyw.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895815" class="comment2 guest">
+            
+            12.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>blah</strong> napisał(a) 20 Lip 2007 o godz. 21:55:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ah no tak bo wszystko co Polskie to gorsze, w ogóle powinniśmy mówić w ingliszu, toć przecież polski język taki barbarzyński i prostacki, niegodny zachodniej cywilizacji ;)</p>
+
+<p>Ale wracając do meritum &#8211; nadal nie odpowiedziałeś na moje pytanie co Wykop traci porzucając RoR?</p>
+
+<p>A czy w US and A tworzą się same nowe i innowacyjne projekty? Nie. Tam jest jeszcze więcej klonów niż w Wolsce. A sam Wykop to klon Digga, czy byłby napisany w Railsach czy w Django, czy Javie &#8211; klon to klon. </p>
+
+<p>Z resztą co może interesować użytkownika końcowego w jakim języku napisany jest serwis? Wystarczy żeby działał szybko, stabilnie i był rozwijany.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895818" class="comment1 jogger">
+            
+            13.
+            
+            <img class="avatar-icon" src="http://riddle.jogger.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://riddle.jogger.pl">Riddle</a></strong> napisał(a) 20 Lip 2007 o godz. 22:01:
+            <div class="top"></div>
+            <div class="content">
+              <p>Nie, nie wszystko co polskie gorsze, ale musisz zrozumieć że istnieją jeszcze ludzie z poglądami innym niż Twoje. Czemu RoR -&#62; <span class="caps">PHP</span> to błąd napisał w poście Radek.</p>
+
+<p>Wiem, że w <span class="caps">USA</span> powstaje więcej klonów. Ale to jest rynek-matka, wielokrotnie przekraczający chociażby marzenia o rynku w Polsce.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895829" class="comment2 guest">
+            
+            14.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>blah</strong> napisał(a) 20 Lip 2007 o godz. 22:16:
+            <div class="top"></div>
+            <div class="content">
+              <p>A Ty Ridle bezkrytycznie wierzysz w słowa Radarka? No tak możesz wierzyć skoro sam nie programujesz ani w jednym ani w drugim. Co stawia nas raczej w totalnej opozycji&#8230; </p>
+
+<p>RoR dla programisty jest wygodniejsze, ale hosting, drodzy i rzadko występujący w przyrodzie &#62;doświadczeni&#60; koderzy są zbyt dużą zaporą na polskim rynku&#8230;</p>
+
+<p>Powtórzę się &#8211; dla użytkownika końcowego i tak nie będzie miało to znaczenia, widać nie znaleziono chętnych programistów Railsowych lub byli za drodzy i przepisano na php (sam wykop to mała aplikacja, więc pewnie im to długo nie zajęło).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895836" class="comment1 jogger">
+            
+            15.
+            
+            <img class="avatar-icon" src="http://riddle.jogger.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://riddle.jogger.pl">Riddle</a></strong> napisał(a) 20 Lip 2007 o godz. 22:23:
+            <div class="top"></div>
+            <div class="content">
+              <p>Nie rozumiesz, że doświadczony programista RoR dla Wykopu nie jest koniecznością? Tak samo z koderami JavaScript i wedesignerami znającymi się maksymalnie dobrze na <span class="caps">CSS</span> nie musisz uderzać na zwykłe serwisy. Tych najlepszych bierze się do najlepszych projektów.</p>
+
+<p>Co do składni to wiem jaki to wyznacznik – jeśli pisze się bezboleśnie i jeszcze jest do ten fun, to efekt końcowy będzie o wiele lepszy niż pisanie dla pisania. Dla mnie jest to jQuery vs Prototype ew. inne ogromniaste frameworki klasujące wszystko od 0 do 100.</p>
+
+<p>Dlatego nie zbywaj mnie jako uczestnika dyskusji który od czasu do czasu poklepie <span class="caps">HTML</span> i myśli, że zjadł wszelkie rozumy. Ponadto wystarczy pogadać z ludźmi i już coś wiadomo – dlatego nie będę brał Twoich słów za wypowiedzi wyroczni, „bo ja tępy się nie znam”.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895887" class="comment2 guest">
+            
+            16.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>blah</strong> napisał(a) 20 Lip 2007 o godz. 22:41:
+            <div class="top"></div>
+            <div class="content">
+              <p>Nie jestem wyrocznią , jestem koderem pracującym i w RoR i w <span class="caps">PHP</span>. Niedoświadczony programista RoR = niedoświadczony programista <span class="caps">PHP</span>, właściciel serwisu chyba to załapał i wolał już zatrudnić doświadczonych koderów <span class="caps">PHP</span> (chyba że ktoś woli oglądać już kultowe &#8222;Upss..&#8221; niż same linki). O efektach ich pracy przekonamy się w  poniedziałek. Jak dotąd to rozpisywanie się dlaczego porzucono RoR jest &#8222;bez sęsu&#8221; jak to pisuje pewien inny troll.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895903" class="comment1 guest">
+            
+            17.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>blah</strong> napisał(a) 20 Lip 2007 o godz. 22:48:
+            <div class="top"></div>
+            <div class="content">
+              <p>Do tego ocenianie języka po samej jego składni jest hmmm niepoważne. Weźmy taką Javę &#8211; sa0 język super ale już reszta niefajno&#8230;</p>
+
+<p>A dla 90% ludu <span class="caps">PHP</span> jest łatwiejsze do nauki bo ma składnie C-like którą zna każdy student informatyki&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-895910" class="comment2 guest">
+            
+            18.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Staszek</strong> napisał(a) 20 Lip 2007 o godz. 22:55:
+            <div class="top"></div>
+            <div class="content">
+              <p>&#8222;chodź jest to dosyć stara wypowiedź&#8221; &#8211; przydałoby się sprawdzanie pisowni :)</p>
+
+<p>Nie wiem po co komentować przejście z jednego języka programowania na drugi. Tak zdecydowali i tak będzie. Koniec.<br />
+... Ale nie, przeciez trzeba napisać jak to jeden język jest lepszy od drugiego. <br />
+Chore.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-896273" class="comment1 jogger">
+            
+            19.
+            
+            <img class="avatar-icon" src="http://ouzo.jogger.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://ouzo.jogger.pl">aevin</a></strong> napisał(a) 21 Lip 2007 o godz. 14:08:
+            <div class="top"></div>
+            <div class="content">
+              <p>A mi sie przypomina ksiazka Paula Grahama: &#8222;Hakerzy i malarze&#8221;.</p>
+
+<p>&#8222;Jesli kiedykolwiek bedziesz pracowal w startupie, oto przydatna wskazowka do oceny konkurentow. Czytaj zamieszczane przez nich ogloszenia o poszukiwanych pracownikach. (...) Podczas kilku lat pracy w Viaweb przeczytalem mnostwo ogloszen o pracy. Nowy konkuretn zdawal sie wyrastac nam mniej wiecej co miesiac. Pierwsza rzecza, ktora robilem po sprawdzenie czy maja na swoje stronie interaktywna wersje demo produktu, bylo zajrzenie do dzialu ogloszen.(...) Im wiecej w opise bylo zargonu &#8222;brazy IT&#8221; tym mniej niebezpieczna byla firma. Najbezpieczniejsze byly te, ktore chcialy doswiadczenia w Oracle. Takimi nie ma sie co martwic. Jesli poszukiwali programistow piszacych w C++ lub Javie, tez nie statnowili zagrozenia.. Gdy chcieli zatrudnic programistow Perla lub Pythona, robilo sie goraco &#8211; znaczylo to, ze firma, przynajmniej od strony technicznej, jest prowadzona przez hakerow. Gdybym wtedy kiedykolwiek zobaczyl ogloszenie o poszukiwaniu hakerow LISPa bylbym naprawde zmartwiony&#8230;&#8221; </p>
+
+<p>&#8222;Gdy wybierasz technologie, musisz zignorowac to co robia inni i brac pod uwage tylko najlepsze rozwiazania.&#8221; </p>
+
+<p>http://en.wikipedia.org/wiki/Viaweb</p>
+
+<p>Takze panowie &#8211; czekam na efekty tego przejscia na php&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-897835" class="comment2 owner">
+            
+            20.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 23 Lip 2007 o godz. 10:48:
+            <div class="top"></div>
+            <div class="content">
+              <p>Wróciłem po weekendzie a tu takie kłótnie ;).</p>
+
+<blockquote>
+<p>„chodź jest to dosyć stara wypowiedź” – przydałoby się sprawdzanie pisowni :)</p>
+</blockquote>
+
+<p>Ajć jaki wstyd, już poprawię :). Aczkolwiek pisownię sprawdzałem i błędu jako tako nie ma (przecież jest słowo &#8222;chodź&#8221;), stąd ta pomyłka.</p>
+
+<p><strong>@blah</strong>, przeczytaj wpis jeszcze raz i pokaż mi w którym miejscu jako argumenty podaję, że RoR jest &#8222;trendi&#8221;? Co do składni (a przy okazji pewnej filozofii) języka, jeśli uważasz że jest ona bez znaczenia&#8230; to ok. Ja myślę inaczej (aczkolwiek nie użyłem tutaj tego argumentu).</p>
+
+<p><strong>@Staszek</strong> Czy ten tekst jest o wyższości jednego języka nad drugim? Nie wydaje mi się. Tekst jest o tym, dlaczego (moim i tylko moim zdaniem) nie warto przechodzić w przypadku wykopu z RoR na <span class="caps">PHP</span>.</p>
+
+<p><strong>@aevin</strong>, dobre! :) Gdzieś już coś takiego czytałem.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-915775" class="comment1 guest">
+            
+            21.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>kkempin</strong> napisał(a) 12 Sie 2007 o godz. 23:11:
+            <div class="top"></div>
+            <div class="content">
+              <p>@aevin: hehe, Ruby czerpie bardzo mocno z LISPa :)</p>
+
+<p>o decyzji wykop.pl zadecydowały bardziej względy pragmatyczne, niż wyższość którejś z technologii. Świadczy to bardziej o popularności RoR w Polsce i o rodzimym rynku programistów.</p>
+
+<p>Piszę w <span class="caps">PHP</span> i RoR i z całą pewnością mogę stwierdzić iż tworzenie aplikacji w RoR daje dużo przyjemności, jest bardziej intuicyjne i ma w sobie to coś czego nie posiada żaden framework <span class="caps">PHP</span>.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="../../../../index.html">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="index.html#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

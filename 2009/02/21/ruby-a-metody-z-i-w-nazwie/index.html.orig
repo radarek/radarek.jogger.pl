@@ -1,0 +1,694 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Ruby a metody z '?' i '!' w nazwie - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="/files/favicon.png" type="image/png" />
+    <meta name="keywords" content="metoda, nazwa, pytajnik, ruby, wykrzyknik, Ruby, Techblog, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="/files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/files/common.js"></script>
+    <script type="text/javascript" src="/files/highlight.js"></script>
+    <script type="text/javascript" src="/files/dynamic.js"></script>
+    <script type="text/javascript" src="/files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="/" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="/"><span>Wpisy</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/04/29/o-blogu/"><span>O blogu</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kanaly-rss/"><span>RSS</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kontakt/"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2009/01/01/gist-odpicowane-pastie/">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2008/10/12/mp3-przeboje/">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="http://radarek.jogger.pl/kategoria/blog/">Blog (6)</a></li>
+          
+            <li id="c"><a href="http://radarek.jogger.pl/kategoria/c/">C (1)</a></li>
+          
+            <li id="gamedev"><a href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="http://radarek.jogger.pl/kategoria/git/">Git (2)</a></li>
+          
+            <li id="humor"><a href="http://radarek.jogger.pl/kategoria/humor/">Humor (3)</a></li>
+          
+            <li id="java"><a href="http://radarek.jogger.pl/kategoria/java/">Java (1)</a></li>
+          
+            <li id="jruby"><a href="http://radarek.jogger.pl/kategoria/jruby/">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="http://radarek.jogger.pl/kategoria/python/">Python (4)</a></li>
+          
+            <li id="ruby"><a href="http://radarek.jogger.pl/kategoria/ruby/">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="http://radarek.jogger.pl/kategoria/techblog/">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="http://radarek.jogger.pl/kategoria/web/">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/blog/">Blog</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/c/">C</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/git/">Git</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/humor/">Humor</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/java/">Java</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/jruby/">JRuby</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/python/">Python</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/web/">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="/startid/470765">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="/startid/433510">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="/startid/425293">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="/startid/423490">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="/startid/392066">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="/startid/383421">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="/startid/364188">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="/startid/337815">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="/startid/323920">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2009</small>
+              <span>21</span>
+              <small>Lut</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2009/02/21/ruby-a-metody-z-i-w-nazwie/">Ruby a metody z '?' i '!' w nazwie</a></h2>
+            
+            <a href="http://radarek.jogger.pl/2009/02/21/ruby-a-metody-z-i-w-nazwie/#comments">13 komentarzy</a>
+            | Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+            
+            
+              | <a href="http://radarek.jogger.pl/2009/02/21/ruby-a-metody-z-i-w-nazwie/trackback/">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/metoda" rel="tag">
+                  metoda</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/nazwa" rel="tag">
+                  nazwa</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/pytajnik" rel="tag">
+                  pytajnik</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/wykrzyknik" rel="tag">
+                  wykrzyknik</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            
+<img style="float: left;" src="http://farm4.static.flickr.com/3128/2886229996_147ec96702_t.jpg" />
+<p>
+Jednym z częstych pytań, jakie rodzą się wśród adeptów programowania w Ruby, jest kwestia znaków '?' i '!' w nazwach metod. Pojawiają się także wątpliwości czy Ruby traktuje jakoś specjalnie te znaki, czy stoi za nimi jakaś czarna magia. Nawet wśród bardziej doświadczonych programistów Rubiego zauważam, że nie zawsze poprawnie jest interpretowana idea tych znaków. Tym razem wyjaśnię te i inne wątpliwości związane z tymi dwoma znakami. Zapraszam zatem do lektury (nie tylko wspomnianych adeptów).
+</p>
+
+<p>
+Pierwsza rzecz, na którą chciałem zwrócić uwagę jest fakt, że znaki te nie są w żaden specjalny sposób traktowane przez Ruby. Dla Rubiego to taki sam znam jak 'a', 'C', '0' czy '_'. Różnica jest tylko taka, że znak ten może występować tylko i wyłącznie na końcu nazwy (ale nie może być to jedyny znak w nazwie). Dlatego poprawne są nazwy <code class="inline">zero?</code>, <code class="inline">deleted?</code>, <code class="inline">flatten!</code>, <code class="inline">map!</code>, ale już nie <code class="inline">foo?!</code>, <code class="inline">foo?bar</code>, <code class="inline">!bar</code> itp.
+</p>
+
+<h3>ruby.awesome?</h3>
+<p>
+Na pierwszy rzut idzie łatwiejsza kwestia - pytajnik. Niepisana zasada mówi, że powinno się go używać dla metod, które są predykatami, czyli metodami które zwracają wartość true lub false. W innych językach najczęściej używa prefixu "is" w nazwie (np. <code class="inline">is_active</code> lub <code class="inline">isDeleted</code>). Oto kilka przykładów:
+</p>
+
+<pre><code class="ruby">a = [1, 2, 3]
+if a.include?(2)
+  puts &quot;Found!&quot;
+end
+
+# przykład z rails
+if request.post?
+  # ...
+end
+
+user.awesome = user.active? &amp;&amp; user.paid?
+</code></pre>
+
+
+
+<h3>ruby.awesome!</h3>
+<p>
+Jakkolwiek kwestia pytajnika jest powszechnie rozumiana, tak z wykrzyknikiem jest gorzej. Jest to prawdopodobnie spowodowane tym, że przy przekazywaniu zasady, jaką powinno się kierować, zapomina się o bardzo ważnej części, bez której zasada ta ma inne znaczenie.
+</p>
+
+<p>
+Spotykam się bardzo często ze stwierdzeniem, że "wykrzyknika należy używać w nazwach metod, które są potencjalnie niebezpieczne lub destrukcyjnie". To nieprawda! Pełna wersja powinna brzmieć tak: wykrzyknika należy używać w nazwach metod, które są bardziej niebezpieczną wersją metody bez wykrzyknika. Właśnie ta druga część jest kluczowa. Ale co to znaczy "potencjalnie niebezpieczna"? Czy chodzi o możliwość zepsucia komputera? A może wykasowanie ważnych danych, albo wejście na przestępczą ścieżkę?;-) Sęk w tym, że nie da się odpowiedzieć na to pytanie, bo dla jednego niebezpieczne będzie kasowanie plików na dysku, a dla drugiego aktualizacja danych w bazie.
+</p>
+
+<p>
+Dlatego napisałem, że druga część jest kluczowa. Niektóre metody, które coś robią, mogą mieć dodatkowe wersje, które są w pewnym sensie bardziej niebezpieczne. Mając dwie wersje danej metody, możemy łatwiej określić co to znaczy "bardziej niebezpieczny", chociaż wciąż nie dostaniemy jednej odpowiedzi (ale nie o to w tym chodzi).
+</p>
+
+<p>
+Jak przykład weźmy metodę <code class="inline">Array#sort</code>. Metoda ta sortuje tablicę i zwraca <strong>nową</strong>, posortowaną już, kopię. Istnieje wersja tej metody z wykrzyknikiem, tj. <code class="inline">Array#sort!</code>, która sortuje tablicę w miejscu, nadpisując oryginalną.
+</p>
+
+<pre><code class="ruby">arr = [2, 3, 1]
+arr.sort
+p arr
+
+arr = [2, 3, 1]
+arr.sort!
+p arr
+</code></pre>
+
+<p>
+Metoda <code class="inline">Array#sort!</code> sam w sobie nie jest niebezpieczna, ale w pewnym sensie jest bardziej niebezpieczna aniżeli wersja bez wykrzyknika bo, w przeciwieństwie do niej, zmienia obiekt odbiorcy (jest destrukcyjna).
+</p>
+
+<p>
+Jeszcze raz podkreślam jak bardzo ważny jest fakt istnienia wersji bez wykrzyknika. Gdyby tak nie było, to nasze programy naszpikowane byłyby wywołaniami metod z wykrzyknikiem. Ruby posiada bardzo wiele wbudowanych metod, które można by uznać za niebezpieczne (bo np. modyfikują obiekt w miejscu), a które nie mają w nazwie '!'. Przykład? Proszę: <code class="inline">Array#clear</code>, <code class="inline">Array#concat</code>, <code class="inline">Array.push</code>, <code class="inline">String#insert</code>. To tylko kilka przykładów metod, które zmieniają bezpośrednio obiekt. Inne metody, które mogłyby zostać uznane za niebezpieczne, to dla przykładu <code class="inline">FileUtils.rm_rf</code> czy też nawet <code class="inline">Kernel.exit</code>.
+</p>
+
+<p>
+Aktualizacja 21.02.2009, godz. 14:00.<br />
+W rozmowie z <a href="http://md6.org/">okim</a>, słusznie zasugerował mi, że być może to moja interpretacja konwencji jest błędna. Doszukałem się zatem słów matza, autora Rubiego, na ten temat:
+</p>
+
+<blockquote>
+  <p>
+  The bang (!) does not mean "destructive" nor lack of it mean non
+  destructive either.  The bang sign means "the bang version is more
+  dangerous than its non bang counterpart; handle with care".  Since
+  Ruby has a lot of "destructive" methods, if bang signs follow your
+  opinion, every Ruby program would be full of bangs, thus ugly.
+  </p>
+  <p style="text-align: right;">
+  Źródło: <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/325912">http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/325912</a>
+  </p>
+</blockquote>
+
+<h4>Pozytywnie</h4>
+<p>
+Przykładem prawidłowego wykorzystania tej techniki jest railsowa metoda <code class="inline">ActiveRecord#save</code>, która zwraca wartość true lub false w zależności od tego czy obiekt został zapisy do bazy czy nie. Metoda ta posiada także wersję "bardziej niebezpieczną" <code class="inline">ActiveRecord#save!</code>, która robi to samo co poprzednia, ale w przypadku niepowodzenia rzuca wyjątkiem. Uważam, to za świetne podejście, ponieważ programista ma większą elastyczność w sposobie wyboru obsługi błędów.
+</p>
+
+<h4>Negatywnie</h4>
+<p>
+Z kolei metoda <code class="inline">Rails::Configuration#threadsafe!</code> jest przykładem błędnej interpretacji tej zasady. Ta metoda nie ma wersji "bezpiecznej". Podejrzewam, że zamiarem autorów było zwrócenie uwagi (w końcu od tego mamy znaki interpunkcyjne) na niebezpieczeństwo jakie się za tym kryje. Mimo to podtrzymuję swoje zdanie. W końcu to nie jedyna opcja, której włączenie musi dobrze przemyśleć programista (dla przykładu <code class="inline">config.action_mailer.raise_delivery_errors</code>). W ten sposób do wcześniej wymienionych nazw, destrukcyjnych metod, należałoby dodać '!'.
+</p>
+
+<p>
+Mam nadzieję, że po tej lekturze zarówno '?', a zwłaszcza '!', będą poprawnie stosowane w nazwach metod. A Was proszę o prawidłowe przekazywanie tej zasady z pokolenia na pokolenie. Pomożecie? Pomożecie!
+</p>
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-1345054" class="comment1 guest">
+            
+            1.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Michał Górny</strong> napisał(a) 21 Lut 2009 o godz. 10:51:
+            <div class="top"></div>
+            <div class="content">
+              <p>Dla mnie wykrzyknik zawsze oznaczał metodę, która nadpisuje zamiast duplikować… a tu takie jajca, Panie.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1345079" class="comment2 jogger">
+            
+            2.
+            
+            <img class="avatar-icon" src="http://blog.wasacz.net/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://blog.wasacz.net">Wasacz</a></strong> napisał(a) 21 Lut 2009 o godz. 11:39:
+            <div class="top"></div>
+            <div class="content">
+              <p>O, dzięki ;]</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1345127" class="comment1 guest">
+            
+            3.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>himn1</strong> napisał(a) 21 Lut 2009 o godz. 13:09:
+            <div class="top"></div>
+            <div class="content">
+              <p>A myślałem, że wiem o co kaman.. dobry wpis!</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1345157" class="comment2 owner">
+            
+            4.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 21 Lut 2009 o godz. 14:05:
+            <div class="top"></div>
+            <div class="content">
+              <p>Zaktualizowałem wpis, dodając cytat matza nt. &#8222;bang method&#8221;.<br />
+Zrobiłem także mały research w polskim internecie i wszędzie jest źle opisana ta konwencja.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1345241" class="comment1 jogger">
+            
+            5.
+            
+            <img class="avatar-icon" src="http://blag.dodecki.net/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://blag.dodecki.net">Dodek</a></strong> napisał(a) 21 Lut 2009 o godz. 15:52:
+            <div class="top"></div>
+            <div class="content">
+              <p>A bo to jest ze Scheme zerżnięte, a tam jest raczej jednoznacznie  ;) ? kończy predykaty, a ! funkcje z efektami ubocznymi (w tym destrukcyjne).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1345388" class="comment2 guest">
+            
+            6.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>(s)zymon</strong> napisał(a) 21 Lut 2009 o godz. 19:42:
+            <div class="top"></div>
+            <div class="content">
+              <p>hm, zawsze myślałem że ludność wie o co biega, jako że sicp od lat leżakuje po polskich księgarniach. Btw, to jedna z bardzo niewielu książek które nie straciły na przekładzie na polski. Tłumaczenie jest bardzo dobre.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1346146" class="comment1 guest">
+            
+            7.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Paweł Kondzior</strong> napisał(a) 23 Lut 2009 o godz. 01:30:
+            <div class="top"></div>
+            <div class="content">
+              <p>Skąd pochodzi ta błędna opinia o ? a szczególnie o !, to chyba w Pick Axe jest opisane dokładnie, już nie pamiętam.</p>
+
+<p>Jeśli chodzi o metody ktore wymieniles Array#clear, Array#concat, Array.push, String#insert to zadna z nich w jezyku nie posiada swojego nie-destrukcyjnego odpowiednika, a wiec wrzucenie metody Array#clear! nie mialo by sensu. bo niby po co nam metoda w stylu:</p>
+
+<p>arr = [1,2,3]<br />
+arr = arr.clear</p>
+
+<p>Natomaist jesli chodzi o Rails, to mamy straszny zament, bo jest zlamana konwencja ! i nie jest to robione nawet w konsekwentny sposob bo jest save!, create!, update_attributes!, ale brakuje juz update_attribute</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1346198" class="comment2 owner">
+            
+            8.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 23 Lut 2009 o godz. 09:26:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>Paweł</strong>, w kwestii &#8216;?&#8217; nie spotkałem się z błędną interpretacją.</p>
+
+<p>Odnośnie metod Array#clear itp. Nie chodziło mi o to, że metody z &#8216;!&#8217; powinny zostać dodane (bo tu się zgodzę, że nie miałoby to sensu). Chodzi o to, że są one destrukcyjne a nie zawierają &#8216;!&#8217; (co potwierdza co napisałem, że metoda destrukcyjna niekoniecznie musi zawierać &#8216;!&#8217; w nazwie).</p>
+
+<p>Według dokumentacji istnieje zarówno update_attribute jak i update_attributes (http://apidock.com/rails).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1346231" class="comment1 guest">
+            
+            9.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>imploz</strong> napisał(a) 23 Lut 2009 o godz. 11:35:
+            <div class="top"></div>
+            <div class="content">
+              <p>Może z &#8216;?&#8217; chodzi o pomysł używania go w nazwach akcesorów do atrybutów, które mają z założenia przechowywać wartość true/false (swego czasu ktoś wyskoczył z taką sugestią na comp.lang.ruby, ale z tego co pamiętam nie spotkało się to z aprobatą).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1346236" class="comment2 guest">
+            
+            10.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>imploz</strong> napisał(a) 23 Lut 2009 o godz. 11:44:
+            <div class="top"></div>
+            <div class="content">
+              <p>Poprawka: mowa była oczywiście tylko o readerach (trochę w stylu isCośtam(), jak nazywa się często gettery javowe do atrybutów bool).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1362684" class="comment1 guest">
+            
+            11.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Kefas</strong> napisał(a) 26 Mar 2009 o godz. 19:50:
+            <div class="top"></div>
+            <div class="content">
+              <p>Tak czytam sobie całego twojego bloga na temat Rubiego i nasuwa mi się jedna rzecz. Jaka jest różnica między językiem Ruby a Pythonem?. Mam właśnie teraz dylemat, którego języka się uczyć. Bloga piszesz w specyficzny sposób, jakbym nie wiedział, że istnieje taka alternatywa jak Python to na pewno od razu wziął bym się za naukę Ruby:-). Jest to twoim największym atutem:P. Ale jako, że tak chwalisz ten język i pisałeś kiedyś, że zapoznasz się z Pythonem to może wyjaśnisz, który język jest bardziej &#8222;miły&#8221; dla początkującego. Chodzi tutaj o programowanie aplikacji do użytku domowego, skryptów, sieci, web etc. Może to taki niechciany offtop do twojego wpisu, za co z góry przepraszam:).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1499543" class="comment2 guest">
+            
+            12.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>JJ</strong> napisał(a) 12 Lut 2010 o godz. 16:06:
+            <div class="top"></div>
+            <div class="content">
+              <p>Doskonale!</p>
+
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1604217" class="comment1 guest">
+            
+            13.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>deadman</strong> napisał(a) 13 Lip 2011 o godz. 00:15:
+            <div class="top"></div>
+            <div class="content">
+              <p>Do sprawdzania, czy dana była zapisana, bardziej jasne byłoby: ActiveRecord#save?</p>
+
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="/">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

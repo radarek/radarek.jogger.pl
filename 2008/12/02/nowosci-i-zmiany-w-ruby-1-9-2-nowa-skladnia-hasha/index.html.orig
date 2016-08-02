@@ -1,0 +1,559 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Nowości i zmiany w Ruby 1.9 #2 - nowa składnia Hasha - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="/files/favicon.png" type="image/png" />
+    <meta name="keywords" content="1.9, ruby, ruby1.9, Ruby, Techblog, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="/files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/files/common.js"></script>
+    <script type="text/javascript" src="/files/highlight.js"></script>
+    <script type="text/javascript" src="/files/dynamic.js"></script>
+    <script type="text/javascript" src="/files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="/" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="/"><span>Wpisy</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/04/29/o-blogu/"><span>O blogu</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kanaly-rss/"><span>RSS</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kontakt/"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2009/01/01/gist-odpicowane-pastie/">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2008/10/12/mp3-przeboje/">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="http://radarek.jogger.pl/kategoria/blog/">Blog (6)</a></li>
+          
+            <li id="c"><a href="http://radarek.jogger.pl/kategoria/c/">C (1)</a></li>
+          
+            <li id="gamedev"><a href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="http://radarek.jogger.pl/kategoria/git/">Git (2)</a></li>
+          
+            <li id="humor"><a href="http://radarek.jogger.pl/kategoria/humor/">Humor (3)</a></li>
+          
+            <li id="java"><a href="http://radarek.jogger.pl/kategoria/java/">Java (1)</a></li>
+          
+            <li id="jruby"><a href="http://radarek.jogger.pl/kategoria/jruby/">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="http://radarek.jogger.pl/kategoria/python/">Python (4)</a></li>
+          
+            <li id="ruby"><a href="http://radarek.jogger.pl/kategoria/ruby/">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="http://radarek.jogger.pl/kategoria/techblog/">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="http://radarek.jogger.pl/kategoria/web/">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/blog/">Blog</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/c/">C</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/git/">Git</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/humor/">Humor</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/java/">Java</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/jruby/">JRuby</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/python/">Python</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/web/">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="/startid/470765">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="/startid/433510">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="/startid/425293">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="/startid/423490">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="/startid/392066">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="/startid/383421">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="/startid/364188">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="/startid/337815">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="/startid/323920">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2008</small>
+              <span>02</span>
+              <small>Gru</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2008/12/02/nowosci-i-zmiany-w-ruby-1-9-2-nowa-skladnia-hasha/">Nowości i zmiany w Ruby 1.9 #2 - nowa składnia Hasha</a></h2>
+            
+            <a href="http://radarek.jogger.pl/2008/12/02/nowosci-i-zmiany-w-ruby-1-9-2-nowa-skladnia-hasha/#comments">5 komentarzy</a>
+            | Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+            
+            
+              | <a href="http://radarek.jogger.pl/2008/12/02/nowosci-i-zmiany-w-ruby-1-9-2-nowa-skladnia-hasha/trackback/">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/1.9" rel="tag">
+                  1.9</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby1.9" rel="tag">
+                  ruby1.9</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <div class="info">
+  <img src="http://img150.imageshack.us/img150/3792/ruby19approvedhf8.jpg" style="float: left; margin: 0 1em 0 0; " alt="ruby 1.9 changes approved - logo" />
+  <p>
+  Wpis ten jest jedną z części cyklu pt "Nowości i zmiany w Ruby 1.9". Pełną listę wpisów znajdziesz pod adresem <a href="http://radarek.jogger.pl/2008/11/30/nowosci-i-zmiany-w-ruby-1-9/">http://radarek.jogger.pl/2008/11/30/nowosci-i-zmiany-w-ruby-1-9/</a>.
+  </p>
+  <span style="display: block; clear: left;"></span>
+</div>
+
+<p>
+Tym razem chciałbym pokazać Wam nową zmianę w składni języka, która dotyczy także Hasha. Zmiana ta dotyczy nowej składni dla literału hasha, którego kluczami są symbole. Do tej pory taki hash definiowaliśmy w następujący sposób:
+</p>
+
+<pre><code class="ruby">h = {:foo =&gt; 1, :bar =&gt; 2}
+p h
+# =&gt; {:foo=&gt;1, :bar=&gt;2}</code></pre>
+
+<p>Od wersji 1.9 można to zrobić trochę inaczej</p>
+
+<pre><code class="ruby">h = {foo: 1, bar: 2}
+p h
+# =&gt; {:foo=&gt;1, :bar=&gt;2}</code></pre>
+
+
+
+<p>
+Jeszcze raz podkreślam, że nową składnię można zastosować tylko jeśli kluczami są symbole. Dla innych kluczy musisz użyć dotychczasowej składni. Wykonując mały eksperyment możesz przekonać się, że można równocześnie stosować nowy i stary sposób...
+</p>
+
+<pre><code class="ruby">h = {foo: 1, bar: 2, &quot;baz&quot; =&gt; 3}
+p h
+# =&gt; {:foo=&gt;1, :bar=&gt;2, &quot;baz&quot; =&gt; 3}</code></pre>
+
+<p>
+...jednak z oczywistych powodów odradzam takie praktyki.
+</p>
+
+<p>
+Przekazując hash jako jedyny lub ostatni parametr metody można ominąć nawiasy {}. Dzięki temu zyskujemy na czytelności bo zamiast
+</p>
+
+<pre><code class="ruby">User.find(:all, {:order =&gt; &quot;login&quot;, :limit =&gt; 5})
+</code></pre>
+
+<p>
+możemy napisać
+</p>
+
+<pre><code class="ruby">User.find(:all, :order =&gt; &quot;login&quot;, :limit =&gt; 5)
+</code></pre>
+
+<p>
+a stosując nową składnie
+</p>
+
+<pre><code class="ruby">User.find(:all, order: &quot;login&quot;, limit: 5)
+</code></pre>
+
+<p>
+Prawda, że przejrzyście to wygląda? A dwukropek dużo łatwiej się stawia niż znak "spacja, znak równości, znak większości".
+</p>
+
+<h3>Parametry nazwane - czy to już to?</h3>
+<p>
+Niektóre języki (np. Python) posiadają obsługę tzw. nazwanych parametrów. Dzięki temu wywołując możemy takie parametry podać w dowolnej kolejności. Od strony wywołania wygląda to podobnie jak ostatni przykład. Wbudowana obsługa takich parametrów pozwala na weryfikację przekazanych parametrów przez sam język. Dzięki nowej składni hashy możemy w pewien sposób symulować takie parametry, ale musimy wykonać dodatkową pracę by zweryfikować przekazane klucze.
+</p>
+
+<p>
+Na pełną obsługę parametrów nazwanych musimy niestety poczekać przynajmniej do wersji 2.0.
+</p>
+
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-1299915" class="comment1 jogger">
+            
+            1.
+            
+            <img class="avatar-icon" src="http://macbury.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://macbury.jogger.pl">MacBury</a></strong> napisał(a) 02 Gru 2008 o godz. 20:55:
+            <div class="top"></div>
+            <div class="content">
+              <p>Mała zmiana a cieszy oko :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1299987" class="comment2 jogger">
+            
+            2.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://psionides.jogger.pl">Psi</a></strong> napisał(a) 02 Gru 2008 o godz. 21:47:
+            <div class="top"></div>
+            <div class="content">
+              <blockquote>
+<p>User.find(:all, order: &#8222;login&#8221;, limit: 5)</p>
+</blockquote>
+
+<p>Fajnee, podoba mi się :) tylko trochę szkoda że w środku funkcji dalej trzeba tego hasha options ręcznie wyciągać, a nie jak w Pythonie&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1301625" class="comment1 guest">
+            
+            3.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>hm</strong> napisał(a) 06 Gru 2008 o godz. 13:45:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ostatnio przeglądałem zmiany wprowadzone w Pythonie 3.0. Wszystko zostało przedyskutowane i przemyślane. Język stał się jeszcze bardziej spójny. Super!</p>
+
+<p>Jak wygląda to w Ruby? Weźmy nowego Hasha. Można po staremu i nowemu. Czym się różni stare od nowego? Tym że dwukropek damy po, a &#8222;strzałkę&#8221; opuścimy. Niezwykle przydatna zmiana. Ale hola, hola! Należy pamiętać dodatkowo że nową składnie można stosować tylko dla kluczy będących symbolami. Żeby było jeszcze ciekawiej oba sposoby można mieszać!</p>
+
+<p>N sposobów na pętlę while, M na pętlę for. Różne nazwy na metody dające taki sam wynik. Różne sposoby na wykonanie jednej czynności. Zaczyna się robić niezły śmietnik. Nie ułatwia to w żaden sposób czytania kodu. Skąd mam pewność że metoda size i length zwracają to samo. Może pierwsza zlicza elementy nilowe a druga nie? Nie mam wyjścia muszę zobaczyć do dokumentacji! Okazuje się że obie metody służą dokładnie do tego samego. Do zliczania elementów nienilowych służy metoda o jakże intuicyjnej nazwie nitems.</p>
+
+<p>Jestem zdania że język Ruby nie jest przygotowany na sukces jaki odniósł. Czekam na wydanie 2.0.  Całą sytuację ratuje community, dostępne narzędzia i wiele ciekawych projektów :) Sam język jest ciekawy pod względem teoretycznym ale do The Zen of Python się nie umywa <span class="caps">IMHO</span>.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1301629" class="comment2 jogger">
+            
+            4.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://psionides.jogger.pl">Psi</a></strong> napisał(a) 06 Gru 2008 o godz. 13:52:
+            <div class="top"></div>
+            <div class="content">
+              <p>Z &#8222;Zen of Python&#8221; nie podoba mi się jedna rzecz: explicit is better than implicit&#8230; Bo według mnie explicit &#8222;self&#8221; nie jest better than implicit :) Najbardziej explicit to jest Java, ale wydawało mi się że właśnie od tego uciekaliśmy&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1302108" class="comment1 owner">
+            
+            5.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 07 Gru 2008 o godz. 12:35:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>hm</strong>, nie da się ukryć, że nie wszystkie zmiany są dobre, a część z nich sprawia wrażenie jakby nieprzemyślanych. Niestety nigdy tak nie będzie, że wszyscy będą zadowoleni. Przykładowo o nowej składni dla Hashy większość komentarzy jest pozytywnych. Oczywiście, można się zastanowić czy ta zmiana była warta, ale jednoznacznej odpowiedzi nie uzyskamy. Pewne jest to, że twórcy języka nie przeszkadza &#8222;powielanie&#8221; rzeczy. Cóż, osobiście mogę z tym żyć :).<br />
+Python sprawia wrażenie lepiej prowadzonego języka, ale też nie jest bez wad. To o czym wspomniał choćby <strong>Psi</strong> też mnie irytuje.</p>
+
+<p>Wracając jednak do Rubiego. Jakby popatrzeć na suche fakty, to można nawet pomyśleć, że język gorszy niż php ;-). Mogę zmienić praktycznie wszystko (nadpisać istniejące metody w <strong>każdej</strong> klasie), dodać metodę tylko do <strong>konkretnego</strong> obiektu (przez co tylko jeden <strong>konkretny</strong> obiekt będzie zachowywać się inaczej), mogę robić aliasy do tej samej metody (przy czym nadpisanie metody powoduje zasłonięcie tylko jednej z nich), usuwać wybrane metody (undef_method :foo), nadpisywać, usuwać <strong>stałe</strong> (Object.send(:remove_const, &#8222;Array&#8221;)). Można tak długo wymieniać.</p>
+
+<p>Kiedyś na prezentacji Rubiego (<span class="caps">SFI</span> 2008) Chad Fowler powiedział &#8222;Sometimes it&#8217;s ok to be weird&#8221; (<a href="http://www.flickr.com/photos/leobard/2333834948/in/set-72157604067113071/">http://www.flickr.com/photos/leobard/2333834948/in/set-72157604067113071/</a>) i podpisuję się dwoma rękoma. Piękno Rubiego polega na tym, że odpowiednio wyciągając i układając te różne dziwactwa tworzymy piękne rzeczy. Przykład?</p>
+
+<p>Nawiasy Rubiego. Można je opuszczać, ale nie trzeba. Zatem puts(&#8222;Hello&#8221;) jest równoważne puts &#8222;Hello&#8221;. Wkurzające, prawda? Szkopuł tkwi w szczegółach. Chodzi o to by konsekwentnie, w zależności od sytuacji użyć takiej a nie innej formy. Railsy nam pokazały piękny przykład:</p>
+
+<pre><code class="ruby">class User &#60; ActiveRecord::Base
+  has_many :friends
+  # a może tak?
+  has_many(:books)
+  # albo bardziej "explicite" (python!)
+  self.has_many(:pages")
+end
+</code></pre>
+
+<p>Myślę, że nie trzeba tłumaczyć, która forma jest preferowana, a wręcz &#8222;jedyna słuszna&#8221;.</p>
+
+<p>Piękno Rubiego polega na tym, że język nie narzuca takich rzeczy. To już robi społeczność kreując pewien styl Rubiego.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="/">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Kilka słów o Symbol#to_proc, returning i alias_method_chain. - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="/files/favicon.png" type="image/png" />
+    <meta name="keywords" content="procs, rails, returning, ruby, symbol, Merb, Ruby, Ruby on Rails, Techblog, Tips &amp; tricks, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="/files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/files/common.js"></script>
+    <script type="text/javascript" src="/files/highlight.js"></script>
+    <script type="text/javascript" src="/files/dynamic.js"></script>
+    <script type="text/javascript" src="/files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="/" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="/"><span>Wpisy</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/04/29/o-blogu/"><span>O blogu</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kanaly-rss/"><span>RSS</span></a></li>
+          <li><a href="http://radarek.jogger.pl/2007/05/01/kontakt/"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2009/01/01/gist-odpicowane-pastie/">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="http://radarek.jogger.pl/2008/10/12/mp3-przeboje/">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="http://radarek.jogger.pl/kategoria/blog/">Blog (6)</a></li>
+          
+            <li id="c"><a href="http://radarek.jogger.pl/kategoria/c/">C (1)</a></li>
+          
+            <li id="gamedev"><a href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="http://radarek.jogger.pl/kategoria/git/">Git (2)</a></li>
+          
+            <li id="humor"><a href="http://radarek.jogger.pl/kategoria/humor/">Humor (3)</a></li>
+          
+            <li id="java"><a href="http://radarek.jogger.pl/kategoria/java/">Java (1)</a></li>
+          
+            <li id="jruby"><a href="http://radarek.jogger.pl/kategoria/jruby/">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="http://radarek.jogger.pl/kategoria/python/">Python (4)</a></li>
+          
+            <li id="ruby"><a href="http://radarek.jogger.pl/kategoria/ruby/">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="http://radarek.jogger.pl/kategoria/techblog/">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="http://radarek.jogger.pl/kategoria/web/">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/blog/">Blog</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/c/">C</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/gamedev/">Gamedev</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/git/">Git</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/humor/">Humor</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/java/">Java</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/jruby/">JRuby</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/miniblog/">Miniblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/narzedzia/">Narzędzia</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/programowanie/">Programowanie</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/python/">Python</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog</a>
+          
+            <a class="catlvl1" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="http://radarek.jogger.pl/kategoria/web/">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="/startid/470765">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="/startid/433510">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="/startid/425293">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="/startid/423490">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="/startid/392066">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="/startid/383421">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="/startid/364188">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="/startid/337815">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="/startid/323920">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2008</small>
+              <span>16</span>
+              <small>Paź</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="http://radarek.jogger.pl/2008/10/16/kilka-slow-o-symbol-to-proc-returning-i-alias-method-chain/">Kilka słów o Symbol#to_proc, returning i alias_method_chain.</a></h2>
+            
+            <a href="http://radarek.jogger.pl/2008/10/16/kilka-slow-o-symbol-to-proc-returning-i-alias-method-chain/#comments">4 komentarze</a>
+            | Kategorie:
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/merb/">Merb,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/">Ruby,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/ruby/ruby-on-rails/">Ruby on Rails,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/techblog/">Techblog,</a>
+            
+              <a class="strong" href="http://radarek.jogger.pl/kategoria/tips-tricks/">Tips &amp; tricks</a>
+            
+            
+              | <a href="http://radarek.jogger.pl/2008/10/16/kilka-slow-o-symbol-to-proc-returning-i-alias-method-chain/trackback/">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/procs" rel="tag">
+                  procs</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/rails" rel="tag">
+                  rails</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/returning" rel="tag">
+                  returning</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/symbol" rel="tag">
+                  symbol</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <p>
+W ostatnim wpisie zatytułowanym <a href="/2008/10/11/merb-it-is-a-bug-if/">"It is a bug if..."</a> poruszyłem kwestię kilku konstrukcji, które przez zespół programistyczny <a href="http://merbivore.com/">Merba</a> są uważane za niedozwolone (a nawet więcej - niepoprawne). Ponieważ znaleźli się chętni by poczytać o samych konstrukcjach to je opisuję. Nie podejmuję się natomiast (chociaż pierwotnie miałem to zrobić) dyskusji czy podejście programistów Merba jest uzasadnione, prawdopodobnie zrobię to kolejnym razem.
+</p>
+
+
+
+<h3>Symbol#to_proc</h3>
+
+<pre><code class="ruby">[&quot;a&quot;, &quot;ab&quot;, &quot;abc&quot;].map {|item| item.length }
+
+users = User.find(:all).group_by {|user| user.name }
+
+all_posts = Post.find(:all)
+deleted_posts = all_posts.find_all {|post| post.deleted? }
+
+# to samo z użyciem Symbol#to_proc
+
+[&quot;a&quot;, &quot;ab&quot;, &quot;abc&quot;].map(&amp;:length)
+
+users = User.find(:all).group_by(&amp;:name)
+
+all_posts = Post.find(:all)
+deleted_posts = all_posts.find_all(&amp;:deleted?)
+</code></pre>
+
+<p>
+Jeśli zastanawiasz się w jaki sposób to działa to już wyjaśniam. Ruby pozwala na dołączenie do wywoływanej metody blok kodu. Ponieważ taki blok jest domknięciem to Ruby pozwala także na użycie obiektu Proc jako dołączanego bloku. By taki obiekt nie został potraktowany jako zwykły parametr należy poprzedzić go znakiem &amp; i umieścić na końcu listy parametrów. Oto przykład:
+</p>
+
+<pre><code class="ruby">def twice
+  2.times { yield }
+end
+
+twice { puts &quot;klasyczny blok kodu&quot; }
+
+clousure = Proc.new { puts &quot;domknięcie&quot; }
+twice(&amp;clousure)
+</code></pre>
+
+<p>
+W pierwszym przykładzie użyto konstrukcji &amp;:symbol. Pytanie tylko w jaki sposób symbol zostaje zamieniony na obiekt Proc? I tutaj wkracza mała magia. Ruby sprawdza czy podany obiekt jest obiektem Proc. Jeśli tak właśnie jest to dany obiekt zostanie użyty jako dołączony blok kodu. W przeciwnym wypadku Ruby sprawdzi czy obiekt odpowiada na wywołanie metody <em>to_proc</em> i jeśli tak jest to zostanie wywołana ta metoda, a zwrócony obiekt (którym powinien być obiekt Proc) użyty jako dołączony blok kodu do metody. Jeśli wydaje Ci się to zagmatwane to prześledź kolejny przykład, który pokazuje wszystkie możliwe scenariusze.
+</p>
+
+<pre><code class="ruby"># Konstrukcja &amp;obiekt jako ostatni parametr w wywołaniu metody
+
+def just_yield
+  yield
+end
+
+def test_object(o, msg)
+  puts &quot;-&quot; * 40, msg
+  just_yield(&amp;o)
+  puts &quot;[OK] Działa&quot;
+rescue =&gt; e
+  puts &quot;[ERROR] #{e.message}&quot;
+end
+
+# Przypadek 1. Przekazujemy obiekt Proc.
+o1 = Proc.new { puts &quot;p1 odpalony&quot; }
+test_object(o1, &quot;obiekt Proc&quot;)
+
+# Przypadek 2. Przekazujemy obiekt niebędący obiektem Proc, który nie odpowiada na 'to_proc'.
+o2 = Object.new
+test_object(o2, &quot;surowy obiekt Object&quot;)
+
+# Przypadek 3. Przekazujemy obiekt niebędący obiektem Proc, który odpowiada na 'to_proc' ale zwraca obiekt inny niż Proc.
+o3 = Object.new
+def o3.to_proc
+  puts &quot; * o3.to_proc wywołane&quot;
+  return &quot;string&quot;
+end
+test_object(o3, &quot;surowy obiekt Object z metodą to_proc zwracającą string&quot;)
+
+# Przypadek 4. Przekazujemy obiekt niebędący obiektem Proc, który odpowiada na 'to_proc' i zwraca obiekt Proc.
+o4 = Object.new
+def o4.to_proc
+  puts &quot; * o4.to_proc wywołane&quot;
+  return Proc.new { puts &quot;o4 został skonwertowany i wywołany&quot; }
+end
+test_object(o4, &quot;surowy obiekt Object z metodą to_proc zwracającą Proc&quot;)
+</code></pre>
+
+<p>
+Zwróć uwagę na to, że konstrukcja &amp;obiekt zostanie zinterpretowana w ten sposób tylko przy wywoływaniu metody. Zatem nie można oczekiwać, że proc = &amp;object spowoduje skonwertowanie na obiekt Proc.
+</p>
+
+<p>
+Wracając do naszego Symbol#to_proc teraz już powinno być oczywiste jak to działa. My piszemy "fruits.sort_by(&amp;:weight)" a Ruby widząc &amp;:weight wywołuje na nim metodę to_proc, ta zwraca obiekt Proc, który zostaje użyty jako blok kodu... Ot cała magia dzięki kilku linijkom kodu:
+</p>
+
+<pre><code class="ruby">class Symbol
+  def to_proc
+    Proc.new{|*args| args.shift.__send__(self, *args)}
+  end
+end
+</code></pre>
+
+<p>
+Ach, zapomniałbym o najważniejszym. Nie znajdziesz tej metody w Ruby 1.8, dopiero Ruby 1.9 ma ją wbudowaną. Natomiast znajdziesz ją w ActiveSupport (zatem również w railsach) a także w <a href="http://facets.rubyforge.org/">Ruby Facets</a>.
+</p>
+
+<h3>returning()</h3>
+<p>
+To bardzo prosta metoda, dzięki której zamiast
+</p>
+
+<pre><code class="ruby">def create_book
+  book = Book.new
+  book.title = &quot;Książka bez tytułu&quot;
+  book.pages = 200
+  book.save
+  return book
+end
+</code></pre>
+
+<p>
+...napiszemy...
+</p>
+
+<pre><code class="ruby">def create_book
+  returning(Book.new) do |book|
+    book.title = &quot;Książka bez tytułu&quot;
+    book.pages = 200
+    book.save
+  end
+end
+</code></pre>
+
+<p>
+Podobnie jak metoda <em>Symbol#to_proc</em> także i <em>returning</em> nie jest dostępne standardowo w Rubym. Za to jak można się domyślić metoda ta jest dostępna w railsach.
+</p>
+
+<h3>alias_method_chain</h3>
+<p>
+Wyobraź sobie, że istnieje jakaś klasa, a w niej jakaś metoda a Ty chciałbyś ją trochę "przerobić" by robiła to co do tej pory oraz coś dodatkowego. Z takim problemem spotkałem się gdy chciałem by metoda Array#index obsługiwała także bloki (do wersji 1.8.6 niestety tak nie jest) co opisałem we wpisie <a href="/2008/05/27/nieinwazyjny-monkey-patching/">"Nieinwazyjny monkey-patching"</a>.
+</p>
+
+<p>
+Z jednej strony byłem zmuszony nadpisać istniejącą metodę, z drugiej chciałem tylko dołożyć przypadek z blokiem, a przypadek bez bloku powinien był działać tak jak do tej pory. Na szczęście Ruby w dosyć prosty sposób umożliwia rozwiązanie takiego problemu poprzez użycie <em>alias_method</em>. Poniżej umieszczam kod realizujący to zadanie:
+</p>
+
+<pre><code class="ruby">class Array
+  alias_method :__old_index__, :index
+
+  def index(obj = nil)
+    if block_given?
+      self.each_with_index do |e, i|
+        return i if yield(e)
+      end
+      return nil
+    else
+      return __old_index__(obj)
+    end
+  end
+end
+</code></pre>
+
+<p>
+Można tutaj zauważyć pewien schemat działania. Najpierw musimy umożliwić sobie dostęp do starej wersji metody za pomocą <em>alias_method</em>. Następnie nadpisujemy metodę, a w jej ciele odwołujemy się (jeśli zajdzie taka potrzeba) do starej wersji już pod nową nazwą. Kod z użyciem <em>alias_method_chain</em> wyglądałby tak:
+</p>
+
+<pre><code class="ruby">require &quot;active_support&quot;
+
+class Array
+  def index_with_block_support(obj = nil)
+    if block_given?
+      self.each_with_index do |e, i|
+        return i if yield(e)
+      end
+      return nil
+    else
+      return index_without_block_support(obj)
+    end
+  end
+  alias_method_chain :index, :block_support
+end
+</code></pre>
+
+<p>
+Jak ten widzisz kod trochę różni się od pierwszej wersji. Używając <em>alias_method_chain</em> tworzymy wpierw metodę o nazwie &lt;stara_nazwa&gt;_with_&lt;nazwa_właściwości&gt; (u nas index_with_block_support). Po zdefiniowaniu tej metody za pomocą wywołania</p>
+
+<pre><code class="ruby">alias_method_chain :&lt;stara_nazwa&gt;, :&lt;nazwa_właściwości&gt;</code></pre>
+
+<p>zostaną utworzone 2 aliasy. Jeden o nazwie &lt;stara_nazwa&gt;_without_&lt;nazwa_właściwości&gt; aliasujący do &lt;stara_nazwa&gt;, drugi o nazwie &lt;stara_nazwa&gt; aliasujący do &lt;stara_nazwa&gt;_with_&lt;nazwa_właściwości&gt;. Łatwiej to chyba wytłumaczyć kodem:
+</p>
+
+<pre><code class="ruby">alias_method_chain :&lt;stara_nazwa&gt;, :&lt;nazwa_właściwości&gt;
+# jest równoważne
+alias_method :&lt;stara_nazwa&gt;_without_&lt;nazwa_właściwości&gt;, :&lt;stara_nazwa&gt;
+alias_method :&lt;stara_nazwa&gt;, :&lt;stara_nazwa&gt;_with_&lt;nazwa_właściwości&gt;
+</code></pre>
+
+<p>
+Gdybyś miał jeszcze problemy to podstaw stara_nazwa=index, nazwa_właściwości=block_support. Na pocieszenie powiem, że za każdym razem kiedy widzę użycie <em>alias_method_chain</em> to muszę dobrze się zastanowić co tak na prawdę robi kod go używający.
+</p>
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-1274821" class="comment1 jogger">
+            
+            1.
+            
+            <img class="avatar-icon" src="http://blog.teamon.eu/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://blog.teamon.eu">teamon</a></strong> napisał(a) 16 Paź 2008 o godz. 23:54:
+            <div class="top"></div>
+            <div class="content">
+              <p>Zastanawia mnie: &#8211; po cholere to returning? &#8211; dlaczego to takie zle?</p>
+
+<p>Symbol#to_proc chyba nie jest taki zły (sam czasem kozystam) byle by tylko nie przesadzic</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1274826" class="comment2 owner">
+            
+            2.
+            
+            <img class="avatar-icon" src="http://radarek.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://radarek.jogger.pl">Radarek</a></strong> napisał(a) 17 Paź 2008 o godz. 00:02:
+            <div class="top"></div>
+            <div class="content">
+              <p>Odnośnie mojego poprzedniego wpisu to myślę, że źle zostałem zrozumiany. To nie jest tak, że te metody są złe lub dobre. Panowie od Merba przyjęli pewne konwencje i starają się ich trzymać.  Z tych 3 to Symbol#to_proc jest ok, ale te 2 pozostałe jak dla mnie nie istnieją. Object#tap z ruby1.9 paradoksalnie pomimo takiej samej implementacji jak Object#returning służy do czego innego. Railsowa wersja sugeruje, że chodzi o zwracaną wartość, natomiast tap służy do wstrzyknięcia się w kilka połączonych wywołań. Takie zastosowanie ma jak najbardziej sens.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1275503" class="comment1 guest">
+            
+            3.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://blog.altsabon.com" rel="nofollow">Sabon</a></strong> napisał(a) 18 Paź 2008 o godz. 18:14:
+            <div class="top"></div>
+            <div class="content">
+              <p>Symbol#to_proc jest dużo wolniejszy od zwyczajnego bloku:<br />
+http://www.igvita.com/2008/07/08/6-optimization-tips-for-ruby-mri/<br />
+&#8222;If you&#8217;re a Rails developer, you&#8217;ve probably used Symbol.to_proc. Well, you&#8217;re likely incurring an order of magnitude speed decrease when you do! Next time, use a block&#8221; </p>
+
+<p>Tutaj trochę więcej info na ten temat:<br />
+http://rails.lighthouseapp.com/projects/8994/tickets/484-remove-symbol-to_proc-from-framework-code</p>
+
+<p>Ale kiedy w Rails będzie Ruby 1.9 (jakoś na razie tego nie widać...) to wszystko powinno być w porządku, bo wtedy to będzie zarówno dobre, jak i szybkie :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1275507" class="comment2 guest">
+            
+            4.
+            
+            
+            <img class="avatar-icon" src="/files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://blog.altsabon.com" rel="nofollow">Sabon</a></strong> napisał(a) 18 Paź 2008 o godz. 18:22:
+            <div class="top"></div>
+            <div class="content">
+              <p>Tutaj w komentarzach (stare, ale aktualne) kolejne przykłady benchmarków:<br />
+http://blog.hasmanythrough.com/2006/3/7/symbol-to-proc-shorthand</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="/">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

@@ -1,0 +1,732 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>method_missing w Rubym - nie pomiń niczego! - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="../../../../files/favicon.png" type="image/png" />
+    <meta name="keywords" content="metaprogramowanie, ruby, tips&tricks, Blog, Techblog, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="../../../../files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../../files/common.js"></script>
+    <script type="text/javascript" src="../../../../files/highlight.js"></script>
+    <script type="text/javascript" src="../../../../files/dynamic.js"></script>
+    <script type="text/javascript" src="../../../../files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="../../../../index.html" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="../../../../index.html"><span>Wpisy</span></a></li>
+          <li><a href="../../../../2007/04/29/o-blogu/index.html"><span>O blogu</span></a></li>
+          <li><a href="../../../../2007/05/01/kanaly-rss/index.html"><span>RSS</span></a></li>
+          <li><a href="../../../../2007/05/01/kontakt/index.html"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="http://radarek.jogger.pl/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="../../../../2009/01/01/gist-odpicowane-pastie/index.html">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="../../../10/12/mp3-przeboje/index.html">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="../../../../kategoria/blog/index.html">Blog (6)</a></li>
+          
+            <li id="c"><a href="../../../../kategoria/c/index.html">C (1)</a></li>
+          
+            <li id="gamedev"><a href="../../../../kategoria/gamedev/index.html">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="../../../../kategoria/git/index.html">Git (2)</a></li>
+          
+            <li id="humor"><a href="../../../../kategoria/humor/index.html">Humor (3)</a></li>
+          
+            <li id="java"><a href="../../../../kategoria/java/index.html">Java (1)</a></li>
+          
+            <li id="jruby"><a href="../../../../kategoria/jruby/index.html">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="../../../../kategoria/miniblog/index.html">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="../../../../kategoria/narzedzia/index.html">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="../../../../kategoria/programowanie/index.html">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="../../../../kategoria/python/index.html">Python (4)</a></li>
+          
+            <li id="ruby"><a href="../../../../kategoria/ruby/index.html">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="../../../../kategoria/ruby/merb/index.html">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="../../../../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="../../../../kategoria/techblog/index.html">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="../../../../kategoria/tips-tricks/index.html">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="../../../../kategoria/web/index.html">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="../../../../kategoria/blog/index.html">Blog</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/c/index.html">C</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/gamedev/index.html">Gamedev</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/git/index.html">Git</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/humor/index.html">Humor</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/java/index.html">Java</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/jruby/index.html">JRuby</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/miniblog/index.html">Miniblog</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/narzedzia/index.html">Narzędzia</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/programowanie/index.html">Programowanie</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/python/index.html">Python</a>
+          
+            <a class="catlvl3" href="../../../../kategoria/ruby/index.html">Ruby</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/ruby/merb/index.html">Merb</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="../../../../kategoria/techblog/index.html">Techblog</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/tips-tricks/index.html">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/web/index.html">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="../../../../startid/470765.html">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/433510.html">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/425293.html">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/423490.html">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/392066.html">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/383421.html">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/364188.html">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/337815.html">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/323920.html">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2008</small>
+              <span>26</span>
+              <small>Mar</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="index.html">method_missing w Rubym - nie pomiń niczego!</a></h2>
+            
+            <a href="index.html#comments">4 komentarze</a>
+            | Kategorie:
+            
+              <a class="strong" href="../../../../kategoria/blog/index.html">Blog,</a>
+            
+              <a class="strong" href="../../../../kategoria/techblog/index.html">Techblog</a>
+            
+            
+              | <a href="trackback/index.html">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/metaprogramowanie" rel="tag">
+                  metaprogramowanie</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/tips&tricks" rel="tag">
+                  tips&tricks</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <p>
+Jako, że Ruby jest bardzo dynamicznym językiem, posiada wiele dodatków do klasycznego podejścia programowania OOP. Jednym z takich dodatków jest metoda <i>method_missing</i>. Metoda ta pozwala na przechwycenie wywołania nieistniejącej metody i zareagowania w odpowiedni sposób.
+</p>
+
+
+
+<h3>object.should_fail!</h3>
+<p>
+Zacznijmy od prostego przypadku. Co się dzieje, gdy wołamy nieistniejącą metodę?
+</p>
+
+<pre><code class="ruby">class Happy
+end
+
+h = Happy.new
+h.say_it
+</code></pre>
+
+<p>
+Uruchomienie tego prostego programu owocuje błędem w postaci wyjątku NoMethodError i odpowiednim komunikatem do niego dołączonym.
+</p>
+
+<pre><code class="shell">no_method.rb:5: undefined method `say_it' for #<Happy:0x2ad1622428f0> (NoMethodError)
+</code></pre>
+
+<p>
+Ponieważ jest to najzwyklejszy wyjątek to nie ma problemu by taki wyjątek przechwycić, co pokazuje kolejny przykład.
+</p>
+
+<pre><code class="ruby">class Happy
+end
+
+begin
+  h = Happy.new
+  h.say_it
+  
+rescue NoMethodError =&gt; e
+  puts &quot;Nastąpiła próba wywołania nieistniejącej metody...&quot;
+  puts &quot;Dodatkowa informacja: #{e.message}&quot;
+end
+
+</code></pre>
+
+<p>
+Rezultat
+</p>
+
+<pre><code class="shell">Nastąpiła próba wywołania nieistniejącej metody...
+Dodatkowa informacja: undefined method `say_it' for #<Happy:0x2b84022cd3d0>
+</code></pre>
+
+<p>
+Jednakże takie nieinwazyjne zachowanie interpretera pozwala w praktyce na przechwycenie wyjątku, zalogowanie błędu i bezpieczne zakończenie programu (na myśl przychodzą wspomnienia walki w tej kwestii z PHP, które w takim wypadku albo wywalało warning albo co gorzej fatal error, którego nie dało się przechwycić). Wspomniane <i>method_missing</i> pozwala na przechwycenie wywołania metody już na poziomie obiektu a jak się zaraz przekonacie, wcale nie musi to oznaczać błędu (gdyby tak było to po co ta co by nam to dało?). Obrazuje to kolejny przykład.
+</p>
+
+<pre><code class="ruby">class Happy
+  def method_missing(method_name, *args)
+    puts &quot;Nastąpiła próba wywołania nieistniejącej metody&quot;
+    puts &quot;Nazwa metody: #{method_name}&quot;
+    puts &quot;Argumenty (#{args.size}): #{args.inspect}&quot;
+  end
+end
+
+h = Happy.new
+h.say_it
+h.it_is_weird!(1, &quot;aha!&quot;)
+h.name = &quot;radarek&quot;
+
+</code></pre>
+
+<pre><code class="shell">Nastąpiła próba wywołania nieistniejącej metody
+Nazwa metody: say_it
+Argumenty (0): []
+Nastąpiła próba wywołania nieistniejącej metody
+Nazwa metody: it_is_weird!
+Argumenty (2): [1, "aha!"]
+Nastąpiła próba wywołania nieistniejącej metody
+Nazwa metody: name=
+Argumenty (1): ["radarek"]
+</code></pre>
+
+<p>
+Jak widać gdy klasa posiada zdefiniowaną metodę <i>method_missing</i> Ruby wywoła właśnie ją gdy wywołujemy niezdefiniowaną metodę. Jako pierwszy parametr dostaniemy nazwę wołanej metody w postaci symbolu, zaś kolejne parametry możemy zebrać do tablicy za pomocą operatora gwiazdki '*'.
+</p>
+
+<h3>No tak, kolejny zbędny "ficzer"</h3>
+<p>
+W tym momencie sporo programistów, zwłaszcza tych nie wychodzących poza jedyne i słuszne języki typowane statycznie (które z reguły takich dodatków nie posiadają, gdyż kompilator nie mógłby wszystkiego sprawdzić i zapewnić o istnieniu danej metody), może zadawać sobie pytanie: "Ale po co coś takiego?".
+</p>
+
+<p>
+Przykład pierwszy pokazuje opakowanie hasha za pomocą własnej klasy, do której elementów używamy pełnoprawnych metod dostępowych.
+</p>
+
+<pre><code class="ruby">class MyHash
+  def initialize
+    @hash = {}
+  end
+  
+  def method_missing(method_name, *args)
+    method_name = method_name.to_s
+    if method_name.to_s.match(/=$/)
+      @hash[method_name.to_s[0...-1]] = (args.size &lt; 2 ? args[0] : args)
+    else
+      if @hash.has_key?(method_name)
+        return @hash[method_name]
+      else
+        raise NoMethodError, &quot;undefined method `#{method_name}' for #{self}&quot;
+      end
+    end
+  end
+end
+
+my_hash = MyHash.new
+my_hash.day = &quot;saturday&quot;
+my_hash.year = 2008
+my_hash.indexes = [1, 2, 3]
+
+puts my_hash.day
+puts my_hash.year
+puts my_hash.indexes
+puts my_hash.name # =&gt; NoMethodError
+</code></pre>
+
+<p>
+Rezultat
+</p>
+
+<pre><code class="shell">saturday
+2008
+1
+2
+3
+hash.rb:14:in `method_missing': undefined method `name' for #<MyHash:0x2ba4a8015108> (NoMethodError)
+        from hash.rb:28
+</code></pre>
+
+<p>
+W ten sposób nasza klasa zachowuje się jak obiekt, którego atrybuty są dynamicznie dodawane. Możemy na przykład wykorzystać to definiując klasę do przechowywania konfiguracji lub podobnych wartości w naszym programie.
+</p>
+
+<p>
+Zdefiniowanie <i>method_missing</i> może się czasem okazać tylko połową sukcesu. Metodą spokrewnioną okazuje się <i>respond_to?</i>, która zwraca odpowiednio wartość true/false w zależności czy zadany obiekt odpowiada na zadany komunikat (true) lub nie (false). Zatem dobrze jeszcze zdefiniować tą metodę, adekwatnie do metody <i>method_missing</i>. Przedstawia to następny listing.
+</p>
+
+<pre><code class="ruby">class MyHash
+  def initialize
+    @hash = {}
+  end
+  
+  def method_missing(method_name, *args)
+    method_name = method_name.to_s
+    if method_name.to_s.match(/=$/)
+      @hash[method_name.to_s[0...-1]] = (args.size &lt; 2 ? args[0] : args)
+    else
+      if @hash.has_key?(method_name)
+        return @hash[method_name]
+      else
+        raise NoMethodError, &quot;undefined method `#{method_name}' for #{self}&quot;
+      end
+    end
+  end
+  
+  def respond_to?(method_name)
+    return @hash.has_key?(method_name.to_s)
+  end
+end
+
+my_hash = MyHash.new
+my_hash.day = &quot;saturday&quot;
+my_hash.year = 2008
+my_hash.indexes = [1, 2, 3]
+
+puts my_hash.respond_to?(:day)
+puts my_hash.respond_to?(:year)
+puts my_hash.respond_to?(:indexes)
+puts my_hash.respond_to?(:name)
+</code></pre>
+
+<p>
+Rezultat
+</p>
+
+<pre><code class="shell">true
+true
+true
+false
+</code></pre>
+
+<h3>Railsy też to używają</h3>
+<p>
+Jednym z miejsc we frameworku Ruby on Rails, gdzie został wykorzystany ten element języka, są dynamiczne "findery" w klasie modelu. Przykładowo jeśli mam model User z polami name:string, email:string, age:integer i chcę szukać rekordów po polu name i age to mogę to zrobić tak:
+</p>
+
+<pre><code class="ruby"># wszystkie zapisy są równoważne
+User.find_all_by_login_and_age(&quot;tomasz&quot;, 40)
+User.find_all_by_age_and_login(40, &quot;tomasz&quot;)
+User.find(:all, :conditions =&gt; {:name =&gt; &quot;tomasz&quot;, :age =&gt; 40})
+</code></pre>
+
+<p>
+Nic nie stoi na przeszkodzie by dodać własną metodę <i>method_missing</i> do klasy dziedziczącej po ActiveRecord::Base (w końcu to klasa jak każda inna). Należy jednak uważać, by nie zepsuć już wbudowanej funkcjonalności. Musimy zatem poprawnie użyć 'super' i przekazać poprawnie wszystkie parametry.
+</p>
+
+<pre><code class="ruby">class User &lt; ActiveRecord::Base
+  class &lt;&lt; self
+    def method_missing(method_name, *args, &amp;block)
+      if method_name.to_s.match(/^destroy_/)
+        method_name = method_name.to_s.sub!(/^destroy/, &quot;find&quot;)
+        users = super(method_name, *args, &amp;block)
+        users.each do |user|
+          user.destroy
+        end
+      else
+        super(method_name, *args, &amp;block)
+      end
+    end
+  end
+end
+
+
+User.destroy_all_by_name(&quot;tomasz&quot;)
+</code></pre>
+
+<p>
+Chociaż metody find_* nie obsługują bloków to i tak jawnie go deklaruję i przekazuję (&block). W ten sposób nawet gdy implementacja "railsowa" zmieni się to nie będę musiał zmieniać mojego kodu. Mógłbym także ominąć całkowicie () wraz z parametrami - Ruby w takim wypadku przekazuje wszystkie argumenty oryginalnej metody do tej wołanej przez super.
+</p>
+
+<h3>Co dalej?</h3>
+<p>
+Innym bardzo ciekawym przykładem są tzw. buildery, służące do budowania dokumentów strukturalnych, np xml, html. Oto przykład:
+</p>
+
+<pre><code class="ruby">require 'rubygems'
+require 'builder'
+
+builder = Builder::XmlMarkup.new(:indent =&gt; 2)
+xml = builder.person do |b|
+  b.name(&quot;Jim&quot;)
+  b.phone(&quot;555-1234&quot;)
+  b.class(&quot;human&quot;)
+end
+
+puts xml
+</code></pre>
+
+<pre><code class="shell">&lt;person&gt;
+  &lt;name&gt;Jim&lt;/name&gt;
+  &lt;phone&gt;555-1234&lt;/phone&gt;
+  &lt;class&gt;human&lt;/class&gt;
+&lt;/person&gt;
+</code></pre>
+
+<p>
+Zauważ, że wywołanie metody <i>class</i> zadziałało zgodnie z intuicją, pomimo faktu, że klasa Object posiada już taką metodę. W tym wypadku został zastosowany pewien trick, który polega na usunięciu z danej klasy wszystkich metod instancyjnych, tak by <i>method_missing</i> przechwyciło każde wywołanie.
+</p>
+
+<pre><code class="ruby">class BlankSlate
+  instance_methods.each do |method|
+    undef_method(method) unless method.match(/^__/)
+  end
+end
+
+puts BlankSlate.instance_methods
+</code></pre>
+
+<p>
+Ten kod wymagałby kilku dodatkowych poprawek by obsłużyć wszystkie przypadki (np. to że metodę można dodać później od momentu usunięcia metod), ale w pełni obrazuje ideę stworzenia "czystego" obiektu. Właśni w tym celu Ruby 1.9 posiada klasę BasicObject (nadklasa dla Object), która posiada minimalną ilość metod.
+</p>
+
+<p>
+Pokazana technika może być zastosowana także w przypadku proxy, delegacji, buforowania komunikatów, dekoratorów. Języki DSL czerpią garściami z tego typu konstrukcji. Zastosowań jest na prawdę wiele.
+</p>
+
+<p>
+Ostatnią rzeczą, na którą chciałbym zwrócić uwagę to fakt, że stosując technikę z <i>method_missing</i> należy dobrze udokumentować co i kiedy on robi (i zwrócić na to uwagę już w opisie klasy).
+</p>
+
+<p>
+<i>method_missing</i> należy do tych "ficzerów" Rubiego, które by dobrze i efektywnie używać, trzeba dobrze poznać. To jedna z tych rzeczy, która dobrze użyta pomaga, zaś źle tylko szkodzi. Zatem nie należy nadużywać jej, ale wiedzieć że jest taka możliwość.
+</p>
+
+<p>
+Mam nadzieję, że niczego nie pominąłem ;-).
+</p>
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-1118942" class="comment1 guest">
+            
+            1.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://blog.sebastiannowak.net" rel="nofollow">Seban</a></strong> napisał(a) 26 Mar 2008 o godz. 09:36:
+            <div class="top"></div>
+            <div class="content">
+              <p>Dobrym materiałem ocierającym się o to co pisałeś jest prezentacja Wiericha z RubyConf 2007. http://rubyconf2007.confreaks.com/d1t1p2_advanced_ruby_class_design.html</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1118951" class="comment2 guest">
+            
+            2.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Marcin Urbański</strong> napisał(a) 26 Mar 2008 o godz. 10:00:
+            <div class="top"></div>
+            <div class="content">
+              <p>fajne wprowadzenie do metaprogramowania.</p>
+
+<p>polecam takze:<br />
+http://www.apohllo.pl/dydaktyka/ruby/intro/metaprogramowanie</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1137848" class="comment1 guest">
+            
+            3.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://zibi.nora.pl/" rel="nofollow">Zbigniew Jarosik</a></strong> napisał(a) 17 Kwi 2008 o godz. 11:09:
+            <div class="top"></div>
+            <div class="content">
+              <p>Jak już do <span class="caps">PHP</span> się odnosisz &#8211; rzeczywiście, szkoda, że nie rzuca wyjątków w takich sytuacjach. Ale należy pamiętać, że jest dostępna metoda __call, która pozwala obsłużyć takie sytuacje dokładnie w ten sam sposób ;P</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1137850" class="comment2 owner">
+            
+            4.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 17 Kwi 2008 o godz. 11:23:
+            <div class="top"></div>
+            <div class="content">
+              <p><strong>@Zbigniew</strong>: tak, wiem o __call w <span class="caps">PHP</span>. Działa to w zasadzie tak samo, ale w kwestii samego przechwycenia wywołania. Potem jak chcesz przesłać do innego obiektu tą metodę to jest troszkę gorzej. &#8222;call_user_func&#8221;, &#8222;call_user_func_array&#8221; nie są tak wygodne jak &#8222;send&#8221; z Rubiego.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="../../../../index.html">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="index.html#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

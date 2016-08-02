@@ -1,0 +1,1058 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Nowości i zmiany w Ruby 1.9 #7 - obsługa kodowań znaków - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="../../../../files/favicon.png" type="image/png" />
+    <meta name="keywords" content="1.9, encoding, iso-8859-2, ruby, ruby1.9, unicode, utf, utf-16, utf-32, utf-8, Ruby, Techblog, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="../../../../files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../../files/common.js"></script>
+    <script type="text/javascript" src="../../../../files/highlight.js"></script>
+    <script type="text/javascript" src="../../../../files/dynamic.js"></script>
+    <script type="text/javascript" src="../../../../files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="../../../../index.html" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="../../../../index.html"><span>Wpisy</span></a></li>
+          <li><a href="../../../../2007/04/29/o-blogu/index.html"><span>O blogu</span></a></li>
+          <li><a href="../../../../2007/05/01/kanaly-rss/index.html"><span>RSS</span></a></li>
+          <li><a href="../../../../2007/05/01/kontakt/index.html"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="http://radarek.jogger.pl/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="../../../01/01/gist-odpicowane-pastie/index.html">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="../../../../2008/10/12/mp3-przeboje/index.html">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="../../../../kategoria/blog/index.html">Blog (6)</a></li>
+          
+            <li id="c"><a href="../../../../kategoria/c/index.html">C (1)</a></li>
+          
+            <li id="gamedev"><a href="../../../../kategoria/gamedev/index.html">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="../../../../kategoria/git/index.html">Git (2)</a></li>
+          
+            <li id="humor"><a href="../../../../kategoria/humor/index.html">Humor (3)</a></li>
+          
+            <li id="java"><a href="../../../../kategoria/java/index.html">Java (1)</a></li>
+          
+            <li id="jruby"><a href="../../../../kategoria/jruby/index.html">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="../../../../kategoria/miniblog/index.html">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="../../../../kategoria/narzedzia/index.html">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="../../../../kategoria/programowanie/index.html">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="../../../../kategoria/python/index.html">Python (4)</a></li>
+          
+            <li id="ruby"><a href="../../../../kategoria/ruby/index.html">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="../../../../kategoria/ruby/merb/index.html">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="../../../../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="../../../../kategoria/techblog/index.html">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="../../../../kategoria/tips-tricks/index.html">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="../../../../kategoria/web/index.html">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="../../../../kategoria/blog/index.html">Blog</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/c/index.html">C</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/gamedev/index.html">Gamedev</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/git/index.html">Git</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/humor/index.html">Humor</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/java/index.html">Java</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/jruby/index.html">JRuby</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/miniblog/index.html">Miniblog</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/narzedzia/index.html">Narzędzia</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/programowanie/index.html">Programowanie</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/python/index.html">Python</a>
+          
+            <a class="catlvl3" href="../../../../kategoria/ruby/index.html">Ruby</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/ruby/merb/index.html">Merb</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="../../../../kategoria/techblog/index.html">Techblog</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/tips-tricks/index.html">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/web/index.html">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="../../../../startid/470765.html">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/433510.html">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/425293.html">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/423490.html">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/392066.html">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/383421.html">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/364188.html">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/337815.html">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/323920.html">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2009</small>
+              <span>12</span>
+              <small>Lut</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="index.html">Nowości i zmiany w Ruby 1.9 #7 - obsługa kodowań znaków</a></h2>
+            
+            <a href="index.html#comments">8 komentarzy</a>
+            | Kategorie:
+            
+              <a class="strong" href="../../../../kategoria/ruby/index.html">Ruby,</a>
+            
+              <a class="strong" href="../../../../kategoria/techblog/index.html">Techblog</a>
+            
+            
+              | <a href="trackback/index.html">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/1.9" rel="tag">
+                  1.9</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/encoding" rel="tag">
+                  encoding</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/iso-8859-2" rel="tag">
+                  iso-8859-2</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby1.9" rel="tag">
+                  ruby1.9</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/unicode" rel="tag">
+                  unicode</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/utf" rel="tag">
+                  utf</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/utf-16" rel="tag">
+                  utf-16</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/utf-32" rel="tag">
+                  utf-32</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/utf-8" rel="tag">
+                  utf-8</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            
+<div class="info">
+  <img src="http://img150.imageshack.us/img150/3792/ruby19approvedhf8.jpg" style="float: left; margin: 0 1em 0 0; " alt="ruby 1.9 changes approved - logo" />
+  <p>
+  Wpis ten jest jedną z części cyklu pt "Nowości i zmiany w Ruby 1.9". Pełną listę wpisów znajdziesz pod adresem <a href="../../../../2008/11/30/nowosci-i-zmiany-w-ruby-1-9/index.html">http://radarek.jogger.pl/2008/11/30/nowosci-i-zmiany-w-ruby-1-9/</a>.
+  </p>
+  <span style="display: block; clear: left;"></span>
+</div>
+
+<h3>Disclaimer</h3>
+<p>
+Muszę przyznać, że nosząc się z zamiarem napisania tego artykułu miałem blade pojęcie o kodowaniach znaków, choć wcześniej nie zdawałem sobie z tego sprawy. Wydawało mi się, że znając takie pojęcia jak ASCII, Unicode i umiejąc z nich korzystać na co dzień, wiem sporo o kodowaniach. Trudno się jednak dziwić takiemu myśleniu, gdyż większość z Was, zapewne tak jak i ja, korzysta z 1-2 kodowań i póki działa nie musi wiedzieć dlaczego. Wertując ogromną ilość wiadomości na liście mailingowej <a href="http://www.ruby-forum.com/forum/14">ruby-core</a> sporo dowiedziałem się, chociaż wciąż nie czuję się ekspertem w tej dziedzinie. Okazało się, że temat ten jest bardzo złożony i dotyczy wielu kwestii. Proszę mi zatem wybaczyć ewentualne niedociągnięcia, niezbyt dokładne opisanie niektórych z nich oraz dosyć chaotyczny styl.
+</p>
+
+<h3>Ruby 1.9 haz encodingz!</h3>
+<p>
+Kolejne zmiany jakie zaszły w wersji 1.9 Rubiego dotyczą obsługi kodowań znaków. Można bez przesady stwierdzić, że to najważniejsza ze zmian. Bądź co bądź mamy XXI wiek i brak natywnej obsługi kodowań jest niewybaczalny, a już na pewno nie przez środowisko "enterprise".
+</p>
+
+<p>
+Jak zapewne wszyscy wiedzą, łańcuchy znaków w Ruby 1.8 to ciągi bajtów i nic więcej. Prowadzi to do oczywistych zachowań, jednak bardzo niewygodnych. Obrazuje to poniższy program:
+</p>
+
+<pre><code class="ruby">s = &quot;ąęć&quot;
+puts s.size
+</code></pre>
+Wyjście:<pre><code class="shell">6
+</code></pre>
+
+
+
+<p>
+Powyższy program, odpalony z Ruby 1.8.* wypisze na ekran liczbę "6". Także pozostałe metody klasy <code class="inline">String</code> pracują na bajach, zatem używając <code class="inline">each_char</code> iterujemy po bajtach, <code class="inline">reverse</code> odwracamy kolejność bajtów itd. Nie jest jednak prawdą (jak można wnioskować po wypowiedziach co poniektórych programistów), że bez natywnego wsparcia, nie można obsłużyć utf-8 czy innego kodowania znaków. Oczywiście można, co też pokazał railsowy gem activesupport.
+</p>
+
+<img class="single" src="http://farm2.static.flickr.com/1065/543388337_c38d49553e_o.png" />
+
+<p>
+Wracając jednak do wersji 1.9, od tej pory wszystkie bolączki typowe dla 1.8 zniknęły (oczywiście pojawiły się nowe, ale o tym za chwilę...). Spróbujmy odpalić ten sam program w 1.9:
+</p>
+
+Wyjście:<pre><code class="shell">code/ruby1.8_string.rb:1: invalid multibyte char (US-ASCII)
+code/ruby1.8_string.rb:1: invalid multibyte char (US-ASCII)
+</code></pre>
+
+<p>
+Ha! Założę się, że chciałeś krzyknąć "przecież to logiczne, że wypisze na ekran liczbę 3", a tu mała niespodzianka. By program zadziałał, musimy podpowiedzieć interpreterowi jakiego kodowania użyliśmy do edycji naszego pliku (inaczej założy, że użyto kodowanie <a href="http://en.wikipedia.org/wiki/ASCII">ASCII</a>). Ponieważ użyłem kodowania utf-8, to dopiszę w pierwszej linii pliku <code class="inline"># encoding: utf-8</code> (gdyby w pierwszej linii miał tzw. <a href="http://en.wikipedia.org/wiki/Shebang_(Unix)">shebang line</a> to umieściłbym ten wpis w linii nr 2). Po dokonanej zmianie odpalam program i dostaję oczekiwaną liczbę 3.
+</p>
+
+<pre><code class="ruby"># encoding: utf-8
+
+s = &quot;ąęć&quot;
+puts s.size
+puts s.bytesize
+</code></pre>
+Wyjście:<pre><code class="shell">3
+6
+</code></pre>
+
+<p>
+Dodatkowo została wypisana wartość zwrócona przez metodę <code class="inline">String#bytesize</code>, której znaczenia nie trzeba chyba tłumaczyć nikomu. Panie i Panowie, od dzisiaj myślimy o obiektach klasy String jako o ciągu <strong>znaków</strong>, a nie bajtów.
+</p>
+
+<p>
+Jak można się domyślić, powyższa zmiana wpływa na inne metody klasy <code class="inline">String</code>. Np. odwołanie <code class="inline">str[5]</code> dotyczy szóstego <strong>znaku</strong> a nie bajtu, <code class="inline">str[3, 2]</code> to pobranie <strong>dwu znakowego</strong> podłańcucha począwszy od czwartego <strong>znaku</strong> i tak dalej...
+</p>
+
+<h3>Jeszcze o # encoding: utf-8</h3>
+<p>
+Jak już pokazałem, nagłówek ten służy by poinformować interpreter Rubiego o użytym kodowaniu. Jak na Rubiego przystało, mamy dosyć sporą dowolność w tej kwestii. Tak na prawdę Ruby szuka ciągu "coding", następnie ":" lub "=" i na końcu podany (aż do białego znaku, bądź nowej linii) ciąg uznaje za nazwę kodowania. Między każdą z części może pojawić się dowolna ilość spacji, wielkość liter nie ma znaczenia. Zatem wszystkie poniższe deklaracje zostaną poprawnie zinterpretowane:
+</p>
+
+<pre><code class="ruby"># coding: UTF-8
+# encoding: UTF-8
+# -*- coding: UTF-8 -*-
+# vim:set fileencoding=UTF-8:
+</code></pre>
+
+<p>
+Ma to wielką zaletę ponieważ część z nich jest rozpoznawana przez edytory, np. emacs (trzecia deklaracja), vim (czwarta deklaracja). Jeśli plik nie zawiera takiej deklaracji (lub jest niepoprawna) zostanie użyte domyślne kodowanie ASCII.
+</p>
+
+<h3>Klasa Encoding</h3>
+
+<p>
+<code class="inline">Encoding</code> jest nową klasą, która reprezentuje kodowanie znaków. Każdy łańcuch znaków ma przyporządkowane kodowanie, do sprawdzenia którego należy posłużyć się metodą <code class="inline">encoding</code>, zwracającą odpowiednią instancję ten klasy.
+</p>
+
+<pre><code class="ruby"># encoding: ascii
+
+s = &quot;Hello World!&quot;
+puts s.encoding.class
+puts s.encoding.name
+</code></pre>
+Wyjście:<pre><code class="shell">Encoding
+US-ASCII
+</code></pre>
+
+<pre><code class="ruby"># encoding: utf-8
+
+s = &quot;Hello World!&quot;
+puts s.encoding.class
+puts s.encoding.name
+</code></pre>
+Wyjście:<pre><code class="shell">Encoding
+UTF-8
+</code></pre>
+
+<p>
+Powyższy przykład pokazuje, że kodowanie znaków dla łańcuchów, które pochodzą wprost z kodu źródłowego, jest takie samo jak kodowanie znaków ustawione w nagłówku pliku.
+</p>
+
+<h3>Jakie kodowania są obsługiwane?</h3>
+<p>
+Jeśli chciałbyś sprawdzić, które kodowania Ruby potrafi obsłużyć, to użyj do tego metod <code class="inline">Encoding#list</code>, <code class="inline">Encoding#name_list</code>, <code class="inline">Encoding.aliases</code>. Ta pierwsza zwraca tablicę obiektów kodowań, druga tablicę nazw wszystkich kodowań o których wie Ruby, ostatnia zwraca hash z aliasami kodowań (niektóre kodowania znane są pod różnymi nazwami).
+</p>
+
+<pre><code class="ruby"># encoding: utf-8
+
+p Encoding.list
+p Encoding.name_list
+p Encoding.aliases
+</code></pre>
+Wyjście:<pre><code class="shell">[#&lt;Encoding:ASCII-8BIT&gt;, #&lt;Encoding:UTF-8&gt;, #&lt;Encoding:US-ASCII&gt;, #&lt;Encoding:Big5&gt;, #&lt;Encoding:CP949&gt;, #&lt;Encoding:Emacs-Mule&gt;, #&lt;Encoding:EUC-JP&gt;, #&lt;Encoding:EUC-KR&gt;, #&lt;Encoding:EUC-TW&gt;, #&lt;Encoding:GB18030&gt;, #&lt;Encoding:GBK&gt;, #&lt;Encoding:ISO-8859-1&gt;, #&lt;Encoding:ISO-8859-2&gt;, #&lt;Encoding:ISO-8859-3&gt;, #&lt;Encoding:ISO-8859-4&gt;, #&lt;Encoding:ISO-8859-5&gt;, #&lt;Encoding:ISO-8859-6&gt;, #&lt;Encoding:ISO-8859-7&gt;, #&lt;Encoding:ISO-8859-8&gt;, #&lt;Encoding:ISO-8859-9&gt;, #&lt;Encoding:ISO-8859-10&gt;, #&lt;Encoding:ISO-8859-11&gt;, #&lt;Encoding:ISO-8859-13&gt;, #&lt;Encoding:ISO-8859-14&gt;, #&lt;Encoding:ISO-8859-15&gt;, #&lt;Encoding:ISO-8859-16&gt;, #&lt;Encoding:KOI8-R&gt;, #&lt;Encoding:KOI8-U&gt;, #&lt;Encoding:Shift_JIS&gt;, #&lt;Encoding:UTF-16BE&gt;, #&lt;Encoding:UTF-16LE&gt;, #&lt;Encoding:UTF-32BE&gt;, #&lt;Encoding:UTF-32LE&gt;, #&lt;Encoding:Windows-1251&gt;, #&lt;Encoding:IBM437&gt;, #&lt;Encoding:IBM737&gt;, #&lt;Encoding:IBM775&gt;, #&lt;Encoding:CP850&gt;, #&lt;Encoding:IBM852&gt;, #&lt;Encoding:CP852&gt;, #&lt;Encoding:IBM855&gt;, #&lt;Encoding:CP855&gt;, #&lt;Encoding:IBM857&gt;, #&lt;Encoding:IBM860&gt;, #&lt;Encoding:IBM861&gt;, #&lt;Encoding:IBM862&gt;, #&lt;Encoding:IBM863&gt;, #&lt;Encoding:IBM864&gt;, #&lt;Encoding:IBM865&gt;, #&lt;Encoding:IBM866&gt;, #&lt;Encoding:IBM869&gt;, #&lt;Encoding:Windows-1258&gt;, #&lt;Encoding:GB1988&gt;, #&lt;Encoding:macCentEuro&gt;, #&lt;Encoding:macCroatian&gt;, #&lt;Encoding:macCyrillic&gt;, #&lt;Encoding:macGreek&gt;, #&lt;Encoding:macIceland&gt;, #&lt;Encoding:macRoman&gt;, #&lt;Encoding:macRomania&gt;, #&lt;Encoding:macThai&gt;, #&lt;Encoding:macTurkish&gt;, #&lt;Encoding:macUkraine&gt;, #&lt;Encoding:stateless-ISO-2022-JP&gt;, #&lt;Encoding:eucJP-ms&gt;, #&lt;Encoding:CP51932&gt;, #&lt;Encoding:GB2312&gt;, #&lt;Encoding:GB12345&gt;, #&lt;Encoding:ISO-2022-JP (dummy)&gt;, #&lt;Encoding:ISO-2022-JP-2 (dummy)&gt;, #&lt;Encoding:Windows-1252&gt;, #&lt;Encoding:Windows-1250&gt;, #&lt;Encoding:Windows-1256&gt;, #&lt;Encoding:Windows-1253&gt;, #&lt;Encoding:Windows-1255&gt;, #&lt;Encoding:Windows-1254&gt;, #&lt;Encoding:TIS-620&gt;, #&lt;Encoding:Windows-874&gt;, #&lt;Encoding:Windows-1257&gt;, #&lt;Encoding:Windows-31J&gt;, #&lt;Encoding:MacJapanese&gt;, #&lt;Encoding:UTF-7 (dummy)&gt;, #&lt;Encoding:UTF8-MAC&gt;]
+[&quot;ASCII-8BIT&quot;, &quot;UTF-8&quot;, &quot;US-ASCII&quot;, &quot;Big5&quot;, &quot;CP949&quot;, &quot;Emacs-Mule&quot;, &quot;EUC-JP&quot;, &quot;EUC-KR&quot;, &quot;EUC-TW&quot;, &quot;GB18030&quot;, &quot;GBK&quot;, &quot;ISO-8859-1&quot;, &quot;ISO-8859-2&quot;, &quot;ISO-8859-3&quot;, &quot;ISO-8859-4&quot;, &quot;ISO-8859-5&quot;, &quot;ISO-8859-6&quot;, &quot;ISO-8859-7&quot;, &quot;ISO-8859-8&quot;, &quot;ISO-8859-9&quot;, &quot;ISO-8859-10&quot;, &quot;ISO-8859-11&quot;, &quot;ISO-8859-13&quot;, &quot;ISO-8859-14&quot;, &quot;ISO-8859-15&quot;, &quot;ISO-8859-16&quot;, &quot;KOI8-R&quot;, &quot;KOI8-U&quot;, &quot;Shift_JIS&quot;, &quot;UTF-16BE&quot;, &quot;UTF-16LE&quot;, &quot;UTF-32BE&quot;, &quot;UTF-32LE&quot;, &quot;Windows-1251&quot;, &quot;BINARY&quot;, &quot;IBM437&quot;, &quot;CP437&quot;, &quot;IBM737&quot;, &quot;CP737&quot;, &quot;IBM775&quot;, &quot;CP775&quot;, &quot;CP850&quot;, &quot;IBM850&quot;, &quot;IBM852&quot;, &quot;CP852&quot;, &quot;IBM855&quot;, &quot;CP855&quot;, &quot;IBM857&quot;, &quot;CP857&quot;, &quot;IBM860&quot;, &quot;CP860&quot;, &quot;IBM861&quot;, &quot;CP861&quot;, &quot;IBM862&quot;, &quot;CP862&quot;, &quot;IBM863&quot;, &quot;CP863&quot;, &quot;IBM864&quot;, &quot;CP864&quot;, &quot;IBM865&quot;, &quot;CP865&quot;, &quot;IBM866&quot;, &quot;CP866&quot;, &quot;IBM869&quot;, &quot;CP869&quot;, &quot;Windows-1258&quot;, &quot;CP1258&quot;, &quot;GB1988&quot;, &quot;macCentEuro&quot;, &quot;macCroatian&quot;, &quot;macCyrillic&quot;, &quot;macGreek&quot;, &quot;macIceland&quot;, &quot;macRoman&quot;, &quot;macRomania&quot;, &quot;macThai&quot;, &quot;macTurkish&quot;, &quot;macUkraine&quot;, &quot;CP950&quot;, &quot;stateless-ISO-2022-JP&quot;, &quot;eucJP&quot;, &quot;eucJP-ms&quot;, &quot;euc-jp-ms&quot;, &quot;CP51932&quot;, &quot;eucKR&quot;, &quot;eucTW&quot;, &quot;GB2312&quot;, &quot;EUC-CN&quot;, &quot;eucCN&quot;, &quot;GB12345&quot;, &quot;CP936&quot;, &quot;ISO-2022-JP&quot;, &quot;ISO2022-JP&quot;, &quot;ISO-2022-JP-2&quot;, &quot;ISO2022-JP2&quot;, &quot;ISO8859-1&quot;, &quot;Windows-1252&quot;, &quot;CP1252&quot;, &quot;ISO8859-2&quot;, &quot;Windows-1250&quot;, &quot;CP1250&quot;, &quot;ISO8859-3&quot;, &quot;ISO8859-4&quot;, &quot;ISO8859-5&quot;, &quot;ISO8859-6&quot;, &quot;Windows-1256&quot;, &quot;CP1256&quot;, &quot;ISO8859-7&quot;, &quot;Windows-1253&quot;, &quot;CP1253&quot;, &quot;ISO8859-8&quot;, &quot;Windows-1255&quot;, &quot;CP1255&quot;, &quot;ISO8859-9&quot;, &quot;Windows-1254&quot;, &quot;CP1254&quot;, &quot;ISO8859-10&quot;, &quot;ISO8859-11&quot;, &quot;TIS-620&quot;, &quot;Windows-874&quot;, &quot;CP874&quot;, &quot;ISO8859-13&quot;, &quot;Windows-1257&quot;, &quot;CP1257&quot;, &quot;ISO8859-14&quot;, &quot;ISO8859-15&quot;, &quot;ISO8859-16&quot;, &quot;CP878&quot;, &quot;SJIS&quot;, &quot;Windows-31J&quot;, &quot;CP932&quot;, &quot;csWindows31J&quot;, &quot;MacJapanese&quot;, &quot;MacJapan&quot;, &quot;ASCII&quot;, &quot;ANSI_X3.4-1968&quot;, &quot;646&quot;, &quot;UTF-7&quot;, &quot;CP65000&quot;, &quot;CP65001&quot;, &quot;UTF8-MAC&quot;, &quot;UTF-8-MAC&quot;, &quot;UCS-2BE&quot;, &quot;UCS-4BE&quot;, &quot;UCS-4LE&quot;, &quot;CP1251&quot;, &quot;locale&quot;, &quot;external&quot;, &quot;internal&quot;]
+{&quot;BINARY&quot;=&gt;&quot;ASCII-8BIT&quot;, &quot;CP437&quot;=&gt;&quot;IBM437&quot;, &quot;CP737&quot;=&gt;&quot;IBM737&quot;, &quot;CP775&quot;=&gt;&quot;IBM775&quot;, &quot;IBM850&quot;=&gt;&quot;CP850&quot;, &quot;CP857&quot;=&gt;&quot;IBM857&quot;, &quot;CP860&quot;=&gt;&quot;IBM860&quot;, &quot;CP861&quot;=&gt;&quot;IBM861&quot;, &quot;CP862&quot;=&gt;&quot;IBM862&quot;, &quot;CP863&quot;=&gt;&quot;IBM863&quot;, &quot;CP864&quot;=&gt;&quot;IBM864&quot;, &quot;CP865&quot;=&gt;&quot;IBM865&quot;, &quot;CP866&quot;=&gt;&quot;IBM866&quot;, &quot;CP869&quot;=&gt;&quot;IBM869&quot;, &quot;CP1258&quot;=&gt;&quot;Windows-1258&quot;, &quot;CP950&quot;=&gt;&quot;Big5&quot;, &quot;eucJP&quot;=&gt;&quot;EUC-JP&quot;, &quot;euc-jp-ms&quot;=&gt;&quot;eucJP-ms&quot;, &quot;eucKR&quot;=&gt;&quot;EUC-KR&quot;, &quot;eucTW&quot;=&gt;&quot;EUC-TW&quot;, &quot;EUC-CN&quot;=&gt;&quot;GB2312&quot;, &quot;eucCN&quot;=&gt;&quot;GB2312&quot;, &quot;CP936&quot;=&gt;&quot;GBK&quot;, &quot;ISO2022-JP&quot;=&gt;&quot;ISO-2022-JP&quot;, &quot;ISO2022-JP2&quot;=&gt;&quot;ISO-2022-JP-2&quot;, &quot;ISO8859-1&quot;=&gt;&quot;ISO-8859-1&quot;, &quot;CP1252&quot;=&gt;&quot;Windows-1252&quot;, &quot;ISO8859-2&quot;=&gt;&quot;ISO-8859-2&quot;, &quot;CP1250&quot;=&gt;&quot;Windows-1250&quot;, &quot;ISO8859-3&quot;=&gt;&quot;ISO-8859-3&quot;, &quot;ISO8859-4&quot;=&gt;&quot;ISO-8859-4&quot;, &quot;ISO8859-5&quot;=&gt;&quot;ISO-8859-5&quot;, &quot;ISO8859-6&quot;=&gt;&quot;ISO-8859-6&quot;, &quot;CP1256&quot;=&gt;&quot;Windows-1256&quot;, &quot;ISO8859-7&quot;=&gt;&quot;ISO-8859-7&quot;, &quot;CP1253&quot;=&gt;&quot;Windows-1253&quot;, &quot;ISO8859-8&quot;=&gt;&quot;ISO-8859-8&quot;, &quot;CP1255&quot;=&gt;&quot;Windows-1255&quot;, &quot;ISO8859-9&quot;=&gt;&quot;ISO-8859-9&quot;, &quot;CP1254&quot;=&gt;&quot;Windows-1254&quot;, &quot;ISO8859-10&quot;=&gt;&quot;ISO-8859-10&quot;, &quot;ISO8859-11&quot;=&gt;&quot;ISO-8859-11&quot;, &quot;CP874&quot;=&gt;&quot;Windows-874&quot;, &quot;ISO8859-13&quot;=&gt;&quot;ISO-8859-13&quot;, &quot;CP1257&quot;=&gt;&quot;Windows-1257&quot;, &quot;ISO8859-14&quot;=&gt;&quot;ISO-8859-14&quot;, &quot;ISO8859-15&quot;=&gt;&quot;ISO-8859-15&quot;, &quot;ISO8859-16&quot;=&gt;&quot;ISO-8859-16&quot;, &quot;CP878&quot;=&gt;&quot;KOI8-R&quot;, &quot;SJIS&quot;=&gt;&quot;Shift_JIS&quot;, &quot;CP932&quot;=&gt;&quot;Windows-31J&quot;, &quot;csWindows31J&quot;=&gt;&quot;Windows-31J&quot;, &quot;MacJapan&quot;=&gt;&quot;MacJapanese&quot;, &quot;ASCII&quot;=&gt;&quot;US-ASCII&quot;, &quot;ANSI_X3.4-1968&quot;=&gt;&quot;US-ASCII&quot;, &quot;646&quot;=&gt;&quot;US-ASCII&quot;, &quot;CP65000&quot;=&gt;&quot;UTF-7&quot;, &quot;CP65001&quot;=&gt;&quot;UTF-8&quot;, &quot;UTF-8-MAC&quot;=&gt;&quot;UTF8-MAC&quot;, &quot;UCS-2BE&quot;=&gt;&quot;UTF-16BE&quot;, &quot;UCS-4BE&quot;=&gt;&quot;UTF-32BE&quot;, &quot;UCS-4LE&quot;=&gt;&quot;UTF-32LE&quot;, &quot;CP1251&quot;=&gt;&quot;Windows-1251&quot;, &quot;locale&quot;=&gt;&quot;UTF-8&quot;, &quot;external&quot;=&gt;&quot;UTF-8&quot;}
+</code></pre>
+
+<p>
+Do każdego kodowania możemy dostać się także poprzez odpowiednią stałą <code class="inline">Encoding::&lt;NAZWA_KODOWANIA&gt;</code>, np: <code class="inline">Encoding::UTF_8</code>, <code class="inline">Encoding</code>. Jeśli chcemy pobrać obiekt kodowania na podstawie łańcucha znaków (bo np. pobraliśmy go z pliku) to możemy użyć metody <code class="inline">Encoding.find</code>.
+</p>
+
+<pre><code class="ruby"># encoding: ascii
+
+s = &quot;hello&quot;
+puts s.encoding == Encoding::ASCII
+puts s.encoding == Encoding::US_ASCII
+
+%w(utf-8 ascii foo).each do |encoding_name|
+  begin
+    encoding = Encoding.find(encoding_name)
+    puts encoding.name
+  rescue ArgumentError =&gt; e
+    puts e.message
+  end
+end
+
+</code></pre>
+Wyjście:<pre><code class="shell">true
+true
+UTF-8
+US-ASCII
+unknown encoding name - foo
+</code></pre>
+
+<p>
+Tak jak wspomniałem, każde kodowanie może mieć jakieś aliasy. Prócz wspomnianej metody <code class="inline">Encoding.aliases</code> zwracającej hash, można je pobrać także metodą <code class="inline">Encoding#names</code> dla konkretnego obiektu kodowania.
+</p>
+
+<pre><code class="ruby"># encoding: utf-8
+
+puts Encoding::UTF_8.names
+</code></pre>
+Wyjście:<pre><code class="shell">UTF-8
+CP65001
+locale
+external
+</code></pre>
+
+<h3>Nowa pseudo-stała __ENCODING__</h3>
+<p>
+Dodano nową pseudo-stałą o nazwie <code class="inline">__ENCODING__</code>, która zwraca obiekt kodowania jakie zostało użyte w pliku.
+</p>
+
+<pre><code class="ruby"># encoding: utf-8
+
+puts &quot;Ten plik został zakodowany przy użyciu kodowania: #{__ENCODING__.name}&quot;
+</code></pre>
+Wyjście:<pre><code class="shell">Ten plik został zakodowany przy użyciu kodowania: UTF-8
+</code></pre>
+
+<img class="single" src="http://farm1.static.flickr.com/27/40467714_d2dfbdeb24.jpg" />
+
+<h3>String raz jeszcze</h3>
+<p>
+Póki co pokazałem, że każdy łańcuch ma skojarzony z nim obiekt kodowania. Obiekt ten jest tylko etykietą łańcucha i nie wpływa bezpośrednio na jego wewnętrzną zawartość (czyli ciąg bajtów). Zwracam na to uwagę, ponieważ Ruby nie używa wewnętrznie żadnego konkretnego kodowania (dokładniej opiszę to kilka akapitów dalej). Ma to swoje wady i zalety. Wadą jest to, że trzeba mieć większą świadomość pisząc programy, które operują na stringach. Trzeba zdawać sobie sprawę, że w jednej chwili mogą istnieć stringi o różnych kodowaniach (różne środowiska, ustawienia lokalne, kodowania plików na dysku, kodowania plików źródłowych itp.). Z kolei zaletą jest ogromna elastyczność, która w efekcie może dać większe możliwości w tej kwestii niż zastosowane rozwiązania w Javie czy Pythonie.
+</p>
+
+<h3>String#force_encoding, String#bytes, String#valid_encoding?</h3>
+<p>
+Jak już wspomniałem, klasa String od wersji 1.9 reprezentuje ciąg znaków. Jednak wewnętrznie jest to wciąż ciąg bajtów, ustawione kodowanie odpowiada za sposób interpretacji tych bajtów. Ruby w żaden sposób nie modyfikuje (chyba że go o to poprosisz) wartości tych bajtów. Do wymuszenia zmiany tej interpretacji służy metoda <code class="inline">String#force_encoding</code>, która ustawia nowe kodowanie, ale mimo wszystko nie dokonuje żadnej konwersji bajtów (jeśli interesuje Cię zawartość na poziomie bajtów to użyj metody <code class="inline">String#bytes</code>, która zwraca odpowiedni iterator). Jest to przydatne na przykład w sytuacji gdy musimy wczytać jakieś dane, ale nie znamy kodowania, które zostało użyte. Jeśli po odczytaniu i sprawdzeniu kilku bajtów możemy określić kodowanie, to możemy o tym poinformować właśnie poprzez tą metodę. Praktycznym przykładem może być odczyt pliku html z dysku, w którym informacja o kodowaniu jest zawarta w nagłówku (<code class="inline">&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;</code>). Jeśli chcemy się upewnić, że wewnętrzna sekwencja bajtów jest poprawna z ustawionym kodowaniem, to możemy użyć do tego metody <code class="inline">String#valid_encoding?</code>. Pora na mały przykład z użyciem wymienionych metod.
+</p>
+
+<pre><code class="ruby"># encoding: utf-8
+
+# String#force_encoding
+# String#valid_encoding?
+str_utf   = &quot;foo&quot; # kodowanie odziedziczone po źródle
+str_ascii = str_utf.dup.force_encoding(&quot;ascii&quot;)
+puts &quot;#{str_utf}.valid_encoding? == %s&quot; % str_utf.valid_encoding?
+puts &quot;#{str_ascii}.valid_encoding? == %s&quot; % str_ascii.valid_encoding? # true, występowały same znaki ascii
+
+str_utf = &quot;Föö&quot;
+str_ascii = str_utf.dup.force_encoding(&quot;ascii&quot;)
+puts &quot;#{str_ascii}.valid_encoding? == %s&quot; % str_ascii.valid_encoding? # false, znaki spoza zakresu ascii
+
+str_utf = &quot;Föö&quot;
+str_ascii = str_utf.dup.force_encoding(&quot;binary&quot;) # to samo co ascii-8bit
+puts &quot;#{str_ascii}.valid_encoding? == %s&quot; % str_ascii.valid_encoding? # true, dowolny ciąg bajtów jest dozwolony
+
+# String#bytes
+str = &quot;Föö&quot;
+puts &quot;str(%s): #{str}&quot; % str.encoding
+puts &quot; bajty(%d): %p&quot; % [str.bytesize, str.bytes.to_a]
+puts &quot; znaki(%d): %p&quot; % [str.size, str.chars.to_a]
+
+str_ascii = str.force_encoding(&quot;ascii&quot;)
+puts &quot;str(%s): #{str}&quot; % str.encoding
+puts &quot; bajty(%d): %p&quot; % [str.bytesize, str.bytes.to_a]
+puts &quot; znaki(%d): %p&quot; % [str.size, str.chars.to_a]
+</code></pre>
+Wyjście:<pre><code class="shell">foo.valid_encoding? == true
+foo.valid_encoding? == true
+Föö.valid_encoding? == false
+Föö.valid_encoding? == true
+str(UTF-8): Föö
+ bajty(5): [70, 195, 182, 195, 182]
+ znaki(3): [&quot;F&quot;, &quot;ö&quot;, &quot;ö&quot;]
+str(US-ASCII): Föö
+ bajty(5): [70, 195, 182, 195, 182]
+ znaki(5): [&quot;F&quot;, &quot;\xC3&quot;, &quot;\xB6&quot;, &quot;\xC3&quot;, &quot;\xB6&quot;]
+</code></pre>
+
+<h3>String#encode</h3>
+<p>
+Inną bardzo przydatną metodą jest <code class="inline">String#encode</code>, która służy do przekonwertowania stringa w jednym kodowaniu do stringa w drugim. Jest to jedno z tych (raczej oczywistych) miejsc, w którym konwersja następuje na poziomie bajtów (inaczej ciężko mówić o konwersji). Oto przykład, w którym wykorzystamy tą metodę do konwersji znaków z utf-8 do iso-8859-2 i cp1250.
+</p>
+
+<pre><code class="ruby"># encoding: utf-8
+
+s1 = &quot;ąęć&quot;
+s2 = s1.encode(&quot;iso-8859-2&quot;)
+s3 = s1.encode(&quot;cp1250&quot;)
+
+puts &quot;#{s1}&quot;
+puts &quot; (%s)bajty: %p&quot; % [s1.encoding, s1.bytes.to_a]
+puts &quot; (%s)bajty: %p&quot; % [s2.encoding, s2.bytes.to_a]
+puts &quot; (%s)bajty: %p&quot; % [s3.encoding, s3.bytes.to_a]
+</code></pre>
+Wyjście:<pre><code class="shell">ąęć
+ (UTF-8)bajty: [196, 133, 196, 153, 196, 135]
+ (ISO-8859-2)bajty: [177, 234, 230]
+ (Windows-1250)bajty: [185, 234, 230]
+</code></pre>
+
+<p>
+Celowo wypisałem tylko bajty ponieważ co najwyżej jeden z wypisywanych łańcuchów wyświetliłby się poprawnie.
+</p>
+
+<p>
+Warto zwrócić na uwagę, że w przypadku gdy odpowiednia konwersja nie może zostać wykonana, jest rzucany wyjątek <code class="inline">Encoding::UndefinedConversionError</code>. Przykładowo 
+</p>
+
+<pre><code class="ruby"># encoding: utf-8
+
+nuclear = &quot;☢&quot;
+nuclear.encode(&quot;ascii&quot;) # powoduje Encoding::UndefinedConversionError
+                        # ponieważ znak nie może zostać skonwertowany
+                        # (brak odpowiednika)
+</code></pre>
+Wyjście:<pre><code class="shell">code/encode02.rb:4:in `encode': &quot;\xE2\x98\xA2&quot; from UTF-8 to US-ASCII (Encoding::UndefinedConversionError)
+	from code/encode02.rb:4:in `&lt;main&gt;'
+</code></pre>
+
+<h3>String#ascii_only?</h3>
+<p>
+Metoda, jak łatwo się domyślić, sprawdza czy dany łańcuch zawiera tylko znaki ASCII (zakres bajtów \x00-\x79, czyli 0-127).
+</p>
+
+<img class="single" src="http://farm4.static.flickr.com/3030/2722698216_59482bd904.jpg" />
+
+<h3>Literały</h3>
+<p>
+Jak już widziałeś wcześniej, literały stringów dziedziczą kodowanie znaków po kodowaniu ustawionym w nagłówku pliku, w którym się znajdują. Jest to połowiczna prawda w przypadku literałów wyrażeń regularnych (<code class="inline">Regexp</code>) oraz symboli (<code class="inline">Symbol</code>), w wypadku których zostanie użyte kodowanie ASCII jeśli wszystkie znaki są właśnie z tego zakresu. Głównie chodzi o ułatwienie pracy z tymi typami (w przypadku symboli mogłoby dojść do sytuacji, w której dany symbol miałbym kodowanie zależne od tego jakie kodowanie miałby plik, w którym wystąpił wystąpił po raz pierwszy).
+</p>
+
+<pre><code class="ruby"># encoding: utf-8
+
+def show_encoding(str)
+  puts &quot;'#{str}' is #{str.encoding.name}&quot;
+end
+
+show_encoding &quot;cat&quot;
+show_encoding &quot;∂og&quot;
+
+show_encoding :cat
+show_encoding :∂og
+
+show_encoding /cat/
+show_encoding /∂og/
+</code></pre>
+Wyjście:<pre><code class="shell">'cat' is UTF-8
+'∂og' is UTF-8
+'cat' is US-ASCII
+'∂og' is UTF-8
+'(?-mix:cat)' is US-ASCII
+'(?-mix:∂og)' is UTF-8
+</code></pre>
+
+<p>
+Z kolei jeśli plik zawiera kodowanie nie-unicodowe, ale dany łańcuch zawiera sekwencję "\uDDDD" to jego kodowanie ustawiane jest na UTF-8.
+</p>
+
+<pre><code class="ruby"># encoding: ascii
+
+def show_str(s)
+  puts &quot;#{s}, encoding: #{s.encoding}&quot;
+end
+
+s1 = &quot;foo&quot;
+s2 = &quot;\u2622&quot;
+
+show_str(s1)
+show_str(s2)
+</code></pre>
+Wyjście:<pre><code class="shell">foo, encoding: US-ASCII
+☢, encoding: UTF-8
+</code></pre>
+
+<h3>Wydajność</h3>
+<p>
+Kolejnym aspektem, na który trzeba zwrócić uwagę, jest wydajność. Nie jestem w stanie przetestować wszystkich operacji związanych z łańcuchami znaków, a na których wydajność ma wpływ kodowanie znaków. Mogę natomiast podpowiedzieć, że należy zwracać uwagę na operacje, które wymagają dostępu do znaków o konkretnym indeksie. Są to m.in. takie metody jak <code class="inline">String#[]</code>, <code class="inline">String#index</code>, <code class="inline">String#insert</code>, <code class="inline">String#slice</code>. Dla kodowań o stałej szerokości znaków (np. <a href="http://pl.wikipedia.org/wiki/UTF-32/UCS-4">UTF-32</a>) oraz łańcuchów znaków, które zawierają tylko 7 bitowe znaki ASCII (czyli takie, dla których <code class="inline">String#ascii_only?</code> zwraca <code class="inline">true</code>) złożoność dostępu wynosi O(1), dla pozostałych wynosi O(n). Jeśli nie jest się pewnym czy dostęp jest O(1) czy O(n) wystarczy sprawdzić to prostym benchmarkiem.
+</p>
+
+<pre><code class="ruby"># encoding: utf-8
+require &quot;benchmark&quot;
+
+SIZE = 100_000
+INDEX = SIZE / 2
+N = 1000
+
+s1 = &quot;foo&quot; * SIZE
+s2 = &quot;fóó&quot; * SIZE
+
+Benchmark.bm(10) do |make|
+  make.report(s1.encoding.to_s) do
+    N.times do
+      char = s1[INDEX]
+    end
+  end
+
+  make.report(s2.encoding.to_s) do
+    N.times do
+      char = s2[INDEX]
+    end
+  end
+end
+</code></pre>
+Wyjście:<pre><code class="shell">                user     system      total        real
+UTF-8       0.000000   0.000000   0.000000 (  0.000939)
+UTF-8       0.340000   0.000000   0.340000 (  0.342168)
+</code></pre>
+
+<p>
+Dla łańcucha "foo" zawierającego tylko znaki ASCII, pomimo iż był zakodowany przy użyciu kodowania UTF-8 (a które ma zmienną długość znaków), dostęp po indeksie okazał się bardzo szybki. Z kolei dla łańcucha "fóó" dostęp nie mógł być zoptymalizowany i trwał o wiele dłużej, ponieważ łańcuch zawierał znaki spoza zbioru ASCII.
+</p>
+
+<p>
+Moje słowa o optymalizacji dostępu dla kodowań o stałej szerokości znaków może potwierdzić następujący program:
+</p>
+
+<pre><code class="ruby"># encoding: utf-8
+
+require &quot;benchmark&quot;
+
+SIZE = 100_000
+INDEX = SIZE / 2
+N = 1000
+
+s1 = &quot;foo&quot;.encode(&quot;utf-32be&quot;) * SIZE
+s2 = &quot;fóó&quot;.encode(&quot;utf-32be&quot;) * SIZE
+
+Benchmark.bm(10) do |make|
+  make.report(s1.encoding.to_s) do
+    N.times do
+      char = s1[INDEX]
+    end
+  end
+
+  make.report(s2.encoding.to_s) do
+    N.times do
+      char = s2[INDEX]
+    end
+  end
+end
+</code></pre>
+Wyjście:<pre><code class="shell">                user     system      total        real
+UTF-32BE    0.000000   0.000000   0.000000 (  0.000301)
+UTF-32BE    0.000000   0.000000   0.000000 (  0.000301)
+</code></pre>
+
+<p>
+Warto zwrócić także uwagę, że jeśli iterujemy po wszystkich znakach w łańcuchu to lepiej jest skorzystać z iteratora <code class="inline">String#each_char</code>, zamiast samemu zwiększać licznik i odwoływać się przez <code class="inline">String#[]</code>:
+</p>
+
+<pre><code class="ruby"># encoding: utf-8
+
+require &quot;benchmark&quot;
+
+SIZE = 5_000
+INDEX = SIZE / 2
+N = 1000
+
+s = &quot;fóó&quot; * SIZE
+
+Benchmark.bm(20) do |make|
+  make.report(&quot;String#each_char&quot;) do
+    s.each_char do |c|
+      a = c
+    end
+  end
+
+  make.report(&quot;String#[i]&quot;) do
+    s.size.times do |i|
+      a = s[i]
+    end
+  end
+end
+</code></pre>
+Wyjście:<pre><code class="shell">                          user     system      total        real
+String#each_char      0.000000   0.010000   0.010000 (  0.004285)
+String#[i]            0.340000   0.000000   0.340000 (  0.336463)
+</code></pre>
+
+<p>
+Operacje, które nie wymagają dostępu do znaków o konkretnych indeksach (np. konkatenacja łańcuchów) powinny być tak samo wydajne jak do tej pory. Chociaż, tak jak już wspomniałem, dobrze jest upewnić się robiąc odpowiednie testy wydajnościowe.
+</p>
+
+<h3>Encoding.default_external i Encoding.default_internal</h3>
+<p>
+Wspomniałem na początku, że Ruby w przeciwieństwie do Pythona, Javy czy innych języków nie stosuje żadnej reprezentacji wewnętrznej łańcuchów. Wynika to z faktu nieistnienia jednego, uniwersalnego kodowania znaków, które pozwalałoby na reprezentację wszystkich znaków na świecie. Nie jest nim nawet Unicode, chociaż takie są jego założenia. Z jednej strony daje to większą elastyczność, z drugiej wymaga więcej pracy od programisty. Jeśli pracujemy tylko z jednym kodowaniem to problemu nie ma. Wczytując np. dane z pliku określamy, że jego kodowanie to utf-8 i takie właśnie kodowanie otrzymują wczytywane z niego dane (chociaż już tu możemy zapytać: dlaczego muszę za każdym razem określać to kodowanie?).
+</p>
+
+<p>
+Gorzej jednak, jeśli zmuszeni jesteśmy pracować na danych o różnych kodowaniach. Wyobraź sobie taką sytuację. Piszesz program, który wczytuje dane z plików o kodowaniach iso-8859-2, cp1250 i utf-8. Dane te następnie zapisywane są w bazie w kodowaniu utf-8. Sprawa wydaje się w miarę prosta. Wczytując dane z plików o 2 pierwszych kodowaniach konwertujesz dane do utf-8 i takie zapisujesz do bazy. Jeśli w przyszłości będziesz chciał zmienić kodowanie bazy danych na inne to będziesz musiał także zmienić kodowanie do którego konwertujesz dane z wczytywanych plików. Mógłbyś to oczywiście załatwić jakąś stałą, ale mimo wszystko może to wprowadzać niepotrzebne zamieszanie.
+</p>
+
+<p>
+By ułatwić nam pracę, zostały wprowadzone dwa pojęcia, tj. kodowanie wewnętrzne (internal encoding) i kodowanie zewnętrzne (external encoding). To pierwsze określa domyślne kodowanie do którego są konwertowane wszystkie wczytywane z zewnątrz dane w procesie programu. To drugie określa domyślne kodowanie używane podczas wczytywanie zewnętrznych danych. Dla przykładu jeśli ustawimy kodowanie zewnętrzne na iso-8859-2, zaś kodowanie wewnętrzne na utf-8 to przy operacji <code class="inline">File.open(filename).read</code> Ruby domniema, że kodowaniem tego pliku jest utf-8, ale wczytane dane przekonwertuje do iso-8859-2.
+</p>
+
+<p>
+Do ustawiania i pobierania tych kodowań służą metody <code class="inline">Encoding.default_external</code>, <code class="inline">Encoding.default_external=</code>, <code class="inline">Encoding.default_internal</code>, <code class="inline">Encoding.default_internal=</code>. Domyślnie kodowanie wewnętrzne nie jest ustawione, zatem dane nie są konwertowane w żaden sposób. Z kolei domyślne kodowanie zewnętrzne jest ustawiane na takie jakie mamy ustawione w ustawieniach lokalnych naszego systemu. Pora na mały przykład.
+</p>
+
+<pre><code class="ruby"># encoding: utf-8
+
+def show(encoding)
+  puts &quot;Zmieniam Encoding.default_internal na #{encoding}&quot;
+  Encoding.default_internal = encoding
+
+  data = File.read(&quot;/etc/passwd&quot;)
+  puts &quot;data.encoding: #{data.encoding}&quot;
+end
+
+puts &quot;Domyślnym kodowaniem zewnętrznym jest: #{Encoding.default_external}&quot;
+puts &quot;Domyślnym kodowaniem wewnętrznym jest: #{Encoding.default_internal}&quot;
+
+show(nil)
+show(&quot;utf-8&quot;)
+show(&quot;iso-8859-2&quot;)
+</code></pre>
+Wyjście:<pre><code class="shell">Domyślnym kodowaniem zewnętrznym jest: UTF-8
+Domyślnym kodowaniem wewnętrznym jest: 
+Zmieniam Encoding.default_internal na 
+data.encoding: UTF-8
+Zmieniam Encoding.default_internal na utf-8
+data.encoding: UTF-8
+Zmieniam Encoding.default_internal na iso-8859-2
+data.encoding: ISO-8859-2
+</code></pre>
+
+<p>
+Jeśli chcemy dla konkretnego pliku określić inne niż domyślne kodowanie wewnętrzne i zewnętrzne to powinniśmy podać odpowiednie parametry do metody <code class="inline">File.open</code>. Nie powinniśmy natomiast zmieniać raz ustawionych (np. przy starcie programu) wartości <code class="inline">Encoding.default_internal</code> i <code class="inline">Encoding.default_external</code>.
+</p>
+
+<pre><code class="ruby"># encoding: utf-8
+
+Encoding.default_internal = &quot;utf-8&quot;
+Encoding.default_external = &quot;utf-8&quot;
+file = File.open(&quot;/etc/passwd&quot;)
+puts &quot;file.external_encoding: #{file.external_encoding}&quot;
+puts &quot;file.internal_encoding: #{file.internal_encoding}&quot;
+puts &quot;file.read.encoding: #{file.read.encoding}&quot;
+
+file = File.open(&quot;/etc/passwd&quot;, external_encoding: &quot;ascii&quot;, internal_encoding: &quot;iso-8859-2&quot;)
+puts &quot;file.external_encoding: #{file.external_encoding}&quot;
+puts &quot;file.internal_encoding: #{file.internal_encoding}&quot;
+puts &quot;file.read.encoding: #{file.read.encoding}&quot;
+</code></pre>
+Wyjście:<pre><code class="shell">file.external_encoding: UTF-8
+file.internal_encoding: 
+file.read.encoding: UTF-8
+file.external_encoding: US-ASCII
+file.internal_encoding: ISO-8859-2
+file.read.encoding: ISO-8859-2
+</code></pre>
+
+<p>
+Uff, to z pewnością jeden z najdłuższych wpisów jakie kiedykolwiek umiesciłem na tym blogu. Z pewnością nie opisałem każdego z możliwych aspektów dotyczących kodowań. Istnieje wiele różnych pułapek, na które trzeba uważać. Liczę na to, że po powyższej lekturze, na spokojnie usiądziecie sam na sam z interpreterem Rubiego w wersji 1.9.1 i spróbujecie pobawić się tym co Wam pokazałem. Gdybyście mięli jakieś inne wątpliwości, ciekawe pytania to piszcie w komentarzach.
+</p>
+
+<p>
+Linki
+<p>
+
+<ul>
+  <li><a href="http://blog.nuclearsquid.com/writings/ruby-1-9-encodings">Working with Encodings in Ruby 1.9</a></li>
+  <li><a href="http://blog.grayproductions.net/articles/understanding_m17n">Understanding M17n </a> - cała seria wpisów Jamesa Gray'a na temat M17N w Ruby</li>
+</ul>
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-1340649" class="comment1 guest">
+            
+            1.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://blog.drogomir.com" rel="nofollow">Piotr Sarnacki</a></strong> napisał(a) 12 Lut 2009 o godz. 09:06:
+            <div class="top"></div>
+            <div class="content">
+              <p>Świetny post, ująłeś chyba wszystko co może się przydać przy kodzeniu, jeżeli o kodowania chodzi.</p>
+
+<p>Jeżeli chodzi o wydajność, to pamiętam, że ktoś na ruby-forum narzekał na wydajność pracowania na pojedynczych znakach (jako, że teraz nie są to już bajty). Zastanawiam się czy od tamtego czasu ta część była w jakiś sposób optymalizowana.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1340671" class="comment2 jogger">
+            
+            2.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://psionides.jogger.pl">Psi</a></strong> napisał(a) 12 Lut 2009 o godz. 10:50:
+            <div class="top"></div>
+            <div class="content">
+              <p>Kawał dobrej roboty :) Dodaję do delicious, na pewno się kiedyś przyda.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1340803" class="comment1 guest">
+            
+            3.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>dr_bonzo</strong> napisał(a) 12 Lut 2009 o godz. 19:04:
+            <div class="top"></div>
+            <div class="content">
+              <p>Niezle wyjasnione (oceniam jako poznajacy 1.9), prosto i zrozumiale.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1340842" class="comment2 jogger">
+            
+            4.
+            
+            <img class="avatar-icon" src="http://blag.dodecki.net/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://blag.dodecki.net">Dodek</a></strong> napisał(a) 12 Lut 2009 o godz. 20:16:
+            <div class="top"></div>
+            <div class="content">
+              <p>Dobrze, że się wzorowali na Pythonie &#8211; tam jest to bardzo elegancko zrobione.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1340913" class="comment1 owner">
+            
+            5.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 12 Lut 2009 o godz. 22:22:
+            <div class="top"></div>
+            <div class="content">
+              <blockquote>
+<p>Jeżeli chodzi o wydajność, to pamiętam, że ktoś na ruby-forum narzekał na wydajność pracowania na pojedynczych znakach (jako, że teraz nie są to już bajty). Zastanawiam się czy od tamtego czasu ta część była w jakiś sposób optymalizowana.</p>
+</blockquote>
+
+<p><strong>@Piotr</strong>, myślę, że sprawa jest dokładnie taka sama jak była. Tj. dla kodowań o zmiennej długości znaków dostęp tzw. random access (string[i]) jest i będzie O(N). Jeśli faktycznie potrzeba sporo takich wywołań (i nie chodzi o iterację po kolejnych znakach) to można przekonwertować do jakiegoś kodowania o stałej szerokości znaków</p>
+
+<p><strong>@Dodek</strong>, nie widzę osobiście, aby obsługa kodowań była podoba do tych z Pythona. Jedyne co zostało zapożyczone (wspomniałem o tym w tekście) to deklaracja kodowania dla plików źródłowych. I w sumie dobrze, bo jest to znane i dobre rozwiązanie. Cała reszta jest zupełnie inna (m.in. dlatego, że python robi automatyczny transcoding do unicode).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1444571" class="comment2 guest">
+            
+            6.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Void</strong> napisał(a) 22 Wrz 2009 o godz. 11:07:
+            <div class="top"></div>
+            <div class="content">
+              <p>Bardzo dobry post. Moje 1. boje z Rubym stały się bardziej zrozumiałe :-)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1452697" class="comment1 guest">
+            
+            7.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>morgoth</strong> napisał(a) 11 Paź 2009 o godz. 13:58:
+            <div class="top"></div>
+            <div class="content">
+              <p>Twój post znacznie uprościł mi pisanie części pracy magisterskiej o różnicach pomiędzy wersjami Rubiego i kodowaniu.<br />
+Dzięki!<br />
+BTW, dodałem Cię do bibliografii :-).<br />
+Pozdrawiam.</p>
+
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1473020" class="comment2 guest">
+            
+            8.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://www.poker-online.pl/betclick-poker.php" rel="nofollow">Betclic</a></strong> napisał(a) 04 Gru 2009 o godz. 12:40:
+            <div class="top"></div>
+            <div class="content">
+              <p>Taki standard to nic innego jak zasady, których należy się trzymać by kod był czytelny i zrozumiały dla wszystkich.</p>
+
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="../../../../index.html">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="index.html#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>

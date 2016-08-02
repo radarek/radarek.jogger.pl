@@ -1,0 +1,669 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
+  <head>
+    <title>Ruby - garść faktów na zachętę - Radarek bloguje... o Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="verify-v1" content="XvR5kxyBmJGgUb1Tca8kJ+ii1Vde81UrpDJptt6JMeU=" />
+    <link rel="shortcut icon" href="../../../../files/favicon.png" type="image/png" />
+    <meta name="keywords" content="introduction, ruby, Ruby, , ruby, ruby on rails, rails, merb, jruby, yarv, rubinius, ironruby, maglev, programowanie, radarek, radosław bułat, radoslaw bulat, radoslaw, bulat, python, gamedev" />
+    <meta name="description" content="Wszystko co wiem o programowaniu, przede wszystkim Ruby." />
+    <meta name="robots" content="index,follow"/>
+
+    <link rel="stylesheet" href="../../../../files/style.css" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" href="/files/style-ie6.css" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/files/style-ie7.css" /><![endif]-->
+
+    <!--<script type="text/javascript" src="/files/jquery.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../../files/common.js"></script>
+    <script type="text/javascript" src="../../../../files/highlight.js"></script>
+    <script type="text/javascript" src="../../../../files/dynamic.js"></script>
+    <script type="text/javascript" src="../../../../files/jruby.js"></script>
+		
+    
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad('ruby');
+    </script>
+    
+    <!--[if lt IE 7.]><script defer type="text/javascript" src="/files/pngfix.js"></script><![endif]-->
+
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - wpisy" href="http://feeds.feedburner.com/radarek-blog" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - nagłówki" href="http://feeds.feedburner.com/radarek-blog/headers" />
+    <link rel="alternate" type="application/atom+xml" title="Radarek bloguje... o Ruby - miniblog" href="http://feeds.feedburner.com/radarek-blog/miniblog" />
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-837628-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  
+    <div id="top">
+      <a href="../../../../index.html" id="return-to-main">&nbsp;</a>
+      <h3 id="sentence">
+        <q>Any fool can make things bigger, more complex, and more violent. It takes a touch of genius and a lot of courage to move in the opposite direction.</q>
+        Albert Einstein
+      </h3>
+
+      <div id="title-image">
+        <div id="ruby-logo"></div>
+        <h1>o Ruby</h1>
+      </div><!-- title-image -->
+
+      <div id="navigation-tabs">
+        <ul id="tabs">
+          <li class="active"><a href="../../../../index.html"><span>Wpisy</span></a></li>
+          <li><a href="../../../04/29/o-blogu/index.html"><span>O blogu</span></a></li>
+          <li><a href="../../01/kanaly-rss/index.html"><span>RSS</span></a></li>
+          <li><a href="../../01/kontakt/index.html"><span>Kontakt</span></a></li>
+        </ul><!-- tabs -->
+      </div><!-- navigations-tabs -->
+    </div><!-- top -->
+
+    <div id="top-shadow"></div>
+
+    <div id="content-wrapper">
+
+      <div id="menu">       
+        <div class="submenu">
+          <form action="http://radarek.jogger.pl/szukaj/" method="post" id="search">
+            <fieldset>
+              <h3>Szukaj</h3>
+
+              <input class="text" type="text" value="" name="search" /><input class="submit" type="submit" value="Szukaj" />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="submenu">
+          <h3>Subskrypcje RSS</h3>
+          <a href="http://feeds.feedburner.com/radarek-blog"><img src="http://feeds.feedburner.com/~fc/radarek-blog?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (pełne wpisy)
+          <br />
+          <span style="position: relative; left: 2em;">+</span>
+          <br />
+          <a href="http://feeds.feedburner.com/radarek-blog/headers"><img src="http://feeds.feedburner.com/~fc/radarek-blog/headers?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border: 0; vertical-align: middle; margin: 0;" alt="" /></a> (nagłówki)
+        </div>
+
+        <div class="submenu">
+          <object width="200" height="300" type="application/x-shockwave-flash" data="http://www.blip.pl/widget.swf">
+            <param name="movie" value="http://www.blip.pl/widget.swf" />
+            <param name="quality" value="high"/>
+            <param name="wmode" value="transparent" />
+            <param name="flashvars" value="blip_user=radarek&amp;color_scheme=dark&amp;corner_radius=0&amp;"/>
+          </object>
+        </div>
+
+
+        <div class="submenu">
+          <h3>Miniblog</h3>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="../../../../2009/01/01/gist-odpicowane-pastie/index.html">Gist - odpicowane pastie</a></h4>
+            01 Sty 2009
+            <div class="">
+              <p>
+  <a href="http://gist.github.com">Gist</a> istnieje już jakiś czas, dopiero teraz przyglądnąłem się mu bliżej. Początkowo wydawało mi się, że to kolejny klon <a href="http://pastie.org">pastie</a>, ale szybko okazało się, że to coś więcej.
+</p>
+
+<p>
+  Coś więcej ponieważ Gist, prócz tego co potrafi Pastie (edycja pliku online, kolorowanie składni, prywatne pliki), dodaje to co potrafi najlepiej - obsługa repozytoriów <a href="http://git-scm.com/">Git</a>. Otóż każde nowe "pastie" powoduje założenie repozytorium gita, które następnie możemy pobrać (clone), a także wysyłać do niego zmiany (push). Oczywiście nie jesteśmy ograniczeni do 1 pliku, możemy mieć ich tyle ile chcemy. Na stronie pokazywana jest historia rewizji. Dbałość o szczegóły jest firmowym znakiem serwisu <a href="http://github.com">GitHub</a>. Żegnaj Pastie, niech żyje Gist!
+</p>
+
+              
+            </div><!-- post-body -->
+          </div>
+          
+          <div class="miniblog-post">
+            <h4><a class="title" href="../../../../2008/10/12/mp3-przeboje/index.html">Mp3 Przeboje</a></h4>
+            12 Paź 2008
+            <div class="">
+              <a href="http://mp3przeboje.pl">http://mp3przeboje.pl/</a> to serwis dzięki, któremu możesz odsłuchać aktualne najciekawsze utwory muzyczne prosto z przeglądarki. Po prosty wybierz interesującą Cię listę przebojów (aktualnie 22 listy z różnych stacji radiowych) i słuchaj. Programiście projektu <a href="http://md6.org/">oki</a>emu należą się słowa uznania za staranność wykonania (serwis w zasadzie dopiero wystartował i ciągle się rozwija).
+              
+            </div><!-- post-body -->
+          </div>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Narzędzia</h3>
+
+          <ul id="tools">
+            <li><a href="javascript:irb_console.toggle();">JRuby irb console</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Kategorie</h3>
+
+          <ul id="categories">
+          
+            <li id="blog"><a href="../../../../kategoria/blog/index.html">Blog (6)</a></li>
+          
+            <li id="c"><a href="../../../../kategoria/c/index.html">C (1)</a></li>
+          
+            <li id="gamedev"><a href="../../../../kategoria/gamedev/index.html">Gamedev (1)</a></li>
+          
+            <li id="git"><a href="../../../../kategoria/git/index.html">Git (2)</a></li>
+          
+            <li id="humor"><a href="../../../../kategoria/humor/index.html">Humor (3)</a></li>
+          
+            <li id="java"><a href="../../../../kategoria/java/index.html">Java (1)</a></li>
+          
+            <li id="jruby"><a href="../../../../kategoria/jruby/index.html">JRuby (2)</a></li>
+          
+            <li id="miniblog"><a href="../../../../kategoria/miniblog/index.html">Miniblog (8)</a></li>
+          
+            <li id="narzedzia"><a href="../../../../kategoria/narzedzia/index.html">Narzędzia (7)</a></li>
+          
+            <li id="programowanie"><a href="../../../../kategoria/programowanie/index.html">Programowanie (7)</a></li>
+          
+            <li id="python"><a href="../../../../kategoria/python/index.html">Python (4)</a></li>
+          
+            <li id="ruby"><a href="../../../../kategoria/ruby/index.html">Ruby (37)</a></li>
+          
+            <li id="ruby_merb"><a href="../../../../kategoria/ruby/merb/index.html">Merb (2)</a></li>
+          
+            <li id="ruby_ruby-on-rails"><a href="../../../../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails (6)</a></li>
+          
+            <li id="techblog"><a href="../../../../kategoria/techblog/index.html">Techblog (36)</a></li>
+          
+            <li id="tips-tricks"><a href="../../../../kategoria/tips-tricks/index.html">Tips &amp; tricks (9)</a></li>
+          
+            <li id="web"><a href="../../../../kategoria/web/index.html">Web (2)</a></li>
+          
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Tagi</h3>
+          
+            <a class="catlvl0" href="../../../../kategoria/blog/index.html">Blog</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/c/index.html">C</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/gamedev/index.html">Gamedev</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/git/index.html">Git</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/humor/index.html">Humor</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/java/index.html">Java</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/jruby/index.html">JRuby</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/miniblog/index.html">Miniblog</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/narzedzia/index.html">Narzędzia</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/programowanie/index.html">Programowanie</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/python/index.html">Python</a>
+          
+            <a class="catlvl3" href="../../../../kategoria/ruby/index.html">Ruby</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/ruby/merb/index.html">Merb</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/ruby/ruby-on-rails/index.html">Ruby on Rails</a>
+          
+            <a class="catlvl3" href="../../../../kategoria/techblog/index.html">Techblog</a>
+          
+            <a class="catlvl1" href="../../../../kategoria/tips-tricks/index.html">Tips &amp; tricks</a>
+          
+            <a class="catlvl0" href="../../../../kategoria/web/index.html">Web</a>
+          
+        </div>
+
+        <div class="submenu">
+          <h3>Linki</h3>
+          <ul id="links">
+            <li><a href="http://mp3przeboje.pl/">mp3 przeboje</a></li>
+            <li><a href="http://linuxlinki.md6.org/">Linux linki</a></li>
+          </ul>
+        </div>
+
+        <div class="submenu">
+          <h3>Archiwum</h3>
+          <ul id="archives">
+            
+              <li><a href="../../../../startid/470765.html">21.02.09-19.04.10
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/433510.html">08.12.08-12.02.09
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/425293.html">21.11.08-06.12.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/423490.html">27.05.08-20.11.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/392066.html">12.03.08-21.04.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/383421.html">25.11.07-01.03.08
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/364188.html">12.10.07-20.11.07
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/337815.html">29.05.07-20.07.07
+ (5)</a></li>
+            
+              <li><a href="../../../../startid/323920.html">05.05.07-28.05.07
+ (5)</a></li>
+            
+          </ul>
+        </div>
+
+      </div><!-- menu -->
+
+      <div id="content">
+        <div class="translation-info" style="display: none;">
+          <script type="text/javascript" src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/translatemypage.xml&amp;up_source_language=pl&amp;w=160&amp;h=60&amp;title=&amp;border=&amp;output=js"></script>
+          <h4>Looking for english version of this blog?</h4>
+          <p>
+          Hello Stranger! This page is written in polish language and it looks like your is different than that.
+          Currently I cannot afford english version of this page. The easiest way to (at least try) read this page on another language is to use automatic Google Translator. Thanks for visit!
+          </p>
+          <div style="clear: left;"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <script type="text/javascript" id="AdTaily_Widget" src="http://static.adtaily.pl/widget.js#foobarbaz"></script>
+          <noscript><p><a href="http://www.adtaily.pl">Skuteczna reklama na blogach sprzedawana za pomocą AdTaily</a>(PLALLADTAILY0002)</p></noscript>
+        </div>
+
+        <div class="post">
+
+          <div class="post-header">
+            <div class="post-date">
+              <small>2007</small>
+              <span>05</span>
+              <small>Maj</small>
+            </div><!-- post-date -->
+            <h2 class="post-title"><a class="title" href="index.html">Ruby - garść faktów na zachętę</a></h2>
+            
+            <a href="index.html#comments">12 komentarzy</a>
+            | Kategorie:
+            
+              <a class="strong" href="../../../../kategoria/ruby/index.html">Ruby</a>
+            
+            
+              | <a href="trackback/index.html">trackback</a>
+            
+            
+
+            
+            <br />
+              Tagi:
+                
+                  <a class="strong" href="http://technorati.com/tags/introduction" rel="tag">
+                  introduction</a>
+                
+                  <a class="strong" href="http://technorati.com/tags/ruby" rel="tag">
+                  ruby</a>
+                
+            
+          </div><!-- post-header -->
+
+          <div class="post-body">
+            <h3>Na początek...</h3>
+<blockquote>
+	<p>
+		Od roku 2003 lawinowo zdobywa nowych zwolenników, głównie za sprawą popularnego frameworku do tworzenia aplikacji webowych o nazwie Ruby on Rails, tworzonego przez grupę programistów pod kierownictwem Davida Heinemeiera Hanssona.
+W roku 2005 według statystyk sklepu Amazon dwie najpopularniejsze książki na temat Ruby i Ruby On Rails były najlepiej sprzedawanymi pozycjami z kategorii Programowanie.
+	</p>
+	<p>
+		Źródło: <a href="http://pl.wikipedia.org/wiki/Ruby_%28j%C4%99zyk_programowania%29">http://pl.wikipedia.org/wiki/Ruby_(język_programowania)</a>
+	</p>
+</blockquote>
+
+<h3>To nie będzie łatwe...</h3>
+<p>
+	Stawiam sobie cel. Chcę przekonać Cię do <strong>wspaniałego</strong> języka jakim jest <a href="http://ruby-lang.org/pl">Ruby</a>. Zdaję sobie sprawę, że nie będzie to łatwe. Dlaczego miałbyś uczyć się kolejnego języka? Zapewne znasz już 2-3 (albo i więcej), a nauka kolejnego to wg Ciebie strata czasu. Być może należysz do ludzi, którzy na widok czegoś nowego od razu reagują negatywnie. Niestety takie podejście jest bardzo powszechne. Nieraz słyszę "nie podoba mi się ten język", "składnia jakaś taka dziwna", "to mi nie pasuje, albo tamto". Zamiast postępować w ten sposób nastaw się pozytywnie. Tym bardziej, że szybki rozwój branży IT (skoro czytasz ten tekst to zakładam, że jesteś z nią w jakiś sposób związany, a najprawdopodobniej jesteś programistą :-)) zmusza nas do bycia elastycznymi, gotowymi do zmiany technologii w jakiej pracujemy, do porzucania starych przyzwyczajeń i przyswajania nowych. Wczoraj pisałeś w C, dzisiaj piszesz w Javie, jutro będziesz pisać w... Rubim?:) Nawet jeśli upierasz się, że Ruby nie jest dla Ciebie, to wciąż uważam, że powinieneś poznać choć trochę Rubiego. Dlaczego? Ponieważ jeśli uważasz, że coś jest złe, to musisz wiedzieć dlaczego... Inaczej mówiąc jeśli się czegoś nie lubi to trzeba wiedzieć z jakiego powodu :-). No dobrze, jeśli czytasz jeszcze ten tekst to prawdopodobnie dobrze się nastawiłeś - jest cień nadziei, że dasz mi szansę. Postaram się jej nie zmarnować :-).
+</p>
+
+<h3>Liczą się tylko fakty...?</h3>
+<p>
+	Najczęściej teksty wprowadzające zawierają krótki przegląd języka, w którym autor pokrótce przedstawia jego cechy i porównuje go do innych języków. Oczywiście porównania mają na celu pokazanie wyższości danego języka nad innymi. Mógłbym i ja postąpić w ten sposób, ale uważam, że to się nie sprawdza. Zapewne będą ludzie, których takie porównanie zachęci, ale większość i tak machnie ręką twierdząc, że ich język i tak to ma, ale w trochę innej formie. Oczywiście każdy język ma coś specyficznego dla niego (przykładowo dla Rubiego bloki czy też mixiny), ale tak naprawdę dopóki nie zacznie się używać tych specyficznych konstrukcji, dopóty najprawdopodobniej nie będą żadnym argumentem przemawiającym na jego korzyść. Mimo wszystko w drugiej częśći artykułu postaram się zwrócić uwagę na te specjały, które powodują, że Ruby jest <strong>wyjątkowy</strong>. W pierwszej części chciałbym przytoczyć kilka dosyć istotnych faktów, które mogą dać Ci jakieś pojęcie o tym języku. Zauważyłem bowiem, że ludzie oczekują konkretów, liczb, faktów. Kto tego używa, na jaką skalę. Kiedy mówię im "Ruby jest super, słyszałeś o tym frameworku Ruby on Rails? Tam wszystko jest takie proste..." to pierwsze co słyszę jest "a kto tego używa? Jakaś duża aplikacja, strona internetowa? Może jakiś fajny program jest w tym napisany?". Na te pytania postaram się zaraz odpowiedzieć.
+</p>
+
+<h3>Ale kto tego używa?...</h3>
+<p>
+	Jak <a href="http://www.ruby-lang.org/pl/dokumentacja/udane-wdrozenia/">podaje strona domowa Rubiego</a> język ten jest używany przez <a href="http://www.larc.nasa.gov/">Centrum Badań NASA</a>, grupę badawczą w <a href="http://www.motorola.com/">Motoroli</a>, <a href="http://ods.org/">Open Domain Server</a>. Znane (i przede wszystkim często odwiedzane) strony, które zostały napisane z użyciem frameworka Ruby on Rails to na przykład <a href="http://www.alistapart.com/">A list apart</a>, <a href="http://www.43things.com/">43 things</a> ("1,010,846 people in 12,565 cities are doing 958,679 things including..."), <a href="http://www.basecamphq.com/">Basecamp</a> ("over 1,000,000 people signed up worldwide"), <a href="http://odeo.com/">ODEO</a>, a także <a href="http://twitter.com/">Twitter</a> (momentami ponad 10k req/s!).<br />
+	<a href="http://pl.wikipedia.org/wiki/Martin_Fowler">Martin Fowler</a> - brzmi znajomo? Jeśli nie to czym prędzej nadrób zaległości! Napisał on m.in.:
+</p>
+<blockquote>
+	<p>
+	(...) and it soon became my preferred scripting language (...)
+	</p>
+	<p>
+	When I ask the question "do you think you're significantly more productive in Ruby rather than Java/C#", each time I've got a strong 'yes'. This is enough for me to start saying that for a suitable project, you should give Ruby a spin. Which, of course, only leaves open the small question of what counts as 'suitable'.
+	</p>
+	<p>
+	But overall these experiences, from trusted colleagues mean I'm increasingly positive about using Ruby for serious work where speed, responsiveness, and productivity are important.
+	</p>
+	<p>
+		Źródło: <a href="http://www.martinfowler.com/bliki/EvaluatingRuby.html">http://www.martinfowler.com/bliki/EvaluatingRuby.html</a>
+	</p>
+</blockquote>
+
+<h3>Ruby coraz bardziej popularny...</h3>
+<p>
+	Na stronie <a href="http://www.tiobe.com/tpci.htm">TIOBE</a> można zobaczyć ranking języków (sposób w jaki taki ranking powstaje jest opisany na stronie). Ruby obecnie zajmuje 10 pozycję i ma największy przyrost spośród wszystkich języków! Rok 2006 był bardzo udanym rokiem dla Rubiego - skok aż o 11 pozycji!. Rosnącą popularność języka obrazuje poniższy wykres, zaczerpnięty ze wspomnianej strony.
+<a href="http://www.flickr.com/photos/43204138@N00/484227249/" title="Tiobe ranking for Ruby"><img class="single" src="http://farm1.static.flickr.com/183/484227249_e1b6a7c24f.jpg" width="500" height="374" alt="Tiobe ranking for Ruby" /></a>
+	Zwróćcie uwagę na dość znaczny spadek zainteresowania (można przypuszczać, że na rzecz Rubiego lub Pythona) takich języków jak Java czy Php. Pozwolę sobie jeszcze raz przytoczyć fragment cytatu z pierwszego akapitu: "W roku 2005 według statystyk sklepu Amazon dwie najpopularniejsze książki na temat Ruby i Ruby On Rails były najlepiej sprzedawanymi pozycjami z kategorii Programowanie.".
+</p>
+
+<h3>To tylko początek...</h3>
+<p>
+	Rosnące zainteresowanie tym językiem to początek jego wielkiej kariery. Wiedzą to także takie wielkie firmy jak Sun i Microsoft! Ta pierwsza już jakiś czas temu <a href="http://www.tbray.org/ongoing/When/200x/2006/09/07/JRuby-guys">zatrudniła zespół odpowiedzialny za JRuby</a>, czyli interpreter Rubiego napisany w Javie. Ta druga zaś <a href="http://www.infoq.com/news/2007/04/ms-ironruby">oznajmiła ostatnio o wydaniu 'dotnetowej' implementacji Rubiego, zwanej IronRuby</a>. Takie postępowanie nie jest bynajmniej przypadkowe. Owe firmy zdają sobie sprawę o sile języków dynamicznych, stąd decyzja o inwestycji. Przykładowo JRuby pozwala na korzystanie z ogromnego zaplecza bibliotek, których Java dorobiła się przez lata (a których Rubiemu czasem brakuje). Łącząc to z prostotą pisania w tym języku otrzymujemy zabójczą mieszankę.
+</p>
+
+<h3>Otwórz oczy!</h3>
+<p>
+	Przytaczając kolejne przykłady wykorzystania Rubiego, staram się otworzyć o czym tym, którzy mówią, że Ruby to niszowy język, a co za tym idzie - niewart uwagi. Tak nie jest, co mam nadzieję udowodniłem. W kolejnych artykułach postaram się pokazać dlaczego Ruby jest <strong>wyjątkowy</strong>, co wyróżnia go od innych języków. Do następnego razu. Stay tuned! :-)
+</p>
+          </div><!-- post-body -->
+        </div><!-- post -->
+        <div class="separator"></div>
+        
+        <div class="wykop" style="padding: 1px;" >
+          <p style="margin-top: 10px;">
+          Jeśli spodobał Ci się wpis to może umieścisz ten blog w swoim czytniku RSS?
+          </p>
+        </div>
+        <div style="clear: left;"></div>
+
+        
+
+        
+        <h3>Komentarze</h3>
+        
+
+        <div id="comments">
+        
+          <div id="comment-811458" class="comment1 jogger">
+            
+            1.
+            
+            <img class="avatar-icon" src="http://jamlasica.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://jamlasica.jogger.pl">jam łasica</a></strong> napisał(a) 05 Maj 2007 o godz. 02:56:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ciekawe czy Sun zdecyduje się na dołączenie JRuby do Javy 7 SE, tak jak zrobili to z Rhino (JavaScript) w JSE6? Byłoby fajnie :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-811500" class="comment2 jogger">
+            
+            2.
+            
+            <img class="avatar-icon" src="http://rubedo.jogger.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://rubedo.jogger.pl">RazorJack</a></strong> napisał(a) 05 Maj 2007 o godz. 09:28:
+            <div class="top"></div>
+            <div class="content">
+              <p>Podejrzewam, ze się zdecyduje. Alex Miller zawarł to we <a href="http://tech.puredanger.com/java7" rel="nofollow" >wpisie poświęconym Javie 7</a> (informacje te są nieoficjalne, ale&#8230;):</p>
+
+<blockquote>
+<p>Add additional language interpreters to <span class="caps">JSE</span>. The JavaScript Rhino engine was added in Java 6. Leading candidates for Java 7 are: JRuby, Jython, and Beanshell.</p>
+</blockquote>
+
+<p>Poza tym Sun bardzo poważnie traktuje JRubiego, którego developerów zatrudnił do pracy nad NetBeans.</p>
+
+<p>Tym nie mniej &#8211; świetny wpis. I design bloga toże :-).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-811515" class="comment1 jogger">
+            
+            3.
+            
+            <img class="avatar-icon" src="http://ktos.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://ktos.jogger.pl">Marcin &quot;Ktos&quot;</a></strong> napisał(a) 05 Maj 2007 o godz. 10:01:
+            <div class="top"></div>
+            <div class="content">
+              <p>Ruby ma też kompilator dla .<span class="caps">NET</span> ;-)</p>
+
+<p>Niemniej jednak nawet jeżeli chciałbym napisać w nim webaplikację to napotykam ten sam problem co z Pythonem czy <span class="caps">JSP</span>. Pokażcie mi hostingi &#8211; ja znam <em>jeden</em>. A <span class="caps">PHP</span> (co prawda głównie 4) jest wszędzie praktycznie&#8230;</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-811523" class="comment2 guest">
+            
+            4.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong><a href="http://jabba.pl/seban" rel="nofollow">Seban</a></strong> napisał(a) 05 Maj 2007 o godz. 10:14:
+            <div class="top"></div>
+            <div class="content">
+              <p>Problem z hostingiem wynika chyba cały czas z jednak małej popularności w porównaniu z <span class="caps">PHP</span>.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-811593" class="comment1 jogger">
+            
+            5.
+            
+            <img class="avatar-icon" src="http://rubedo.jogger.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://rubedo.jogger.pl">RazorJack</a></strong> napisał(a) 05 Maj 2007 o godz. 11:39:
+            <div class="top"></div>
+            <div class="content">
+              <p>Brak hostingów o niczym nie świadczy &#8211; Java jest bardzo poważną platformą (dużo poważniejszą niż <span class="caps">PHP</span>...), a jednak ciężko o hosting.</p>
+
+<p>Myślę, że firmy hostingowe to nie buce. Na pewno można się z nimi dogadać. Zmiana wersji <span class="caps">PHP</span> (lub MySQL) na najnowszą to kłopot, ale doinstalowanie jednego języka? Warto popróbować, a nuż się uda. :-)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-811595" class="comment2 jogger">
+            
+            6.
+            
+            <img class="avatar-icon" src="http://ktos.jogger.pl/files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="http://ktos.jogger.pl">Marcin &quot;Ktos&quot;</a></strong> napisał(a) 05 Maj 2007 o godz. 11:41:
+            <div class="top"></div>
+            <div class="content">
+              <p>Heh, bo <span class="caps">JSP</span> to nie jest platforma dla forum i księgi gości, tylko dla supe-hiper-webaplikacji. &#8222;Enterprise&#8221; przysłowiowy.</p>
+
+<p>A Ruby&#8230; a w sumie nie wiem do czego się nadaje, ale pewnie i do tego i do tego :-)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-811609" class="comment1 owner">
+            
+            7.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 05 Maj 2007 o godz. 12:04:
+            <div class="top"></div>
+            <div class="content">
+              <p>Problem z hostingiem istnieje &#8211; nie ma co ukrywać. Powodów jest kilka. Po pierwsze Ruby wymaga trochę więcej zasobów niż Php. Nie czarujmy się &#8211; Ruby jest obecnie najwolniejszy z czołowych języków dynamicznych (ale ten problem jest bliski rozwiązania – <a href="http://www.atdot.net/yarv/" rel="nofollow" >YARV</a>.)</p>
+
+<p>Jeśli mówimy o Ruby i hostingu to zapewne mamy na myśli Railsy. A Railsy do sprawnego działania potrzebuje czegoś więcej niż potrzebuje Php. Wynika to ze sposobu działania &#8211; Railsy działają jak aplikacja (a nie jak skrypt który jest przetwarzany za każdym razem jak Php), a więc wymagają dostępu do shella itp. Jak widać choćby po dreamhoście, nawet na dzielonym serwerze da się coś takiego udostępnić. To było po drugie.</p>
+
+<p>Po trzecie Ruby nie ma tylu lat doświadczeń co Php, przez które zostały opracowane gotowe schematy konfiguracji a administratorzy nauczyli się, że ustawianie register_globals jest złe itp. </p>
+
+<p>Na dzień dzisiejszy jeśli myślimy o pisaniu czegoś w Ruby/Rails to praktycznie musimy być gotowi na serwer dedykowany. Mnie osobiście aż tak nie przeszkadza &#8211; przynajmniej nie ma jeszcze tego efektu co z Php, że masa &#8222;dzieciaków&#8221; próbuje w tym pisać i po 1 skrypcie zwie się programistami. Tam gdzie pojawiają się firmy z potrzebami znajdą się i pieniądze na serwer.</p>
+
+<blockquote>
+<p>
+A Ruby… a w sumie nie wiem do czego się nadaje, ale pewnie i do tego i do tego :-)
+</p>
+</blockquote>
+
+<p>Na to postaram się odpowiedzieć w kolejnym wpisie.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-813954" class="comment2 guest">
+            
+            8.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>kb</strong> napisał(a) 07 Maj 2007 o godz. 10:46:
+            <div class="top"></div>
+            <div class="content">
+              <p>Jedno mogę powiedzieć na pewno &#8211; jeśli jakieś rozwiązanie informatyczne gorąco poleca Radarek, to znaczy, że jest ono polecenia godne :)<br />
+Radarek to trzeźwo myślący praktyk i nie obawiam się o przesadną miłość, czy ideologiczne zacietrzewienie.</p>
+
+<p>Kończąc szczere łubu-dubu&#8230; <br />
+Polecam polecenia Radarka ;)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-817344" class="comment1 jogger">
+            
+            9.
+            
+            <img class="avatar-icon" src="http://emes.jogger.pl/files/favicon.ico" alt="avatar icon" />
+            
+            
+            <strong><a href="http://emes.jogger.pl">MySZ</a></strong> napisał(a) 10 Maj 2007 o godz. 05:19:
+            <div class="top"></div>
+            <div class="content">
+              <p>@Ktos:<br />
+&#8222;Niemniej jednak nawet jeżeli chciałbym napisać w nim webaplikację to napotykam ten sam problem co z Pythonem czy <span class="caps">JSP</span>. Pokażcie mi hostingi – ja znam jeden.&#8221; </p>
+
+<p>Python jest <em>względnie</em> często spotykany, ale zazwyczaj jako cgi (czyli nie do końca to co by się chciało mieć ;) ).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1004295" class="comment2 guest">
+            
+            10.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>pkarw</strong> napisał(a) 15 Lis 2007 o godz. 16:12:
+            <div class="top"></div>
+            <div class="content">
+              <p>Tak, ale nie można zapominać o problemach RoR z wydajnością, zwłaszcza gdy tworzymy średniej wielkości serwis ie nie możemy sobie pozwolić na utrzymanie farmy kilkunastu serwerów &#8211; podczas gdy inne rozwiązanie pozwoliłoby zmniejszyć ich ilość przy takim samym obciążeniu. W benchmarkach wydajności które swego czasu przeglądałem prowadzą frameworki do Pythona &#8211; m.in. Django, niektóre frameworki pod <span class="caps">PHP</span> (CI) wypadały również korzystniej od RoR. Czy można o tym zapominać? Gdzieś czytałem fajne stwierdzenie &#8211; &#8222;Język programowania jest jak dziewczyna, kolejny jest lepszy, bo.. Ty jesteś lepszym programistą&#8221; :)</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1004332" class="comment1 owner">
+            
+            11.
+            
+            <img class="avatar-icon" src="../../../../files/favicon.png" alt="avatar icon" />
+            
+            
+            <strong><a href="../../../../index.html">Radarek</a></strong> napisał(a) 15 Lis 2007 o godz. 16:44:
+            <div class="top"></div>
+            <div class="content">
+              <p>Niestety nie mogę się zgodzić z tym co piszesz.</p>
+
+<p>Wydajność. Można powiedzieć, że to już mit. Wersja 1.9, oparta na maszynie wirtualnej <span class="caps">YARV</span>, jest około 3x (a czase nawet więcej) szybsza od wersji 1.8. Mało tego. Powstały (albo powstają) kolejne implementacje języka. I tak JRuby w wersji 1.1b jest szybszy od klasycznego <span class="caps">MRI</span>, a będzie jeszcze szybszy. Rubinius (choć jeszcze nie da się go używać w produkcji) także w niektórych testach wychodzi lepiej.</p>
+
+<p>Mało tego. Dzięki takiej a nie innej architekturze railsów (działa jako aplikacja, a nie interpretowany za każdym razem skrypt) przy większych aplikacjach (czyli czymś więcej niż Hello World&#8221;) railsy jak najbardziej mogą być szybsze od php (tak, python jest szybszy, ale co z tego?).</p>
+
+<p>Kiedy szybkość była decydującym wyznacznikiem? Nigdy. Dlatego nie programuje się dzisiaj w asm, a nawet do C rzadko się sięga (a byli i tacy ludzi co pisali w C skrypty <span class="caps">CGI</span>...). Procesory ciągle stają się szybsze (lub wielordzeniiowe) więc nie widzę powodu by uważać Rubiego za &#8222;wolny język&#8221;.</p>
+
+<p>Weź jeszcze pod uwagę wydajność swojego umysłu. Cenisz bardziej siebie czy bezduszną maszynę? Ruby jest przede wszystkim dla człowieka. I czuję to w 100%, bo odkąd tylko zacząłem w nim programować, jestem w błogim stanie :).</p>
+
+<p>Dla średniej wielkości serwisu nie potrzebujesz żadnej farmy serwerów. Jeden serwer z 2-3 instancjami mongrela. Tylko tyle i aż tyle.</p>
+
+<p>&#8222;Gdzieś czytałem fajne stwierdzenie – „Język programowania jest jak dziewczyna, kolejny jest lepszy, bo.. Ty jesteś lepszym programistą” :)&#8221; </p>
+
+<p>Po części jest to prawdą. Ale patrząc z perspektywy czasu ile nauczył mnie język to Ruby nie ma sobie równego. <span class="caps">PHP</span> to śmiech na sali :).</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+          <div id="comment-1319000" class="comment2 guest">
+            
+            12.
+            
+            
+            <img class="avatar-icon" src="../../../../files/default-avatar-icon.png" alt="avatar icon" />
+            
+            <strong>Kork</strong> napisał(a) 06 Sty 2009 o godz. 19:02:
+            <div class="top"></div>
+            <div class="content">
+              <p>Mineło póltora roku i sam widzę, jak hostingów dla Railsów jest coraz więcej.<br />
+Za granicą można spotkać darmowe.<br />
+Po za tym trzeba wziąść pod uwagę pewną rzecz.<br />
+Nawet jeśli hosting dla Railsów jest droższy, należy pamiętać, że są ogromne oszczędności kosztów dla firm webdesignerskich w kwestii czasu pracy programistów i możliwości zrealizowania wiekszych ilości projektów w skali roku.<br />
+Jakby na to nie patrzeć &#8211; Ruby ostatecznie okazuje się tańszy.</p>
+            </div>
+            <div class="footer"></div>
+          </div>
+        
+        </div><!-- comments -->
+
+        
+
+        
+
+        
+
+        
+        <h3>Musisz się zalogować, jeśli chcesz dodać komentarz.</h3>
+        
+      </div><!-- content -->
+
+      <div class="cleaner"></div>
+
+    </div><!-- content-wrapper -->
+
+    <div id="footer" style="clear: both;">
+    <div id="footer-shadow"></div>
+        <h3>Czytelnicy</h3>
+        <script type="text/javascript" src="http://pub.mybloglog.com/comm2.php?mblID=2007050116063791&amp;c_width=800&amp;c_sn_opt=n&amp;c_rows=3&amp;c_img_size=f&amp;c_heading_text=&amp;c_color_heading_bg=FFFFFF&amp;c_color_heading=000000&amp;c_color_link_bg=FFFFFF&amp;c_color_link=000000&amp;c_color_bottom_bg=FFFFFF"></script>
+      <div id="bottom-para">
+        <p>
+          &copy; 2007-2010, Radarek bloguje. Graphics, css, xhtml, javascript code by <a href="../../../../index.html">Radarek</a>
+          | <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a>
+          | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a>
+        </p>
+      </div>
+    </div><!-- footer -->
+
+    <div id="jruby-irb-console" style="display: none;">
+      <div class="overlay">
+        <div class="window">
+          <div class="inner">
+            <a class="close-popup" href="index.html#">Zamknij</a>
+            <div class="irb-console-applet">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+  </body>
+</html>
