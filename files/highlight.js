@@ -444,7 +444,10 @@ var hljs = new function() {
     for (var i = 0; i < languages.length; i++) {
       var filename = LANGUAGE_GROUPS[languages[i]] ? LANGUAGE_GROUPS[languages[i]] : languages[i];
       if (!injected[filename]) {
-        document.write('<script type="text/javascript" src="' + path + filename + '.js"></script>');
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = path + filename + '.js';
+        document.head.appendChild(script);
         injected[filename] = true;
       }
     }
